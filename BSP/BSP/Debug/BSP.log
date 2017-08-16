@@ -1,8 +1,4 @@
 ﻿  Leaf.cpp
-c:\users\yui\source\repos\mycode\bsp\bsp\leaf.cpp(37): warning C4838: 'int'에서 'SHORT'(으)로의 변환에는 축소 변환이 필요합니다.
-  코드를 생성하고 있습니다...
-  컴파일하고 있습니다...
-  main.cpp
-  코드를 생성하고 있습니다...
+c:\users\yui\source\repos\mycode\bsp\bsp\leaf.cpp(38): warning C4838: 'int'에서 'SHORT'(으)로의 변환에는 축소 변환이 필요합니다.
   BSP.vcxproj -> C:\Users\YUI\Source\Repos\MyCode\BSP\Debug\BSP.exe
   BSP.vcxproj -> C:\Users\YUI\Source\Repos\MyCode\BSP\Debug\BSP.pdb (Partial PDB)

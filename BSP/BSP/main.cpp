@@ -8,7 +8,7 @@ using namespace std;
 
 void main()
 {
-	const int MAX_LEAF_SIZE = 5;
+	const int MAX_LEAF_SIZE = 6;
 
 	srand((unsigned)time(NULL));
 
@@ -16,6 +16,8 @@ void main()
 	Leaf root(0, 0, 60, 25);
 	_leafs.push_back(&root);
 
+	//root.RootPrint();
+	
 	bool isSplit = true;
 	while (isSplit)
 	{
@@ -41,13 +43,15 @@ void main()
 	{
 		_leafs[i]->PrintLeaf();
 	}*/
+	root.isRoom = true;
+	root.PrintLeaf();
 	root.CreateRoom();
-	for (vector<Leaf>::size_type i = 0; i < _leafs.size(); ++i)
+	/*for (vector<Leaf>::size_type i = 0; i < _leafs.size(); ++i)
 	{
 		_leafs[i]->PrintLeaf();
-	}
-	cout << "END" << endl;
-	system("pause");
+	}*/
+	//cout << "END" << endl;
+	system("pause > NULL");
 }
 //
 //using namespace std;

@@ -11,12 +11,14 @@ using namespace std;
 class Leaf
 {
 private:
-	const int MIN_LEAF_SIZE = 5;
+	const int MIN_LEAF_SIZE = 6;
 public:
 	int		x;
 	int		y;
 	int		x2;
 	int		y2;
+
+	pair<int, int>* path;
 
 	int		topLineS_X;
 	int		topLineS_Y;
@@ -52,16 +54,23 @@ public:
 		botLineB_X = (x <= x2) ? x2 : x;
 		botLineB_Y = (y <= y2) ? y2 : y;
 
+		path = NULL;
+
 		isRoom = false;
 	};
 	~Leaf();
 
 	void CreateRoom();
+	pair<int, int>* GetRoom();
+
+	void CreateHall(pair<int, int>* leftChild, pair<int, int>* rightChild);
 
 	bool Split();
 
 	void PrintLeaf();
 	void GotoXY(int x, int y, const char c);
+
+	void RootPrint();
 };
 
 //class Leaf
