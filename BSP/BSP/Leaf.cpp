@@ -3,30 +3,32 @@
 
 void Leaf::PrintLeaf()
 {
-	//TopLineDrawing
-	for (int i = this->topLineS_X; i < this->topLineB_X; ++i)
+	if (isRoom)
 	{
-		GotoXY(i, this->topLineS_Y, 'x');
-	}
-	//BottomLineDrawing
-	for (int in = this->topLineS_X; in < this->topLineB_X; ++in)
-	{
-		GotoXY(in, this->botLineS_Y, 'x');
-	}
-	//LeftLineDrawing
-	for (int ik = this->topLineS_Y; ik < this->botLineS_Y; ++ik)
-	{
-		GotoXY(this->topLineS_X, ik, 'x');
-	}
-	//RightLineDrawing
-	for (int ig = this->topLineS_Y; ig <= this->botLineS_Y; ++ig)
-	{
-		GotoXY(this->topLineB_X, ig, 'x');
-	}
+		//TopLineDrawing
+		for (int i = this->topLineS_X; i < this->topLineB_X; ++i)
+		{
+			GotoXY(i, this->topLineS_Y, 'x');
+		}
+		//BottomLineDrawing
+		for (int in = this->topLineS_X; in < this->topLineB_X; ++in)
+		{
+			GotoXY(in, this->botLineS_Y, 'x');
+		}
+		//LeftLineDrawing
+		for (int ik = this->topLineS_Y; ik < this->botLineS_Y; ++ik)
+		{
+			GotoXY(this->topLineS_X, ik, 'x');
+		}
+		//RightLineDrawing
+		for (int ig = this->topLineS_Y; ig <= this->botLineS_Y; ++ig)
+		{
+			GotoXY(this->topLineB_X, ig, 'x');
+		}
 
-	GotoXY(0, 31, ' ');
-	cout << "x: " << x << " y: " << y << " x2: " << x2 << " y2: " << y2 << endl;
-
+		GotoXY(0, 31, ' ');
+		cout << "x: " << x << " y: " << y << " x2: " << x2 << " y2: " << y2 << endl;
+	}
 	//system("pause > NULL");
 }
 
@@ -42,6 +44,41 @@ Leaf::~Leaf()
 {
 }
 
+void Leaf::CreateRoom()
+{
+	const int MIN_ROOM_SIZE = 3;
+
+	MRandom m;
+
+	if (leftChild != NULL || rightChild != NULL)
+	{
+		if (leftChild != NULL)
+		{
+			leftChild->CreateRoom();
+		}
+		if (rightChild != NULL)
+		{
+			rightChild->CreateRoom();
+		}
+	}
+	else
+	{
+		topLineS_X = m.getRandomNumber(x + 1, x2 - 1 - MIN_ROOM_SIZE);
+		topLineS_Y = m.getRandomNumber(y + 1, y2 - 1 - MIN_ROOM_SIZE);
+
+		botLineB_X = m.getRandomNumber(topLineS_X + MIN_ROOM_SIZE, x2 - 1);
+		botLineB_Y = m.getRandomNumber(topLineS_Y + MIN_ROOM_SIZE, y2 - 1);
+
+		topLineB_X = botLineB_X;
+		topLineB_Y = topLineS_Y;
+
+		botLineS_X = topLineS_X;
+		botLineS_Y = botLineB_Y;
+
+		isRoom = true;
+	}
+}
+
 bool Leaf::Split()
 {
 	if (leftChild != NULL || rightChild != NULL)
@@ -52,11 +89,11 @@ bool Leaf::Split()
 	srand((unsigned)time(NULL));
 	bool splitHeight = rand() % 100 > 50;
 
-	if ((y2 - y) < (x2 - x) && (1.25 <= (double)(x2-x) / (double)(y2-y)))
+	if ((y2 - y) < (x2 - x) && (1.3 <= (double)(x2-x) / (double)(y2-y)))
 	{
 		splitHeight = false;
 	}
-	else if ((x2 - x) < (y2 - y) && (1.25 <= (double)(y2 - y) / (double)(x2 - x)))
+	else if ((x2 - x) < (y2 - y) && (1.3 <= (double)(y2 - y) / (double)(x2 - x)))
 	{
 		splitHeight = true;
 	}
@@ -83,6 +120,12 @@ bool Leaf::Split()
 	}
 	return true;
 }
+/*
+	170816	-> create Room function
+			-> create Path
+*/
+
+
 
 
 //

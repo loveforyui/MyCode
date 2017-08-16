@@ -12,9 +12,9 @@ void main()
 
 	srand((unsigned)time(NULL));
 
-	vector<Leaf> _leafs;
-	Leaf root(0, 0, 30, 25);
-	_leafs.push_back(root);
+	vector<Leaf*> _leafs;
+	Leaf root(0, 0, 60, 25);
+	_leafs.push_back(&root);
 
 	bool isSplit = true;
 	while (isSplit)
@@ -22,14 +22,14 @@ void main()
 		isSplit = false;
 		for (vector<Leaf>::size_type i = 0; i < _leafs.size(); ++i)
 		{
-			if (_leafs[i].leftChild == NULL && _leafs[i].rightChild == NULL)
+			if (_leafs[i]->leftChild == NULL && _leafs[i]->rightChild == NULL)
 			{
-				if (MAX_LEAF_SIZE < (_leafs[i].topLineB_X - _leafs[i].topLineS_X) || MAX_LEAF_SIZE < (_leafs[i].botLineS_Y - _leafs[i].topLineS_Y) || 75 < rand() % 100)
+				if (MAX_LEAF_SIZE < (_leafs[i]->topLineB_X - _leafs[i]->topLineS_X) || MAX_LEAF_SIZE < (_leafs[i]->botLineS_Y - _leafs[i]->topLineS_Y) || 75 < rand() % 100)
 				{
-					if (_leafs[i].Split())
+					if (_leafs[i]->Split())
 					{
-						_leafs.push_back(*_leafs[i].leftChild);
-						_leafs.push_back(*_leafs[i].rightChild);
+						_leafs.push_back(_leafs[i]->leftChild);
+						_leafs.push_back(_leafs[i]->rightChild);
 						isSplit = true;
 						//cout << "Split Success" << endl;
 					}
@@ -37,9 +37,14 @@ void main()
 			}
 		}
 	}
+	/*for (vector<Leaf>::size_type i = 0; i < _leafs.size(); ++i)
+	{
+		_leafs[i]->PrintLeaf();
+	}*/
+	root.CreateRoom();
 	for (vector<Leaf>::size_type i = 0; i < _leafs.size(); ++i)
 	{
-		_leafs[i].PrintLeaf();
+		_leafs[i]->PrintLeaf();
 	}
 	cout << "END" << endl;
 	system("pause");

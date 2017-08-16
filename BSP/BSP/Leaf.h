@@ -33,6 +33,8 @@ public:
 	Leaf*	leftChild;
 	Leaf*	rightChild;
 
+	bool isRoom;
+
 	Leaf(int x, int y, int x2, int y2) : x(x), y(y), x2(x2), y2(y2)
 	{
 		leftChild	= NULL;
@@ -49,8 +51,12 @@ public:
 		
 		botLineB_X = (x <= x2) ? x2 : x;
 		botLineB_Y = (y <= y2) ? y2 : y;
+
+		isRoom = false;
 	};
 	~Leaf();
+
+	void CreateRoom();
 
 	bool Split();
 
