@@ -8,22 +8,22 @@ void Leaf::PrintLeaf()
 		//TopLineDrawing
 		for (int i = this->topLineS_X; i < this->topLineB_X; ++i)
 		{
-			GotoXY(i, this->topLineS_Y, 'x');
+			GotoXY(i, this->topLineS_Y, 'X');
 		}
 		//BottomLineDrawing
 		for (int in = this->topLineS_X; in < this->topLineB_X; ++in)
 		{
-			GotoXY(in, this->botLineS_Y, 'x');
+			GotoXY(in, this->botLineS_Y, 'X');
 		}
 		//LeftLineDrawing
 		for (int ik = this->topLineS_Y; ik < this->botLineS_Y; ++ik)
 		{
-			GotoXY(this->topLineS_X, ik, 'x');
+			GotoXY(this->topLineS_X, ik, 'X');
 		}
 		//RightLineDrawing
 		for (int ig = this->topLineS_Y; ig <= this->botLineS_Y; ++ig)
 		{
-			GotoXY(this->topLineB_X, ig, 'x');
+			GotoXY(this->topLineB_X, ig, 'X');
 		}
 
 		GotoXY(0, 31, ' ');
@@ -47,7 +47,7 @@ void Leaf::RootPrint()
 	{
 		for (int j = 0; j < 60; ++j)
 		{
-			GotoXY(j, i, 'O');
+			GotoXY(j, i, 'X');
 		}
 	}
 }
