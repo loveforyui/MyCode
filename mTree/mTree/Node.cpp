@@ -184,6 +184,8 @@ Node* Node::DeleteNodeToName(const char* nodeName)
             // parent -> _childs Delete to nodeName
             // nodeName's _childs move to parents _childs
 
+            MoveNodeToTrash(*FindNode(nodeName));
+
             for (vector<Node*>::size_type i = 0; i < parent->_childs.size(); ++i)
             {
                 if (parent->_childs[i]->_name == result->_name)
@@ -196,18 +198,13 @@ Node* Node::DeleteNodeToName(const char* nodeName)
             {
                 parent->_childs.push_back(result->_childs[i]);
             }
-
-            result->_name = "";
-            result->_nameConst = NULL;
-            result->_childs.clear();
-            result->_parent = NULL;
-            result = NULL;
         }
         else
         {
             // not exist childs node
             // push_back to Parent _Childs vector
             
+            MoveNodeToTrash(*FindNode(nodeName));
 
             for (vector<Node*>::size_type i = 0; i < parent->_childs.size(); ++i)
             {
@@ -216,11 +213,6 @@ Node* Node::DeleteNodeToName(const char* nodeName)
                     parent->_childs.erase(parent->_childs.begin() + i);
                 }
             }
-            result->_name = "";
-            result->_nameConst = NULL;
-            result->_childs.clear();
-            result->_parent = NULL;
-            result = NULL;
         }
     }
     else
@@ -286,9 +278,22 @@ Node* Node::PrintNodeNChilds(Node& node)
 
 #pragma region Support Functions
 
-Node* Node::MoveNodeToNode(Node& dest, Node& src)
+Node* Node::MoveNodeToTrash(const char* nodeName)
 {
-    return nullptr;
+    Node* result = FindNode(nodeName);
+
+    _trashs.push_back(result);
+
+    return result;
+}
+
+Node* Node::MoveNodeToTrash(Node& nodeName)
+{
+    Node* result = &nodeName;
+
+    _trashs.push_back(result);
+
+    return result;
 }
 
 bool Node::isExistNode(const char * nodeName)

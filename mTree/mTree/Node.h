@@ -29,7 +29,9 @@ public:
 
     Node * DeleteNodeToName(const char * nodeName);
 
-    Node * MoveNodeToNode(Node & dest, Node & src);
+    Node * MoveNodeToTrash(const char* nodeName);
+
+    Node * MoveNodeToTrash(Node & nodeName);
 
     bool isExistNode(const char* nodeName);
 

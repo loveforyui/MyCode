@@ -4,6 +4,7 @@
 
 mTree::mTree()
 {
+    _root = new Node();
 }
 
 
