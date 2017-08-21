@@ -9,7 +9,17 @@ void main()
 
     root.CreateChild("first")->CreateChild("third");
 
-    root.CreateChild("second");
+    root.CreateChild("second")->CreateChild("fourth");
+
+    root.CreateChild("fifth");
+
+    //root.PrintNodeNChilds("root");
+
+    root.PrintNodeNChilds(root);
+
+    root.DeleteNodeToName("second");
+
+    root.PrintNodeNChilds(root);
 
     /*vector<Node*> ha;
     Node t1 = Node();

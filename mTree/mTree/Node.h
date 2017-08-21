@@ -13,6 +13,7 @@ public:
 
     Node* _parent;
     vector<Node*> _childs;
+    vector<Node*> _trashs;
 
     Node();
     Node(string& name);
@@ -26,7 +27,19 @@ public:
     Node* FindNode(const char* nodeName);
     Node* FindNode(string& nodeName);
 
-    bool isExistNode(const char* name);
+    Node * DeleteNodeToName(const char * nodeName);
+
+    Node * MoveNodeToNode(Node & dest, Node & src);
+
+    bool isExistNode(const char* nodeName);
+
+    bool isExistNode(string & nodeName);
+
+    void ShowErrorMessage(Node * ERROR_NO);
+
+    Node* PrintNodeNChilds(const char* nodeName);
+
+    Node* PrintNodeNChilds(Node & node);
 
     /*Node* FindNode(Node& node, string& nodeName);
     

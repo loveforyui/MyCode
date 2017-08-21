@@ -1,5 +1,7 @@
 #include "Node.h"
 
+#pragma region Node
+// Node()
 Node::Node()
 {
     _name   = "root";
@@ -19,23 +21,29 @@ Node::Node(const char * name)
     _nameConst = name;
 }
 
-
 Node::~Node()
 {
-    
+    /*_name = "";
+    delete _nameConst;
+    delete _parent;
+    _childs.clear();*/
 }
 
+#pragma endregion
+
+#pragma region CreateChild Function
+// param(string&), (const char*)
+// does not exist nodeName's Node
+// create Node, set parents and parents childs input
+// return Node*
+
+//string datatype
 Node * Node::CreateChild(string & nodeName)
-{
-    _childs.push_back(new Node(nodeName));
-    FindNode(nodeName)->_parent = this;
-    return FindNode(nodeName);
-}
-Node * Node::CreateChild(const char* nodeName)
 {
     if (isExistNode(nodeName))
     {
         cout << "Aleady exist '" << nodeName << "' node name" << endl;
+        return NULL;
     }
     else
     {
@@ -44,29 +52,27 @@ Node * Node::CreateChild(const char* nodeName)
         return FindNode(nodeName);
     }    
 }
-
-Node* Node::FindNode(string& nodeName)
+//const char* datatype
+Node * Node::CreateChild(const char* nodeName)
 {
-    Node* temp = this;
-    if (temp->_name == nodeName)
+    if (isExistNode(nodeName))
     {
-        temp = this;
+        cout << "Aleady exist '" << nodeName << "' node name" << endl;
+        return NULL;
     }
     else
     {
-        for (vector<Node*>::size_type i = 0; i < temp->_childs.size(); ++i)
-        {
-            temp = FindNode(*(temp->_childs[i]), temp->_nameConst);
-            if (temp->_name == nodeName)
-            {
-                return temp;
-            }
-        }
-    }
-    return temp;
+        _childs.push_back(new Node(nodeName));
+        FindNode(nodeName)->_parent = this;
+        return FindNode(nodeName);
+    }    
 }
+#pragma endregion
 
-
+#pragma region FindNode Function
+// param (const char*), (Node&, const char*), (string&)
+// use recursive use find nodeName's Node
+// return Node*
 
 Node* Node::FindNode(const char* nodeName)
 {
@@ -83,7 +89,7 @@ Node* Node::FindNode(const char* nodeName)
         if (!result->_childs.empty())
         {
             Node* Nodefor = result;
-            int size = result->_childs.size();
+            unsigned int size = result->_childs.size();
             for (vector<Node*>::size_type i = 0; i < size; ++i)
             {
                 result = FindNode(*(Nodefor->_childs[i]), nodeName);
@@ -121,7 +127,7 @@ Node* Node::FindNode(Node& node, const char* nodeName)
         if (!result->_childs.empty())
         {
             Node* Nodefor = result;
-            int size = result->_childs.size();
+            unsigned int size = result->_childs.size();
             for (vector<Node*>::size_type i = 0; i < size; ++i)
             {
                 result = FindNode(*(Nodefor->_childs[i]), nodeName);
@@ -141,6 +147,149 @@ Node* Node::FindNode(Node& node, const char* nodeName)
     }
     return result;
 }
+Node* Node::FindNode(string& nodeName)
+{
+    Node* temp = this;
+    if (temp->_name == nodeName)
+    {
+        temp = this;
+    }
+    else
+    {
+        for (vector<Node*>::size_type i = 0; i < temp->_childs.size(); ++i)
+        {
+            temp = FindNode(*(temp->_childs[i]), temp->_nameConst);
+            if (temp->_name == nodeName)
+            {
+                return temp;
+            }
+        }
+    }
+    return temp;
+}
+#pragma endregion
+
+#pragma region Delete Function
+Node* Node::DeleteNodeToName(const char* nodeName)
+{
+    Node* result = FindNode(nodeName);
+    Node* parent = result->_parent;
+
+    if (result != NULL)
+    {
+        if (!result->_childs.empty())
+        {
+            // ToDo delete exist childs node
+            // procedure
+            // parent -> _childs Delete to nodeName
+            // nodeName's _childs move to parents _childs
+
+            for (vector<Node*>::size_type i = 0; i < parent->_childs.size(); ++i)
+            {
+                if (parent->_childs[i]->_name == result->_name)
+                {
+                    parent->_childs.erase(parent->_childs.begin() + i);
+                }
+            }
+
+            for (vector<Node*>::size_type i = 0; i < result->_childs.size(); ++i)
+            {
+                parent->_childs.push_back(result->_childs[i]);
+            }
+
+            result->_name = "";
+            result->_nameConst = NULL;
+            result->_childs.clear();
+            result->_parent = NULL;
+            result = NULL;
+        }
+        else
+        {
+            // not exist childs node
+            // push_back to Parent _Childs vector
+            
+
+            for (vector<Node*>::size_type i = 0; i < parent->_childs.size(); ++i)
+            {
+                if (parent->_childs[i]->_name == result->_name)
+                {
+                    parent->_childs.erase(parent->_childs.begin() + i);
+                }
+            }
+            result->_name = "";
+            result->_nameConst = NULL;
+            result->_childs.clear();
+            result->_parent = NULL;
+            result = NULL;
+        }
+    }
+    else
+    {
+        result = NULL;
+    }
+
+    return result;
+}
+#pragma endregion
+
+#pragma region Print Functions
+
+// Print nodeName's Node and Node's childs Node
+// param const char*
+Node* Node::PrintNodeNChilds(const char* nodeName)
+{
+    Node* temp = FindNode(nodeName);
+    if (temp != NULL)
+    {
+        cout << "P: " << temp->_name << endl;
+        cout << "C: ";
+        for (vector<Node*>::size_type i = 0; i < temp->_childs.size(); ++i)
+        {
+            cout << temp->_childs[i]->_name << " -> ";
+        }
+        cout << "NULL" << endl;
+    }
+    else
+    {
+        ShowErrorMessage(temp);
+    }
+    return temp;
+}
+
+Node* Node::PrintNodeNChilds(Node& node)
+{
+    Node* result = &node;
+    if (result != NULL)
+    {
+        if (result->_childs.empty())
+        {
+            //cout << result->_name;
+        }
+        else
+        {
+            PrintNodeNChilds(result->_nameConst);
+            Node* temp = result;
+            for (vector<Node*>::size_type i = 0; i < temp->_childs.size(); ++i)
+            {
+                result = PrintNodeNChilds(*(temp->_childs[i]));
+            }
+        }
+    }
+    else
+    {
+        ShowErrorMessage(result);
+    }
+    return result;
+}
+
+#pragma endregion
+
+#pragma region Support Functions
+
+Node* Node::MoveNodeToNode(Node& dest, Node& src)
+{
+    return nullptr;
+}
 
 bool Node::isExistNode(const char * nodeName)
 {
@@ -154,6 +303,27 @@ bool Node::isExistNode(const char * nodeName)
         return false;
     }
 }
+bool Node::isExistNode(string& nodeName)
+{
+    Node* temp = FindNode(nodeName);
+    if (temp != NULL)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
+void Node::ShowErrorMessage(Node* ERROR_NO)
+{
+    if (ERROR_NO == NULL)
+    {
+        cout << "Pointer is NULL" << endl;
+    }
+}
+#pragma endregion
 
 //
 //Node * Node::FindNode(Node& node, string & nodeName)
