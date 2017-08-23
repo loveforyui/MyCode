@@ -20,12 +20,12 @@ public:
     Node(const char* name);
     ~Node();
 
-    Node* CreateChild(string& nodeName);
-    Node* CreateChild(const char* nodeName);
+    Node * CreateChild(string& nodeName);
+    Node * CreateChild(const char* nodeName);
 
-    Node* FindNode(Node& node, const char * nodeName);
-    Node* FindNode(const char* nodeName);
-    Node* FindNode(string& nodeName);
+    Node * FindNode(Node& node, const char * nodeName);
+    Node * FindNode(const char* nodeName);
+    Node * FindNode(string& nodeName);
 
     Node * DeleteNodeToName(const char * nodeName);
 

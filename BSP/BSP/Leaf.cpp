@@ -112,9 +112,6 @@ pair<int, int>* Leaf::GetRoom()
 		if (leftChild != NULL)
 		{
 			L = leftChild->GetRoom();
-			/*path_X = m.getRandomNumber(topLineS_X + 1, topLineB_X - 1);
-			path_Y = m.getRandomNumber(topLineS_Y + 1, botLineB_Y);*/
-
 		}
 		if (rightChild != NULL)
 		{
@@ -181,19 +178,6 @@ void Leaf::CreateHall(pair<int, int>* l, pair<int, int>* r)
 			}
 		}
 	}
-	//}
-	
-	/*else
-	{
-	for (int h = l->path_X; h < r->path_X; ++h)
-	{
-	GotoXY(h, r->path_Y, 'H');
-	}
-	for (int v = l->path_Y; v < r->path_Y; ++v)
-	{
-	GotoXY(l->path_X, v, 'H');
-	}
-	}*/	
 }
 
 bool Leaf::Split()
@@ -237,108 +221,3 @@ bool Leaf::Split()
 	}
 	return true;
 }
-/*
-	170816	-> create Room function
-			-> create Path
-*/
-
-
-
-
-//
-//Leaf::~Leaf()
-//{
-//}
-//
-//bool Leaf::split()
-//{
-//	if (leftChild != NULL || rightChild != NULL)
-//		return false;
-//	
-//	srand((unsigned)time(NULL));
-//	bool splitHeight = rand()%100 > 50;
-//	if ((y2 < x2) && (1.25 <= ((double)x2 / (double)y2)))
-//	{
-//		splitHeight = false;
-//	}
-//	else if ((x2 < y2) && (1.25 <= ((double)y2 / (double)x2)))
-//	{
-//		splitHeight = true;
-//	}
-//
-//	int max = ((splitHeight) ? y2 : x2) - MIN_LEAF_SIZE;
-//
-//	if (max <= MIN_LEAF_SIZE)
-//	{
-//		return false;
-//	}
-//
-//	MRandom m;
-//	int splitRandom = m.getRandomNumber(MIN_LEAF_SIZE, max);
-//
-//	if (splitHeight)
-//	{
-//		leftChild = new Leaf(x, y, x2, splitRandom);
-//		rightChild = new Leaf(x, y + splitRandom, x2, y2 - splitRandom);
-//	}
-//	else
-//	{
-//		leftChild = new Leaf(x, y, splitRandom, y2);
-//		rightChild = new Leaf(x + splitRandom, y, x2 - splitRandom, y2);
-//	}
-//	return true;
-//}
-//
-//void Leaf::createRooms()
-//{
-//	if (leftChild != NULL || rightChild != NULL)
-//	{
-//		if (leftChild != NULL)
-//		{
-//			leftChild->createRooms();
-//		}
-//		else
-//		{
-//			rightChild->createRooms();
-//		}
-//	}
-//	else
-//	{
-//
-//	}
-//}
-//
-////// this Leaf is the ready to make a room
-////var roomSize : Point;
-////var roomPos : Point;
-////// the room can be between 3 x 3 tiles to the size of the leaf - 2.
-////roomSize = new Point(Registry.randomNumber(3, x2 - 2), Registry.randomNumber(3, y2 - 2));
-////// place the room within the Leaf, but don't put it right 
-////// against the side of the Leaf (that would merge rooms together)
-////roomPos = new Point(Registry.randomNumber(1, x2 - roomSize.x - 1), Registry.randomNumber(1, y2 - roomSize.y - 1));
-////room = new Rectangle(x + roomPos.x, y + roomPos.y, roomSize.x, roomSize.y);
-//
-//void Leaf::printLeaf()
-//{
-//	// (0,0)------------------(10,0) y는 일정
-//	// (0,0) | (0, 10)	x는 일정
-//	for (int i = (x < x2) ? x : x2; (x < x2) ? (i < x2 - x) : (i < x - x2); ++i)
-//	{
-//		gotoxy(i, y, 'O');
-//	}
-//	for (int i = (x < x2) ? x : x2; (x < x2) ? (i < x2 - x) : (i < x - x2); ++i)
-//	{
-//		gotoxy(i, y2, 'O');
-//	}
-//	for (int i = (y < y2) ? y : y2; (y < y2) ? (i < y2 - y) : (i < y - y2); ++i)
-//	{
-//		gotoxy(x, i, 'O');
-//	}
-//	for (int i = (y < y2) ? y : y2; (y < y2) ? (i < y2 - y) : (i < y - y2); ++i)
-//	{
-//		gotoxy(x2, i, 'O');
-//	}
-//	gotoxy(0, 21, ' ');
-//	cout << "leaf start x,y: " << x << ", " << y << endl;
-//	cout << "leaf end x,y: " << x2 << ", " << y2 << endl;
-//}
