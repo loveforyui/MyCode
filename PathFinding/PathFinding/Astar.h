@@ -2,6 +2,7 @@
 #include <iostream>
 #include <cmath>
 #include <vector>
+#include <algorithm>
 #include "Position.h"
 
 using namespace std;
@@ -9,12 +10,14 @@ using namespace std;
 class Astar
 {
 public:
-    double              _F;
+    vector<double>      _F;
+    //double              _F;
     double              _G;
     double              _H;
 
     Position*           _dest;
     Position*           _src;
+    Position*           _current;
 
     vector<Position*>   _openList;
     vector<Position*>   _closeList;
