@@ -17,6 +17,9 @@ public:
     Position(int x, int y, Stance state);
     ~Position();
 
+    bool operator==(Position& ref);
+
     double GetDistance(Position& dest);
+    double GetDistance(Position& dest, Position& src);
 };
 
