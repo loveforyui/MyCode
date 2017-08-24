@@ -21,9 +21,11 @@ public:
 
     vector<Position*>   _openList;
     vector<Position*>   _closeList;
+    vector<Position*>   _printList;
 
     Astar();
     Astar(int dest_x, int dest_y, int src_x, int src_y);
+    Astar(Position & dest, Position & src);
     ~Astar();
     
     Position* DetectPosInList(vector<Position*>& list, Position& pos);
