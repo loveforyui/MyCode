@@ -97,12 +97,26 @@ void Astar::FindPath(Position & dest, Position & src)
         _closeList.push_back(_src);
         _current = _src;
     }
+    // closeList중 dst가 있으면 종료
+    
+    if(*_current == *_dest)
+    {
+        _printList.clear();
+        _printList.assign(_closeList.begin(), _closeList.end());
+        _openList.clear();
+        _closeList.clear();
+        return;
+    }
 
     // 현재 좌표에서 주변 좌표 중 openList에 없는 좌표들을 openlist에 push
     for (int y = -1; y < 2; ++y)
     {
         for (int x = -1; x < 2; ++x)
         {
+            if (src._x + x < 0 || src._y + y < 0)
+            {
+                continue;
+            }
             //지금은 벽에 대한 오브젝트가 없어서
             //position 생성자로 했지만
             //객체가 있으면 new 대신 오브젝트 좌표를 사용
@@ -160,18 +174,9 @@ void Astar::FindPath(Position & dest, Position & src)
 
     _openList[minst] = NULL;
 
-    // closeList중 dst가 있으면 종료
     if (DetectPosInList(_closeList, _dest) == NULL)
     {
-        FindPath(dest, *_current);        
-    }
-    else
-    {
-        _printList.clear();
-        _printList.assign(_closeList.begin(), _closeList.end());
-        _openList.clear();
-        _closeList.clear();
-        return;
+        FindPath(dest, *_current);
     }
 }
 
