@@ -1,4 +1,9 @@
 #pragma once
+#include <iostream>
+#include <cmath>
+
+using namespace std;
+
 class Position
 {
 public:
@@ -12,6 +17,6 @@ public:
     Position(int x, int y, Stance state);
     ~Position();
 
-    double GetDistance(Position& dest, Position& src);
+    double GetDistance(Position& dest);
 };
 
