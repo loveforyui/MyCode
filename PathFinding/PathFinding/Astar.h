@@ -21,6 +21,8 @@ public:
 
     vector<Position*>   _openList;
     vector<Position*>   _closeList;
+    vector<Position*>   _closeList_;
+    vector<Position*>   _closeList__;
     vector<Position*>   _printList;
 
     Astar();
@@ -29,9 +31,13 @@ public:
     ~Astar();
     
     Position* DetectPosInList(vector<Position*>& list, Position& pos);
-    Position * DetectPosInList(vector<Position*>& list, Position * pos);
-    void FindPath(Position& dest, Position& src);
+    Position* DetectPosInList(vector<Position*>& list, Position * pos);
 
-    int PushInList(vector<Position*>& list, Position * pos);
+    void FindPath(Position& dest, Position& src);
+    void FindPath(vector<Position*>& closelist, Position& dest, Position& src);
+
+    int PushInList(vector<Position*>& list, Position* pos);
+
+    Position* FindMinF(vector<Position*>& closelist);
 };
 

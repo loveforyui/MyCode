@@ -1,6 +1,7 @@
 #include "Astar.h"
 
-
+// 해야 하는 것
+// 벽 구현
 
 Astar::Astar()
 {
@@ -19,6 +20,7 @@ Astar::Astar(int dest_x, int dest_y, int src_x, int src_y)
     _G              = 0;
     _H              = 0;
 }
+
 Astar::Astar(Position& dest, Position& src)
 {
     _dest           = &dest;
@@ -85,6 +87,13 @@ Position* Astar::DetectPosInList(vector<Position*>& list, Position* pos)
 
 void Astar::FindPath(Position & dest, Position & src)
 {
+    FindPath(_closeList, dest, src);
+    FindPath(_closeList_, dest, src);
+    FindPath(_closeList__, dest, src);
+}
+
+void Astar::FindPath(vector<Position*>& closelist, Position & dest, Position & src)
+{
     // 순서
     // push -> src
     // browse 8 position of src
@@ -92,46 +101,63 @@ void Astar::FindPath(Position & dest, Position & src)
     //, then push open list
     _F.clear();
     // closeList 에 출발지가 없으면, 시작!
-    if (DetectPosInList(_closeList, _src) == NULL)
+    if (DetectPosInList(closelist, _src) == NULL)
     {
-        _closeList.push_back(_src);
+        closelist.push_back(_src);
         _current = _src;
     }
-    // closeList중 dst가 있으면 종료
-    
-    if(*_current == *_dest)
-    {
-        _printList.clear();
-        _printList.assign(_closeList.begin(), _closeList.end());
-        _openList.clear();
-        _closeList.clear();
-        return;
-    }
+
+    // closeList중 dst가 있으면 종료    
+    //if(*_dest == *_current)
+    //if(DetectPosInList(_closeList, _dest) != NULL)
+    //{
+    //    /*if (_closeList_.empty())
+    //    {
+    //        *_current = *_src;
+    //        FindPath(dest, *_current);
+    //    }
+    //    if (_closeList__.empty())
+    //    {
+    //        *_current = *_src;
+    //        FindPath(dest, *_current);
+    //    }*/
+    //    _printList.clear();
+    //    _printList.assign(_closeList.begin(), _closeList.end());
+    //    _openList.clear();
+    //    _closeList.clear();
+    //    return;
+    //}
 
     // 현재 좌표에서 주변 좌표 중 openList에 없는 좌표들을 openlist에 push
     for (int y = -1; y < 2; ++y)
     {
         for (int x = -1; x < 2; ++x)
         {
-            if (src._x + x < 0 || src._y + y < 0)
+            if (_current->_x + x < 0 || _current->_y + y < 0)
             {
                 continue;
             }
             //지금은 벽에 대한 오브젝트가 없어서
             //position 생성자로 했지만
             //객체가 있으면 new 대신 오브젝트 좌표를 사용
-            Position* temp = DetectPosInList(_openList, new Position(src._x + x, src._y + y));
-            if (temp == NULL)
+            Position* isExistInOpen     = DetectPosInList(_openList, new Position(_current->_x + x, _current->_y + y));
+            Position* isExistInClose    = DetectPosInList(closelist, new Position(_current->_x + x, _current->_y + y));
+
+            if ((isExistInOpen == NULL) && (isExistInClose == NULL))
             {
-                if ((x == _current->_x) && (y == _current->_y))
+                PushInList(_openList, new Position(_current->_x + x, _current->_y + y));
+            }
+            /*if (temp == NULL)
+            {
+                if ((_current->_x + x == _current->_x) && (_current->_x + x == _current->_y))
                 {
                     continue;
                 }
                 else
                 {
-                    PushInList(_openList, new Position(src._x + x, src._y + y));
+                    PushInList(_openList, new Position(_current->_x + x, _current->_y + y));
                 }                
-            }
+            }*/
         }
     }
 
@@ -152,31 +178,20 @@ void Astar::FindPath(Position & dest, Position & src)
     // openlist중 해당 index 에 있는 녀석을
     // closeList에 push 후 openlist에서는 삭제
     // current 좌표를 옮긴 애로 바꿈
-    double min = 9999999;
-    vector<int>::size_type minst = -1;
+    FindMinF(closelist);
 
-    for (vector<int>::size_type i = 0;
-        i < _F.size();
-        ++i)
+    if (DetectPosInList(closelist, _dest) == NULL)
     {
-        if (_F[i] < min)
-        {
-            min = _F[i];
-            minst = i;
-        }
+        FindPath(closelist, dest, *_current);
     }
-
-    _G += _openList[minst]->GetDistance(*_current);
-
-    PushInList(_closeList, _openList[minst]);
-
-    _current = _openList[minst];
-
-    _openList[minst] = NULL;
-
-    if (DetectPosInList(_closeList, _dest) == NULL)
+    else
     {
-        FindPath(dest, *_current);
+        *_current = *_src;
+        _printList.clear();
+        _printList.assign(closelist.begin(), closelist.end());
+        //_openList.clear();
+        //closelist.clear();
+        return;
     }
 }
 
@@ -202,3 +217,27 @@ int Astar::PushInList(vector<Position*>& list, Position* pos)
     }
     return 0;
 }
+
+Position* Astar::FindMinF(vector<Position*>& closelist)
+{
+    double min = 9999999;
+    vector<int>::size_type minst = -1;
+
+    for (vector<int>::size_type i = 0;
+        i < _F.size();
+        ++i)
+    {
+        if (_F[i] <= min)
+        {
+            min = _F[i];
+            minst = i;
+        }
+    }
+    _G += _openList[minst]->GetDistance(*_current);
+    // push 하기전에 엘리멘트가 list에 있는지 확인
+    PushInList(closelist, _openList[minst]);
+    _current = _openList[minst];
+    _openList[minst] = NULL;
+    return _openList[minst];
+}
+
