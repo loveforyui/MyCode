@@ -11,7 +11,7 @@ void main()
 {
 
     Position pos1 = Position(1, 0, Position::Space);
-    Position pos2 = Position(5, 5, Position::Space);
+    Position pos2 = Position(6, 6, Position::Space);
 
     Astar astar = Astar(pos2, pos1);
     astar.FindPath(pos2, pos1);

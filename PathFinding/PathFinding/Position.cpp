@@ -26,6 +26,7 @@ Position & Position::operator=(Position & ref)
     _x      = ref._x;
     _y      = ref._y;
     _state  = ref._state;
+    return *this;
 }
 
 bool Position::operator==(Position & ref)

@@ -56,6 +56,7 @@ Position* Astar::DetectPosInList(vector<Position*>& list, Position & pos)
             }
         }
     }
+    return NULL;
 }
 Position* Astar::DetectPosInList(vector<Position*>& list, Position* pos)
 {
@@ -88,8 +89,8 @@ Position* Astar::DetectPosInList(vector<Position*>& list, Position* pos)
 void Astar::FindPath(Position & dest, Position & src)
 {
     FindPath(_closeList, dest, src);
-    FindPath(_closeList_, dest, src);
-    FindPath(_closeList__, dest, src);
+    //FindPath(_closeList_, dest, src);
+    //FindPath(_closeList__, dest, src);
 }
 
 void Astar::FindPath(vector<Position*>& closelist, Position & dest, Position & src)
@@ -100,6 +101,7 @@ void Astar::FindPath(vector<Position*>& closelist, Position & dest, Position & s
     // if DetectPosInList(openList, 8 position of src)
     //, then push open list
     _F.clear();
+
     // closeList 에 출발지가 없으면, 시작!
     if (DetectPosInList(closelist, _src) == NULL)
     {
@@ -107,57 +109,29 @@ void Astar::FindPath(vector<Position*>& closelist, Position & dest, Position & s
         _current = _src;
     }
 
-    // closeList중 dst가 있으면 종료    
-    //if(*_dest == *_current)
-    //if(DetectPosInList(_closeList, _dest) != NULL)
-    //{
-    //    /*if (_closeList_.empty())
-    //    {
-    //        *_current = *_src;
-    //        FindPath(dest, *_current);
-    //    }
-    //    if (_closeList__.empty())
-    //    {
-    //        *_current = *_src;
-    //        FindPath(dest, *_current);
-    //    }*/
-    //    _printList.clear();
-    //    _printList.assign(_closeList.begin(), _closeList.end());
-    //    _openList.clear();
-    //    _closeList.clear();
-    //    return;
-    //}
-
     // 현재 좌표에서 주변 좌표 중 openList에 없는 좌표들을 openlist에 push
     for (int y = -1; y < 2; ++y)
     {
         for (int x = -1; x < 2; ++x)
         {
+            // 계산된 좌표가 좌표계를 벗어나면 패스
             if (_current->_x + x < 0 || _current->_y + y < 0)
             {
                 continue;
             }
+
             //지금은 벽에 대한 오브젝트가 없어서
             //position 생성자로 했지만
             //객체가 있으면 new 대신 오브젝트 좌표를 사용
+
             Position* isExistInOpen     = DetectPosInList(_openList, new Position(_current->_x + x, _current->_y + y));
             Position* isExistInClose    = DetectPosInList(closelist, new Position(_current->_x + x, _current->_y + y));
 
+            // duplicate check in openlist and closelist
             if ((isExistInOpen == NULL) && (isExistInClose == NULL))
             {
                 PushInList(_openList, new Position(_current->_x + x, _current->_y + y));
             }
-            /*if (temp == NULL)
-            {
-                if ((_current->_x + x == _current->_x) && (_current->_x + x == _current->_y))
-                {
-                    continue;
-                }
-                else
-                {
-                    PushInList(_openList, new Position(_current->_x + x, _current->_y + y));
-                }                
-            }*/
         }
     }
 
@@ -186,7 +160,6 @@ void Astar::FindPath(vector<Position*>& closelist, Position & dest, Position & s
     }
     else
     {
-        *_current = *_src;
         _printList.clear();
         _printList.assign(closelist.begin(), closelist.end());
         //_openList.clear();

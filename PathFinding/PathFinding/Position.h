@@ -24,4 +24,3 @@ public:
     double GetDistance(Position& dest);
     double GetDistance(Position& dest, Position& src);
 };
-
