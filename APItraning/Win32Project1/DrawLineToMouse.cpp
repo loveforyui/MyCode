@@ -9,7 +9,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInst, LPSTR strCmdLine, i
     memset(&wcex, 0, sizeof(wcex));
 
     wcex.cbSize = sizeof(wcex);
-    wcex.style = CS_HREDRAW | CS_VREDRAW;
+    wcex.style = CS_HREDRAW | CS_VREDRAW | CS_DBLCLKS;
     wcex.hbrBackground = (HBRUSH)GetStockObject(WHITE_BRUSH);
     wcex.hCursor = LoadCursor(NULL, IDC_ARROW);
     wcex.hIcon = LoadIcon(NULL, IDI_APPLICATION);
@@ -76,7 +76,9 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
     case WM_LBUTTONUP:
         bnowDraw = FALSE;
         break;
-
+    case WM_LBUTTONDBLCLK:
+        InvalidateRect(hWnd, NULL, TRUE);
+        break;
     }
 
 
