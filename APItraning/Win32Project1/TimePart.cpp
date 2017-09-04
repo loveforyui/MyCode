@@ -2,6 +2,7 @@
 #include <tchar.h>
 #include <time.h>
 
+
 LRESULT CALLBACK WndProc(HWND, UINT, WPARAM, LPARAM);
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInst, LPSTR strCmdLine, int nShowCmd) {
@@ -65,6 +66,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
         str = "";
         SendMessage(hWnd, WM_TIMER, 1, 0);
         break;
+
     case WM_TIMER:
         time(&mTime);
         str = ctime(&mTime);
@@ -72,6 +74,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
         wstr[strlen(str) - 1] = '\0';
         InvalidateRect(hWnd, &rt, TRUE);
         break;
+
     case WM_PAINT:
         hdc = BeginPaint(hWnd, &ps);        
         //Rectangle(hdc, rt.left, rt.top, rt.right, rt.bottom);
