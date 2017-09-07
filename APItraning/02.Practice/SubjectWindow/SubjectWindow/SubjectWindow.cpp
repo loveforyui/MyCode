@@ -11,8 +11,7 @@
 //        wsprintf(temp, L"%d", N);                               \
 //        wcscat_s(DEST, wcslen(DEST) + wcslen(temp) + 1, temp);
 
-#define     MAX_LOADSTRING          100
-#define     ID_LISTBOX              1000
+
 //#define     ID_LISTBOX
 
 // 전역 변수:
@@ -209,25 +208,6 @@ LRESULT     CALLBACK    WndProc         (HWND hWnd, UINT message, WPARAM wParam,
                             TextOut(hdc, 120, 100, sbjtScore[4], wcslen(sbjtScore[4]));
                         }
                     }
-
-                    /*if (0 < lstrlen(szName))
-                    {
-                        WCHAR* temp[5];
-                        temp[0] = &(m_wcscat(sbjt.m_subjectName_wc[0], sbjt.GetUserInfo()._korean_ui));
-                        TextOut(hdc, 120, 20, temp[0], wcslen(temp[0]));
-
-                        temp[1] = &(m_wcscat(sbjt.m_subjectName_wc[1], sbjt.GetUserInfo()._english_ui));
-                        TextOut(hdc, 120, 40, temp[1], wcslen(temp[1]));
-
-                        temp[2] = &(m_wcscat(sbjt.m_subjectName_wc[2], sbjt.GetUserInfo()._math_ui));
-                        TextOut(hdc, 120, 60, temp[2], wcslen(temp[2]));
-
-                        temp[3] = &(m_wcscat(sbjt.m_subjectName_wc[3], sbjt.GetUserInfo()._total_ui));
-                        TextOut(hdc, 120, 80, temp[3], wcslen(temp[3]));
-
-                        temp[4] = &(m_wcscat(sbjt.m_subjectName_wc[4], sbjt.GetUserInfo()._avg_f));
-                        TextOut(hdc, 120, 100, temp[4], wcslen(temp[4]));
-                    }*/
                     ReleaseDC(hWnd, hdc);
                     return 0;
                 }
@@ -277,10 +257,10 @@ INT_PTR     CALLBACK    About           (HWND hDlg, UINT message, WPARAM wParam,
 
 BOOL        CALLBACK    SubjectWnd      (HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
 {
-    UINT kor, eng, math;
-    LPWSTR str = NULL;
-    WCHAR str2[32] = { };
-    Subject* temp_sbjt = NULL;
+    UINT        kor, eng, math;
+    LPWSTR      str                 = NULL;
+    WCHAR       str2[32]            = { };
+    Subject*    temp_sbjt           = NULL;
 
     switch (message)
     {
@@ -309,6 +289,7 @@ BOOL        CALLBACK    SubjectWnd      (HWND hDlg, UINT message, WPARAM wParam,
             
             EndDialog(hDlg,0);
             return TRUE;
+
         case ID_FILENEW_CANCEL:
             EndDialog(hDlg,0);
             return TRUE;
@@ -320,36 +301,36 @@ BOOL        CALLBACK    SubjectWnd      (HWND hDlg, UINT message, WPARAM wParam,
 
 WCHAR&                  m_wcscat        (WCHAR src[], UINT uInt)
 {
-    WCHAR* dest = NULL;
-    WCHAR temp[32] = {};
-    UINT destSize = 0;
-    swprintf(temp, 32, L"%u", uInt);
+    WCHAR*  dest            = NULL;
+    WCHAR   temp[32]        = {};
+    UINT    destSize        = 0;
+    swprintf                (temp, 32, L"%u", uInt);
 
-    destSize = wcslen(src) + wcslen(temp) + 1;
+    destSize                = wcslen(src) + wcslen(temp) + 1;
 
-    dest = new WCHAR[destSize];
+    dest                    = new WCHAR[destSize];
 
-    wcscpy_s(dest, destSize, src);
+    wcscpy_s                (dest, destSize, src);
     
-    wcscat_s(dest, wcslen(dest) + wcslen(temp) + 1, temp);
+    wcscat_s                (dest, wcslen(dest) + wcslen(temp) + 1, temp);
 
     return *dest;
 }
 
 WCHAR&                  m_wcscat        (WCHAR src[], FLOAT uInt)
 {
-    WCHAR* dest = NULL;
-    WCHAR temp[32] = {};
-    UINT destSize = 0;
-    swprintf(temp, 32, L"%.2f", uInt);
+    WCHAR*  dest            = NULL;
+    WCHAR   temp[32]        = {};
+    UINT    destSize        = 0;
+    swprintf                (temp, 32, L"%.2f", uInt);
 
-    destSize = wcslen(src) + wcslen(temp) + 1;
+    destSize                = wcslen(src) + wcslen(temp) + 1;
 
-    dest = new WCHAR[destSize];
+    dest                    = new WCHAR[destSize];
 
-    wcscpy_s(dest, destSize, src);
+    wcscpy_s                (dest, destSize, src);
     
-    wcscat_s(dest, wcslen(dest) + wcslen(temp) + 1, temp);
+    wcscat_s                (dest, wcslen(dest) + wcslen(temp) + 1, temp);
 
     return *dest;
 }

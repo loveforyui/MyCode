@@ -27,6 +27,8 @@
 #define IDM_TEST_MENU                   32772
 #define IDM_FILE_NEW                    32774
 #define IDC_STATIC                      -1
+#define MAX_LOADSTRING                  100
+#define ID_LISTBOX                      10000
 
 // Next default values for new objects
 // 

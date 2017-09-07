@@ -2,18 +2,18 @@
 #include "Subject.h"
 
 
-Subject::Subject()
+Subject::                               Subject             ()
 {
     m_user = NULL;
 }
 
 
-Subject::~Subject()
+Subject::                               ~Subject            ()
 {
     FREE_PTR(m_user);
 }
 
-void Subject::CreateUser(LPWSTR name, UINT kor, UINT eng, UINT math)
+void Subject::                          CreateUser          (LPWSTR name, UINT kor, UINT eng, UINT math)
 {
     m_user                  = new SUBJECT_SCORE;
     //m_user->_name_wc        = name;
@@ -26,7 +26,7 @@ void Subject::CreateUser(LPWSTR name, UINT kor, UINT eng, UINT math)
     m_user->_avg_f          = (FLOAT)m_user->_total_ui / 3;
 }
 
-const SUBJECT_SCORE & Subject::GetUserInfo()
+const SUBJECT_SCORE & Subject::         GetUserInfo         ()
 {
     // TODO: 여기에 반환 구문을 삽입합니다.
     return *m_user;
