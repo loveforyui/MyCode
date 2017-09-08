@@ -11,29 +11,28 @@
 //        wsprintf(temp, L"%d", N);                               \
 //        wcscat_s(DEST, wcslen(DEST) + wcslen(temp) + 1, temp);
 
-
-//#define     ID_LISTBOX
-
 // 전역 변수:
 HINSTANCE               hInst;                                              // 현재 인스턴스입니다.
 WCHAR                   szTitle         [MAX_LOADSTRING];                   // 제목 표시줄 텍스트입니다.
 WCHAR                   szWindowClass   [MAX_LOADSTRING];                   // 기본 창 클래스 이름입니다.
-WCHAR                   szName[32] = {};
+WCHAR                   szName[32]      = {};
 
 //Subject                 sbjt;
 vector<Subject*>        sbjt;
 
 HWND                    hList;
 
+FILE*                   fp              = NULL;
+
 
 // 이 코드 모듈에 들어 있는 함수의 정방향 선언입니다.
 ATOM                    MyRegisterClass (HINSTANCE hInstance);
 BOOL                    InitInstance    (HINSTANCE, int);
 
-LRESULT     CALLBACK    WndProc         (HWND, UINT, WPARAM, LPARAM);
-INT_PTR     CALLBACK    About           (HWND, UINT, WPARAM, LPARAM);
-BOOL        CALLBACK    SubjectWnd      (HWND, UINT, WPARAM, LPARAM);
-WCHAR&                  m_wcscat        (WCHAR src[], UINT uInt);
+LRESULT     CALLBACK    WndProc         (HWND,  UINT, WPARAM, LPARAM);
+INT_PTR     CALLBACK    About           (HWND,  UINT, WPARAM, LPARAM);
+BOOL        CALLBACK    SubjectWnd      (HWND,  UINT, WPARAM, LPARAM);
+WCHAR&                  m_wcscat        (WCHAR src[], UINT  uInt);
 WCHAR&                  m_wcscat        (WCHAR src[], FLOAT uInt);
 
 
@@ -149,19 +148,23 @@ BOOL                    InitInstance    (HINSTANCE hInstance, int nCmdShow)
 //
 LRESULT     CALLBACK    WndProc         (HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
-    PAINTSTRUCT ps;
-    HDC hdc;
-    WCHAR* sbjtScore[5];
+    PAINTSTRUCT         ps;
+    HDC                 hdc;
+    WCHAR*              sbjtScore[5];
+    errno_t             err;
+    Subject*            fileMember      = NULL;
     
-    int listIndex;
+    int                 listIndex       = 0;
+    int                 fileSizeCnt     = 0;
+
     switch (message)
     {
     case WM_CREATE:
         //DialogBox(hInst, MAKEINTRESOURCE(IDD_CONTAINER), hWnd, ContainerD);
         hList = CreateWindow(L"listbox", NULL,
-            WS_CHILD |
-            WS_VISIBLE |
-            WS_BORDER |
+            WS_CHILD    |
+            WS_VISIBLE  |
+            WS_BORDER   |
             LBS_NOTIFY,
             10, 10, 100, 200, hWnd, (HMENU)ID_LISTBOX, hInst, NULL);
         return 0;
@@ -179,7 +182,31 @@ LRESULT     CALLBACK    WndProc         (HWND hWnd, UINT message, WPARAM wParam,
             case IDM_FILE_NEW:
                 DialogBox(hInst, MAKEINTRESOURCE(IDD_FILENEW), hWnd, SubjectWnd);
                 break;
+            case IDM_FILE_LOAD:
+                err = fopen_s(&fp, PATH, "rb");
+
+                fseek(fp, 0, SEEK_END);
+                fileSizeCnt = ftell(fp) / sizeof(Subject);
+                fseek(fp, 0, SEEK_SET);
+
+                if (err == 0)
+                {
+                    for (int i = 0; i < fileSizeCnt; ++i)
+                    {
+                        fileMember = new Subject();
+                        fread(fileMember, sizeof(Subject), 1, fp);
+                        sbjt.push_back(fileMember);
+                        fileMember = NULL;
+                    }                    
+                    fclose(fp);
+                }
+                else
+                {
+                    return 0;
+                }
+                break;
             case ID_LISTBOX:
+                // ListBox Event
                 switch (HIWORD(wParam))
                 {
                 case LBN_SELCHANGE:
@@ -261,6 +288,7 @@ BOOL        CALLBACK    SubjectWnd      (HWND hDlg, UINT message, WPARAM wParam,
     LPWSTR      str                 = NULL;
     WCHAR       str2[32]            = { };
     Subject*    temp_sbjt           = NULL;
+    errno_t     err;
 
     switch (message)
     {
@@ -286,7 +314,21 @@ BOOL        CALLBACK    SubjectWnd      (HWND hDlg, UINT message, WPARAM wParam,
             SendMessage(hList, LB_ADDSTRING, 0, (LPARAM)temp_sbjt->GetUserInfo()._name_wc);
 
             sbjt.push_back(temp_sbjt);
+            err = fopen_s(&fp, PATH, "wb");
             
+            if (err == 0)
+            {
+                for (vector<Subject*>::iterator i = sbjt.begin(); i != sbjt.end(); ++i)
+                {
+                    fwrite(*i, sizeof(Subject), 1, fp);
+                }
+                //fwrite(&sbjt, sizeof(sbjt), 1, fp);
+                fclose(fp);
+            }
+            else
+            {
+                return FALSE;
+            }
             EndDialog(hDlg,0);
             return TRUE;
 

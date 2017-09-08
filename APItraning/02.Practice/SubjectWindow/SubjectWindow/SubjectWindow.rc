@@ -46,6 +46,7 @@ BEGIN
     POPUP "File(&F)"
     BEGIN
         MENUITEM "새 파일(&N)",                    IDM_FILE_NEW
+        MENUITEM "불러오기(&L)",                    IDM_FILE_LOAD
         MENUITEM "종료(&X)",                      IDM_EXIT
     END
     POPUP "Help(&H)"
