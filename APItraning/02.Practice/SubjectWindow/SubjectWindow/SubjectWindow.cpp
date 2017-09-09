@@ -16,6 +16,7 @@ HINSTANCE               hInst;                                              // �
 WCHAR                   szTitle         [MAX_LOADSTRING];                   // 제목 표시줄 텍스트입니다.
 WCHAR                   szWindowClass   [MAX_LOADSTRING];                   // 기본 창 클래스 이름입니다.
 WCHAR                   szName[32]      = {};
+//WCHAR
 
 //Subject                 sbjt;
 vector<Subject*>        sbjt;
@@ -150,9 +151,13 @@ LRESULT     CALLBACK    WndProc         (HWND hWnd, UINT message, WPARAM wParam,
 {
     PAINTSTRUCT         ps;
     HDC                 hdc;
-    WCHAR*              sbjtScore[5];
+    WCHAR*              sbjtScore[5]    = {NULL};
     errno_t             err;
     Subject*            fileMember      = NULL;
+    RECT                rt              = {};
+    time_t              mTime;
+    static HANDLE       hTimer;
+    vector<Subject*>::iterator i = sbjt.begin();
     
     int                 listIndex       = 0;
     int                 fileSizeCnt     = 0;
@@ -167,6 +172,11 @@ LRESULT     CALLBACK    WndProc         (HWND hWnd, UINT message, WPARAM wParam,
             WS_BORDER   |
             LBS_NOTIFY,
             10, 10, 100, 200, hWnd, (HMENU)ID_LISTBOX, hInst, NULL);
+
+        //hTimer = (HANDLE)SetTimer(hWnd, 1, 1000, NULL);
+        //SendMessage(hWnd, WM_TIMER, 1, 0);
+        return 0;
+    case WM_TIMER:
         return 0;
     case WM_COMMAND:
         {
@@ -204,43 +214,61 @@ LRESULT     CALLBACK    WndProc         (HWND hWnd, UINT message, WPARAM wParam,
                 {
                     return 0;
                 }
+                if (!sbjt.empty())
+                {
+                    for (vector<Subject*>::iterator i = sbjt.begin(); i != sbjt.end(); ++i)
+                    {
+                        SendMessage(hList, LB_ADDSTRING, 0, (LPARAM)((*i)->GetUserInfo()._name_wc));
+                    }
+                }                
                 break;
             case ID_LISTBOX:
                 // ListBox Event
                 switch (HIWORD(wParam))
                 {
                 case LBN_SELCHANGE:
+                    //InvalidateRect(hWnd, NULL, TRUE);
                     listIndex = SendMessage(hList, LB_GETCURSEL, 0, 0);
                     SendMessage(hList, LB_GETTEXT, listIndex, (LPARAM)szName);
-                    hdc = GetDC(hWnd);
-
-                    for (vector<Subject*>::iterator i = sbjt.begin();
-                        i != sbjt.end(); ++i)
+                    
+                    hdc = GetDC(hWnd);                    
+                    for (;i != sbjt.end(); ++i)
                     {
                         if (!wcscmp((*i)->GetUserInfo()._name_wc, szName))
                         {
-                            sbjtScore[0] = &(m_wcscat((*i)->m_subjectName_wc[0], (*i)->GetUserInfo()._korean_ui));
-                            TextOut(hdc, 120, 20, sbjtScore[0], wcslen(sbjtScore[0]));
-
-                            sbjtScore[1] = &(m_wcscat((*i)->m_subjectName_wc[1], (*i)->GetUserInfo()._english_ui));
-                            TextOut(hdc, 120, 40, sbjtScore[1], wcslen(sbjtScore[1]));
-
-                            sbjtScore[2] = &(m_wcscat((*i)->m_subjectName_wc[2], (*i)->GetUserInfo()._math_ui));
-                            TextOut(hdc, 120, 60, sbjtScore[2], wcslen(sbjtScore[2]));
-
-                            sbjtScore[3] = &(m_wcscat((*i)->m_subjectName_wc[3], (*i)->GetUserInfo()._total_ui));
-                            TextOut(hdc, 120, 80, sbjtScore[3], wcslen(sbjtScore[3]));
-
-                            sbjtScore[4] = &(m_wcscat((*i)->m_subjectName_wc[4], (*i)->GetUserInfo()._avg_f));
-                            TextOut(hdc, 120, 100, sbjtScore[4], wcslen(sbjtScore[4]));
+                            break;
+                        }
+                        else
+                        {
+                            continue;
                         }
                     }
+                    if (!sbjt.empty())
+                    {
+                        //InvalidateRect(hWnd, NULL, FALSE);
+                        sbjtScore[0] = &(m_wcscat((*i)->m_subjectName_wc[0], (*i)->GetUserInfo()._korean_ui));
+                        TextOut(hdc, 120, 20, sbjtScore[0], wcslen(sbjtScore[0]));
+
+                        sbjtScore[1] = &(m_wcscat((*i)->m_subjectName_wc[1], (*i)->GetUserInfo()._english_ui));
+                        TextOut(hdc, 120, 40, sbjtScore[1], wcslen(sbjtScore[1]));
+
+
+                        sbjtScore[2] = &(m_wcscat((*i)->m_subjectName_wc[2], (*i)->GetUserInfo()._math_ui));
+                        TextOut(hdc, 120, 60, sbjtScore[2], wcslen(sbjtScore[2]));
+
+
+                        sbjtScore[3] = &(m_wcscat((*i)->m_subjectName_wc[3], (*i)->GetUserInfo()._total_ui));
+                        TextOut(hdc, 120, 80, sbjtScore[3], wcslen(sbjtScore[3]));
+
+
+                        sbjtScore[4] = &(m_wcscat((*i)->m_subjectName_wc[4], (*i)->GetUserInfo()._avg_f));
+                        TextOut(hdc, 120, 100, sbjtScore[4], wcslen(sbjtScore[4]));
+                    }
+                    
                     ReleaseDC(hWnd, hdc);
-                    return 0;
+                    break;
                 }
                 return 0;
-            default:
-                return DefWindowProc(hWnd, message, wParam, lParam);
             }
         }
         break;
@@ -249,6 +277,7 @@ LRESULT     CALLBACK    WndProc         (HWND hWnd, UINT message, WPARAM wParam,
             hdc = BeginPaint(hWnd, &ps);
             // TODO: 여기에 hdc를 사용하는 그리기 코드를 추가합니다.
             //TextOut(hdc, 120, 20, sbjt.m_subjectName_wc[0], lstrlen(sbjt.m_subjectName_wc[0]));
+            //InvalidateRect(hWnd, NULL, FALSE);
             
             EndPaint(hWnd, &ps);
         }
@@ -346,7 +375,7 @@ WCHAR&                  m_wcscat        (WCHAR src[], UINT uInt)
     WCHAR*  dest            = NULL;
     WCHAR   temp[32]        = {};
     UINT    destSize        = 0;
-    swprintf                (temp, 32, L"%u", uInt);
+    wsprintf                (temp, L"%5d", uInt);
 
     destSize                = wcslen(src) + wcslen(temp) + 1;
 
@@ -364,7 +393,7 @@ WCHAR&                  m_wcscat        (WCHAR src[], FLOAT uInt)
     WCHAR*  dest            = NULL;
     WCHAR   temp[32]        = {};
     UINT    destSize        = 0;
-    swprintf                (temp, 32, L"%.2f", uInt);
+    swprintf                (temp, 32, L"%5.2f", uInt);
 
     destSize                = wcslen(src) + wcslen(temp) + 1;
 

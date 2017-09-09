@@ -18,6 +18,7 @@
 #include <tchar.h>
 #include <atlstr.h>
 #include <vector>
+#include <ctime>
 
 using namespace std;
 
