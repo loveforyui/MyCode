@@ -20,21 +20,23 @@ private:
 public:
     Area    ();
     Area    (LONG& left, LONG& top, LONG& right, LONG& bottom);
-    Area    (   CONST LONG& left    = 0,
-                CONST LONG& top     = 0,
-                CONST LONG& right   = 0,
-                CONST LONG& bottom  = 0);
+    Area    (   CONST LONG& right    ,
+                CONST LONG& bottom   ,
+                CONST LONG& left    = 0,
+                CONST LONG& top     = 0);
     Area    (POSITION& fParam, POSITION& sParam);
     ~Area   ();
+
+    Area& operator=(Area& ref);
 #pragma endregion
 
 #pragma region Getter & Setter
 public:
     VOID                Initailizer     (LONG& left, LONG& top, LONG& right, LONG& bottom);
-    VOID                Initailizer     (   CONST LONG& left    = 0,
-                                            CONST LONG& top     = 0,
-                                            CONST LONG& right   = 0,
-                                            CONST LONG& bottom  = 0);
+    VOID                Initailizer     (   CONST LONG& right    ,
+                                            CONST LONG& bottom   ,
+                                            CONST LONG& left    = 0,
+                                            CONST LONG& top     = 0);
     VOID                Initailizer     (POSITION& fParam, POSITION& sParam);
 
     CONST POSITION&     GetLT           ();
@@ -47,7 +49,7 @@ private:
 
 #pragma region Render
 public:
-    VOID DrawRect(HDC hdc, LPPOINT lppt);
+    CONST VOID          DrawRect        (HDC hdc, LPPOINT lppt) const;
 #pragma endregion
     
 };

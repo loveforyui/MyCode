@@ -3,8 +3,8 @@
 
 typedef struct tagPos
 {
-    LONG _x;
-    LONG _y;
+    LONG        _x;
+    LONG        _y;
 
     tagPos& operator=(tagPos& ref)
     {
@@ -13,15 +13,15 @@ typedef struct tagPos
 
         return *this;
     }
-    void SetPos(LONG& x, LONG& y)
+    void SetPos (LONG& x, LONG& y)
     {
-        _x = x;
-        _y = y;
+        _x      = x;
+        _y      = y;
     }
-    void SetPos(CONST LONG& x, CONST LONG& y)
+    void SetPos (CONST LONG& x, CONST LONG& y)
     {
-        _x = x;
-        _y = y;
+        _x      = x;
+        _y      = y;
     }
 }POSITION;
 

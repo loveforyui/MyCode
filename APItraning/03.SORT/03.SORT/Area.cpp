@@ -5,6 +5,7 @@
 Area::Area()
 {
 }
+
 Area::Area(LONG & left, LONG & top, LONG & right, LONG & bottom)
 {
     Initailizer(left, top, right, bottom);
@@ -23,6 +24,21 @@ Area::Area(POSITION & fParam, POSITION & sParam)
 
 Area::~Area()
 {
+}
+
+Area & Area::operator=(Area & ref)
+{
+    _left   = ref._left;
+    _top    = ref._top;
+    _right  = ref._right;
+    _bottom = ref._bottom;
+    
+    _LT     = ref._LT;
+    _RT     = ref._RT;
+    _LB     = ref._LB;
+    _RB     = ref._RB;
+
+    return *this;
 }
 
 VOID Area::Initailizer(LONG & left, LONG & top, LONG & right, LONG & bottom)
@@ -87,7 +103,7 @@ VOID Area::SetArea()
     return VOID();
 }
 
-VOID Area::DrawRect(HDC hdc, LPPOINT lppt)
+CONST VOID Area::DrawRect(HDC hdc, LPPOINT lppt) const
 {
     // _LT -> _RT
     MoveToEx(hdc, _LT._x, _LT._y, lppt);
@@ -101,5 +117,4 @@ VOID Area::DrawRect(HDC hdc, LPPOINT lppt)
     // _RB -> _RT
     MoveToEx(hdc, _RB._x, _RB._y, lppt);
     LineTo(hdc, _RT._x, _RT._y);
-    return VOID();
 }

@@ -9,13 +9,15 @@
 // 전역 변수:
 HINSTANCE           hInst;                                // 현재 인스턴스입니다.
 WCHAR               szTitle                 [MAX_LOADSTRING];                  // 제목 표시줄 텍스트입니다.
-WCHAR               szWindowClass           [MAX_LOADSTRING];            // 기본 창 클래스 이름입니다.
+WCHAR               szWindowClass           [MAX_LOADSTRING];  
+Aarray       ary;
 
 // 이 코드 모듈에 들어 있는 함수의 정방향 선언입니다.
 ATOM                MyRegisterClass         (HINSTANCE hInstance);
 BOOL                InitInstance            (HINSTANCE, int);
 LRESULT CALLBACK    WndProc                 (HWND, UINT, WPARAM, LPARAM);
 INT_PTR CALLBACK    About                   (HWND, UINT, WPARAM, LPARAM);
+INT_PTR CALLBACK    Formview                (HWND, UINT, WPARAM, LPARAM);
 
 int     APIENTRY    wWinMain(   _In_        HINSTANCE hInstance,
                                 _In_opt_    HINSTANCE hPrevInstance,
@@ -55,13 +57,6 @@ int     APIENTRY    wWinMain(   _In_        HINSTANCE hInstance,
     return (int) msg.wParam;
 }
 
-
-
-//
-//  함수: MyRegisterClass()
-//
-//  목적: 창 클래스를 등록합니다.
-//
 ATOM MyRegisterClass(HINSTANCE hInstance)
 {
     WNDCLASSEXW wcex;
@@ -83,16 +78,6 @@ ATOM MyRegisterClass(HINSTANCE hInstance)
     return RegisterClassExW(&wcex);
 }
 
-//
-//   함수: InitInstance(HINSTANCE, int)
-//
-//   목적: 인스턴스 핸들을 저장하고 주 창을 만듭니다.
-//
-//   설명:
-//
-//        이 함수를 통해 인스턴스 핸들을 전역 변수에 저장하고
-//        주 프로그램 창을 만든 다음 표시합니다.
-//
 BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 {
    hInst = hInstance; // 인스턴스 핸들을 전역 변수에 저장합니다.
@@ -115,20 +100,10 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
    return TRUE;
 }
 
-//
-//  함수: WndProc(HWND, UINT, WPARAM, LPARAM)
-//
-//  목적:  주 창의 메시지를 처리합니다.
-//
-//  WM_COMMAND  - 응용 프로그램 메뉴를 처리합니다.
-//  WM_PAINT    - 주 창을 그립니다.
-//  WM_DESTROY  - 종료 메시지를 게시하고 반환합니다.
-//
-//
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
     HDC                 hdc;
-    static Area         area(0, 0, 0, 0);
+    //Area                area;
     static POSITION     pos[2];
     static UINT         posIndex = 0;
     static BOOL         bdraw = FALSE;
@@ -141,10 +116,14 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         ++posIndex;
         break;
     case WM_RBUTTONDOWN:
-        hdc = GetDC(hWnd);
-        area.Initailizer(pos[0], pos[1]);
-        area.DrawRect(hdc, NULL);
-        ReleaseDC(hWnd, hdc);
+        ary.push_back(new Area(pos[0], pos[1]));
+        /*CreateWindow(L"pager", L"NULL",
+            WS_CHILD |
+            WS_VISIBLE |
+            BS_PUSHBUTTON,
+            CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT,
+            hWnd, (HMENU)IDD_RBDIAG, hInst, NULL);*/
+        //DialogBox(hInst, MAKEINTRESOURCE(IDD_RBDIAG), hWnd, Formview);
         break;
     case WM_COMMAND:
         {
@@ -181,7 +160,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 }
 
 // 정보 대화 상자의 메시지 처리기입니다.
-INT_PTR CALLBACK About(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
+INT_PTR CALLBACK About      (HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
 {
     UNREFERENCED_PARAMETER(lParam);
     switch (message)
@@ -199,3 +178,51 @@ INT_PTR CALLBACK About(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
     }
     return (INT_PTR)FALSE;
 }
+
+INT_PTR CALLBACK Formview   (HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
+{
+    UNREFERENCED_PARAMETER(lParam);
+
+    HDC hdc;
+
+    switch (message)
+    {
+    case WM_INITDIALOG:
+        //return (INT_PTR)TRUE;
+        break;
+
+    case WM_COMMAND:
+        switch (LOWORD(wParam))
+        {
+        case ID_RBOK:
+            hdc = GetDC(hDlg);
+            for (UINT i = 0; i < ary.GetCount(); ++i)
+            {
+                ary.GetAry(i)->DrawRect(hdc, NULL);
+            }
+            ReleaseDC(hDlg, hdc);
+            EndDialog(hDlg, LOWORD(wParam));
+            return (INT_PTR)TRUE;
+        case ID_RBCAN:
+            EndDialog(hDlg, LOWORD(wParam));
+            break;
+        /*case IDOK:
+        case IDCANCEL:
+            EndDialog(hDlg, LOWORD(wParam));
+            return (INT_PTR)TRUE;*/
+        }
+        break;
+    }
+    return (INT_PTR)FALSE;
+}
+
+//hdc = GetDC(hWnd);
+//ary.push_back(new Area(pos[0], pos[1]));
+////area.Initailizer(pos[0], pos[1]);
+//
+//for (UINT i = 0; i < ary.GetCount(); ++i)
+//{
+//    ary.GetAry(i)->DrawRect(hdc, NULL);
+//}
+////area.DrawRect(hdc, NULL);
+//ReleaseDC(hWnd, hdc);

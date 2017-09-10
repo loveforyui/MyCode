@@ -17,10 +17,28 @@
 #include <memory.h>
 #include <tchar.h>
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
+#define DUBLEMALLOCSET(DPTR, TYPE, Y, X)                        \
+        DPTR = (TYPE**)malloc(sizeof(TYPE*) * Y);               \
+        for (UINT _y = 0; _y < Y; ++_y)                         \
+        {                                                       \
+            for (UINT _x = 0; _x < X; ++_x)                     \
+            {                                                   \
+                DPTR[_y] = (TYPE*)malloc(sizeof(TYPE) * X);     \
+            }                                                   \
+        }
+
+#define DOUBLEPTRFREE(DPTR, Y, X)           \
+        for(UINT _y = 0 ;_y < Y; ++_y)      \
+        {                                   \
+            free(DPTR[_y]);                 \
+        }                                   \
+        free(DPTR);
 
 // TODO: 프로그램에 필요한 추가 헤더는 여기에서 참조합니다.
 #include "struct.h"
 #include "Area.h"
+#include "Aarray.h"
