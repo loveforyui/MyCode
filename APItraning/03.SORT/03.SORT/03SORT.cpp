@@ -7,10 +7,10 @@
 #define MAX_LOADSTRING 100
 
 // 전역 변수:
-HINSTANCE           hInst;                                // 현재 인스턴스입니다.
-WCHAR               szTitle                 [MAX_LOADSTRING];                  // 제목 표시줄 텍스트입니다.
+HINSTANCE           hInst;                                      // 현재 인스턴스입니다.
+WCHAR               szTitle                 [MAX_LOADSTRING];   // 제목 표시줄 텍스트입니다.
 WCHAR               szWindowClass           [MAX_LOADSTRING];  
-Aarray       ary;
+Aarray              ary;
 
 // 이 코드 모듈에 들어 있는 함수의 정방향 선언입니다.
 ATOM                MyRegisterClass         (HINSTANCE hInstance);
@@ -57,7 +57,7 @@ int     APIENTRY    wWinMain(   _In_        HINSTANCE hInstance,
     return (int) msg.wParam;
 }
 
-ATOM MyRegisterClass(HINSTANCE hInstance)
+ATOM                MyRegisterClass         (HINSTANCE hInstance)
 {
     WNDCLASSEXW wcex;
 
@@ -78,7 +78,7 @@ ATOM MyRegisterClass(HINSTANCE hInstance)
     return RegisterClassExW(&wcex);
 }
 
-BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
+BOOL                InitInstance            (HINSTANCE hInstance, int nCmdShow)
 {
    hInst = hInstance; // 인스턴스 핸들을 전역 변수에 저장합니다.
 
@@ -100,7 +100,7 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
    return TRUE;
 }
 
-LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
+LRESULT CALLBACK    WndProc                 (HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
     HDC                 hdc;
     //Area                area;
@@ -116,13 +116,27 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         ++posIndex;
         break;
     case WM_RBUTTONDOWN:
+        //ary.push_back(new Area(pos[0], pos[1]));
+
+        hdc = GetDC(hWnd);
         ary.push_back(new Area(pos[0], pos[1]));
+
+        for (UINT i = 0; i < ary.getCount(); ++i)
+        {
+            ary.getAry(i)->DrawRect(hdc, NULL);
+        }
+
+        ReleaseDC(hWnd, hdc);
+
+        // 직접 다이얼로그 윈도우를 만들어보는 시도
         /*CreateWindow(L"pager", L"NULL",
             WS_CHILD |
             WS_VISIBLE |
             BS_PUSHBUTTON,
             CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT,
             hWnd, (HMENU)IDD_RBDIAG, hInst, NULL);*/
+
+        //다이얼로그 박스를 호출하는 방법
         //DialogBox(hInst, MAKEINTRESOURCE(IDD_RBDIAG), hWnd, Formview);
         break;
     case WM_COMMAND:
@@ -159,8 +173,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
     return 0;
 }
 
-// 정보 대화 상자의 메시지 처리기입니다.
-INT_PTR CALLBACK About      (HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
+INT_PTR CALLBACK    About                   (HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
 {
     UNREFERENCED_PARAMETER(lParam);
     switch (message)
@@ -179,7 +192,7 @@ INT_PTR CALLBACK About      (HWND hDlg, UINT message, WPARAM wParam, LPARAM lPar
     return (INT_PTR)FALSE;
 }
 
-INT_PTR CALLBACK Formview   (HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
+INT_PTR CALLBACK    Formview                (HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
 {
     UNREFERENCED_PARAMETER(lParam);
 
@@ -196,9 +209,9 @@ INT_PTR CALLBACK Formview   (HWND hDlg, UINT message, WPARAM wParam, LPARAM lPar
         {
         case ID_RBOK:
             hdc = GetDC(hDlg);
-            for (UINT i = 0; i < ary.GetCount(); ++i)
+            for (UINT i = 0; i < ary.getCount(); ++i)
             {
-                ary.GetAry(i)->DrawRect(hdc, NULL);
+                ary.getAry(i)->DrawRect(hdc, NULL);
             }
             ReleaseDC(hDlg, hdc);
             EndDialog(hDlg, LOWORD(wParam));

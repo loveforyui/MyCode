@@ -17,11 +17,11 @@ public:
 
 #pragma region Getter & Setter
 public:
-    BOOL push_back(Area& ref);
-    BOOL push_back(Area* ptr);
-    BOOL del_back();
-    CONST UINT GetCount();
-    CONST Area* GetAry(UINT index);
+    BOOL            push_back       (Area& ref);
+    BOOL            push_back       (Area* ptr);
+    BOOL            del_back        ();
+    CONST UINT      getCount        ();
+    CONST Area*     getAry          (UINT index);
 #pragma endregion
 
 #pragma region Reder

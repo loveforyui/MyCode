@@ -1,5 +1,12 @@
-﻿  03SORT.cpp
+﻿  stdafx.cpp
+c:\users\yui\source\repos\mycode\apitraning\03.sort\03.sort\stdafx.cpp : warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+c:\users\yui\source\repos\mycode\apitraning\03.sort\03.sort\stdafx.h : warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+c:\users\yui\source\repos\mycode\apitraning\03.sort\03.sort\targetver.h : warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+  ChildDiag.cpp
+  Area.cpp
+  Aarray.cpp
+  03SORT.cpp
 c:\users\yui\source\repos\mycode\apitraning\03.sort\03.sort\03sort.cpp : warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
-c:\users\yui\source\repos\mycode\apitraning\03.sort\03.sort\03sort.cpp(105): warning C4101: 'hdc' :참조되지 않은 지역 변수입니다.
+  코드를 생성하고 있습니다...
   03.SORT.vcxproj -> C:\Users\YUI\Source\Repos\MyCode\APItraning\03.SORT\Debug\03.SORT.exe
   03.SORT.vcxproj -> C:\Users\YUI\Source\Repos\MyCode\APItraning\03.SORT\Debug\03.SORT.pdb (Partial PDB)

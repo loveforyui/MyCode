@@ -3,7 +3,7 @@
 
 
 #pragma region Construct & Destroy
-Aarray::    Aarray  ()
+Aarray::                    Aarray  ()
 {
     //_arry = new Area[1];
     //_arry   = (Area*)malloc(sizeof(Area));
@@ -11,14 +11,14 @@ Aarray::    Aarray  ()
     _aCnt   = 0;
 }
 
-Aarray::    ~Aarray ()
+Aarray::                    ~Aarray ()
 {
     DOUBLEPTRFREE(_arry, _aCnt, 1);
 }
 #pragma endregion
 
 #pragma region Setter & Getter
-BOOL Aarray::               push_back             (Area & ref)
+BOOL Aarray::               push_back               (Area & ref)
 {
     if (_arry == NULL)
     {
@@ -56,7 +56,7 @@ BOOL Aarray::               push_back             (Area & ref)
         return false;
 }
 
-BOOL Aarray::               push_back             (Area * ptr)
+BOOL Aarray::               push_back               (Area * ptr)
 {
     if (_arry == NULL)
     {
@@ -95,7 +95,7 @@ BOOL Aarray::               push_back             (Area * ptr)
         return false;
 }
 
-BOOL Aarray::               del_back              ()
+BOOL Aarray::               del_back                ()
 {
     free(_arry[_aCnt - 1]);
     _arry[_aCnt - 1] = NULL;
@@ -128,12 +128,12 @@ BOOL Aarray::               del_back              ()
         return false;
 }
 
-CONST UINT Aarray::         GetCount              ()
+CONST UINT Aarray::         getCount                ()
 {
     return _aCnt;
 }
 
-CONST Area* Aarray::        GetAry          (UINT index)
+CONST Area* Aarray::        getAry                  (UINT index)
 {
     return _arry[index];
 }
