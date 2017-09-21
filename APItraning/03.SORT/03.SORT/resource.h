@@ -12,10 +12,6 @@
 #define IDI_SMALL                       108
 #define IDC_03SORT                      109
 #define IDR_MAINFRAME                   128
-#define IDD_DIALOG1                     129
-#define IDD_RBDIAG                      129
-#define ID_RBOK                         1001
-#define ID_RBCAN                        1002
 #define IDC_STATIC                      -1
 
 // Next default values for new objects

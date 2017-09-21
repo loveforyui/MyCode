@@ -82,14 +82,6 @@ BEGIN
     DEFPUSHBUTTON   "Ok",IDOK,113,41,50,14,WS_GROUP
 END
 
-IDD_RBDIAG DIALOGEX 0, 0, 88, 89
-STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP
-FONT 8, "MS Shell Dlg", 400, 0, 0x1
-BEGIN
-    DEFPUSHBUTTON   "확인",ID_RBOK,19,7,50,14
-    PUSHBUTTON      "취소",ID_RBCAN,19,23,50,14
-END
-
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -105,14 +97,6 @@ BEGIN
         RIGHTMARGIN, 163
         TOPMARGIN, 7
         BOTTOMMARGIN, 55
-    END
-
-    IDD_RBDIAG, DIALOG
-    BEGIN
-        LEFTMARGIN, 7
-        RIGHTMARGIN, 81
-        TOPMARGIN, 7
-        BOTTOMMARGIN, 82
     END
 END
 #endif    // APSTUDIO_INVOKED

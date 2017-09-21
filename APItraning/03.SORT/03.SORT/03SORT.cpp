@@ -111,10 +111,12 @@ LRESULT CALLBACK    WndProc                 (HWND hWnd, UINT message, WPARAM wPa
     {
     case WM_LBUTTONDOWN:
         break;
+
     case WM_LBUTTONUP:
         pos[posIndex%2].SetPos(LOWORD(lParam), HIWORD(lParam));
         ++posIndex;
         break;
+
     case WM_RBUTTONDOWN:
         //ary.push_back(new Area(pos[0], pos[1]));
 
@@ -129,16 +131,17 @@ LRESULT CALLBACK    WndProc                 (HWND hWnd, UINT message, WPARAM wPa
         ReleaseDC(hWnd, hdc);
 
         // 직접 다이얼로그 윈도우를 만들어보는 시도
-        /*CreateWindow(L"pager", L"NULL",
+        CreateWindow(L"button", L"NULL",
             WS_CHILD |
             WS_VISIBLE |
             BS_PUSHBUTTON,
             CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT,
-            hWnd, (HMENU)IDD_RBDIAG, hInst, NULL);*/
+            hWnd, (HMENU)1002, hInst, NULL);
 
         //다이얼로그 박스를 호출하는 방법
         //DialogBox(hInst, MAKEINTRESOURCE(IDD_RBDIAG), hWnd, Formview);
         break;
+
     case WM_COMMAND:
         {
             int wmId = LOWORD(wParam);
@@ -156,6 +159,7 @@ LRESULT CALLBACK    WndProc                 (HWND hWnd, UINT message, WPARAM wPa
             }
         }
         break;
+
     case WM_PAINT:
         {
             PAINTSTRUCT ps;
@@ -164,9 +168,11 @@ LRESULT CALLBACK    WndProc                 (HWND hWnd, UINT message, WPARAM wPa
             EndPaint(hWnd, &ps);
         }
         break;
+
     case WM_DESTROY:
         PostQuitMessage(0);
         break;
+
     default:
         return DefWindowProc(hWnd, message, wParam, lParam);
     }
@@ -191,51 +197,3 @@ INT_PTR CALLBACK    About                   (HWND hDlg, UINT message, WPARAM wPa
     }
     return (INT_PTR)FALSE;
 }
-
-INT_PTR CALLBACK    Formview                (HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
-{
-    UNREFERENCED_PARAMETER(lParam);
-
-    HDC hdc;
-
-    switch (message)
-    {
-    case WM_INITDIALOG:
-        //return (INT_PTR)TRUE;
-        break;
-
-    case WM_COMMAND:
-        switch (LOWORD(wParam))
-        {
-        case ID_RBOK:
-            hdc = GetDC(hDlg);
-            for (UINT i = 0; i < ary.getCount(); ++i)
-            {
-                ary.getAry(i)->DrawRect(hdc, NULL);
-            }
-            ReleaseDC(hDlg, hdc);
-            EndDialog(hDlg, LOWORD(wParam));
-            return (INT_PTR)TRUE;
-        case ID_RBCAN:
-            EndDialog(hDlg, LOWORD(wParam));
-            break;
-        /*case IDOK:
-        case IDCANCEL:
-            EndDialog(hDlg, LOWORD(wParam));
-            return (INT_PTR)TRUE;*/
-        }
-        break;
-    }
-    return (INT_PTR)FALSE;
-}
-
-//hdc = GetDC(hWnd);
-//ary.push_back(new Area(pos[0], pos[1]));
-////area.Initailizer(pos[0], pos[1]);
-//
-//for (UINT i = 0; i < ary.GetCount(); ++i)
-//{
-//    ary.GetAry(i)->DrawRect(hdc, NULL);
-//}
-////area.DrawRect(hdc, NULL);
-//ReleaseDC(hWnd, hdc);
