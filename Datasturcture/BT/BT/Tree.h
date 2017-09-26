@@ -60,6 +60,10 @@ private:
             }
         }
     }
+    int getHight(Node<T>* next)
+    {
+
+    }
 public:
     void insert(T var)
     {
@@ -71,8 +75,6 @@ public:
         {
             searchEmptyNode(var, root);
         }
-        
-
     }
 #pragma endregion
 
