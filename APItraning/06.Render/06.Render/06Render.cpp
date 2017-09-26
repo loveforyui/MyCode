@@ -60,7 +60,7 @@ int APIENTRY        wWinMain(   _In_        HINSTANCE   hInstance,
 //
 //  목적: 창 클래스를 등록합니다.
 //
-ATOM                MyRegisterClass(HINSTANCE hInstance)
+ATOM                MyRegisterClass     (HINSTANCE hInstance)
 {
     WNDCLASSEXW wcex;
 
@@ -91,7 +91,7 @@ ATOM                MyRegisterClass(HINSTANCE hInstance)
 //        이 함수를 통해 인스턴스 핸들을 전역 변수에 저장하고
 //        주 프로그램 창을 만든 다음 표시합니다.
 //
-BOOL                InitInstance(HINSTANCE hInstance, int nCmdShow)
+BOOL                InitInstance        (HINSTANCE hInstance, int nCmdShow)
 {
    hInst = hInstance; // 인스턴스 핸들을 전역 변수에 저장합니다.
 
@@ -120,7 +120,7 @@ BOOL                InitInstance(HINSTANCE hInstance, int nCmdShow)
 //  WM_DESTROY  - 종료 메시지를 게시하고 반환합니다.
 //
 //
-LRESULT CALLBACK    WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
+LRESULT CALLBACK    WndProc             (HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
     switch (message)
     {
@@ -158,7 +158,7 @@ LRESULT CALLBACK    WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lPara
     return 0;
 }
 // 정보 대화 상자의 메시지 처리기입니다.
-INT_PTR CALLBACK    About(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
+INT_PTR CALLBACK    About               (HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
 {
     UNREFERENCED_PARAMETER(lParam);
     switch (message)
@@ -177,9 +177,3 @@ INT_PTR CALLBACK    About(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
     return (INT_PTR)FALSE;
 }
 
-
-void voidFunc()
-{
-    Object obj;
-    obj.set_rect();
-}

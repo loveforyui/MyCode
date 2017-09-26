@@ -147,6 +147,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="06Render.h" />
+    <ClInclude Include="CPhysics.h" />
     <ClInclude Include="deftype.h" />
     <ClInclude Include="macro.h" />
     <ClInclude Include="Object.h" />
@@ -156,6 +157,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="06Render.cpp" />
+    <ClCompile Include="CPhysics.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

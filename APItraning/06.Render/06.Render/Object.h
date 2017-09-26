@@ -5,18 +5,29 @@ class Object
 {
 #pragma region var
 protected:
-    RECT rect;
+    BasePos m_position;
+    PHYSIC m_physic;
     
 #pragma endregion
 
 #pragma region GetSet
 public:
-    GetSet(RECT, rect);
+    GetSet(BasePos, m_position);
+    GetSet(PHYSIC, m_physic);
 #pragma endregion
 
+#pragma region construct
 public:
     Object();
     ~Object();
+#pragma endregion
+
+
+#pragma region Functions
+public:
+    void Draw();
+#pragma endregion
+
 };
 
 #endif // !__object_h__
