@@ -11,7 +11,7 @@ Object::~Object()
 {
 }
 
-void Object::Draw()
+void Object::Draw(HDC hdc)
 {
-    //m_position.pos.x
+    Rectangle(hdc, m_position.rect.left, m_position.rect.top, m_position.rect.right, m_position.rect.bottom);
 }

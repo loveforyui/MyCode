@@ -6,10 +6,10 @@ class CPhysics
 {
 #pragma region var
 private:
-    const LONG  GRAVITY = 10;
-    const float framerate = 0.03f;
+    const LONG      GRAVITY = 10;
+    const float     framerate = 0.03f;
 
-    RECT        world;
+    RECT            world;
 #pragma endregion
 
 #pragma region GetSet
@@ -26,14 +26,14 @@ public:
 
 #pragma region SystemFunctions
 public:
-    void SetWorldRect(HWND hWnd);
+    void        SetWorldRect        (HWND hWnd);
     
 #pragma endregion
 
 #pragma region Functions
 public:
-    POS activeGravity(Object& obj);
-    float getV(Object& obj);
+    POS         activeGravity       (Object& obj);
+    float       getV                (Object& obj);
 
 #pragma endregion
 

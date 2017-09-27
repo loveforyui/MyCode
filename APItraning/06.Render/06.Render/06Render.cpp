@@ -42,6 +42,8 @@ int APIENTRY        wWinMain(   _In_        HINSTANCE   hInstance,
 
     MSG msg;
 
+
+    
     // 기본 메시지 루프입니다.
     while (GetMessage(&msg, nullptr, 0, 0))
     {
@@ -104,6 +106,8 @@ BOOL                InitInstance        (HINSTANCE hInstance, int nCmdShow)
       return FALSE;
    }
 
+   MainManager::getInstance()->get_world_physics().SetWorldRect(hWnd);
+
    ShowWindow(hWnd, nCmdShow);
    UpdateWindow(hWnd);
 
@@ -122,6 +126,7 @@ BOOL                InitInstance        (HINSTANCE hInstance, int nCmdShow)
 //
 LRESULT CALLBACK    WndProc             (HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
+    
     switch (message)
     {
     case WM_COMMAND:

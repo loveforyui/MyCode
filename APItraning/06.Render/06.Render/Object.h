@@ -25,7 +25,7 @@ public:
 
 #pragma region Functions
 public:
-    void Draw();
+    void Draw(HDC);
 #pragma endregion
 
 };
