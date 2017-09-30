@@ -32,6 +32,9 @@
     <Filter Include="01.Object\00.Player\00.StateManager">
       <UniqueIdentifier>{23c22bc9-61c6-469c-a9a5-9af7b7103822}</UniqueIdentifier>
     </Filter>
+    <Filter Include="01.Object\02.MidRect">
+      <UniqueIdentifier>{c05e7ddc-9835-4ede-8188-3afc8f4cc2d9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -100,6 +103,12 @@
     <ClInclude Include="Attack.h">
       <Filter>01.Object\00.Player\00.StateManager</Filter>
     </ClInclude>
+    <ClInclude Include="Holdon.h">
+      <Filter>01.Object\02.MidRect</Filter>
+    </ClInclude>
+    <ClInclude Include="Ellised.h">
+      <Filter>01.Object\00.Player\00.StateManager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CObj.cpp">
@@ -133,6 +142,12 @@
       <Filter>01.Object\00.Player\00.StateManager</Filter>
     </ClCompile>
     <ClCompile Include="Attack.cpp">
+      <Filter>01.Object\00.Player\00.StateManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Holdon.cpp">
+      <Filter>01.Object\02.MidRect</Filter>
+    </ClCompile>
+    <ClCompile Include="Ellised.cpp">
       <Filter>01.Object\00.Player\00.StateManager</Filter>
     </ClCompile>
   </ItemGroup>

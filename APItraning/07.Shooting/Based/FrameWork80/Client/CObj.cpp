@@ -30,3 +30,58 @@ int CObj::Update()
 
 	return 0;
 }
+
+BOOL CObj::operator&&(CObj & src)
+{
+    BOOL result = FALSE;
+
+    // го
+    if ((src.m_tRect.left <= m_tRect.left) && (m_tRect.left <= src.m_tRect.right))
+    {
+        if ((m_tRect.top <= src.m_tRect.bottom) && (src.m_tRect.bottom <= m_tRect.bottom))
+        {
+            m_tInfo.fY += m_fSpeed;
+            result = TRUE;
+            return result;
+        }        
+    }
+    else if ((src.m_tRect.left <= m_tRect.right) && (m_tRect.right <= src.m_tRect.right))
+    {
+        if ((m_tRect.top <= src.m_tRect.bottom) && (src.m_tRect.bottom <= m_tRect.bottom))
+        {
+            m_tInfo.fY += m_fSpeed;
+            result = TRUE;
+            return result;
+        }
+    }
+    // ╩С
+    if ((src.m_tRect.left <= m_tRect.left) && (m_tRect.left <= src.m_tRect.right))
+    {
+        if ((src.m_tRect.top <= m_tRect.bottom) && (m_tRect.top <= src.m_tRect.top))
+        {
+            m_tInfo.fY -= m_fSpeed;
+            result = TRUE;
+            return result;
+        }
+    }
+    else if ((src.m_tRect.left <= m_tRect.right) && (m_tRect.right <= src.m_tRect.right))
+    {
+        if ((src.m_tRect.top <= m_tRect.bottom) && (m_tRect.top <= src.m_tRect.top))
+        {
+            m_tInfo.fY -= m_fSpeed;
+            result = TRUE;
+            return result;
+        }
+    }
+    // аб
+    if ((src.m_tRect.top <= m_tRect.bottom) && (m_tRect.top <= src.m_tRect.top))
+    {
+        
+    }
+    else if ((m_tRect.top <= src.m_tRect.bottom) && (src.m_tRect.bottom <= m_tRect.bottom))
+    {
+
+    }
+
+    return result;
+}

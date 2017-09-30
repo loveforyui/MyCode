@@ -152,9 +152,11 @@
     <ClInclude Include="CMainGame.h" />
     <ClInclude Include="CObj.h" />
     <ClInclude Include="Define.h" />
+    <ClInclude Include="Ellised.h" />
     <ClInclude Include="Enum.h" />
     <ClInclude Include="Extern.h" />
     <ClInclude Include="Function.h" />
+    <ClInclude Include="Holdon.h" />
     <ClInclude Include="HPackage.h" />
     <ClInclude Include="Idle.h" />
     <ClInclude Include="Player.h" />
@@ -174,6 +176,8 @@
     <ClCompile Include="Client.cpp" />
     <ClCompile Include="CMainGame.cpp" />
     <ClCompile Include="CObj.cpp" />
+    <ClCompile Include="Ellised.cpp" />
+    <ClCompile Include="Holdon.cpp" />
     <ClCompile Include="Idle.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="StartMove.cpp" />

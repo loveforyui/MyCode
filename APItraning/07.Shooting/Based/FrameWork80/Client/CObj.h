@@ -23,6 +23,9 @@ public:
 	virtual void        Render          (HDC)           = 0;
 	virtual void        Release         ()              = 0;
 
+public:
+    BOOL operator&&(CObj& src);
+
 protected:
 	INFO	            m_tInfo;
 	RECT	            m_tRect;

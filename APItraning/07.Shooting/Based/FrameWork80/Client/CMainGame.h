@@ -17,6 +17,8 @@ public:
 	void                Update              ();
 	void                Render              ();
 	void                Release             ();
+private:
+    BOOL                isEllipsed          (CObj*, CObj*);
 
 private:
     static CMainGame*   inst;
@@ -27,6 +29,8 @@ private:
 	CObj*		        m_pPlayer;
 	OBJLIST		        m_BulletList;
     StateContext*       m_pState;
+
+    CObj*               m_midObj;
 };
 
 #endif // !__maingame_h__
