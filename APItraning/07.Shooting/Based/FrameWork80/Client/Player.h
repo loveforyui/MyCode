@@ -3,6 +3,7 @@
 
 #include "CObj.h"
 
+class StateContext;
 class CPlayer :
 	public CObj
 {
@@ -12,6 +13,7 @@ public:
 
 public:
 	void                SetBulletList       (OBJLIST* pBulletList) { m_pBulletList = pBulletList; }
+
 
 public:
 	virtual void        Initialize          ();
@@ -26,6 +28,8 @@ private:
 private:
 	OBJLIST*            m_pBulletList;
 
+    BOOL                keyInput;
+    DWORD               keyTime;
 };
 
 #endif // !__player_h__

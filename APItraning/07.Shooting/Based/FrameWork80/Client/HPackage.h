@@ -1,6 +1,7 @@
 #ifndef __package_h__
 #define __package_h__
 
+#include "Enum.h"
 #include "Define.h"
 #include "Typedef.h"
 #include "Extern.h"

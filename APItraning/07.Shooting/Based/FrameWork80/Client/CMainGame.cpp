@@ -1,6 +1,10 @@
 #include "stdafx.h"
 #include "CMainGame.h"
 #include "Player.h"
+#include "StateContext.h"
+#include "States.h"
+
+CMainGame* CMainGame::inst = nullptr;
 
 CMainGame::CMainGame()
 	: m_pPlayer(nullptr)
@@ -12,16 +16,25 @@ CMainGame::~CMainGame()
 	Release();
 }
 
+CMainGame * CMainGame::getInst()
+{
+    if (nullptr == inst)
+    {
+        inst = new CMainGame;
+    }
+    return inst;
+}
+
 void CMainGame::Initialize()
 {
 	// GetDC: DC의 핸들을 얻어오는 함수.
 	// BeginPaint는 WM_PAINT 메시지 내부에서만 수행 가능한 함수라서 외부에서는 GetDC로 얻어와야함.
 	m_hDC = GetDC(g_hWnd);
-    GetWindowRect(g_hWnd, &m_wndRect);
+    GetClientRect(g_hWnd, &m_wndRect);
 
 	if (nullptr == m_pPlayer)
 	{
-        INFO templaryInfo { FLOAT(m_wndRect.right - m_wndRect.left), FLOAT(m_wndRect.bottom + 50), 50.f, 50.f };
+        INFO templaryInfo { FLOAT(m_wndRect.right) / 2, FLOAT(m_wndRect.bottom - 50), 50.f, 50.f };
 		m_pPlayer = new CPlayer;
         m_pPlayer->Initialize(templaryInfo, 10.f);
 		dynamic_cast<CPlayer*>(m_pPlayer)->SetBulletList(&m_BulletList);
@@ -59,7 +72,7 @@ void CMainGame::Release()
 
 	SAFEDELETE<CObj*>(m_pPlayer);
 
-	for_each(m_BulletList.begin(), m_BulletList.end(), 
+    for_each(m_BulletList.begin(), m_BulletList.end(), 
 	[](CObj*& pObj)
 	{
 		if (pObj)

@@ -2,24 +2,31 @@
 #define __maingame_h__
 
 class CObj;
+class StateContext;
 class CMainGame
 {
-public:
+private:
     CMainGame();
+
+public:
 	~CMainGame();
 
 public:
-	void Initialize();
-	void Update();
-	void Render();
-	void Release();
+    static CMainGame*   getInst             ();
+	void                Initialize          ();
+	void                Update              ();
+	void                Render              ();
+	void                Release             ();
 
 private:
-	HDC	m_hDC;
-    RECT m_wndRect;
+    static CMainGame*   inst;
 
-	CObj*		m_pPlayer;
-	OBJLIST		m_BulletList;
+	HDC	                m_hDC;
+    RECT                m_wndRect;
+
+	CObj*		        m_pPlayer;
+	OBJLIST		        m_BulletList;
+    StateContext*       m_pState;
 };
 
 #endif // !__maingame_h__

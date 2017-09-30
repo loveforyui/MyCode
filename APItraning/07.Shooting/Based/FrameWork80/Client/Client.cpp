@@ -45,8 +45,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     msg.message = WM_NULL;
     // 기본 메시지 루프입니다.
 
-    CMainGame mainGame;
-    mainGame.Initialize();
+    CMainGame::getInst()->Initialize();
 
     DWORD dwOldTime = GetTickCount();
     DWORD dwCurTime = 0;
@@ -71,8 +70,8 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
                 dwOldTime = dwCurTime;
 
                 // 실제 게임 루틴 수행.
-                mainGame.Update();
-                mainGame.Render();
+                CMainGame::getInst()->Update();
+                CMainGame::getInst()->Render();
             }
         }
     }
@@ -122,12 +121,13 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 {
    hInst = hInstance; // 인스턴스 핸들을 전역 변수에 저장합니다.
 
-   RECT rc{ 0,0,WINCX,WINCY };
+   RECT rc{ 0, 0, WINCX, WINCY };
 
    // 윈도우 보정
-   AdjustWindowRect(&rc, WS_BORDER, FALSE);
+   AdjustWindowRect(&rc, WS_BORDER | WS_SYSMENU , FALSE);
 
-   HWND hWnd = CreateWindowW(szWindowClass, szTitle,
+   HWND hWnd = CreateWindowW(
+       szWindowClass, szTitle,
        WS_BORDER | WS_SYSMENU,
       CW_USEDEFAULT, 0, rc.right - rc.left, rc.bottom - rc.top,
        nullptr, nullptr, hInstance, nullptr);
