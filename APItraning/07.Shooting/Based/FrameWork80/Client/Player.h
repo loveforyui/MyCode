@@ -24,6 +24,7 @@ public:
 
 private:
 	CObj*               CreateBullet        ();
+    CObj*               CreateBullet        (DIRECTION);
 
 private:
 	OBJLIST*            m_pBulletList;

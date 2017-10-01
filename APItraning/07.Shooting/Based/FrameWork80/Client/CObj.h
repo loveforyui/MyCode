@@ -16,6 +16,9 @@ public:
 
     void                SetState        (StateManager* state);
 
+    DIRECTION           GetDirection    ();
+    void                SetDirection    (DIRECTION);
+
 public:
 	virtual void        Initialize      ()              = 0;
     virtual void        Initialize      (INFO, FLOAT)   = 0;
@@ -25,12 +28,14 @@ public:
 
 public:
     BOOL operator&&(CObj& src);
+    BOOL operator||(CObj& src);
 
 protected:
 	INFO	            m_tInfo;
 	RECT	            m_tRect;
 	FLOAT	            m_fSpeed;
     StateContext        m_tState;
+    DIRECTION           m_eDirec;
 };
 
 #endif // !__cobj_h__

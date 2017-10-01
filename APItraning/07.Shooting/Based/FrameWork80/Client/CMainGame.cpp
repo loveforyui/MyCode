@@ -1,14 +1,17 @@
 #include "stdafx.h"
 #include "CMainGame.h"
+
 #include "Player.h"
 #include "Holdon.h"
+#include "PatrolMon.h"
+
 #include "StateContext.h"
 #include "States.h"
 
 CMainGame* CMainGame::inst              = nullptr;
 
 CMainGame::             CMainGame       ()
-	: m_pPlayer(nullptr)
+	: m_pPlayer(nullptr), m_midObj(nullptr), m_ptrObj(nullptr)
 {
 }
 
@@ -47,21 +50,60 @@ void CMainGame::        Initialize      ()
         m_pPlayer->Initialize(templaryInfo, 10.f);
 		dynamic_cast<CPlayer*>(m_pPlayer)->SetBulletList(&m_BulletList);
 	}
+
+    if (nullptr == m_ptrObj)
+    {
+        INFO templaryInfo { FLOAT(m_wndRect.right) / 2, FLOAT(m_wndRect.bottom - 400), 50.f, 50.f };
+        m_ptrObj = new PatrolMon;
+        m_ptrObj->Initialize(templaryInfo, 10.f);
+    }
 }
 
 void CMainGame::        Update          ()
 {
     m_midObj->Update();
 	m_pPlayer->Update();
+    
+    // isEllipsed player to midRect?
     isEllipsed(m_pPlayer, m_midObj);
+
+    // isEllipsed PatrolMonster to MidRect?
+    if (isEllipsed(m_ptrObj, m_midObj))
+    {
+        switch (m_ptrObj->GetDirection())
+        {
+        case D_LEFT:
+            m_ptrObj->SetDirection(D_RIGHT);
+            break;
+        case D_RIGHT:
+            m_ptrObj->SetDirection(D_LEFT);
+            break;
+        }
+    }
+    m_ptrObj->Update();
+    //--------------------------------------------
+
 	//for (auto bullet : m_BulletList) // 범위 기반 for문
 	//	bullet->Update();
 
-	OBJLIST::iterator iter_begin = m_BulletList.begin();
-	OBJLIST::iterator iter_end = m_BulletList.end();
-
-	for (; iter_begin != iter_end; ++iter_begin)
-		(*iter_begin)->Update();
+    for (OBJLIST::iterator iter = m_BulletList.begin();
+        iter != m_BulletList.end();)
+    {
+        (*iter)->Update();
+        if (isEllipsed((*iter), m_midObj))
+        {
+            iter = m_BulletList.erase(iter);
+        }
+        else if (isEllipsed((*iter), m_ptrObj))
+        {
+            iter = m_BulletList.erase(iter);
+        }
+        else
+        {
+            ++iter;
+        }
+    }
+		
 }
 
 void CMainGame::        Render          ()
@@ -71,6 +113,8 @@ void CMainGame::        Render          ()
     m_midObj->Render(m_hDC);
 
 	m_pPlayer->Render(m_hDC);
+
+    m_ptrObj->Render(m_hDC);
 
 	for (auto bullet : m_BulletList)
 		bullet->Render(m_hDC);
@@ -99,5 +143,5 @@ void CMainGame::        Release         ()
 
 BOOL CMainGame::        isEllipsed      (CObj * dest, CObj * src)
 {
-    return (*dest) && (*src);
+    return (*dest) || (*src);
 }

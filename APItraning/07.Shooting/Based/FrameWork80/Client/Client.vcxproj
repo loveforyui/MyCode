@@ -159,6 +159,8 @@
     <ClInclude Include="Holdon.h" />
     <ClInclude Include="HPackage.h" />
     <ClInclude Include="Idle.h" />
+    <ClInclude Include="Macros.h" />
+    <ClInclude Include="PatrolMon.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="StartMove.h" />
@@ -179,6 +181,7 @@
     <ClCompile Include="Ellised.cpp" />
     <ClCompile Include="Holdon.cpp" />
     <ClCompile Include="Idle.cpp" />
+    <ClCompile Include="PatrolMon.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="StartMove.cpp" />
     <ClCompile Include="StateContext.cpp" />

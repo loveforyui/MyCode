@@ -27,10 +27,11 @@ private:
     RECT                m_wndRect;
 
 	CObj*		        m_pPlayer;
-	OBJLIST		        m_BulletList;
     StateContext*       m_pState;
+	OBJLIST		        m_BulletList;
 
     CObj*               m_midObj;
+    CObj*               m_ptrObj;
 };
 
 #endif // !__maingame_h__

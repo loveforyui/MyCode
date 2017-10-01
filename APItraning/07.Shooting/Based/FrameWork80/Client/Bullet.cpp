@@ -13,8 +13,8 @@ CBullet::~CBullet()
 
 void CBullet::Initialize()
 {
-	m_tInfo.fCX = 5.f;
-	m_tInfo.fCY = 5.f;
+	m_tInfo.fCX = 15.f;
+	m_tInfo.fCY = 15.f;
 
 	m_fSpeed = 15.f;
 }
@@ -28,7 +28,31 @@ int CBullet::Update()
 {
 	CObj::Update();
 
-	m_tInfo.fY -= m_fSpeed;
+    switch (m_eDirec)
+    {
+    case D_UP:
+        m_tInfo.fY -= m_fSpeed;
+        break;
+    case D_DOWN:
+        m_tInfo.fY += m_fSpeed;
+        break;
+    case D_LEFT:
+        m_tInfo.fX -= m_fSpeed;
+        break;
+    case D_RIGHT:
+        m_tInfo.fX += m_fSpeed;
+        break;
+    case D_UL:
+        break;
+    case D_UR:
+        break;
+    case D_DL:
+        break;
+    case D_DR:
+        break;
+    default:
+        break;
+    }
 
 	return 0;
 }

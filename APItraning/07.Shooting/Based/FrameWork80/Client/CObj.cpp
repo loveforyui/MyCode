@@ -7,6 +7,7 @@ CObj::CObj()
 	: m_tInfo{} // 유니폼 초기화 (현재 m_tInfo의 모든 멤버 0 초기화)
 	, m_tRect{}
 	, m_fSpeed(0.f)
+    , m_eDirec(D_NONE)
 {
     m_tState.SetObj(this);
     m_tState.SetState(new Idle);
@@ -19,6 +20,16 @@ CObj::~CObj()
 void CObj::SetState(StateManager * state)
 {
     m_tState.SetState(state);
+}
+
+DIRECTION CObj::GetDirection()
+{
+    return m_eDirec;
+}
+
+void CObj::SetDirection(DIRECTION d)
+{
+    m_eDirec = d;
 }
 
 int CObj::Update()
@@ -35,52 +46,141 @@ BOOL CObj::operator&&(CObj & src)
 {
     BOOL result = FALSE;
 
-    // 하
-    if ((src.m_tRect.left <= m_tRect.left) && (m_tRect.left <= src.m_tRect.right))
+    //좌, 우
+    if ((src.m_tRect.top <= m_tRect.bottom) && (m_tRect.bottom <= src.m_tRect.bottom))
     {
-        if ((m_tRect.top <= src.m_tRect.bottom) && (src.m_tRect.bottom <= m_tRect.bottom))
+        if ((src.m_tRect.left <= m_tRect.right) && (m_tRect.left <= src.m_tRect.left))
         {
-            m_tInfo.fY += m_fSpeed;
+            m_tInfo.fX -= m_fSpeed;
             result = TRUE;
-            return result;
-        }        
+            //return result;
+        }
+        if ((m_tRect.left <= src.m_tRect.right) && (src.m_tRect.right <= m_tRect.right))
+        {
+            m_tInfo.fX += m_fSpeed;
+            result = TRUE;
+            //return result;
+        }
+          
     }
-    else if ((src.m_tRect.left <= m_tRect.right) && (m_tRect.right <= src.m_tRect.right))
+    else if ((src.m_tRect.top <= m_tRect.top) && (m_tRect.top <= src.m_tRect.bottom))
     {
-        if ((m_tRect.top <= src.m_tRect.bottom) && (src.m_tRect.bottom <= m_tRect.bottom))
+        if ((src.m_tRect.left <= m_tRect.right) && (m_tRect.left <= src.m_tRect.left))
         {
-            m_tInfo.fY += m_fSpeed;
+            m_tInfo.fX -= m_fSpeed;
             result = TRUE;
-            return result;
+            //return result;
+        }
+        if ((m_tRect.left <= src.m_tRect.right) && (src.m_tRect.right <= m_tRect.right))
+        {
+            m_tInfo.fX += m_fSpeed;
+            result = TRUE;
+            //return result;
         }
     }
-    // 상
-    if ((src.m_tRect.left <= m_tRect.left) && (m_tRect.left <= src.m_tRect.right))
-    {
-        if ((src.m_tRect.top <= m_tRect.bottom) && (m_tRect.top <= src.m_tRect.top))
-        {
-            m_tInfo.fY -= m_fSpeed;
-            result = TRUE;
-            return result;
-        }
-    }
-    else if ((src.m_tRect.left <= m_tRect.right) && (m_tRect.right <= src.m_tRect.right))
-    {
-        if ((src.m_tRect.top <= m_tRect.bottom) && (m_tRect.top <= src.m_tRect.top))
-        {
-            m_tInfo.fY -= m_fSpeed;
-            result = TRUE;
-            return result;
-        }
-    }
-    // 좌
-    if ((src.m_tRect.top <= m_tRect.bottom) && (m_tRect.top <= src.m_tRect.top))
-    {
-        
-    }
-    else if ((m_tRect.top <= src.m_tRect.bottom) && (src.m_tRect.bottom <= m_tRect.bottom))
-    {
 
+    // 하, 상
+    if ((src.m_tRect.left <= m_tRect.left) && (m_tRect.left <= src.m_tRect.right))
+    {
+        if ((m_tRect.top <= src.m_tRect.bottom) && (src.m_tRect.bottom <= m_tRect.bottom))
+        {
+            m_tInfo.fY += m_fSpeed;
+            result = TRUE;
+            //return result;
+        }
+        if ((src.m_tRect.top <= m_tRect.bottom) && (m_tRect.top <= src.m_tRect.top))
+        {
+            m_tInfo.fY -= m_fSpeed;
+            result = TRUE;
+            //return result;
+        }
+    }
+    else if ((src.m_tRect.left <= m_tRect.right) && (m_tRect.right <= src.m_tRect.right))
+    {
+        if ((m_tRect.top <= src.m_tRect.bottom) && (src.m_tRect.bottom <= m_tRect.bottom))
+        {
+            m_tInfo.fY += m_fSpeed;
+            result = TRUE;
+            //return result;
+        }
+        if ((src.m_tRect.top <= m_tRect.bottom) && (m_tRect.top <= src.m_tRect.top))
+        {
+            m_tInfo.fY -= m_fSpeed;
+            result = TRUE;
+            //return result;
+        }
+    }
+
+    return result;
+}
+
+BOOL CObj::operator||(CObj & src)
+{
+    BOOL result = FALSE;
+
+    // 좌, 우
+    if ((src.m_tRect.top <= m_tRect.bottom) && (m_tRect.bottom <= src.m_tRect.bottom))
+    {
+        if ((src.m_tRect.left <= m_tRect.right) && (m_tRect.left <= src.m_tRect.left))
+        {
+            m_tInfo.fX += m_fSpeed;
+            result = TRUE;
+            //return result;
+        }
+        if ((m_tRect.left <= src.m_tRect.right) && (src.m_tRect.right <= m_tRect.right))
+        {
+            m_tInfo.fX -= m_fSpeed;
+            result = TRUE;
+            //return result;
+        }
+          
+    }
+    else if ((src.m_tRect.top <= m_tRect.top) && (m_tRect.top <= src.m_tRect.bottom))
+    {
+        if ((src.m_tRect.left <= m_tRect.right) && (m_tRect.left <= src.m_tRect.left))
+        {
+            m_tInfo.fX += m_fSpeed;
+            result = TRUE;
+            //return result;
+        }
+        if ((m_tRect.left <= src.m_tRect.right) && (src.m_tRect.right <= m_tRect.right))
+        {
+            m_tInfo.fX -= m_fSpeed;
+            result = TRUE;
+            //return result;
+        }
+    }
+
+    // 하, 상
+    if ((src.m_tRect.left <= m_tRect.left) && (m_tRect.left <= src.m_tRect.right))
+    {
+        if ((m_tRect.top <= src.m_tRect.bottom) && (src.m_tRect.bottom <= m_tRect.bottom))
+        {
+            m_tInfo.fY -= m_fSpeed;
+            result = TRUE;
+            //return result;
+        }
+        if ((src.m_tRect.top <= m_tRect.bottom) && (m_tRect.top <= src.m_tRect.top))
+        {
+            m_tInfo.fY += m_fSpeed;
+            result = TRUE;
+            //return result;
+        }
+    }
+    else if ((src.m_tRect.left <= m_tRect.right) && (m_tRect.right <= src.m_tRect.right))
+    {
+        if ((m_tRect.top <= src.m_tRect.bottom) && (src.m_tRect.bottom <= m_tRect.bottom))
+        {
+            m_tInfo.fY -= m_fSpeed;
+            result = TRUE;
+            //return result;
+        }
+        if ((src.m_tRect.top <= m_tRect.bottom) && (m_tRect.top <= src.m_tRect.top))
+        {
+            m_tInfo.fY += m_fSpeed;
+            result = TRUE;
+            //return result;
+        }
     }
 
     return result;
