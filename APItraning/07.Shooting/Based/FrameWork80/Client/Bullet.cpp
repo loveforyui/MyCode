@@ -16,12 +16,11 @@ void CBullet::Initialize()
 	m_tInfo.fCX = 15.f;
 	m_tInfo.fCY = 15.f;
 
-	m_fSpeed = 15.f;
+	m_fSpeed = 12.f;
 }
 
 void CBullet::Initialize(INFO info, FLOAT speed)
 {
-    
 }
 
 int CBullet::Update()

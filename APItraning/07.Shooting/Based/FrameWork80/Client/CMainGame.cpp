@@ -112,12 +112,14 @@ void CMainGame::        Render          ()
 
     m_midObj->Render(m_hDC);
 
+    for (auto bullet : m_BulletList)
+		bullet->Render(m_hDC);
+
 	m_pPlayer->Render(m_hDC);
 
     m_ptrObj->Render(m_hDC);
 
-	for (auto bullet : m_BulletList)
-		bullet->Render(m_hDC);
+	
 }
 
 void CMainGame::        Release         ()

@@ -27,8 +27,8 @@ public:
 	virtual void        Release         ()              = 0;
 
 public:
-    BOOL operator&&(CObj& src);
-    BOOL operator||(CObj& src);
+    BOOL                operator&&      (CObj&);
+    BOOL                operator||      (CObj&);
 
 protected:
 	INFO	            m_tInfo;
