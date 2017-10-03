@@ -1,6 +1,7 @@
 #ifndef __mainmanager_h__
 #define __mainmanager_h__
 
+class Object;
 class MainManager
 {
 #pragma region Construct
@@ -33,8 +34,18 @@ private:
     static MainManager* inst;
     // DC
     HDC m_hdc;
+    HDC m_hBackBuffer;
+
+    // bitmap
+    HBITMAP m_hBitmap;
+    HBITMAP m_hOldmap;
+
     // WindowClientRect
     RECT m_wndRect;
+
+    // objects
+    Object* m_pPlayer;
+
     // test var
     double f;
     int y;

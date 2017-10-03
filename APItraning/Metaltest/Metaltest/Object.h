@@ -1,0 +1,31 @@
+#ifndef __object_h__
+#define __object_h__
+
+#include "StateContext.h"
+
+class Object
+{
+public:
+    Object();
+    virtual ~Object();
+
+public:
+    virtual void    Initialize  () = 0;
+    virtual void    Initialize  (OBJINFO&) = 0;
+    virtual void    Render      (HDC) = 0;
+    virtual void    Release     () = 0;
+    virtual int     Update      ();
+
+public:
+    void SetPos(FLOAT, FLOAT);
+    const OBJINFO& GetInfo();
+
+protected:
+    OBJINFO m_objInfo;
+    StateContext m_state_body;
+    StateContext m_state_leg;
+};
+
+#endif // !__object_h__
+
+

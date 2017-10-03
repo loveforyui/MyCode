@@ -19,6 +19,15 @@
     <Filter Include="01.Manager">
       <UniqueIdentifier>{74767f81-b3fa-4d2d-a275-262f8f5082c1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="02.Obj">
+      <UniqueIdentifier>{068dcc73-9d1b-448f-8eab-8f3e36906ae9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.Obj\00.player">
+      <UniqueIdentifier>{99c52550-24d0-4f8a-afab-dabc1cb9253f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.Obj\00.player\00.state">
+      <UniqueIdentifier>{7a1ee7bb-eb49-4b4e-ba55-a66d74a6e956}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -48,6 +57,33 @@
     <ClInclude Include="define.h">
       <Filter>99.header</Filter>
     </ClInclude>
+    <ClInclude Include="Object.h">
+      <Filter>02.Obj</Filter>
+    </ClInclude>
+    <ClInclude Include="Struct.h">
+      <Filter>99.header</Filter>
+    </ClInclude>
+    <ClInclude Include="typedef.h">
+      <Filter>99.header</Filter>
+    </ClInclude>
+    <ClInclude Include="player.h">
+      <Filter>02.Obj\00.player</Filter>
+    </ClInclude>
+    <ClInclude Include="functions.h">
+      <Filter>99.header</Filter>
+    </ClInclude>
+    <ClInclude Include="StateManager.h">
+      <Filter>02.Obj\00.player\00.state</Filter>
+    </ClInclude>
+    <ClInclude Include="StateContext.h">
+      <Filter>02.Obj\00.player\00.state</Filter>
+    </ClInclude>
+    <ClInclude Include="EriIdle.h">
+      <Filter>02.Obj\00.player\00.state</Filter>
+    </ClInclude>
+    <ClInclude Include="EriIdleLeg.h">
+      <Filter>02.Obj\00.player\00.state</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -58,6 +94,24 @@
     </ClCompile>
     <ClCompile Include="MainManager.cpp">
       <Filter>01.Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="Object.cpp">
+      <Filter>02.Obj</Filter>
+    </ClCompile>
+    <ClCompile Include="player.cpp">
+      <Filter>02.Obj\00.player</Filter>
+    </ClCompile>
+    <ClCompile Include="StateManager.cpp">
+      <Filter>02.Obj\00.player\00.state</Filter>
+    </ClCompile>
+    <ClCompile Include="StateContext.cpp">
+      <Filter>02.Obj\00.player\00.state</Filter>
+    </ClCompile>
+    <ClCompile Include="EriIdle.cpp">
+      <Filter>02.Obj\00.player\00.state</Filter>
+    </ClCompile>
+    <ClCompile Include="EriIdleLeg.cpp">
+      <Filter>02.Obj\00.player\00.state</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

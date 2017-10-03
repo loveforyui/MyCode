@@ -55,25 +55,24 @@ int     APIENTRY    wWinMain        (   _In_        HINSTANCE hInstance,
     {
         if (PeekMessage(&msg, nullptr, 0, 0, PM_REMOVE))
         {
+            if (WM_QUIT == msg.message)
+            {
+                break;
+            }
             TranslateMessage(&msg);
             DispatchMessage(&msg);
         }
-        if (WM_QUIT == msg.message)
-        {
-            break;
-        }
-        else
-        {
-            dwCurTime = GetTickCount();
 
-            if (dwOldTime + 32 < dwCurTime)
-            {
-                dwOldTime = dwCurTime;
+        dwCurTime = GetTickCount();
+        
+        if (dwOldTime + 60 < dwCurTime)
+        {
+            dwOldTime = dwCurTime;
 
-                // 실제 게임 루틴 수행.
-                MainManager::GetInst()->Update();
-                MainManager::GetInst()->Render();
-            }
+            // 실제 게임 루틴 수행.
+            MainManager::GetInst()->Update();
+            MainManager::GetInst()->Render();
+            //MainManager::GetInst()->DrawSin();
         }
     }
 

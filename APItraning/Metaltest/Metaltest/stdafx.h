@@ -12,13 +12,29 @@
 #include <windows.h>
 
 // C 런타임 헤더 파일입니다.
+#include <assert.h>
 #include <stdlib.h>
 #include <malloc.h>
 #include <memory.h>
 #include <tchar.h>
+#include <list>
+#include <math.h>
+#include <vector>
+#include <map>
+#include <list>
+#include <iostream>
+#include <string>
+#include <algorithm>
+#include <ole2.h>
+#include <gdiplus.h>
 
+#pragma comment(lib, "Gdiplus.lib")
+
+using namespace Gdiplus;
 using namespace std;
 
 // TODO: 프로그램에 필요한 추가 헤더는 여기에서 참조합니다.
 
 #include "headers.h"
+
+#include "Object.h"

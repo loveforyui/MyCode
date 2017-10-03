@@ -147,17 +147,32 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="define.h" />
+    <ClInclude Include="EriIdle.h" />
+    <ClInclude Include="EriIdleLeg.h" />
     <ClInclude Include="extern.h" />
+    <ClInclude Include="functions.h" />
     <ClInclude Include="headers.h" />
     <ClInclude Include="MainManager.h" />
     <ClInclude Include="Metaltest.h" />
+    <ClInclude Include="Object.h" />
+    <ClInclude Include="player.h" />
     <ClInclude Include="resource.h" />
+    <ClInclude Include="StateContext.h" />
+    <ClInclude Include="StateManager.h" />
     <ClInclude Include="stdafx.h" />
+    <ClInclude Include="Struct.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="typedef.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="EriIdle.cpp" />
+    <ClCompile Include="EriIdleLeg.cpp" />
     <ClCompile Include="MainManager.cpp" />
     <ClCompile Include="Metaltest.cpp" />
+    <ClCompile Include="Object.cpp" />
+    <ClCompile Include="player.cpp" />
+    <ClCompile Include="StateContext.cpp" />
+    <ClCompile Include="StateManager.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
