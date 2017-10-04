@@ -4,14 +4,26 @@
 typedef struct tagObjInfo
 {
 public:
-    tagObjInfo() : fX(0), fY(0), fCX(0), fCY(0){}
-    tagObjInfo(
+    tagObjInfo()
+        : fX(0.f), fY(0.f), fCX(0.f), fCY(0.f)
+        , speed(0.f), accel(0.f), vAccel(0.f), vSpeed(0.f) {}
+    /*tagObjInfo(
         const FLOAT& x, const FLOAT& y, 
         const FLOAT& cx, const FLOAT& cy,
         const FLOAT& spd)
         : fX(x), fY(y), 
         fCX(cx), fCY(cy)
         , speed(spd)
+    {
+        accel = 0;
+        makeRect();
+    }*/
+    tagObjInfo(
+        const FLOAT& x, const FLOAT& y, 
+        const FLOAT& cx, const FLOAT& cy)
+        : fX(x), fY(y), 
+        fCX(cx), fCY(cy)
+        , speed(0.f), accel(0.f), vAccel(0.f), vSpeed(0.f)
     {
         makeRect();
     }
@@ -66,7 +78,9 @@ public:
     FLOAT   fCX;
     FLOAT   fCY;
     FLOAT   speed;
-    
+    FLOAT   accel;
+    FLOAT   vSpeed;
+    FLOAT   vAccel;
 }OBJINFO;
 
 #endif // !__struct_h__

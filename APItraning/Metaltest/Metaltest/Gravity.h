@@ -13,8 +13,6 @@ public:
     void Update();
 
 private:
-    const FLOAT m_GRAVITY = 9.8f;
-    
     vector<Object*> m_vObjlst;
 };
 

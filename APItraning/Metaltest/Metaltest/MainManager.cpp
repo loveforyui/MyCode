@@ -35,7 +35,7 @@ void MainManager::Initialize()
     // background Initailize
     if (!m_pStage)
     {
-        OBJINFO tempObj(1900.f, 150.f, FLOAT(3800), 300.f, 0.f);
+        OBJINFO tempObj(1900.f, 150.f, FLOAT(3800), 300.f);
         m_pStage = new BackGround;
         m_pStage->Initialize(tempObj);
     }
@@ -43,11 +43,12 @@ void MainManager::Initialize()
     //player initailize
     if (!m_pPlayer)
     {
-        OBJINFO tempObj(100.f, 100.f, 36.f, 50.f, 4.1f);
+        OBJINFO tempObj(100.f, 100.f, 36.f, 50.f);
         m_pPlayer = new player;
         m_pPlayer->Initialize(tempObj);
     }
     m_gravity.addObject(m_pPlayer);
+
 }
 
 void MainManager::Update()

@@ -40,7 +40,8 @@ void EriStJmpLeg::handle(HDC hdc)
         isRev = false;
     }
 
-    gr.DrawImage(*iter, m_pObj->GetInfo().fX - 19, m_pObj->GetInfo().fY);
+    gr.DrawImage(*iter, FLOAT(m_pObj->GetInfo().rect.left), FLOAT(m_pObj->GetInfo().rect.top + 18));
+    //gr.DrawImage(*iter, m_pObj->GetInfo().fX - 19, m_pObj->GetInfo().fY);
 
     if (isRev)
     {

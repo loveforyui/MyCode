@@ -5,5 +5,7 @@
 #include "EriIdleLeg.h"
 #include "EriStJmpBody.h"
 #include "EriStJmpLeg.h"
+#include "EriWrkLeg.h"
+#include "EriWrkBody.h"
 
 #endif // !__playerstate_h__

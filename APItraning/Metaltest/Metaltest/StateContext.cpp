@@ -11,6 +11,11 @@ StateContext::StateContext()
 
 StateContext::~StateContext()
 {
+    for (map<string, StateManager*>::iterator iter = m_mState.begin();
+        iter != m_mState.end(); ++iter)
+    {
+        delete (*iter).second;
+    }
 }
 
 void StateContext::SetObj(Object * obj)
@@ -47,4 +52,10 @@ void StateContext::SetState(StateManager * state)
 void StateContext::request(HDC hdc)
 {
     m_pState->handle(hdc);
+}
+
+StateManager* StateContext::SetState(string str)
+{
+    map<string, StateManager*>::iterator it = m_mState.find(str);
+    return (*it).second;
 }

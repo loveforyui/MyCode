@@ -10,6 +10,7 @@ Object::Object()
     m_state_leg.SetObj(this);
     m_state_body.SetState(new EriIdle);
     m_state_leg.SetState(new EriIdleLeg);
+    m_iDirection = OBJ_D_NONE;
 }
 
 
@@ -131,13 +132,17 @@ BOOL Object::operator||(Object &src)
     {
         if ((m_objInfo.rect.top <= src.m_objInfo.rect.bottom) && (src.m_objInfo.rect.bottom <= m_objInfo.rect.bottom))
         {
-            m_objInfo.fY -= m_objInfo.speed;
+            m_objInfo.fY -= m_GRAVITY;
 
-            if (PS_LEG_ST_JMP == m_iState_leg)
+            isJump = false;
+            m_objInfo.vAccel = 0.f;
+            m_iState_leg = PS_LEG_STANDING;
+            m_iState_body = PS_BODY_IDLE;
+            /*if (PS_LEG_ST_JMP == m_iState_leg)
             {
                 m_iState_leg = PS_LEG_STANDING;
                 m_iState_body = PS_BODY_IDLE;
-            }
+            }*/
 
             result = TRUE;
             //return result;
@@ -145,6 +150,7 @@ BOOL Object::operator||(Object &src)
         if ((src.m_objInfo.rect.top <= m_objInfo.rect.bottom) && (m_objInfo.rect.top <= src.m_objInfo.rect.top))
         {
             m_objInfo.fY += m_objInfo.speed;
+            isJump = false;
             result = TRUE;
             //return result;
         }
@@ -153,19 +159,25 @@ BOOL Object::operator||(Object &src)
     {
         if ((m_objInfo.rect.top <= src.m_objInfo.rect.bottom) && (src.m_objInfo.rect.bottom <= m_objInfo.rect.bottom))
         {
-            m_objInfo.fY -= m_objInfo.speed;
+            m_objInfo.fY -= m_GRAVITY;
 
-            if (PS_LEG_ST_JMP == m_iState_leg)
+            isJump = false;
+            m_objInfo.vAccel = 0.f;
+            m_iState_leg = PS_LEG_STANDING;
+            m_iState_body = PS_BODY_IDLE;
+
+            /*if (PS_LEG_ST_JMP == m_iState_leg)
             {
                 m_iState_leg = PS_LEG_STANDING;
                 m_iState_body = PS_BODY_IDLE;
-            }
+            }*/
             result = TRUE;
             //return result;
         }
         if ((src.m_objInfo.rect.top <= m_objInfo.rect.bottom) && (m_objInfo.rect.top <= src.m_objInfo.rect.top))
         {
             m_objInfo.fY += m_objInfo.speed;
+            isJump = false;
             result = TRUE;
             //return result;
         }

@@ -100,7 +100,13 @@
       <Filter>99.header</Filter>
     </ClInclude>
     <ClInclude Include="EriStJmpLeg.h">
-      <Filter>99.header</Filter>
+      <Filter>02.Obj\00.player\00.state</Filter>
+    </ClInclude>
+    <ClInclude Include="EriWrkLeg.h">
+      <Filter>02.Obj\00.player\00.state</Filter>
+    </ClInclude>
+    <ClInclude Include="EriWrkBody.h">
+      <Filter>02.Obj\00.player\00.state</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -141,7 +147,13 @@
       <Filter>02.Obj\00.player\00.state</Filter>
     </ClCompile>
     <ClCompile Include="EriStJmpLeg.cpp">
-      <Filter>98.default</Filter>
+      <Filter>02.Obj\00.player\00.state</Filter>
+    </ClCompile>
+    <ClCompile Include="EriWrkLeg.cpp">
+      <Filter>02.Obj\00.player\00.state</Filter>
+    </ClCompile>
+    <ClCompile Include="EriWrkBody.cpp">
+      <Filter>02.Obj\00.player\00.state</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

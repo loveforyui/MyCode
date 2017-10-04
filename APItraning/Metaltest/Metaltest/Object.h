@@ -38,8 +38,11 @@ protected:
 
     INT m_iState_body;
     INT m_iState_leg;
+
+    SHORT m_iDirection;
+
+    BOOL isKeyInput;
+    BOOL isJump;
 };
 
 #endif // !__object_h__
-
-

@@ -30,7 +30,8 @@ void EriIdleLeg::handle(HDC hdc)
         isRev = false;
     }
 
-    graphics.DrawImage(*iter, m_pObj->GetInfo().fX - 13, m_pObj->GetInfo().fY);
+    graphics.DrawImage(*iter, FLOAT(m_pObj->GetInfo().rect.left + 4), FLOAT(m_pObj->GetInfo().rect.top + 18));
+    //graphics.DrawImage(*iter, m_pObj->GetInfo().fX - 13, m_pObj->GetInfo().fY);
 
     if (isRev)
     {

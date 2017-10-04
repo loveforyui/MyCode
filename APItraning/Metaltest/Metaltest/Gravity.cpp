@@ -25,7 +25,7 @@ void Gravity::Update()
     for (vector<Object*>::iterator iter = m_vObjlst.begin();
         iter != m_vObjlst.end(); ++iter)
     {
-        if (    PS_LEG_ST_JMP == (*iter)->GetStateLeg()
+        /*if (    PS_LEG_ST_JMP == (*iter)->GetStateLeg()
             ||  PS_BODY_ST_JMP == (*iter)->GetStateBody())
         {
             FLOAT x, y;
@@ -34,6 +34,13 @@ void Gravity::Update()
             
             y += m_GRAVITY;
             (*iter)->SetPos(x, y);
-        }
+        }*/
+
+        FLOAT x, y;
+        x = (*iter)->GetInfo().fX;
+        y = (*iter)->GetInfo().fY;
+
+        y += m_GRAVITY;
+        (*iter)->SetPos(x, y);
     }
 }

@@ -16,5 +16,8 @@ public:
 
 private:
     BOOL isDEBUG;
+    
+    StateManager* m_hState_leg;
+    StateManager* m_hState_body;
 };
 
