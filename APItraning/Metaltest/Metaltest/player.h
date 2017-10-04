@@ -13,10 +13,8 @@ public:
     virtual void    Render(HDC);
     virtual void    Release();
     virtual int     Update();
-private:
-    INT m_iState_body;
-    INT m_iState_leg;
 
+private:
     BOOL isDEBUG;
 };
 

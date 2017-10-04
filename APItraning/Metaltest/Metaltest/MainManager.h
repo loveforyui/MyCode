@@ -1,6 +1,8 @@
 #ifndef __mainmanager_h__
 #define __mainmanager_h__
 
+#include "Gravity.h"
+
 class Object;
 class MainManager
 {
@@ -21,6 +23,7 @@ public:
 
 #pragma region Nomal Func
     void DrawSin();
+    BOOL Collision(Object*, Object*);
 #pragma endregion
 
 
@@ -43,8 +46,12 @@ private:
     // WindowClientRect
     RECT m_wndRect;
 
+    // Physic
+    Gravity m_gravity;
+
     // objects
     Object* m_pPlayer;
+    Object* m_pStage;
 
     // test var
     double f;

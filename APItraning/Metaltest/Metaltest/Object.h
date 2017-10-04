@@ -10,6 +10,11 @@ public:
     virtual ~Object();
 
 public:
+    BOOL operator&&(Object&);
+    BOOL operator||(Object&);
+
+
+public:
     virtual void    Initialize  () = 0;
     virtual void    Initialize  (OBJINFO&) = 0;
     virtual void    Render      (HDC) = 0;
@@ -20,10 +25,19 @@ public:
     void SetPos(FLOAT, FLOAT);
     const OBJINFO& GetInfo();
 
+    const INT GetStateLeg();
+    const INT GetStateBody();
+
+
+
 protected:
     OBJINFO m_objInfo;
+
     StateContext m_state_body;
     StateContext m_state_leg;
+
+    INT m_iState_body;
+    INT m_iState_leg;
 };
 
 #endif // !__object_h__

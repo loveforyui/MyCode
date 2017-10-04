@@ -43,7 +43,13 @@ void EriIdle::handle(HDC hdc)
 
     if (isRev)
     {
-        --iter;
+        if(iter != m_vImage.begin())
+            --iter;
+
+        if (iter == m_vImage.begin())
+        {
+            isDone = true;
+        }
     }
     else
     {

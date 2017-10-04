@@ -11,6 +11,7 @@ public:
 public:
     virtual void handle(HDC) = 0;
     void SetObj(Object* obj) { m_pObj = obj; }
+    BOOL isD() { return isDone; }
 
 protected:
     // DC
@@ -22,7 +23,9 @@ protected:
     vector<Image*>   m_vImage;
     vector<Image*>::iterator iter;
     BOOL            isRev;
-
+    //
+    BOOL            isDone;
+    //
     TCHAR*          m_path;
 };
 

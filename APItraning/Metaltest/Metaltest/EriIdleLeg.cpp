@@ -36,6 +36,11 @@ void EriIdleLeg::handle(HDC hdc)
     {
         if(iter != m_vImage.begin())
             --iter;
+
+        if (iter == m_vImage.begin())
+        {
+            isDone = true;
+        }
     }
     else
     {

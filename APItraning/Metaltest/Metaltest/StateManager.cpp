@@ -4,6 +4,7 @@
 
 StateManager::StateManager()
 {
+    isDone = false;
 }
 
 

@@ -17,6 +17,163 @@ Object::~Object()
 {
 }
 
+BOOL Object::operator&&(Object & src)
+{
+    BOOL result = FALSE;
+
+    //аб, ©Л
+    if ((src.m_objInfo.rect.top <= m_objInfo.rect.bottom) && (m_objInfo.rect.bottom <= src.m_objInfo.rect.bottom))
+    {
+        if ((src.m_objInfo.rect.left <= m_objInfo.rect.right) && (m_objInfo.rect.left <= src.m_objInfo.rect.left))
+        {
+            m_objInfo.fX -= m_objInfo.speed;
+            result = TRUE;
+            //return result;
+        }
+        if ((m_objInfo.rect.left <= src.m_objInfo.rect.right) && (src.m_objInfo.rect.right <= m_objInfo.rect.right))
+        {
+            m_objInfo.fX += m_objInfo.speed;
+            result = TRUE;
+            //return result;
+        }
+          
+    }
+    else if ((src.m_objInfo.rect.top <= m_objInfo.rect.top) && (m_objInfo.rect.top <= src.m_objInfo.rect.bottom))
+    {
+        if ((src.m_objInfo.rect.left <= m_objInfo.rect.right) && (m_objInfo.rect.left <= src.m_objInfo.rect.left))
+        {
+            m_objInfo.fX -= m_objInfo.speed;
+            result = TRUE;
+            //return result;
+        }
+        if ((m_objInfo.rect.left <= src.m_objInfo.rect.right) && (src.m_objInfo.rect.right <= m_objInfo.rect.right))
+        {
+            m_objInfo.fX += m_objInfo.speed;
+            result = TRUE;
+            //return result;
+        }
+    }
+
+    // го, ╩С
+    if ((src.m_objInfo.rect.left <= m_objInfo.rect.left) && (m_objInfo.rect.left <= src.m_objInfo.rect.right))
+    {
+        if ((m_objInfo.rect.top <= src.m_objInfo.rect.bottom) && (src.m_objInfo.rect.bottom <= m_objInfo.rect.bottom))
+        {
+            m_objInfo.fY += m_objInfo.speed;
+            result = TRUE;
+            //return result;
+        }
+        if ((src.m_objInfo.rect.top <= m_objInfo.rect.bottom) && (m_objInfo.rect.top <= src.m_objInfo.rect.top))
+        {
+            m_objInfo.fY -= m_objInfo.speed;
+            result = TRUE;
+            //return result;
+        }
+    }
+    else if ((src.m_objInfo.rect.left <= m_objInfo.rect.right) && (m_objInfo.rect.right <= src.m_objInfo.rect.right))
+    {
+        if ((m_objInfo.rect.top <= src.m_objInfo.rect.bottom) && (src.m_objInfo.rect.bottom <= m_objInfo.rect.bottom))
+        {
+            m_objInfo.fY += m_objInfo.speed;
+            result = TRUE;
+            //return result;
+        }
+        if ((src.m_objInfo.rect.top <= m_objInfo.rect.bottom) && (m_objInfo.rect.top <= src.m_objInfo.rect.top))
+        {
+            m_objInfo.fY -= m_objInfo.speed;
+            result = TRUE;
+            //return result;
+        }
+    }
+
+    return result;
+}
+
+BOOL Object::operator||(Object &src)
+{
+     BOOL result = FALSE;
+
+    // аб, ©Л
+    if ((src.m_objInfo.rect.top <= m_objInfo.rect.bottom) && (m_objInfo.rect.bottom <= src.m_objInfo.rect.bottom))
+    {
+        if ((src.m_objInfo.rect.left <= m_objInfo.rect.right) && (m_objInfo.rect.left <= src.m_objInfo.rect.left))
+        {
+            m_objInfo.fX += m_objInfo.speed;
+            result = TRUE;
+            //return result;
+        }
+        if ((m_objInfo.rect.left <= src.m_objInfo.rect.right) && (src.m_objInfo.rect.right <= m_objInfo.rect.right))
+        {
+            m_objInfo.fX -= m_objInfo.speed;
+            result = TRUE;
+            //return result;
+        }
+          
+    }
+    else if ((src.m_objInfo.rect.top <= m_objInfo.rect.top) && (m_objInfo.rect.top <= src.m_objInfo.rect.bottom))
+    {
+        if ((src.m_objInfo.rect.left <= m_objInfo.rect.right) && (m_objInfo.rect.left <= src.m_objInfo.rect.left))
+        {
+            m_objInfo.fX += m_objInfo.speed;
+            result = TRUE;
+            //return result;
+        }
+        if ((m_objInfo.rect.left <= src.m_objInfo.rect.right) && (src.m_objInfo.rect.right <= m_objInfo.rect.right))
+        {
+            m_objInfo.fX -= m_objInfo.speed;
+            result = TRUE;
+            //return result;
+        }
+    }
+
+    // го, ╩С
+    if ((src.m_objInfo.rect.left <= m_objInfo.rect.left) && (m_objInfo.rect.left <= src.m_objInfo.rect.right))
+    {
+        if ((m_objInfo.rect.top <= src.m_objInfo.rect.bottom) && (src.m_objInfo.rect.bottom <= m_objInfo.rect.bottom))
+        {
+            m_objInfo.fY -= m_objInfo.speed;
+
+            if (PS_LEG_ST_JMP == m_iState_leg)
+            {
+                m_iState_leg = PS_LEG_STANDING;
+                m_iState_body = PS_BODY_IDLE;
+            }
+
+            result = TRUE;
+            //return result;
+        }
+        if ((src.m_objInfo.rect.top <= m_objInfo.rect.bottom) && (m_objInfo.rect.top <= src.m_objInfo.rect.top))
+        {
+            m_objInfo.fY += m_objInfo.speed;
+            result = TRUE;
+            //return result;
+        }
+    }
+    else if ((src.m_objInfo.rect.left <= m_objInfo.rect.right) && (m_objInfo.rect.right <= src.m_objInfo.rect.right))
+    {
+        if ((m_objInfo.rect.top <= src.m_objInfo.rect.bottom) && (src.m_objInfo.rect.bottom <= m_objInfo.rect.bottom))
+        {
+            m_objInfo.fY -= m_objInfo.speed;
+
+            if (PS_LEG_ST_JMP == m_iState_leg)
+            {
+                m_iState_leg = PS_LEG_STANDING;
+                m_iState_body = PS_BODY_IDLE;
+            }
+            result = TRUE;
+            //return result;
+        }
+        if ((src.m_objInfo.rect.top <= m_objInfo.rect.bottom) && (m_objInfo.rect.top <= src.m_objInfo.rect.top))
+        {
+            m_objInfo.fY += m_objInfo.speed;
+            result = TRUE;
+            //return result;
+        }
+    }
+
+    return result;
+}
+
 int Object::Update()
 {
     m_objInfo.makeRect();
@@ -33,4 +190,14 @@ void Object::SetPos(FLOAT x, FLOAT y)
 const OBJINFO& Object::GetInfo()
 {
     return m_objInfo;
+}
+
+const INT Object::GetStateLeg()
+{
+    return m_iState_leg;
+}
+
+const INT Object::GetStateBody()
+{
+    return m_iState_body;
 }

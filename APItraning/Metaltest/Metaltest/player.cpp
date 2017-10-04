@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "player.h"
+#include "playerstate.h"
 
 
 player::player()
@@ -24,8 +25,8 @@ void player::Initialize()
 void player::Initialize(OBJINFO& ref)
 {
     m_objInfo = ref;
-    m_iState_body = PS_BODY_IDLE;
-    m_iState_leg = PS_LEG_STANDING;
+    m_iState_body = PS_BODY_ST_JMP;
+    m_iState_leg = PS_LEG_ST_JMP;
     isDEBUG = false;
 }
 
@@ -41,24 +42,14 @@ void player::Render(HDC hdc)
 
         wchar_t buf[64];
         swprintf_s(buf, L"X:%.2f Y:%.2f", m_objInfo.fX, m_objInfo.fY);
-        TextOut(hdc, m_objInfo.fX, m_objInfo.fY, buf, wcslen(buf));
+        SetTextAlign(hdc, TA_CENTER);
+        TextOut(hdc, m_objInfo.fX, m_objInfo.fY - 30, buf, wcslen(buf));
     }    
-    switch (m_iState_leg)
-    {
-    case PS_LEG_STANDING:
-        m_state_leg.request(hdc);
-        break;
-    }
-    switch (m_iState_body)
-    {
-    case PS_BODY_IDLE:
-        // body, leg
-        m_state_body.request(hdc);
-        break;
-    }
 
-    
-    
+    m_state_leg.request(hdc);
+
+    m_state_body.request(hdc);
+
 }
 
 void player::Release()
@@ -85,6 +76,13 @@ int player::Update()
     {
         m_objInfo.fY += m_objInfo.speed;
     }
+    if (GetAsyncKeyState(VK_CONTROL) & 0x8000)
+    {
+        m_iState_body = PS_BODY_ST_JMP;
+    }
+    // 다음 : 플레이어 이동 가속도 처리
+
+    //debug mode
     if (GetAsyncKeyState(VK_LSHIFT)   & 0x8000)
     {
         isDEBUG = true;
@@ -92,6 +90,26 @@ int player::Update()
     else
     {
         isDEBUG = false;
+    }
+
+    switch (m_iState_leg)
+    {
+    case PS_LEG_STANDING:
+        m_state_leg.SetState(new EriIdleLeg);
+        break;
+    case PS_LEG_ST_JMP:
+        m_state_leg.SetState(new EriStJmpLeg);
+        break;
+    }
+    switch (m_iState_body)
+    {
+    case PS_BODY_IDLE:
+        // body, leg
+        m_state_body.SetState(new EriIdle);
+        break;
+    case PS_BODY_ST_JMP:
+        m_state_body.SetState(new EriStJmpBody);
+        break;
     }
     return 0;
 }

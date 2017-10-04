@@ -146,16 +146,21 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BackGround.h" />
     <ClInclude Include="define.h" />
     <ClInclude Include="EriIdle.h" />
     <ClInclude Include="EriIdleLeg.h" />
+    <ClInclude Include="EriStJmpBody.h" />
+    <ClInclude Include="EriStJmpLeg.h" />
     <ClInclude Include="extern.h" />
     <ClInclude Include="functions.h" />
+    <ClInclude Include="Gravity.h" />
     <ClInclude Include="headers.h" />
     <ClInclude Include="MainManager.h" />
     <ClInclude Include="Metaltest.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="player.h" />
+    <ClInclude Include="playerstate.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="StateContext.h" />
     <ClInclude Include="StateManager.h" />
@@ -165,8 +170,12 @@
     <ClInclude Include="typedef.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="BackGround.cpp" />
     <ClCompile Include="EriIdle.cpp" />
     <ClCompile Include="EriIdleLeg.cpp" />
+    <ClCompile Include="EriStJmpBody.cpp" />
+    <ClCompile Include="EriStJmpLeg.cpp" />
+    <ClCompile Include="Gravity.cpp" />
     <ClCompile Include="MainManager.cpp" />
     <ClCompile Include="Metaltest.cpp" />
     <ClCompile Include="Object.cpp" />

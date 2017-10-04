@@ -2,6 +2,7 @@
 #include "MainManager.h"
 #include "Object.h"
 #include "player.h"
+#include "BackGround.h"
 
 MainManager* MainManager::inst = nullptr;
 
@@ -31,6 +32,14 @@ void MainManager::Initialize()
     //ReleaseDC(g_hWnd, m_hdc);
     GetClientRect(g_hWnd, &m_wndRect);    
 
+    // background Initailize
+    if (!m_pStage)
+    {
+        OBJINFO tempObj(1900.f, 150.f, FLOAT(3800), 300.f, 0.f);
+        m_pStage = new BackGround;
+        m_pStage->Initialize(tempObj);
+    }
+
     //player initailize
     if (!m_pPlayer)
     {
@@ -38,11 +47,14 @@ void MainManager::Initialize()
         m_pPlayer = new player;
         m_pPlayer->Initialize(tempObj);
     }
+    m_gravity.addObject(m_pPlayer);
 }
 
 void MainManager::Update()
 {
+    m_gravity.Update();
     m_pPlayer->Update();
+    Collision(m_pPlayer, m_pStage);
 }
 
 void MainManager::Render()
@@ -59,9 +71,10 @@ void MainManager::Render()
     //PatBlt(m_hBackBuffer, 0, 0, WINCX, WINCY, BLACKNESS);
     
     //stage
-    Graphics stage(m_hBackBuffer);
+    /*Graphics stage(m_hBackBuffer);
     Image iStage(L"../resource/background/stage01-01.png");
-    stage.DrawImage(&iStage, 0, 25);
+    stage.DrawImage(&iStage, 0, 25);*/
+    m_pStage->Render(m_hBackBuffer);
 
     // player
     m_pPlayer->Render(m_hBackBuffer);
@@ -91,6 +104,11 @@ void MainManager::DrawSin()
         y = (int)(sin(f*3.14 / 180) * 100);
         SetPixel(m_hdc, (int)f, y, RGB(0, 0, 0));
     }
+}
+
+BOOL MainManager::Collision(Object * dst, Object * src)
+{
+    return (*dst)||(*src);
 }
 
 MainManager * MainManager::GetInst()

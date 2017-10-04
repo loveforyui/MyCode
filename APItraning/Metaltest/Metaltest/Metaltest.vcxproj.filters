@@ -28,6 +28,9 @@
     <Filter Include="02.Obj\00.player\00.state">
       <UniqueIdentifier>{7a1ee7bb-eb49-4b4e-ba55-a66d74a6e956}</UniqueIdentifier>
     </Filter>
+    <Filter Include="02.Obj\01.background">
+      <UniqueIdentifier>{ad312d4a-3bba-4f51-ab36-72a0464397ea}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -84,6 +87,21 @@
     <ClInclude Include="EriIdleLeg.h">
       <Filter>02.Obj\00.player\00.state</Filter>
     </ClInclude>
+    <ClInclude Include="Gravity.h">
+      <Filter>01.Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="BackGround.h">
+      <Filter>02.Obj\01.background</Filter>
+    </ClInclude>
+    <ClInclude Include="EriStJmpBody.h">
+      <Filter>02.Obj\00.player\00.state</Filter>
+    </ClInclude>
+    <ClInclude Include="playerstate.h">
+      <Filter>99.header</Filter>
+    </ClInclude>
+    <ClInclude Include="EriStJmpLeg.h">
+      <Filter>99.header</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -112,6 +130,18 @@
     </ClCompile>
     <ClCompile Include="EriIdleLeg.cpp">
       <Filter>02.Obj\00.player\00.state</Filter>
+    </ClCompile>
+    <ClCompile Include="Gravity.cpp">
+      <Filter>01.Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="BackGround.cpp">
+      <Filter>02.Obj\01.background</Filter>
+    </ClCompile>
+    <ClCompile Include="EriStJmpBody.cpp">
+      <Filter>02.Obj\00.player\00.state</Filter>
+    </ClCompile>
+    <ClCompile Include="EriStJmpLeg.cpp">
+      <Filter>98.default</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

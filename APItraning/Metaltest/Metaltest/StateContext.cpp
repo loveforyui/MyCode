@@ -26,11 +26,22 @@ void StateContext::SetState(StateManager * state)
 {
     if (m_pState)
     {
-        delete m_pState;
+        if (m_pState->isD())
+        {
+            delete m_pState;
+            m_pState = state;
+            m_pState->SetObj(m_pObj);
+        }            
+        else
+        {
+            delete state;
+        }
     }
-
-    m_pState = state;
-    m_pState->SetObj(m_pObj);
+    else
+    {
+        m_pState = state;
+        m_pState->SetObj(m_pObj);
+    }
 }
 
 void StateContext::request(HDC hdc)
