@@ -3,6 +3,7 @@
 #include "Object.h"
 #include "player.h"
 #include "BackGround.h"
+#include "floor.h"
 
 MainManager* MainManager::inst = nullptr;
 
@@ -26,10 +27,6 @@ void MainManager::Initialize()
 
     // screen initialize
     m_hdc = GetDC(g_hWnd);
-    //m_hBackBuffer = CreateCompatibleDC(m_hdc);
-    //m_hBitmap = LoadBitmap(hInst, MAKEINTRESOURCE(m_hBackBuffer));
-    //SelectObject(m_hBackBuffer, (HBITMAP)m_hBitmap);
-    //ReleaseDC(g_hWnd, m_hdc);
     GetClientRect(g_hWnd, &m_wndRect);    
 
     // background Initailize
@@ -43,28 +40,67 @@ void MainManager::Initialize()
     //player initailize
     if (!m_pPlayer)
     {
-        OBJINFO tempObj(100.f, 100.f, 36.f, 50.f);
+        OBJINFO tempObj(100.f, 100.f, 30.f, 40.f);
         m_pPlayer = new player;
         m_pPlayer->Initialize(tempObj);
     }
     m_gravity.addObject(m_pPlayer);
 
+    // make line object
+    COLORREF rgb;
+    HDC hdc = GetDC(g_hWnd);
+    m_hBackBuffer = CreateCompatibleDC(hdc);
+    m_hBitmap = CreateCompatibleBitmap(hdc, 3800, m_wndRect.bottom);
+    m_hOldmap = (HBITMAP)SelectObject(m_hBackBuffer, m_hBitmap);
+
+    m_pStage->Render(m_hBackBuffer);
+    //BitBlt(hdc, 0, 0, 3800, WINCY, m_hBackBuffer, 0, 0, SRCCOPY);
+    /*for (FLOAT y = 100.f; y <= 266.f; ++y)
+    {
+        for (FLOAT x = 0.f; x <= 270.f; ++x)
+        {
+            rgb = GetPixel(hdc, INT(x), INT(y));
+            if(0 < GetRValue(rgb))
+            { 
+                OBJINFO tempObj(x, y, 0.1f, 20.f);
+                Floor* tempFloor = new Floor;
+                tempFloor->Initialize(tempObj);
+                dynamic_cast<BackGround*>(m_pStage)->m_vLineObj.push_back(tempFloor);
+            }
+        }
+    }*/
+
+    for (int x = 0; x < 3823; ++x)
+    {
+        for (int y = 100; y < 270; ++y)
+        {
+            rgb = GetPixel(m_hBackBuffer, INT(x), INT(y));
+            if(255 == rgb)
+            {
+                dynamic_cast<BackGround*>(m_pStage)->m_vfStage.push_back(y);
+            }
+        }
+    }
+    DeleteObject(SelectObject(m_hBackBuffer, m_hOldmap));
+    DeleteDC(m_hBackBuffer);
+    ReleaseDC(g_hWnd, hdc);
+
+    m_gravity.SetLine(&dynamic_cast<BackGround*>(m_pStage)->m_vfStage);
+    dynamic_cast<player*>(m_pPlayer)->SetLine(&(dynamic_cast<BackGround*>(m_pStage)->m_vfStage));
 }
 
 void MainManager::Update()
 {
-    m_gravity.Update();
+    m_gravity.Update(); 
     m_pPlayer->Update();
+
     Collision(m_pPlayer, m_pStage);
 }
 
 void MainManager::Render()
 {
     HDC hdc = GetDC(g_hWnd);
-    //Rectangle(hdc, m_wndRect.left, m_wndRect.top, m_wndRect.right, m_wndRect.bottom);
-    /*Graphics graphics(m_hdc);
-    Image   image(L"working_body_0012.png");
-    graphics.DrawImage(&image, 100, 100);*/
+
     m_hBackBuffer = CreateCompatibleDC(hdc);
     m_hBitmap = CreateCompatibleBitmap(hdc, 3800, m_wndRect.bottom);
     m_hOldmap = (HBITMAP)SelectObject(m_hBackBuffer, m_hBitmap);
@@ -77,10 +113,18 @@ void MainManager::Render()
     stage.DrawImage(&iStage, 0, 25);*/
     m_pStage->Render(m_hBackBuffer);
 
+    // draw white line
+    /*for (vector<FLOAT>::size_type i = 0;
+        i < dynamic_cast<BackGround*>(m_pStage)->m_vfStage.size(); ++i)
+    {
+        SetPixel(m_hBackBuffer, i, INT(dynamic_cast<BackGround*>(m_pStage)->m_vfStage[i]), RGB(255,255,255));
+    }*/
+
     // player
     m_pPlayer->Render(m_hBackBuffer);
-    
-    BitBlt(hdc, 0, 0, 3800, WINCY, m_hBackBuffer, 0, 0, SRCCOPY);
+
+    //BitBlt(hdc, 0, 0, 3800, WINCY, m_hBackBuffer, 0, 0, SRCCOPY);
+    StretchBlt(hdc, 0, 0, 3800*1.5, 208*1.5, m_hBackBuffer, 0, 0, 3800, 208, SRCCOPY);
     DeleteObject(SelectObject(m_hBackBuffer, m_hOldmap));
     DeleteDC(m_hBackBuffer);
     ReleaseDC(g_hWnd, hdc);
@@ -110,6 +154,11 @@ void MainManager::DrawSin()
 BOOL MainManager::Collision(Object * dst, Object * src)
 {
     return (*dst)||(*src);
+}
+
+BOOL MainManager::CollisionO(Object * dst, Object * src)
+{
+    return (*dst)&&(*src);
 }
 
 MainManager * MainManager::GetInst()

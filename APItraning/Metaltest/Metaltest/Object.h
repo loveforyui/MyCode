@@ -28,7 +28,10 @@ public:
     const INT GetStateLeg();
     const INT GetStateBody();
 
+    void SetStateLeg(const INT&);
+    void SetStateBody(const INT&);
 
+    void SetStanding();
 
 protected:
     OBJINFO m_objInfo;

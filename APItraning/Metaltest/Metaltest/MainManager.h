@@ -24,6 +24,7 @@ public:
 #pragma region Nomal Func
     void DrawSin();
     BOOL Collision(Object*, Object*);
+    BOOL CollisionO(Object*, Object*);
 #pragma endregion
 
 

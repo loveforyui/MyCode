@@ -25,22 +25,42 @@ void Gravity::Update()
     for (vector<Object*>::iterator iter = m_vObjlst.begin();
         iter != m_vObjlst.end(); ++iter)
     {
-        /*if (    PS_LEG_ST_JMP == (*iter)->GetStateLeg()
+        if (    PS_LEG_ST_JMP == (*iter)->GetStateLeg()
             ||  PS_BODY_ST_JMP == (*iter)->GetStateBody())
         {
-            FLOAT x, y;
+            FLOAT x, y, bot;
             x = (*iter)->GetInfo().fX;
             y = (*iter)->GetInfo().fY;
-            
-            y += m_GRAVITY;
-            (*iter)->SetPos(x, y);
-        }*/
+            bot = (*iter)->GetInfo().rect.bottom;
 
-        FLOAT x, y;
+            bot += m_GRAVITY;
+            y += m_GRAVITY;
+
+            if ((*m_pLine)[INT(x)] <= bot)
+            {
+                if (bot <= ((*m_pLine)[INT(x)] + m_GRAVITY))
+                {
+                    FLOAT tempY = (*iter)->GetInfo().fY + (*m_pLine)[INT(x)] - (*iter)->GetInfo().rect.bottom;
+                    (*iter)->SetPos(x, tempY);
+                    (*iter)->SetStanding();
+                }
+            }
+            else
+            {
+                (*iter)->SetPos(x, y);
+            }
+        }
+
+        /*FLOAT x, y;
         x = (*iter)->GetInfo().fX;
         y = (*iter)->GetInfo().fY;
 
         y += m_GRAVITY;
-        (*iter)->SetPos(x, y);
+        (*iter)->SetPos(x, y);*/
     }
+}
+
+void Gravity::SetLine(vector<INT>* ptr)
+{
+    m_pLine = ptr;
 }

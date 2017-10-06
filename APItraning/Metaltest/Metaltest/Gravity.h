@@ -12,8 +12,12 @@ public:
     void addObject(Object* obj);
     void Update();
 
+public:
+    void SetLine(vector<INT>*);
+
 private:
     vector<Object*> m_vObjlst;
+    vector<INT>* m_pLine;
 };
 
 #endif // !__gravity_h__

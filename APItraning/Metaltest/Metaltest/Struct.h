@@ -1,6 +1,12 @@
 #ifndef __struct_h__
 #define __struct_h__
 
+typedef struct tagPosition
+{
+    LONG x;
+    LONG y;
+}position;
+
 typedef struct tagObjInfo
 {
 public:

@@ -155,6 +155,7 @@
     <ClInclude Include="EriWrkBody.h" />
     <ClInclude Include="EriWrkLeg.h" />
     <ClInclude Include="extern.h" />
+    <ClInclude Include="floor.h" />
     <ClInclude Include="functions.h" />
     <ClInclude Include="Gravity.h" />
     <ClInclude Include="headers.h" />
@@ -179,6 +180,7 @@
     <ClCompile Include="EriStJmpLeg.cpp" />
     <ClCompile Include="EriWrkBody.cpp" />
     <ClCompile Include="EriWrkLeg.cpp" />
+    <ClCompile Include="floor.cpp" />
     <ClCompile Include="Gravity.cpp" />
     <ClCompile Include="MainManager.cpp" />
     <ClCompile Include="Metaltest.cpp" />

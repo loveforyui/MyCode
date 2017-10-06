@@ -5,7 +5,7 @@
 #define WINCY 300
 
 //PHYSICS
-const FLOAT m_GRAVITY = 9.8f;
+const FLOAT m_GRAVITY = 6.8f;
 
 // PLAYER BODY STATE
 #define PS_BODY_IDLE        0x00000000

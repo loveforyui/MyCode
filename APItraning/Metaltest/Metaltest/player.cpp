@@ -27,6 +27,7 @@ void player::Initialize(OBJINFO& ref)
     m_objInfo = ref;
     m_iState_body = PS_BODY_ST_JMP;
     m_iState_leg = PS_LEG_ST_JMP;
+    isJump = true;
     isDEBUG = false;
 
     m_state_leg.m_mState.insert(pair<string, StateManager*>("PS_LEG_STANDING", new EriIdleLeg));
@@ -49,8 +50,8 @@ void player::Initialize(OBJINFO& ref)
         (*iter).second->SetObj(this);
     }
 
-    m_hState_leg = m_state_leg.m_mState["PS_LEG_ST_JMP"];
-    m_hState_body = m_state_body.m_mState["PS_BODY_ST_JMP"];
+    m_hState_leg    = m_state_leg.m_mState["PS_LEG_ST_JMP"];
+    m_hState_body   = m_state_body.m_mState["PS_BODY_ST_JMP"];
 }
 
 void player::Render(HDC hdc)
@@ -69,8 +70,8 @@ void player::Render(HDC hdc)
         TextOut(hdc, m_objInfo.fX, m_objInfo.fY - 30, pos, wcslen(pos));
     }    
 
-    m_hState_leg->handle(hdc);
-    m_hState_body->handle(hdc);
+    m_hState_leg    ->handle(hdc);
+    m_hState_body   ->handle(hdc);
 
 }
 
@@ -140,9 +141,9 @@ int player::Update()
     }
     if (GetAsyncKeyState(VK_CONTROL) & 0x8000)
     {
-        isJump = true;
-        m_iState_body = PS_BODY_ST_JMP;
-        m_iState_leg = PS_LEG_ST_JMP;
+        isJump          = true;
+        m_iState_body   = PS_BODY_ST_JMP;
+        m_iState_leg    = PS_LEG_ST_JMP;
         if (m_objInfo.vAccel != m_GRAVITY * 5)
         {
             m_objInfo.vAccel = m_GRAVITY * 5;
@@ -152,12 +153,56 @@ int player::Update()
     // 다음 : 플레이어 이동 가속도 처리
 
     // move progressing
+    // 먼저 앞으로 간 좌표의 Y값의 bottom이 라인의 y보다 클때
+    // 위로(bottom - y) 올려준다.
+    FLOAT x, y;
+    x = m_objInfo.fX - m_objInfo.speed;
+    y = m_objInfo.rect.bottom;
+
     if (OBJ_D_LEFT == m_iDirection)
     {
+        if (!isJump)
+        {
+            if ((*m_pLine)[INT(x)] <= y)
+            {
+                m_objInfo.fY = m_objInfo.fY - (m_objInfo.rect.bottom - (*m_pLine)[INT(x)]);
+            }
+            else
+            {
+                m_objInfo.fY = m_objInfo.fY + ((*m_pLine)[INT(x)] - m_objInfo.rect.bottom);
+            }
+        }
+        else
+        {
+            if ((*m_pLine)[INT(x)] < y - 2)
+            {
+                //m_objInfo.fY = m_objInfo.fY - (m_objInfo.rect.bottom - (*m_pLine)[INT(x)]);
+                Object::SetStanding();
+            }
+        }
         m_objInfo.fX -= m_objInfo.speed;
     }
     if (OBJ_D_RIGHT == m_iDirection)
     {
+        if (!isJump)
+        {
+            if ((*m_pLine)[INT(x)] <= y)
+            {
+                m_objInfo.fY = m_objInfo.fY - (m_objInfo.rect.bottom - (*m_pLine)[INT(x)]);
+            }
+            else
+            {
+                m_objInfo.fY = m_objInfo.fY + ((*m_pLine)[INT(x)] - m_objInfo.rect.bottom);
+            }
+        }
+        else
+        {
+            if ((*m_pLine)[INT(x)] < y - 2)
+            {
+                //m_objInfo.fY = m_objInfo.fY - (m_objInfo.rect.bottom - (*m_pLine)[INT(x)]);
+                Object::SetStanding();
+            }
+        }
         m_objInfo.fX += m_objInfo.speed;
     }
     if (OBJ_D_UP == m_iDirection)
@@ -168,29 +213,31 @@ int player::Update()
     {
 
     }
+    // 점프중일때 점프하는 속도는 중력가속도 만큼 감소하고 정점에서 주역 가속도 만큼 까진다.
     if (isJump)
     {
-        m_objInfo.vSpeed -= m_GRAVITY;
+        m_objInfo.vSpeed -= m_GRAVITY*0.8f;
         if (m_objInfo.vSpeed < 0)
             m_objInfo.vSpeed = 0;
         
         m_objInfo.fY -= m_objInfo.vSpeed;
     }
     // No input
+    // 입력이 없는 상태 -> 가만히 서 있는 상태 처리
     if ((!isKeyInput) && (PS_LEG_ST_JMP != m_iState_leg))
     {
         if (0.f <= m_objInfo.accel)
         {
-            m_objInfo.accel -= 2.1f;
+            m_objInfo.accel -= 1.1f;
         } 
         if (m_objInfo.accel <= 0.f)
         {
-            m_objInfo.accel = 0.f;
-            m_objInfo.speed = 0.f;
-            m_objInfo.vAccel = 0.f;
-            isJump = false;
-            m_iState_leg = PS_LEG_STANDING;
-            m_iState_body = PS_BODY_IDLE;
+            m_objInfo.accel     = 0.f;
+            m_objInfo.speed     = 0.f;
+            m_objInfo.vAccel    = 0.f;
+            isJump              = false;
+            m_iState_leg        = PS_LEG_STANDING;
+            m_iState_body       = PS_BODY_IDLE;
         } 
     }
     //debug mode
@@ -234,5 +281,10 @@ int player::Update()
         break;
     }
     return 0;
+}
+
+void player::SetLine(vector<INT>* ptr)
+{
+    m_pLine = ptr;
 }
 

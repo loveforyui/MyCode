@@ -10,7 +10,7 @@ Object::Object()
     m_state_leg.SetObj(this);
     m_state_body.SetState(new EriIdle);
     m_state_leg.SetState(new EriIdleLeg);
-    m_iDirection = OBJ_D_NONE;
+    m_iDirection = OBJ_D_RIGHT;
 }
 
 
@@ -27,13 +27,13 @@ BOOL Object::operator&&(Object & src)
     {
         if ((src.m_objInfo.rect.left <= m_objInfo.rect.right) && (m_objInfo.rect.left <= src.m_objInfo.rect.left))
         {
-            m_objInfo.fX -= m_objInfo.speed;
+            //m_objInfo.fX -= m_objInfo.speed;
             result = TRUE;
             //return result;
         }
         if ((m_objInfo.rect.left <= src.m_objInfo.rect.right) && (src.m_objInfo.rect.right <= m_objInfo.rect.right))
         {
-            m_objInfo.fX += m_objInfo.speed;
+            //m_objInfo.fX += m_objInfo.speed;
             result = TRUE;
             //return result;
         }
@@ -43,13 +43,13 @@ BOOL Object::operator&&(Object & src)
     {
         if ((src.m_objInfo.rect.left <= m_objInfo.rect.right) && (m_objInfo.rect.left <= src.m_objInfo.rect.left))
         {
-            m_objInfo.fX -= m_objInfo.speed;
+            //m_objInfo.fX -= m_objInfo.speed;
             result = TRUE;
             //return result;
         }
         if ((m_objInfo.rect.left <= src.m_objInfo.rect.right) && (src.m_objInfo.rect.right <= m_objInfo.rect.right))
         {
-            m_objInfo.fX += m_objInfo.speed;
+            //m_objInfo.fX += m_objInfo.speed;
             result = TRUE;
             //return result;
         }
@@ -60,14 +60,17 @@ BOOL Object::operator&&(Object & src)
     {
         if ((m_objInfo.rect.top <= src.m_objInfo.rect.bottom) && (src.m_objInfo.rect.bottom <= m_objInfo.rect.bottom))
         {
-            m_objInfo.fY += m_objInfo.speed;
+            m_objInfo.fY += m_GRAVITY;
             result = TRUE;
+            SetStanding();
             //return result;
         }
         if ((src.m_objInfo.rect.top <= m_objInfo.rect.bottom) && (m_objInfo.rect.top <= src.m_objInfo.rect.top))
         {
-            m_objInfo.fY -= m_objInfo.speed;
+            m_objInfo.fY -= m_GRAVITY;
             result = TRUE;
+
+            SetStanding();            
             //return result;
         }
     }
@@ -75,14 +78,16 @@ BOOL Object::operator&&(Object & src)
     {
         if ((m_objInfo.rect.top <= src.m_objInfo.rect.bottom) && (src.m_objInfo.rect.bottom <= m_objInfo.rect.bottom))
         {
-            m_objInfo.fY += m_objInfo.speed;
+            m_objInfo.fY += m_GRAVITY;
             result = TRUE;
+            SetStanding();
             //return result;
         }
         if ((src.m_objInfo.rect.top <= m_objInfo.rect.bottom) && (m_objInfo.rect.top <= src.m_objInfo.rect.top))
         {
-            m_objInfo.fY -= m_objInfo.speed;
+            m_objInfo.fY -= m_GRAVITY;
             result = TRUE;
+            SetStanding();
             //return result;
         }
     }
@@ -134,10 +139,7 @@ BOOL Object::operator||(Object &src)
         {
             m_objInfo.fY -= m_GRAVITY;
 
-            isJump = false;
-            m_objInfo.vAccel = 0.f;
-            m_iState_leg = PS_LEG_STANDING;
-            m_iState_body = PS_BODY_IDLE;
+            SetStanding();
             /*if (PS_LEG_ST_JMP == m_iState_leg)
             {
                 m_iState_leg = PS_LEG_STANDING;
@@ -161,10 +163,7 @@ BOOL Object::operator||(Object &src)
         {
             m_objInfo.fY -= m_GRAVITY;
 
-            isJump = false;
-            m_objInfo.vAccel = 0.f;
-            m_iState_leg = PS_LEG_STANDING;
-            m_iState_body = PS_BODY_IDLE;
+            SetStanding();
 
             /*if (PS_LEG_ST_JMP == m_iState_leg)
             {
@@ -212,4 +211,22 @@ const INT Object::GetStateLeg()
 const INT Object::GetStateBody()
 {
     return m_iState_body;
+}
+
+void Object::SetStateLeg(const INT& ref)
+{
+    m_iState_leg = ref;
+}
+
+void Object::SetStateBody(const INT& ref)
+{
+    m_iState_body = ref;
+}
+
+void Object::SetStanding()
+{
+    isJump = false;
+    m_objInfo.vAccel = 0.f;
+    m_iState_leg = PS_LEG_STANDING;
+    m_iState_body = PS_BODY_IDLE;
 }
