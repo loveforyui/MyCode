@@ -230,3 +230,8 @@ void Object::SetStanding()
     m_iState_leg = PS_LEG_STANDING;
     m_iState_body = PS_BODY_IDLE;
 }
+
+SHORT Object::GetDirection()
+{
+    return m_iDirection;
+}

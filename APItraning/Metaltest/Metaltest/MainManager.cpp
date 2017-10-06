@@ -27,7 +27,9 @@ void MainManager::Initialize()
 
     // screen initialize
     m_hdc = GetDC(g_hWnd);
-    GetClientRect(g_hWnd, &m_wndRect);    
+    GetClientRect(g_hWnd, &m_wndRect);
+    m_wndLimitX = m_wndRect.left;
+    m_wndLimitCX = m_wndLimitX + WINCX;
 
     // background Initailize
     if (!m_pStage)
@@ -40,7 +42,7 @@ void MainManager::Initialize()
     //player initailize
     if (!m_pPlayer)
     {
-        OBJINFO tempObj(100.f, 100.f, 30.f, 40.f);
+        OBJINFO tempObj(0.f, 0.f, 30.f, 40.f);
         m_pPlayer = new player;
         m_pPlayer->Initialize(tempObj);
     }
@@ -123,8 +125,42 @@ void MainManager::Render()
     // player
     m_pPlayer->Render(m_hBackBuffer);
 
+    INT xr = (m_pPlayer->GetInfo().fX - (400*(5.f/8.f)));
+    INT rx = (m_pPlayer->GetInfo().fX + (400*(5.f/8.f)));
+
+    INT camMoxr = (m_pPlayer->GetInfo().fX + (WINCX*(2.f/3.f))/2);
+    INT camMorx = (m_pPlayer->GetInfo().fX - 100);
+    
+
+    if (0 <= xr && rx <= 3800)
+    {
+        if (m_pPlayer->GetDirection() == OBJ_D_RIGHT)
+        {
+            if (
+                m_wndLimitX + (((m_wndLimitCX - m_wndLimitX)/2)*(5.f/8.f))
+                <= m_pPlayer->GetInfo().fX)
+            {
+                m_wndLimitX += m_pPlayer->GetInfo().speed;
+                m_wndLimitCX = m_wndLimitX + WINCX;
+                StretchBlt(hdc, 0, 0, m_wndLimitCX*1.5, 208 * 1.5, m_hBackBuffer, m_wndLimitX, 0, m_wndLimitCX, 208, SRCCOPY);
+            }
+            else
+            {
+                StretchBlt(hdc, 0, 0, m_wndLimitCX*1.5, 208 * 1.5, m_hBackBuffer, m_wndLimitX, 0, m_wndLimitCX, 208, SRCCOPY);
+            }
+        }
+        if (m_pPlayer->GetDirection() == OBJ_D_LEFT)
+        {
+            StretchBlt(hdc, 0, 0, m_wndLimitCX*1.5, 208 * 1.5, m_hBackBuffer, m_wndLimitX, 0, m_wndLimitCX, 208, SRCCOPY);
+        }
+    }
+    else
+    {
+        StretchBlt(hdc, 0, 0, 3800*1.5, 208*1.5, m_hBackBuffer, 0, 0, 3800, 208, SRCCOPY);
+    }
+    
     //BitBlt(hdc, 0, 0, 3800, WINCY, m_hBackBuffer, 0, 0, SRCCOPY);
-    StretchBlt(hdc, 0, 0, 3800*1.5, 208*1.5, m_hBackBuffer, 0, 0, 3800, 208, SRCCOPY);
+    
     DeleteObject(SelectObject(m_hBackBuffer, m_hOldmap));
     DeleteDC(m_hBackBuffer);
     ReleaseDC(g_hWnd, hdc);

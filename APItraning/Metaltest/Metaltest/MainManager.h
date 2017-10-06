@@ -46,6 +46,8 @@ private:
 
     // WindowClientRect
     RECT m_wndRect;
+    INT m_wndLimitX;
+    INT m_wndLimitCX;
 
     // Physic
     Gravity m_gravity;

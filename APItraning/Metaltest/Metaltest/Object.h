@@ -10,8 +10,8 @@ public:
     virtual ~Object();
 
 public:
-    BOOL operator&&(Object&);
-    BOOL operator||(Object&);
+    BOOL            operator&&(Object&);
+    BOOL            operator||(Object&);
 
 
 public:
@@ -22,30 +22,32 @@ public:
     virtual int     Update      ();
 
 public:
-    void SetPos(FLOAT, FLOAT);
-    const OBJINFO& GetInfo();
+    void            SetPos(FLOAT, FLOAT);
+    const OBJINFO&  GetInfo();
 
-    const INT GetStateLeg();
-    const INT GetStateBody();
+    const INT       GetStateLeg();
+    const INT       GetStateBody();
 
-    void SetStateLeg(const INT&);
-    void SetStateBody(const INT&);
+    void            SetStateLeg(const INT&);
+    void            SetStateBody(const INT&);
 
-    void SetStanding();
+    void            SetStanding();
+
+    SHORT           GetDirection();
 
 protected:
-    OBJINFO m_objInfo;
+    OBJINFO         m_objInfo;
 
-    StateContext m_state_body;
-    StateContext m_state_leg;
+    StateContext    m_state_body;
+    StateContext    m_state_leg;
 
-    INT m_iState_body;
-    INT m_iState_leg;
+    INT             m_iState_body;
+    INT             m_iState_leg;
 
-    SHORT m_iDirection;
+    SHORT           m_iDirection;
 
-    BOOL isKeyInput;
-    BOOL isJump;
+    BOOL            isKeyInput;
+    BOOL            isJump;
 };
 
 #endif // !__object_h__

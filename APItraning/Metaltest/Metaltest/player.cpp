@@ -14,21 +14,21 @@ player::~player()
 
 void player::Initialize()
 {
-    m_objInfo.fX = 0;
-    m_objInfo.fY = 0;
-    m_objInfo.fCX = 50;
-    m_objInfo.fCY = 50;
-    m_objInfo.setSpeed(10);
-    m_objInfo.makeRect();
+    m_objInfo.fX        = 0;
+    m_objInfo.fY        = 0;
+    m_objInfo.fCX       = 50;
+    m_objInfo.fCY       = 50;
+    m_objInfo.setSpeed  (10);
+    m_objInfo.makeRect  ();
 }
 
 void player::Initialize(OBJINFO& ref)
 {
-    m_objInfo = ref;
-    m_iState_body = PS_BODY_ST_JMP;
-    m_iState_leg = PS_LEG_ST_JMP;
-    isJump = true;
-    isDEBUG = false;
+    m_objInfo           = ref;
+    m_iState_body       = PS_BODY_ST_JMP;
+    m_iState_leg        = PS_LEG_ST_JMP;
+    isJump              = true;
+    isDEBUG             = false;
 
     m_state_leg.m_mState.insert(pair<string, StateManager*>("PS_LEG_STANDING", new EriIdleLeg));
     m_state_leg.m_mState.insert(pair<string, StateManager*>("PS_LEG_ST_JMP", new EriStJmpLeg));
@@ -70,8 +70,20 @@ void player::Render(HDC hdc)
         TextOut(hdc, m_objInfo.fX, m_objInfo.fY - 30, pos, wcslen(pos));
     }    
 
-    m_hState_leg    ->handle(hdc);
-    m_hState_body   ->handle(hdc);
+    switch (m_iDirection)
+    {
+    case OBJ_D_RIGHT:
+        m_hState_leg->handle(hdc);
+        m_hState_body->handle(hdc);
+        break;
+    case OBJ_D_LEFT:
+        m_hState_leg->handlf(hdc);
+        m_hState_body->handlf(hdc);
+        break;
+    }
+        
+
+    
 
 }
 

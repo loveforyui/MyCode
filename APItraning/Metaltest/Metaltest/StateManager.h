@@ -10,6 +10,7 @@ public:
 
 public:
     virtual void handle(HDC) = 0;
+    virtual void handlf(HDC) = 0;
     void SetObj(Object* obj) { m_pObj = obj; }
     BOOL isD() { return isDone; }
 
@@ -22,7 +23,12 @@ protected:
     //
     vector<Image*>   m_vImage;
     vector<Image*>::iterator iter;
+    
+    vector<Image*>  m_vImagf;
+    vector<Image*>::iterator itef;
+
     BOOL            isRev;
+    BOOL            isRevf;
     //
     BOOL            isDone;
     //

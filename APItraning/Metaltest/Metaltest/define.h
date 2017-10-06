@@ -7,6 +7,10 @@
 //PHYSICS
 const FLOAT m_GRAVITY = 6.8f;
 
+//IMAGE
+const INT IMGCX = 35;
+const INT IMGCY = 35;
+
 // PLAYER BODY STATE
 #define PS_BODY_IDLE        0x00000000
 #define PS_BODY_STANDING    0x00000001
