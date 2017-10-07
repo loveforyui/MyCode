@@ -30,13 +30,34 @@ void player::Initialize(OBJINFO& ref)
     isJump              = true;
     isDEBUG             = false;
 
-    m_state_leg.m_mState.insert(pair<string, StateManager*>("PS_LEG_STANDING", new EriIdleLeg));
-    m_state_leg.m_mState.insert(pair<string, StateManager*>("PS_LEG_ST_JMP", new EriStJmpLeg));
-    m_state_leg.m_mState.insert(pair<string, StateManager*>("PS_LEG_WRK", new EriWrkLeg));
+    m_iName = FIO;
 
-    m_state_body.m_mState.insert(pair<string, StateManager*>("PS_BODY_IDLE", new EriIdle));
-    m_state_body.m_mState.insert(pair<string, StateManager*>("PS_BODY_ST_JMP", new EriStJmpBody));
-    m_state_body.m_mState.insert(pair<string, StateManager*>("PS_BODY_WRK", new EriWrkBody));
+    switch (m_iName)
+    {
+    case ERI:
+    {
+        m_state_leg.m_mState.insert(pair<string, StateManager*>("PS_LEG_STANDING", new EriIdleLeg));
+        m_state_leg.m_mState.insert(pair<string, StateManager*>("PS_LEG_ST_JMP", new EriStJmpLeg));
+        m_state_leg.m_mState.insert(pair<string, StateManager*>("PS_LEG_WRK", new EriWrkLeg));
+
+        m_state_body.m_mState.insert(pair<string, StateManager*>("PS_BODY_STANDING", new EriIdle));
+        m_state_body.m_mState.insert(pair<string, StateManager*>("PS_BODY_ST_JMP", new EriStJmpBody));
+        m_state_body.m_mState.insert(pair<string, StateManager*>("PS_BODY_WRK", new EriWrkBody));
+    }
+        break;
+    case FIO:
+    {
+        m_state_leg.m_mState.insert(pair<string, StateManager*>("PS_LEG_STANDING", new StdLeg));
+        m_state_leg.m_mState.insert(pair<string, StateManager*>("PS_LEG_WRK", new StdWlkLeg));
+        m_state_leg.m_mState.insert(pair<string, StateManager*>("PS_LEG_ST_JMP", new StdStJmpLeg));
+        
+        m_state_body.m_mState.insert(pair<string, StateManager*>("PS_BODY_STANDING", new FioStdBody));
+        m_state_body.m_mState.insert(pair<string, StateManager*>("PS_BODY_WRK", new FioWrkBody));
+        m_state_body.m_mState.insert(pair<string, StateManager*>("PS_BODY_ST_JMP", new FioStJmpBody));
+    }
+        break;
+    }
+    
 
     for (map<string, StateManager*>::iterator iter = m_state_leg.m_mState.begin();
         iter != m_state_leg.m_mState.end(); ++iter)
@@ -64,10 +85,11 @@ void player::Render(HDC hdc)
         , m_objInfo.rect.right
         , m_objInfo.rect.bottom);
 
-        wchar_t pos[64];
-        swprintf_s(pos, L"X:%.2f Y:%.2f", m_objInfo.fX, m_objInfo.fY);
-        SetTextAlign(hdc, TA_CENTER);
-        TextOut(hdc, m_objInfo.fX, m_objInfo.fY - 30, pos, wcslen(pos));
+        wchar_t         pos[64];
+        swprintf_s      (pos, L"X:%.2f Y:%.2f", m_objInfo.fX, m_objInfo.fY);
+        SetTextAlign    (hdc, TA_CENTER);
+        SetBkMode       (hdc, TRANSPARENT);
+        TextOut         (hdc, m_objInfo.fX, m_objInfo.fY - 30, pos, wcslen(pos));
     }    
 
     switch (m_iDirection)
@@ -81,10 +103,6 @@ void player::Render(HDC hdc)
         m_hState_body->handlf(hdc);
         break;
     }
-        
-
-    
-
 }
 
 void player::Release()
@@ -143,15 +161,15 @@ int player::Update()
         if(m_objInfo.speed < 5.f)
             m_objInfo.speed += m_objInfo.accel;
     }		
-    if (GetAsyncKeyState(VK_UP)     & 0x8000)
+    if (GetAsyncKeyState(VK_UP)         & 0x8000)
     {
         m_iDirection = OBJ_D_UP;
     }		
-    if (GetAsyncKeyState(VK_DOWN)   & 0x8000)
+    if (GetAsyncKeyState(VK_DOWN)       & 0x8000)
     {
         m_iDirection = OBJ_D_DOWN;
     }
-    if (GetAsyncKeyState(VK_CONTROL) & 0x8000)
+    if (GetAsyncKeyState(VK_CONTROL)    & 0x8000)
     {
         isJump          = true;
         m_iState_body   = PS_BODY_ST_JMP;
@@ -228,7 +246,7 @@ int player::Update()
     // 점프중일때 점프하는 속도는 중력가속도 만큼 감소하고 정점에서 주역 가속도 만큼 까진다.
     if (isJump)
     {
-        m_objInfo.vSpeed -= m_GRAVITY*0.8f;
+        m_objInfo.vSpeed -= m_GRAVITY*0.9f;
         if (m_objInfo.vSpeed < 0)
             m_objInfo.vSpeed = 0;
         
@@ -249,7 +267,7 @@ int player::Update()
             m_objInfo.vAccel    = 0.f;
             isJump              = false;
             m_iState_leg        = PS_LEG_STANDING;
-            m_iState_body       = PS_BODY_IDLE;
+            m_iState_body       = PS_BODY_STANDING;
         } 
     }
     //debug mode
@@ -279,9 +297,9 @@ int player::Update()
     }
     switch (m_iState_body)
     {
-    case PS_BODY_IDLE:
+    case PS_BODY_STANDING:
         // body, leg
-        m_hState_body = m_state_body.SetState("PS_BODY_IDLE");
+        m_hState_body = m_state_body.SetState("PS_BODY_STANDING");
         //m_state_body.SetState(new EriIdle);
         break;
     case PS_BODY_ST_JMP:

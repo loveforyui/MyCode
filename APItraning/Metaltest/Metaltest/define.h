@@ -29,4 +29,11 @@ const INT IMGCY = 35;
 #define OBJ_D_LEFT          0x0004
 #define OBJ_D_RIGHT         0x0008
 
+// PLAYER NAME
+#define MARCO               0x0001
+#define ERI                 0x0002
+#define TARMA               0x0004
+#define FIO                 0x0008
+
+
 #endif // !__define_h__

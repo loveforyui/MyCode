@@ -34,6 +34,15 @@
     <Filter Include="02.Obj\01.background\00.floor">
       <UniqueIdentifier>{32b212c8-84aa-474b-8966-f85525030468}</UniqueIdentifier>
     </Filter>
+    <Filter Include="02.Obj\00.player\00.state\Eri">
+      <UniqueIdentifier>{f4394ffb-1209-495c-abf7-fb15a163dd9e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.Obj\00.player\00.state\Fio">
+      <UniqueIdentifier>{263c0467-6fde-493f-a464-9937a57e0d5b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.Obj\00.player\00.state\standardleg">
+      <UniqueIdentifier>{5cf38964-5180-4829-8428-fdb8f196ad8e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -84,35 +93,53 @@
     <ClInclude Include="StateContext.h">
       <Filter>02.Obj\00.player\00.state</Filter>
     </ClInclude>
-    <ClInclude Include="EriIdle.h">
-      <Filter>02.Obj\00.player\00.state</Filter>
-    </ClInclude>
-    <ClInclude Include="EriIdleLeg.h">
-      <Filter>02.Obj\00.player\00.state</Filter>
-    </ClInclude>
     <ClInclude Include="Gravity.h">
       <Filter>01.Manager</Filter>
     </ClInclude>
     <ClInclude Include="BackGround.h">
       <Filter>02.Obj\01.background</Filter>
     </ClInclude>
-    <ClInclude Include="EriStJmpBody.h">
-      <Filter>02.Obj\00.player\00.state</Filter>
-    </ClInclude>
     <ClInclude Include="playerstate.h">
       <Filter>99.header</Filter>
     </ClInclude>
-    <ClInclude Include="EriStJmpLeg.h">
-      <Filter>02.Obj\00.player\00.state</Filter>
-    </ClInclude>
-    <ClInclude Include="EriWrkLeg.h">
-      <Filter>02.Obj\00.player\00.state</Filter>
-    </ClInclude>
-    <ClInclude Include="EriWrkBody.h">
-      <Filter>02.Obj\00.player\00.state</Filter>
-    </ClInclude>
     <ClInclude Include="floor.h">
       <Filter>02.Obj\01.background\00.floor</Filter>
+    </ClInclude>
+    <ClInclude Include="EriIdle.h">
+      <Filter>02.Obj\00.player\00.state\Eri</Filter>
+    </ClInclude>
+    <ClInclude Include="EriIdleLeg.h">
+      <Filter>02.Obj\00.player\00.state\Eri</Filter>
+    </ClInclude>
+    <ClInclude Include="EriStJmpBody.h">
+      <Filter>02.Obj\00.player\00.state\Eri</Filter>
+    </ClInclude>
+    <ClInclude Include="EriStJmpLeg.h">
+      <Filter>02.Obj\00.player\00.state\Eri</Filter>
+    </ClInclude>
+    <ClInclude Include="EriWrkBody.h">
+      <Filter>02.Obj\00.player\00.state\Eri</Filter>
+    </ClInclude>
+    <ClInclude Include="EriWrkLeg.h">
+      <Filter>02.Obj\00.player\00.state\Eri</Filter>
+    </ClInclude>
+    <ClInclude Include="FioStdBody.h">
+      <Filter>02.Obj\00.player\00.state\Fio</Filter>
+    </ClInclude>
+    <ClInclude Include="StdLeg.h">
+      <Filter>02.Obj\00.player\00.state\standardleg</Filter>
+    </ClInclude>
+    <ClInclude Include="FioWrkBody.h">
+      <Filter>02.Obj\00.player\00.state\Fio</Filter>
+    </ClInclude>
+    <ClInclude Include="StdWlkLeg.h">
+      <Filter>02.Obj\00.player\00.state\standardleg</Filter>
+    </ClInclude>
+    <ClInclude Include="FioStJmpBody.h">
+      <Filter>02.Obj\00.player\00.state\Fio</Filter>
+    </ClInclude>
+    <ClInclude Include="StdStJmpLeg.h">
+      <Filter>02.Obj\00.player\00.state\standardleg</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -137,32 +164,50 @@
     <ClCompile Include="StateContext.cpp">
       <Filter>02.Obj\00.player\00.state</Filter>
     </ClCompile>
-    <ClCompile Include="EriIdle.cpp">
-      <Filter>02.Obj\00.player\00.state</Filter>
-    </ClCompile>
-    <ClCompile Include="EriIdleLeg.cpp">
-      <Filter>02.Obj\00.player\00.state</Filter>
-    </ClCompile>
     <ClCompile Include="Gravity.cpp">
       <Filter>01.Manager</Filter>
     </ClCompile>
     <ClCompile Include="BackGround.cpp">
       <Filter>02.Obj\01.background</Filter>
     </ClCompile>
-    <ClCompile Include="EriStJmpBody.cpp">
-      <Filter>02.Obj\00.player\00.state</Filter>
-    </ClCompile>
-    <ClCompile Include="EriStJmpLeg.cpp">
-      <Filter>02.Obj\00.player\00.state</Filter>
-    </ClCompile>
-    <ClCompile Include="EriWrkLeg.cpp">
-      <Filter>02.Obj\00.player\00.state</Filter>
-    </ClCompile>
-    <ClCompile Include="EriWrkBody.cpp">
-      <Filter>02.Obj\00.player\00.state</Filter>
-    </ClCompile>
     <ClCompile Include="floor.cpp">
       <Filter>02.Obj\01.background\00.floor</Filter>
+    </ClCompile>
+    <ClCompile Include="EriIdle.cpp">
+      <Filter>02.Obj\00.player\00.state\Eri</Filter>
+    </ClCompile>
+    <ClCompile Include="EriIdleLeg.cpp">
+      <Filter>02.Obj\00.player\00.state\Eri</Filter>
+    </ClCompile>
+    <ClCompile Include="EriStJmpBody.cpp">
+      <Filter>02.Obj\00.player\00.state\Eri</Filter>
+    </ClCompile>
+    <ClCompile Include="EriStJmpLeg.cpp">
+      <Filter>02.Obj\00.player\00.state\Eri</Filter>
+    </ClCompile>
+    <ClCompile Include="EriWrkBody.cpp">
+      <Filter>02.Obj\00.player\00.state\Eri</Filter>
+    </ClCompile>
+    <ClCompile Include="EriWrkLeg.cpp">
+      <Filter>02.Obj\00.player\00.state\Eri</Filter>
+    </ClCompile>
+    <ClCompile Include="FioStdBody.cpp">
+      <Filter>02.Obj\00.player\00.state\Fio</Filter>
+    </ClCompile>
+    <ClCompile Include="StdLeg.cpp">
+      <Filter>02.Obj\00.player\00.state\standardleg</Filter>
+    </ClCompile>
+    <ClCompile Include="FioWrkBody.cpp">
+      <Filter>02.Obj\00.player\00.state\Fio</Filter>
+    </ClCompile>
+    <ClCompile Include="StdWlkLeg.cpp">
+      <Filter>02.Obj\00.player\00.state\standardleg</Filter>
+    </ClCompile>
+    <ClCompile Include="FioStJmpBody.cpp">
+      <Filter>02.Obj\00.player\00.state\Fio</Filter>
+    </ClCompile>
+    <ClCompile Include="StdStJmpLeg.cpp">
+      <Filter>02.Obj\00.player\00.state\standardleg</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

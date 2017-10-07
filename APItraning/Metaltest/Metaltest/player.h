@@ -19,11 +19,13 @@ public:
     void SetLine(vector<INT>*);
 
 private:
-    BOOL isDEBUG;
+    INT             m_iRadian;
+    SHORT           m_iName;
+    BOOL            isDEBUG;
     
-    StateManager* m_hState_leg;
-    StateManager* m_hState_body;
+    StateManager*   m_hState_leg;
+    StateManager*   m_hState_body;
 
-    vector<INT>* m_pLine;
+    vector<INT>*    m_pLine;
 };
 

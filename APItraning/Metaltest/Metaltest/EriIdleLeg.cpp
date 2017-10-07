@@ -58,37 +58,37 @@ void EriIdleLeg::handle(HDC hdc)
 }
 
 void EriIdleLeg::handlf(HDC hdc)
+{
+    Graphics graphics(hdc);
+
+    if (itef == m_vImagf.end())
     {
-        Graphics graphics(hdc);
+        isRevf = true;
+        --itef;
+    }
+    else if (itef == m_vImagf.begin())
+    {
+        isRevf = false;
+    }
 
-        if (itef == m_vImagf.end())
-        {
-            isRevf = true;
+    graphics.DrawImage(*itef
+        , m_pObj->GetInfo().rect.left + 3
+        , m_pObj->GetInfo().rect.top + ((IMGCY / 3) + 2)
+        , IMGCX
+        , IMGCY);
+
+    if (isRevf)
+    {
+        if (itef != m_vImagf.begin())
             --itef;
-        }
-        else if (itef == m_vImagf.begin())
-        {
-            isRevf = false;
-        }
 
-        graphics.DrawImage(*itef
-            , m_pObj->GetInfo().rect.left   + 3
-            , m_pObj->GetInfo().rect.top + ((IMGCY/3) + 2)
-            , IMGCX
-            , IMGCY);
-
-        if (isRevf)
+        if (itef == m_vImagf.begin())
         {
-            if(itef != m_vImagf.begin())
-                --itef;
-
-            if (itef == m_vImagf.begin())
-            {
-                isDone = true;
-            }
-        }
-        else
-        {
-            ++itef;
+            isDone = true;
         }
     }
+    else
+    {
+        ++itef;
+    }
+}

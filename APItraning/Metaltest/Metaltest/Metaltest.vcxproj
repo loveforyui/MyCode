@@ -155,6 +155,9 @@
     <ClInclude Include="EriWrkBody.h" />
     <ClInclude Include="EriWrkLeg.h" />
     <ClInclude Include="extern.h" />
+    <ClInclude Include="FioStdBody.h" />
+    <ClInclude Include="FioStJmpBody.h" />
+    <ClInclude Include="FioWrkBody.h" />
     <ClInclude Include="floor.h" />
     <ClInclude Include="functions.h" />
     <ClInclude Include="Gravity.h" />
@@ -168,6 +171,9 @@
     <ClInclude Include="StateContext.h" />
     <ClInclude Include="StateManager.h" />
     <ClInclude Include="stdafx.h" />
+    <ClInclude Include="StdLeg.h" />
+    <ClInclude Include="StdStJmpLeg.h" />
+    <ClInclude Include="StdWlkLeg.h" />
     <ClInclude Include="Struct.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="typedef.h" />
@@ -180,6 +186,9 @@
     <ClCompile Include="EriStJmpLeg.cpp" />
     <ClCompile Include="EriWrkBody.cpp" />
     <ClCompile Include="EriWrkLeg.cpp" />
+    <ClCompile Include="FioStdBody.cpp" />
+    <ClCompile Include="FioStJmpBody.cpp" />
+    <ClCompile Include="FioWrkBody.cpp" />
     <ClCompile Include="floor.cpp" />
     <ClCompile Include="Gravity.cpp" />
     <ClCompile Include="MainManager.cpp" />
@@ -194,6 +203,9 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="StdLeg.cpp" />
+    <ClCompile Include="StdStJmpLeg.cpp" />
+    <ClCompile Include="StdWlkLeg.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Metaltest.rc" />

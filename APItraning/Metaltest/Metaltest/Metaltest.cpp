@@ -65,7 +65,7 @@ int     APIENTRY    wWinMain        (   _In_        HINSTANCE hInstance,
 
         dwCurTime = GetTickCount();
         
-        if (dwOldTime + 60 < dwCurTime)
+        if (dwOldTime + 55 < dwCurTime)
         {
             dwOldTime = dwCurTime;
 
