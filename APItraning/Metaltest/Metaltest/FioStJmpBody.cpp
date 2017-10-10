@@ -60,8 +60,8 @@ void FioStJmpBody::handle(HDC hdc)
     gr.DrawImage(*iter
             , m_pObj->GetInfo().rect.left
             , m_pObj->GetInfo().rect.top
-            , IMGCX
-            , IMGCY);
+            , (*iter)->GetWidth()
+            , (*iter)->GetHeight());
     //gr.DrawImage(*iter, m_pObj->GetInfo().fX - 18, m_pObj->GetInfo().fY - 17);
 
     if (isRev)
@@ -97,8 +97,8 @@ void FioStJmpBody::handlf(HDC hdc)
     gr.DrawImage(*itef
             , m_pObj->GetInfo().rect.left
             , m_pObj->GetInfo().rect.top
-            , IMGCX
-            , IMGCY);
+            , (*itef)->GetWidth()
+            , (*itef)->GetHeight());
     //gr.DrawImage(*itef, m_pObj->GetInfo().fX - 18, m_pObj->GetInfo().fY - 17);
 
     if (isRevf)

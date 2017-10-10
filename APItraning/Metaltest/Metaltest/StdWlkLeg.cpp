@@ -79,8 +79,8 @@ void StdWlkLeg::handle(HDC hdc)
     graphics.DrawImage(*iter
             , m_pObj->GetInfo().rect.left   - 4
             , m_pObj->GetInfo().rect.top    + ((IMGCY/3))
-            , IMGCX
-            , IMGCY);
+            , (*iter)->GetWidth()
+            , (*iter)->GetHeight());
     //graphics.DrawImage(*iter, m_pObj->GetInfo().fX - 21, m_pObj->GetInfo().fY - 4);
 
     ++iter;
@@ -98,8 +98,8 @@ void StdWlkLeg::handlf(HDC hdc)
     graphics.DrawImage(*itef
             , m_pObj->GetInfo().rect.left   + 4
             , m_pObj->GetInfo().rect.top    + ((IMGCY/3))
-            , IMGCX
-            , IMGCY);
+            , (*itef)->GetWidth()
+            , (*itef)->GetHeight());
     //graphics.DrawImage(*iter, m_pObj->GetInfo().fX - 21, m_pObj->GetInfo().fY - 4);
 
     ++itef;

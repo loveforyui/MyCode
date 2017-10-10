@@ -19,8 +19,11 @@ public:
     void SetLine(vector<INT>*);
 
 private:
+    // 총구 각도
     INT             m_iRadian;
+    // 주인공 이름
     SHORT           m_iName;
+    // 디버그 모드
     BOOL            isDEBUG;
     
     StateManager*   m_hState_leg;

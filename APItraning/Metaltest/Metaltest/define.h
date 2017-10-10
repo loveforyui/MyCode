@@ -29,11 +29,16 @@ const INT IMGCY = 35;
 #define OBJ_D_LEFT          0x0004
 #define OBJ_D_RIGHT         0x0008
 
+// Player Action STATE
+#define OBJ_A_STAY          0x0000
+#define OBJ_A_MOVE          0x0001
+#define OBJ_A_ATK           0x0002
+#define OBJ_A_JMP           0x0004
+
 // PLAYER NAME
 #define MARCO               0x0001
 #define ERI                 0x0002
 #define TARMA               0x0004
 #define FIO                 0x0008
-
 
 #endif // !__define_h__

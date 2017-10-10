@@ -145,13 +145,8 @@ void MainManager::Render()
     // player
     m_pPlayer->Render(m_hBackBuffer);
 
-    
-    
-
     StretchBlt(hdc, 0, 0, m_wndLimitCX*1.5, 208 * 1.5, m_hBackBuffer, m_wndLimitX, 0, m_wndLimitCX, 208, SRCCOPY);
 
-    
-    
     //BitBlt(hdc, 0, 0, 3800, WINCY, m_hBackBuffer, 0, 0, SRCCOPY);
     
     DeleteObject(SelectObject(m_hBackBuffer, m_hOldmap));
@@ -175,7 +170,7 @@ void MainManager::DrawSin()
 
     for (f = -500; f < 1000; ++f)
     {
-        y = (int)(sin(f*3.14 / 180) * 100);
+        y = -(int)(sin(f*3.14 / 180) * 100);
         SetPixel(m_hdc, (int)f, y, RGB(0, 0, 0));
     }
 }

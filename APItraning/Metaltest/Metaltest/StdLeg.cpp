@@ -38,8 +38,8 @@ void StdLeg::handle(HDC hdc)
     graphics.DrawImage(*iter
             , m_pObj->GetInfo().rect.left   
             , m_pObj->GetInfo().rect.top + ((IMGCY/3))
-            , IMGCX
-            , IMGCY);
+            , (*iter)->GetWidth()
+            , (*iter)->GetHeight());
 
     if (isRev)
     {
@@ -74,8 +74,8 @@ void StdLeg::handlf(HDC hdc)
     graphics.DrawImage(*itef
         , m_pObj->GetInfo().rect.left + 7
         , m_pObj->GetInfo().rect.top + ((IMGCY / 3))
-        , IMGCX
-        , IMGCY);
+        , (*itef)->GetWidth()
+        , (*itef)->GetHeight());
 
     if (isRevf)
     {

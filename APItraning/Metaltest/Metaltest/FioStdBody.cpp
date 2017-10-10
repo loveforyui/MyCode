@@ -62,8 +62,8 @@ void FioStdBody::handle(HDC hdc)
         graphics.DrawImage(*iter
             , m_pObj->GetInfo().rect.left
             , m_pObj->GetInfo().rect.top
-            , IMGCX
-            , IMGCY);
+            , (*iter)->GetWidth()
+            , (*iter)->GetHeight());
     }
     //graphics.DrawImage(*iter, m_pObj->GetInfo().fX - 17, m_pObj->GetInfo().fY - 18);
 
@@ -102,8 +102,8 @@ void FioStdBody::handlf(HDC hdc)
         graphics.DrawImage(*itef
             , m_pObj->GetInfo().rect.left
             , m_pObj->GetInfo().rect.top
-            , IMGCX
-            , IMGCY);
+            , (*itef)->GetWidth()
+            , (*itef)->GetHeight());
     }
     //graphics.DrawImage(*iter, m_pObj->GetInfo().fX - 17, m_pObj->GetInfo().fY - 18);
 

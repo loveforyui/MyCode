@@ -152,7 +152,6 @@ BOOL Object::operator||(Object &src)
         if ((src.m_objInfo.rect.top <= m_objInfo.rect.bottom) && (m_objInfo.rect.top <= src.m_objInfo.rect.top))
         {
             m_objInfo.fY += m_objInfo.speed;
-            isJump = false;
             result = TRUE;
             //return result;
         }
@@ -176,7 +175,6 @@ BOOL Object::operator||(Object &src)
         if ((src.m_objInfo.rect.top <= m_objInfo.rect.bottom) && (m_objInfo.rect.top <= src.m_objInfo.rect.top))
         {
             m_objInfo.fY += m_objInfo.speed;
-            isJump = false;
             result = TRUE;
             //return result;
         }
@@ -225,13 +223,35 @@ void Object::SetStateBody(const INT& ref)
 
 void Object::SetStanding()
 {
-    isJump = false;
-    m_objInfo.vAccel = 0.f;
-    m_iState_leg = PS_LEG_STANDING;
-    m_iState_body = PS_BODY_STANDING;
+    switch (m_iCurrState)
+    {
+    case OBJ_A_JMP:
+    case OBJ_A_JMP | OBJ_A_MOVE:
+        m_iCurrState        = OBJ_A_STAY;
+        m_iState_leg        = PS_LEG_WRK;
+        m_iState_body       = PS_BODY_WRK;
+        m_objInfo.vAccel    = 0.f;
+        break;
+    default:
+        m_iCurrState        = OBJ_A_STAY;
+        m_iState_leg        = PS_LEG_STANDING;
+        m_iState_body       = PS_BODY_STANDING;
+        m_objInfo.vAccel    = 0.f;
+        break;
+    }
 }
 
 SHORT Object::GetDirection()
 {
     return m_iDirection;
+}
+
+INT Object::GetCurrentState()
+{
+    return m_iCurrState;
+}
+
+INT Object::GetPrevState()
+{
+    return m_iPrevState;
 }

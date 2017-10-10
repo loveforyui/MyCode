@@ -100,8 +100,8 @@ void FioWrkBody::handle(HDC hdc)
     graphics.DrawImage(*iter
             , m_pObj->GetInfo().rect.left   
             , m_pObj->GetInfo().rect.top
-            , IMGCX
-            , IMGCY);
+            , (*iter)->GetWidth()
+            , (*iter)->GetHeight());
 
     if (isRev)
     {
@@ -136,8 +136,8 @@ void FioWrkBody::handlf(HDC hdc)
     graphics.DrawImage(*itef
             , m_pObj->GetInfo().rect.left   
             , m_pObj->GetInfo().rect.top
-            , IMGCX
-            , IMGCY);
+            , (*itef)->GetWidth()
+            , (*itef)->GetHeight());
 
     if (isRevf)
     {

@@ -60,8 +60,8 @@ void StdStJmpLeg::handle(HDC hdc)
     gr.DrawImage(*iter
             , m_pObj->GetInfo().rect.left   + 3
             , m_pObj->GetInfo().rect.top    + ((IMGCY/3) + 5)
-            , IMGCX
-            , IMGCY);
+            , (*iter)->GetWidth()
+            , (*iter)->GetHeight());
     //gr.DrawImage(*iter, m_pObj->GetInfo().fX - 19, m_pObj->GetInfo().fY);
 
     if (isRev)
@@ -97,8 +97,8 @@ void StdStJmpLeg::handlf(HDC hdc)
     gr.DrawImage(*itef
             , m_pObj->GetInfo().rect.left   + 3
             , m_pObj->GetInfo().rect.top    + ((IMGCY/3) + 5)
-            , IMGCX
-            , IMGCY);
+            , (*itef)->GetWidth()
+            , (*itef)->GetHeight());
     //gr.DrawImage(*iter, m_pObj->GetInfo().fX - 19, m_pObj->GetInfo().fY);
 
     if (isRevf)
