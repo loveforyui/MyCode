@@ -2,16 +2,15 @@
 #include "player.h"
 #include "playerstate.h"
 
-player::player()
+player::        player          ()
 {   
 }
 
-
-player::~player()
+player::        ~player         ()
 {
 }
 
-void player::Initialize()
+void player::   Initialize      ()
 {
     m_objInfo.fX        = 0;
     m_objInfo.fY        = 0;
@@ -21,7 +20,7 @@ void player::Initialize()
     m_objInfo.makeRect  ();
 }
 
-void player::Initialize(OBJINFO& ref)
+void player::   Initialize      (OBJINFO& ref)
 {
     m_objInfo           = ref;
     m_iState_body       = PS_BODY_ST_JMP;
@@ -31,7 +30,6 @@ void player::Initialize(OBJINFO& ref)
     isDEBUG             = false;
 
     m_iName             = FIO;
-
 
     // 캐릭별 이미지 로딩
     switch (m_iName)
@@ -77,7 +75,7 @@ void player::Initialize(OBJINFO& ref)
     m_hState_body   = m_state_body.m_mState["PS_BODY_ST_JMP"];
 }
 
-void player::Render(HDC hdc)
+void player::   Render          (HDC hdc)
 {
     if (isDEBUG)
     {
@@ -89,6 +87,7 @@ void player::Render(HDC hdc)
 
         wchar_t         pos[64];
         swprintf_s      (pos, L"X:%.2f Y:%.2f", m_objInfo.fX, m_objInfo.fY);
+        //wsprintf();
         SetTextAlign    (hdc, TA_CENTER);
         SetBkMode       (hdc, TRANSPARENT);
         TextOut         (hdc, m_objInfo.fX, m_objInfo.fY - 30, pos, wcslen(pos));
@@ -107,11 +106,11 @@ void player::Render(HDC hdc)
     }
 }
 
-void player::Release()
+void player::   Release         ()
 {
 }
 
-int player::Update()
+int player::    Update          ()
 {
     Object::Update();
     isKeyInput = false;
@@ -330,8 +329,7 @@ int player::Update()
     return 0;
 }
 
-void player::SetLine(vector<INT>* ptr)
+void player::   SetLine         (vector<INT>* ptr)
 {
     m_pLine = ptr;
 }
-

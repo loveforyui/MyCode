@@ -4,7 +4,7 @@
 #include "EriIdleLeg.h"
 
 
-Object::Object()
+Object::                Object          ()
 {
     m_state_body.SetObj(this);
     m_state_leg.SetObj(this);
@@ -13,12 +13,11 @@ Object::Object()
     m_iDirection = OBJ_D_RIGHT;
 }
 
-
-Object::~Object()
+Object::                ~Object         ()
 {
 }
 
-BOOL Object::operator&&(Object & src)
+BOOL Object::           operator&&      (Object & src)
 {
     BOOL result = FALSE;
 
@@ -95,7 +94,7 @@ BOOL Object::operator&&(Object & src)
     return result;
 }
 
-BOOL Object::operator||(Object &src)
+BOOL Object::           operator||      (Object &src)
 {
      BOOL result = FALSE;
 
@@ -183,45 +182,45 @@ BOOL Object::operator||(Object &src)
     return result;
 }
 
-int Object::Update()
+int Object::            Update          ()
 {
     m_objInfo.makeRect();
     return 0;
 }
 
-void Object::SetPos(FLOAT x, FLOAT y)
+void Object::           SetPos          (FLOAT x, FLOAT y)
 {
     m_objInfo.fX = x;
     m_objInfo.fY = y;
     m_objInfo.makeRect();
 }
 
-const OBJINFO& Object::GetInfo()
+const OBJINFO& Object:: GetInfo         ()
 {
     return m_objInfo;
 }
 
-const INT Object::GetStateLeg()
+const INT Object::      GetStateLeg     ()
 {
     return m_iState_leg;
 }
 
-const INT Object::GetStateBody()
+const INT Object::      GetStateBody    ()
 {
     return m_iState_body;
 }
 
-void Object::SetStateLeg(const INT& ref)
+void Object::           SetStateLeg     (const INT& ref)
 {
     m_iState_leg = ref;
 }
 
-void Object::SetStateBody(const INT& ref)
+void Object::           SetStateBody    (const INT& ref)
 {
     m_iState_body = ref;
 }
 
-void Object::SetStanding()
+void Object::           SetStanding     ()
 {
     switch (m_iCurrState)
     {
@@ -241,17 +240,17 @@ void Object::SetStanding()
     }
 }
 
-SHORT Object::GetDirection()
+SHORT Object::          GetDirection    ()
 {
     return m_iDirection;
 }
 
-INT Object::GetCurrentState()
+INT Object::            GetCurrentState ()
 {
     return m_iCurrState;
 }
 
-INT Object::GetPrevState()
+INT Object::            GetPrevState    ()
 {
     return m_iPrevState;
 }

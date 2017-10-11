@@ -7,18 +7,17 @@
 
 MainManager* MainManager::inst = nullptr;
 
-MainManager::MainManager()
+MainManager::       MainManager         ()
     : m_pPlayer(nullptr)
 {
 }
 
-
-MainManager::~MainManager()
+MainManager::       ~MainManager        ()
 {
     Release();
 }
 
-void MainManager::Initialize()
+void MainManager::  Initialize          ()
 {
     //gdi+ set
     GdiplusStartupInput         m_GdiplusStartupInput;
@@ -26,10 +25,10 @@ void MainManager::Initialize()
     GdiplusStartup(&m_GdiplusToken, &m_GdiplusStartupInput, NULL);
 
     // screen initialize
-    m_hdc = GetDC(g_hWnd);
+    m_hdc           = GetDC(g_hWnd);
     GetClientRect(g_hWnd, &m_wndRect);
-    m_wndLimitX = m_wndRect.left;
-    m_wndLimitCX = m_wndLimitX + WINCX;
+    m_wndLimitX     = m_wndRect.left;
+    m_wndLimitCX    = m_wndLimitX + WINCX;
 
     // background Initailize
     if (!m_pStage)
@@ -49,11 +48,11 @@ void MainManager::Initialize()
     m_gravity.addObject(m_pPlayer);
 
     // make line object
-    COLORREF rgb;
-    HDC hdc = GetDC(g_hWnd);
-    m_hBackBuffer = CreateCompatibleDC(hdc);
-    m_hBitmap = CreateCompatibleBitmap(hdc, 3800, m_wndRect.bottom);
-    m_hOldmap = (HBITMAP)SelectObject(m_hBackBuffer, m_hBitmap);
+    COLORREF    rgb;
+    HDC         hdc = GetDC(g_hWnd);
+    m_hBackBuffer   = CreateCompatibleDC(hdc);
+    m_hBitmap       = CreateCompatibleBitmap(hdc, 3800, m_wndRect.bottom);
+    m_hOldmap       = (HBITMAP)SelectObject(m_hBackBuffer, m_hBitmap);
 
     m_pStage->Render(m_hBackBuffer);
     //BitBlt(hdc, 0, 0, 3800, WINCY, m_hBackBuffer, 0, 0, SRCCOPY);
@@ -83,15 +82,16 @@ void MainManager::Initialize()
             }
         }
     }
-    DeleteObject(SelectObject(m_hBackBuffer, m_hOldmap));
-    DeleteDC(m_hBackBuffer);
-    ReleaseDC(g_hWnd, hdc);
 
-    m_gravity.SetLine(&dynamic_cast<BackGround*>(m_pStage)->m_vfStage);
-    dynamic_cast<player*>(m_pPlayer)->SetLine(&(dynamic_cast<BackGround*>(m_pStage)->m_vfStage));
+    DeleteObject            (SelectObject(m_hBackBuffer, m_hOldmap));
+    DeleteDC                (m_hBackBuffer);
+    ReleaseDC               (g_hWnd, hdc);
+
+    m_gravity.SetLine       (&dynamic_cast<BackGround*>(m_pStage)->m_vfStage);
+    dynamic_cast<player*>   (m_pPlayer)->SetLine(&(dynamic_cast<BackGround*>(m_pStage)->m_vfStage));
 }
 
-void MainManager::Update()
+void MainManager::  Update              ()
 {
     m_gravity.Update(); 
     m_pPlayer->Update();
@@ -99,8 +99,8 @@ void MainManager::Update()
     Collision(m_pPlayer, m_pStage);
 
 
-    INT xr = (m_pPlayer->GetInfo().fX - (400*(5.f/8.f)));
-    INT rx = (m_pPlayer->GetInfo().fX + (400*(5.f/8.f)));
+    INT xr      = (m_pPlayer->GetInfo().fX - (400*(5.f/8.f)));
+    INT rx      = (m_pPlayer->GetInfo().fX + (400*(5.f/8.f)));
 
     INT camMoxr = (m_pPlayer->GetInfo().fX + (WINCX*(2.f/3.f))/2);
     INT camMorx = (m_pPlayer->GetInfo().fX - 100);
@@ -119,13 +119,13 @@ void MainManager::Update()
     }
 }
 
-void MainManager::Render()
+void MainManager::  Render              ()
 {
-    HDC hdc = GetDC(g_hWnd);
+    HDC hdc         = GetDC(g_hWnd);
 
-    m_hBackBuffer = CreateCompatibleDC(hdc);
-    m_hBitmap = CreateCompatibleBitmap(hdc, 3800, m_wndRect.bottom);
-    m_hOldmap = (HBITMAP)SelectObject(m_hBackBuffer, m_hBitmap);
+    m_hBackBuffer   = CreateCompatibleDC(hdc);
+    m_hBitmap       = CreateCompatibleBitmap(hdc, 3800, m_wndRect.bottom);
+    m_hOldmap       = (HBITMAP)SelectObject(m_hBackBuffer, m_hBitmap);
 
     //PatBlt(m_hBackBuffer, 0, 0, WINCX, WINCY, BLACKNESS);
     
@@ -145,28 +145,27 @@ void MainManager::Render()
     // player
     m_pPlayer->Render(m_hBackBuffer);
 
-    StretchBlt(hdc, 0, 0, m_wndLimitCX*1.5, 208 * 1.5, m_hBackBuffer, m_wndLimitX, 0, m_wndLimitCX, 208, SRCCOPY);
+    StretchBlt      (hdc, 0, 0, m_wndLimitCX*1.5, 208 * 1.5, m_hBackBuffer, m_wndLimitX, 0, m_wndLimitCX, 208, SRCCOPY);
 
     //BitBlt(hdc, 0, 0, 3800, WINCY, m_hBackBuffer, 0, 0, SRCCOPY);
     
-    DeleteObject(SelectObject(m_hBackBuffer, m_hOldmap));
-    DeleteDC(m_hBackBuffer);
-    ReleaseDC(g_hWnd, hdc);
+    DeleteObject    (SelectObject(m_hBackBuffer, m_hOldmap));
+    DeleteDC        (m_hBackBuffer);
+    ReleaseDC       (g_hWnd, hdc);
 }
 
-void MainManager::Release()
+void MainManager::  Release             ()
 {
     ReleaseDC(g_hWnd, m_hdc);
     SafeDelete<Object*>(m_pPlayer);
-    
 }
 
-void MainManager::DrawSin()
+void MainManager::  DrawSin             ()
 {
-    MoveToEx(m_hdc, -2000, 0, nullptr);
-    LineTo(m_hdc, 2000, 0);
-    MoveToEx(m_hdc, 0, -2000, nullptr);
-    LineTo(m_hdc, 0, 2000);
+    MoveToEx        (m_hdc, -2000, 0, nullptr);
+    LineTo          (m_hdc, 2000, 0);
+    MoveToEx        (m_hdc, 0, -2000, nullptr);
+    LineTo          (m_hdc, 0, 2000);
 
     for (f = -500; f < 1000; ++f)
     {
@@ -175,17 +174,17 @@ void MainManager::DrawSin()
     }
 }
 
-BOOL MainManager::Collision(Object * dst, Object * src)
+BOOL MainManager::  Collision           (Object * dst, Object * src)
 {
     return (*dst)||(*src);
 }
 
-BOOL MainManager::CollisionO(Object * dst, Object * src)
+BOOL MainManager::  CollisionO          (Object * dst, Object * src)
 {
     return (*dst)&&(*src);
 }
 
-MainManager * MainManager::GetInst()
+MainManager * MainManager::GetInst      ()
 {
     if (!inst)
     {

@@ -51,6 +51,10 @@ int     APIENTRY    wWinMain        (   _In_        HINSTANCE hInstance,
     DWORD dwOldTime = GetTickCount();
     DWORD dwCurTime = 0;
 
+    int iFPS = 0;
+    TCHAR szFPS[32] = L"";
+    DWORD dwOldFPS = GetTickCount();
+
     while (TRUE)
     {
         if (PeekMessage(&msg, nullptr, 0, 0, PM_REMOVE))
@@ -65,7 +69,7 @@ int     APIENTRY    wWinMain        (   _In_        HINSTANCE hInstance,
 
         dwCurTime = GetTickCount();
         
-        if (dwOldTime + 55 < dwCurTime)
+        if (dwOldTime + 64 < dwCurTime)
         {
             dwOldTime = dwCurTime;
 
@@ -73,6 +77,13 @@ int     APIENTRY    wWinMain        (   _In_        HINSTANCE hInstance,
             MainManager::GetInst()->Update();
             MainManager::GetInst()->Render();
             //MainManager::GetInst()->DrawSin();
+            ++iFPS;
+        }
+        if (dwOldFPS + 1000 < dwCurTime)
+        {
+            swprintf_s(szFPS, L"FPS: %d", iFPS);
+            SetWindowText(g_hWnd, szFPS);
+            iFPS = 0;
         }
     }
 
