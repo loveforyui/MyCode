@@ -17,7 +17,7 @@ MainManager::       ~MainManager        ()
     Release();
 }
 
-void MainManager::  Initialize          ()
+VOID MainManager::  Initialize          ()
 {
     //gdi+ set
     GdiplusStartupInput         m_GdiplusStartupInput;
@@ -41,7 +41,7 @@ void MainManager::  Initialize          ()
     //player initailize
     if (!m_pPlayer)
     {
-        OBJINFO tempObj(0.f, 0.f, 30.f, 40.f);
+        OBJINFO tempObj(0.f, 0.f, 25.f, 35.f);
         m_pPlayer = new player;
         m_pPlayer->Initialize(tempObj);
     }
@@ -91,7 +91,7 @@ void MainManager::  Initialize          ()
     dynamic_cast<player*>   (m_pPlayer)->SetLine(&(dynamic_cast<BackGround*>(m_pStage)->m_vfStage));
 }
 
-void MainManager::  Update              ()
+VOID MainManager::  Update              ()
 {
     m_gravity.Update(); 
     m_pPlayer->Update();
@@ -119,7 +119,7 @@ void MainManager::  Update              ()
     }
 }
 
-void MainManager::  Render              ()
+VOID MainManager::  Render              ()
 {
     HDC hdc         = GetDC(g_hWnd);
 
@@ -154,13 +154,13 @@ void MainManager::  Render              ()
     ReleaseDC       (g_hWnd, hdc);
 }
 
-void MainManager::  Release             ()
+VOID MainManager::  Release             ()
 {
     ReleaseDC(g_hWnd, m_hdc);
     SafeDelete<Object*>(m_pPlayer);
 }
 
-void MainManager::  DrawSin             ()
+VOID MainManager::  DrawSin             ()
 {
     MoveToEx        (m_hdc, -2000, 0, nullptr);
     LineTo          (m_hdc, 2000, 0);

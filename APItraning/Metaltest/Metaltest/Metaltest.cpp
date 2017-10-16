@@ -69,7 +69,7 @@ int     APIENTRY    wWinMain        (   _In_        HINSTANCE hInstance,
 
         dwCurTime = GetTickCount();
         
-        if (dwOldTime + 64 < dwCurTime)
+        if (dwOldTime + 60 < dwCurTime)
         {
             dwOldTime = dwCurTime;
 
@@ -81,6 +81,7 @@ int     APIENTRY    wWinMain        (   _In_        HINSTANCE hInstance,
         }
         if (dwOldFPS + 1000 < dwCurTime)
         {
+            dwOldFPS = dwCurTime;
             swprintf_s(szFPS, L"FPS: %d", iFPS);
             SetWindowText(g_hWnd, szFPS);
             iFPS = 0;

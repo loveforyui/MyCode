@@ -43,6 +43,9 @@
     <Filter Include="02.Obj\00.player\00.state\standardleg">
       <UniqueIdentifier>{5cf38964-5180-4829-8428-fdb8f196ad8e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="01.Manager\00.KeyManager">
+      <UniqueIdentifier>{3aa83fd4-9980-4d43-9744-48dbe61f28ba}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -140,6 +143,15 @@
     </ClInclude>
     <ClInclude Include="StdStJmpLeg.h">
       <Filter>02.Obj\00.player\00.state\standardleg</Filter>
+    </ClInclude>
+    <ClInclude Include="enum.h">
+      <Filter>99.header</Filter>
+    </ClInclude>
+    <ClInclude Include="AbsFactory.h">
+      <Filter>01.Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="KeyManager.h">
+      <Filter>01.Manager\00.KeyManager</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

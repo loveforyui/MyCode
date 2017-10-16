@@ -20,15 +20,16 @@ public:
 
 private:
     // 총구 각도
-    INT             m_iRadian;
+    FLOAT           m_fRadian;
     // 주인공 이름
     SHORT           m_iName;
     // 디버그 모드
     BOOL            isDEBUG;
-    
+    // 이미지 상태
     StateManager*   m_hState_leg;
     StateManager*   m_hState_body;
-
+    // 선충돌
     vector<INT>*    m_pLine;
+    //
 };
 

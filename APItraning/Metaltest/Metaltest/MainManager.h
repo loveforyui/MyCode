@@ -15,14 +15,14 @@ public:
 #pragma endregion
 #pragma region system
 public:
-    void Initialize();
-    void Update();
-    void Render();
-    void Release();
+    VOID Initialize();
+    VOID Update();
+    VOID Render();
+    VOID Release();
 #pragma endregion
 
 #pragma region Nomal Func
-    void DrawSin();
+    VOID DrawSin();
     BOOL Collision(Object*, Object*);
     BOOL CollisionO(Object*, Object*);
 #pragma endregion
@@ -53,6 +53,7 @@ private:
     Gravity m_gravity;
 
     // objects
+    //OBJLIST m_
     Object* m_pPlayer;
     Object* m_pStage;
 
@@ -60,9 +61,7 @@ private:
     double f;
     int y;
 #pragma endregion
-
 };
-
 #endif // !__mainmanager_h__
 
 

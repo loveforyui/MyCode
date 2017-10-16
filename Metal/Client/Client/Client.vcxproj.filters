@@ -1,0 +1,145 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="리소스 파일">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="99.default">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="98.headers">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="00.Main">
+      <UniqueIdentifier>{14c5f81c-e0cb-4ea3-9d37-b82267e063f9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.OBJ">
+      <UniqueIdentifier>{96f111ae-ddff-42bc-82ab-12d84ae34ab2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="97.Manager">
+      <UniqueIdentifier>{d7a1effa-a48d-4f30-835a-2009a0460dff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="97.Manager\00.AbstractManager">
+      <UniqueIdentifier>{2dcfdf6c-ff87-4dfa-8acb-ef57b87610a1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="98.headers\00.UserHeader">
+      <UniqueIdentifier>{7828ab19-dd19-4a90-8f21-a5f925c01eb5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="97.Manager\01.KeyManager">
+      <UniqueIdentifier>{978b975f-10a0-46d9-9e71-a772a4fd52b0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.OBJ\01.Player">
+      <UniqueIdentifier>{fadd65bb-047a-4945-9495-f0e2f43a0db7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.OBJ\00.BackGround">
+      <UniqueIdentifier>{4cc768bf-2f60-44c8-94bb-c4fa79e200e1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="97.Manager\03.SoundManager">
+      <UniqueIdentifier>{276bea95-1912-4358-b0de-e0a9724cc5fe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="97.Manager\02.ImageManager">
+      <UniqueIdentifier>{274900ae-1d19-4a6f-ba56-10563942310d}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h">
+      <Filter>98.headers</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>98.headers</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>98.headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Client.h">
+      <Filter>98.headers</Filter>
+    </ClInclude>
+    <ClInclude Include="MainGame.h">
+      <Filter>00.Main</Filter>
+    </ClInclude>
+    <ClInclude Include="Obj.h">
+      <Filter>01.OBJ</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>01.OBJ\01.Player</Filter>
+    </ClInclude>
+    <ClInclude Include="AbstractManager.h">
+      <Filter>97.Manager\00.AbstractManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Define.h">
+      <Filter>98.headers\00.UserHeader</Filter>
+    </ClInclude>
+    <ClInclude Include="Extern.h">
+      <Filter>98.headers\00.UserHeader</Filter>
+    </ClInclude>
+    <ClInclude Include="Includes.h">
+      <Filter>98.headers\00.UserHeader</Filter>
+    </ClInclude>
+    <ClInclude Include="Structure.h">
+      <Filter>98.headers\00.UserHeader</Filter>
+    </ClInclude>
+    <ClInclude Include="Managers.h">
+      <Filter>98.headers\00.UserHeader</Filter>
+    </ClInclude>
+    <ClInclude Include="KeyManager.h">
+      <Filter>97.Manager\01.KeyManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Enum.h">
+      <Filter>98.headers\00.UserHeader</Filter>
+    </ClInclude>
+    <ClInclude Include="ImageManager.h">
+      <Filter>97.Manager\02.ImageManager</Filter>
+    </ClInclude>
+    <ClInclude Include="BackGround.h">
+      <Filter>01.OBJ\00.BackGround</Filter>
+    </ClInclude>
+    <ClInclude Include="Typedef.h">
+      <Filter>98.headers\00.UserHeader</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>99.default</Filter>
+    </ClCompile>
+    <ClCompile Include="Client.cpp">
+      <Filter>99.default</Filter>
+    </ClCompile>
+    <ClCompile Include="MainGame.cpp">
+      <Filter>00.Main</Filter>
+    </ClCompile>
+    <ClCompile Include="Obj.cpp">
+      <Filter>01.OBJ</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>01.OBJ\01.Player</Filter>
+    </ClCompile>
+    <ClCompile Include="KeyManager.cpp">
+      <Filter>97.Manager\01.KeyManager</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageManager.cpp">
+      <Filter>97.Manager\02.ImageManager</Filter>
+    </ClCompile>
+    <ClCompile Include="BackGround.cpp">
+      <Filter>01.OBJ\00.BackGround</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Client.rc">
+      <Filter>리소스 파일</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="small.ico">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="Client.ico">
+      <Filter>리소스 파일</Filter>
+    </Image>
+  </ItemGroup>
+</Project>
