@@ -19,8 +19,33 @@ void CBackGround::Release()
 
 void CBackGround::Render(HDC hdc)
 {
-    Graphics rend(hdc);
-    IMG_DRAW_B(hdc, L"BackGround", L"background_line.png", 0.f, 0.f);
+    
+    if (isfirst)
+    {
+        Image* img = m_tInfo.GetImage(L"00.png");
+        IMG_DRAW_I(
+            hdc
+            , img
+            , 0.f, 0.f
+            , img->GetWidth(), img->GetHeight());
+
+        isfirst = false;
+        return;
+    }
+    else
+    {
+        for (vector<ObjImg*>::iterator iter = ++m_tInfo.image->begin()
+            ; iter != m_tInfo.image->end()
+            ; ++iter)
+        {
+            IMG_DRAW_I(
+                hdc
+                , (*iter)->image
+                , 0.f, 0.f
+                , (*iter)->image->GetWidth(), (*iter)->image->GetHeight());
+        }
+    }
+     
 }
 
 int CBackGround::Update()

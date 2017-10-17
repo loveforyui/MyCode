@@ -21,4 +21,6 @@ public:
 
 private:
     vector<INT> m_vlineY;
+
+    bool isfirst = true;
 };

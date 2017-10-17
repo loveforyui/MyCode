@@ -136,11 +136,11 @@ VOID MainManager::  Render              ()
     m_pStage->Render(m_hBackBuffer);
 
     // draw white line
-    /*for (vector<FLOAT>::size_type i = 0;
+    for (vector<FLOAT>::size_type i = 0;
         i < dynamic_cast<BackGround*>(m_pStage)->m_vfStage.size(); ++i)
     {
         SetPixel(m_hBackBuffer, i, INT(dynamic_cast<BackGround*>(m_pStage)->m_vfStage[i]), RGB(255,255,255));
-    }*/
+    }
 
     // player
     m_pPlayer->Render(m_hBackBuffer);

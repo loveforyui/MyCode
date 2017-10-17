@@ -27,6 +27,19 @@ typedef struct tagObjImg
 
 typedef struct tagInfo
 {
+    Image* GetImage(const TCHAR* fileName)
+    {
+        for (vector<ObjImg*>::iterator iter = image->begin()
+            ; iter != image->end(); ++iter)
+        {
+            if (!lstrcmp((*iter)->fileName, fileName))
+            {
+                return (*iter)->image;
+            }
+        }
+        return nullptr;
+    }
+
     RECT    rect;
     vector<ObjImg*>* image;
 

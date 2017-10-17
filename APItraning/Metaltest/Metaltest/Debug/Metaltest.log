@@ -1,2 +1,9 @@
-﻿  Metaltest.vcxproj -> C:\Users\YUI\Source\Repos\MyCode\APItraning\Metaltest\Debug\Metaltest.exe
+﻿  MainManager.cpp
+c:\users\yui\source\repos\mycode\apitraning\metaltest\metaltest\mainmanager.cpp(102): warning C4244: '초기화 중': 'FLOAT'에서 'INT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\yui\source\repos\mycode\apitraning\metaltest\metaltest\mainmanager.cpp(103): warning C4244: '초기화 중': 'FLOAT'에서 'INT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\yui\source\repos\mycode\apitraning\metaltest\metaltest\mainmanager.cpp(105): warning C4244: '초기화 중': 'FLOAT'에서 'INT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\yui\source\repos\mycode\apitraning\metaltest\metaltest\mainmanager.cpp(106): warning C4244: '초기화 중': 'FLOAT'에서 'INT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\yui\source\repos\mycode\apitraning\metaltest\metaltest\mainmanager.cpp(115): warning C4244: '+=': 'const FLOAT'에서 'INT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\yui\source\repos\mycode\apitraning\metaltest\metaltest\mainmanager.cpp(148): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  Metaltest.vcxproj -> C:\Users\YUI\Source\Repos\MyCode\APItraning\Metaltest\Debug\Metaltest.exe
   Metaltest.vcxproj -> C:\Users\YUI\Source\Repos\MyCode\APItraning\Metaltest\Debug\Metaltest.pdb (Partial PDB)

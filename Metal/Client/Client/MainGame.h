@@ -41,8 +41,5 @@ private:
     // GameState
     eGameState              m_GameState;
     UINT                    m_bSelect_hud;
-
-    // OBJLIST
-    list<CObj*>             m_objLst[OBJ_END];
 };
 

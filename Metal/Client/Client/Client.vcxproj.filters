@@ -22,9 +22,6 @@
     <Filter Include="97.Manager">
       <UniqueIdentifier>{d7a1effa-a48d-4f30-835a-2009a0460dff}</UniqueIdentifier>
     </Filter>
-    <Filter Include="97.Manager\00.AbstractManager">
-      <UniqueIdentifier>{2dcfdf6c-ff87-4dfa-8acb-ef57b87610a1}</UniqueIdentifier>
-    </Filter>
     <Filter Include="98.headers\00.UserHeader">
       <UniqueIdentifier>{7828ab19-dd19-4a90-8f21-a5f925c01eb5}</UniqueIdentifier>
     </Filter>
@@ -42,6 +39,15 @@
     </Filter>
     <Filter Include="97.Manager\02.ImageManager">
       <UniqueIdentifier>{274900ae-1d19-4a6f-ba56-10563942310d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="97.Manager\05.StateManager">
+      <UniqueIdentifier>{04ce6f07-10bf-420e-814f-a2f4e24b45c8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="97.Manager\04.MediatorPattern">
+      <UniqueIdentifier>{7fb8b4f3-365c-4a38-ba8f-083156fdeb80}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="97.Manager\00.AbstractPattern">
+      <UniqueIdentifier>{2dcfdf6c-ff87-4dfa-8acb-ef57b87610a1}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -70,7 +76,7 @@
       <Filter>01.OBJ\01.Player</Filter>
     </ClInclude>
     <ClInclude Include="AbstractManager.h">
-      <Filter>97.Manager\00.AbstractManager</Filter>
+      <Filter>97.Manager\00.AbstractPattern</Filter>
     </ClInclude>
     <ClInclude Include="Define.h">
       <Filter>98.headers\00.UserHeader</Filter>
@@ -102,6 +108,9 @@
     <ClInclude Include="Typedef.h">
       <Filter>98.headers\00.UserHeader</Filter>
     </ClInclude>
+    <ClInclude Include="ObjManager.h">
+      <Filter>97.Manager\04.MediatorPattern</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -127,6 +136,9 @@
     </ClCompile>
     <ClCompile Include="BackGround.cpp">
       <Filter>01.OBJ\00.BackGround</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjManager.cpp">
+      <Filter>97.Manager\04.MediatorPattern</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

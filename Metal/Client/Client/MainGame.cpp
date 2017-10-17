@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "MainGame.h"
 #include "BackGround.h"
+#include "Player.h"
 
 #define PATH_RC "../resource/"
 
@@ -51,7 +52,7 @@ void CMainGame::Render()
     case GS_START:
     {
         // BackGround Setting
-        list<CObj*>::iterator iter = m_objLst[OBJ_BACKGROUD].begin();
+        OBJITER iter = OBJ_MGR_GETLIST(OBJ_BACKGROUD).begin();
 
         (*iter)->Render(m_hdc);
 
@@ -61,10 +62,14 @@ void CMainGame::Render()
             for (int y = 0; y < (*iter)->GetImgH(); ++y)
             {
                 rgb = GetPixel(m_hdc, INT(x), INT(y));
+
+                if (255 == rgb)
+                {
+                    dynamic_cast<CBackGround*>(*iter)->AddFloorY(y);
+                }
             }
         }
 
-        // 林牢傍积己
         m_GameState = eGameState::GS_SELECT;
     }
         break;
@@ -81,11 +86,21 @@ void CMainGame::Render()
         break;
     case GS_RUN:
     {
-        Image* bg_Layer_01 = IMG_GET(L"BackGound", L"stage01-01.png");
+        for (INT id = 0; id < OBJID::OBJ_END; ++id)
+        {
+            OBJITER iter_begin  = OBJ_MGR_GETLIST(id).begin();
+            OBJITER iter_end    = OBJ_MGR_GETLIST(id).end();
 
-        IMG_DRAW_I(m_hdc, bg_Layer_01, 0.f, 0.f, bg_Layer_01->GetWidth(), bg_Layer_01->GetHeight());
+            for (; iter_begin != iter_end; ++iter_begin)
+            {
+                (*iter_begin)->Render(m_hdc);
+            }
+        }
 
-        StretchBlt(hdc, 0, 0, 3800*(FLOAT(WINCY)/bg_Layer_01->GetHeight()), WINCY*(FLOAT(WINCY)/bg_Layer_01->GetHeight()), m_hdc, 0, 0, 3800, WINCY, SRCCOPY);
+        StretchBlt(hdc, 0, 0
+            , 3800*1.92f
+            , WINCY*1.92f
+            , m_hdc, 0, 0, 3800, WINCY, SRCCOPY);
     }
         break;
     case GS_END:
@@ -93,6 +108,7 @@ void CMainGame::Render()
     default:
         break;
     }
+    //StretchBlt(hdc, 0, 0, 3800, WINCY, m_hdc, 0, 0, 3800, WINCY, SRCCOPY);
 
     DeleteObject(SelectObject(m_hdc, m_hOldmap));
     DeleteDC(m_hdc);
@@ -113,13 +129,21 @@ void CMainGame::Update()
 
         // BackGround Img Loading
         sprintf_s(fullPath, "%s%s", PATH_RC, "background/");
-        IMG_LOAD(L"BackGound", fullPath);
+        IMG_LOAD(L"BackGround", fullPath);
+
+        // Player Img Loading
+        sprintf_s(fullPath, "%s%s", PATH_RC, "fio/st/body/");
+        IMG_LOAD(L"fio/stand_r", fullPath);
+        sprintf_s(fullPath, "%s%s", PATH_RC, "fio/st/body_left/");
+        IMG_LOAD(L"fio/stand_l", fullPath);
+        sprintf_s(fullPath, "%s%s", PATH_RC, "fio/st/leg/");
+        IMG_LOAD(L"fio/stand_leg", fullPath);
 
         // BackGround Setting
-        if (m_objLst[OBJ_BACKGROUD].empty())
+        if (OBJ_MGR_GETLIST(OBJ_BACKGROUD).empty())
         {
-            vector<ObjImg*>* objimg = IMG_GET_V(L"BackGound");
-            m_objLst[OBJ_BACKGROUD].push_back(CAbstractFactory<CBackGround>::CreateObj(objimg));
+            vector<ObjImg*>* objimg = IMG_GET_V(L"BackGround");
+           OBJ_MGR_GETLIST(OBJ_BACKGROUD).push_back(CAbstractFactory<CBackGround>::CreateObj(objimg));
         }
     }
         break;
@@ -178,6 +202,7 @@ void CMainGame::CharacterSelect_R(HDC hdc)
                         m_bSelect_hud = m_bSelect_hud ^ 0x00200;
                         m_bSelect_hud = m_bSelect_hud ^ 0x00100;
                         m_bSelect_hud = m_bSelect_hud ^ 0x00080;
+                        // Set Next State
                         m_GameState = eGameState::GS_RUN;
                     }
                     continue;
@@ -302,6 +327,13 @@ void CMainGame::CharacterSelect_U()
         if (KEY_UP(VK_CONTROL))
         {
             m_bSelect_hud = 0xF0FB1;
+
+            // player 积己
+            if (OBJ_MGR_GETLIST(OBJ_PLAYER).empty())
+            {
+                vector<ObjImg*>* objimg = IMG_GET_V(L"fio/stand_r");
+                OBJ_MGR_GETLIST(OBJ_PLAYER).push_back(CAbstractFactory<CPlayer>::CreateObj());
+            }
         }
     }
 }

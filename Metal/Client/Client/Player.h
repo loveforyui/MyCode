@@ -15,5 +15,12 @@ public:
     virtual void Render(HDC hdc) override;
     virtual int  Update();
 
+public:
+    void InsertImage(const TCHAR* key, vector<ObjImg*>* vImg);
+
 private:
+    void KeyInput();
+
+private:
+    map<const TCHAR*, vector<ObjImg*>*> m_image;
 };

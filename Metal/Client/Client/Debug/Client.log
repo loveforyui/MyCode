@@ -1,45 +1,29 @@
-﻿  stdafx.cpp
-c:\users\yui\source\repos\mycode\metal\client\client\stdafx.cpp : warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
-c:\users\yui\source\repos\mycode\metal\client\client\stdafx.h : warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
-c:\users\yui\source\repos\mycode\metal\client\client\targetver.h : warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
-  Player.cpp
-  Obj.cpp
-c:\users\yui\source\repos\mycode\metal\client\client\obj.cpp(40): warning C4244: 'return': 'UINT'에서 'FLOAT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\yui\source\repos\mycode\metal\client\client\obj.cpp(50): warning C4244: 'return': 'UINT'에서 'FLOAT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+﻿  Player.cpp
   MainGame.cpp
-c:\users\yui\source\repos\mycode\metal\client\client\maingame.cpp(85): warning C4244: '인수': 'UINT'에서 'FLOAT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\yui\source\repos\mycode\metal\client\client\maingame.cpp(87): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\yui\source\repos\mycode\metal\client\client\maingame.cpp(154): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
-c:\users\yui\source\repos\mycode\metal\client\client\maingame.cpp(172): warning C4244: '인수': 'UINT'에서 'FLOAT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\yui\source\repos\mycode\metal\client\client\maingame.cpp(187): warning C4244: '인수': 'UINT'에서 'FLOAT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\yui\source\repos\mycode\metal\client\client\maingame.cpp(194): warning C4244: '인수': 'UINT'에서 'FLOAT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\yui\source\repos\mycode\metal\client\client\maingame.cpp(201): warning C4244: '인수': 'UINT'에서 'FLOAT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\yui\source\repos\mycode\metal\client\client\maingame.cpp(212): warning C4244: '인수': 'UINT'에서 'FLOAT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\yui\source\repos\mycode\metal\client\client\maingame.cpp(225): warning C4244: '인수': 'UINT'에서 'FLOAT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\yui\source\repos\mycode\metal\client\client\maingame.cpp(232): warning C4244: '인수': 'UINT'에서 'FLOAT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\yui\source\repos\mycode\metal\client\client\maingame.cpp(239): warning C4244: '인수': 'UINT'에서 'FLOAT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\yui\source\repos\mycode\metal\client\client\maingame.cpp(245): warning C4244: '인수': 'UINT'에서 'FLOAT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\yui\source\repos\mycode\metal\client\client\maingame.cpp(251): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\yui\source\repos\mycode\metal\client\client\maingame.cpp(103): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\yui\source\repos\mycode\metal\client\client\maingame.cpp(179): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+c:\users\yui\source\repos\mycode\metal\client\client\maingame.cpp(197): warning C4244: '인수': 'UINT'에서 'FLOAT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\yui\source\repos\mycode\metal\client\client\maingame.cpp(213): warning C4244: '인수': 'UINT'에서 'FLOAT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\yui\source\repos\mycode\metal\client\client\maingame.cpp(220): warning C4244: '인수': 'UINT'에서 'FLOAT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\yui\source\repos\mycode\metal\client\client\maingame.cpp(227): warning C4244: '인수': 'UINT'에서 'FLOAT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\yui\source\repos\mycode\metal\client\client\maingame.cpp(238): warning C4244: '인수': 'UINT'에서 'FLOAT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\yui\source\repos\mycode\metal\client\client\maingame.cpp(251): warning C4244: '인수': 'UINT'에서 'FLOAT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\yui\source\repos\mycode\metal\client\client\maingame.cpp(258): warning C4244: '인수': 'UINT'에서 'FLOAT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\yui\source\repos\mycode\metal\client\client\maingame.cpp(265): warning C4244: '인수': 'UINT'에서 'FLOAT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\yui\source\repos\mycode\metal\client\client\maingame.cpp(271): warning C4244: '인수': 'UINT'에서 'FLOAT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\yui\source\repos\mycode\metal\client\client\maingame.cpp(277): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
 c:\users\yui\source\repos\mycode\metal\client\client\abstractmanager.h(41): warning C4244: '인수': 'UINT'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
   c:\users\yui\source\repos\mycode\metal\client\client\abstractmanager.h(37): note: 클래스 템플릿 멤버 함수 'CObj *CAbstractFactory<CBackGround>::CreateObj(std::vector<ObjImg *,std::allocator<_Ty>> *)'을(를) 컴파일하고 있습니다.
           with
           [
               _Ty=ObjImg *
           ]
-  c:\users\yui\source\repos\mycode\metal\client\client\maingame.cpp(121): note: 컴파일 중인 함수 템플릿 인스턴스화 'CObj *CAbstractFactory<CBackGround>::CreateObj(std::vector<ObjImg *,std::allocator<_Ty>> *)'에 대한 참조를 확인하십시오.
+  c:\users\yui\source\repos\mycode\metal\client\client\maingame.cpp(146): note: 컴파일 중인 함수 템플릿 인스턴스화 'CObj *CAbstractFactory<CBackGround>::CreateObj(std::vector<ObjImg *,std::allocator<_Ty>> *)'에 대한 참조를 확인하십시오.
           with
           [
               _Ty=ObjImg *
           ]
-  c:\users\yui\source\repos\mycode\metal\client\client\maingame.cpp(121): note: 컴파일 중인 클래스 템플릿 인스턴스화 'CAbstractFactory<CBackGround>'에 대한 참조를 확인하세요.
-  KeyManager.cpp
-  ImageManager.cpp
-c:\users\yui\source\repos\mycode\metal\client\client\imagemanager.cpp(127): warning C4244: '인수': 'UINT'에서 'Gdiplus::REAL'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\yui\source\repos\mycode\metal\client\client\imagemanager.cpp(160): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
-  Client.cpp
-c:\users\yui\source\repos\mycode\metal\client\client\client.cpp : warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
-c:\users\yui\source\repos\mycode\metal\client\client\resource.h : warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
-  BackGround.cpp
+  c:\users\yui\source\repos\mycode\metal\client\client\maingame.cpp(146): note: 컴파일 중인 클래스 템플릿 인스턴스화 'CAbstractFactory<CBackGround>'에 대한 참조를 확인하세요.
   코드를 생성하고 있습니다...
   Client.vcxproj -> C:\Users\YUI\Source\Repos\MyCode\Metal\Client\Debug\Client.exe
   Client.vcxproj -> C:\Users\YUI\Source\Repos\MyCode\Metal\Client\Debug\Client.pdb (Partial PDB)
