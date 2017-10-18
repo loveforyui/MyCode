@@ -22,6 +22,7 @@ public:
 public:
     FLOAT           GetImgW             ();
     FLOAT           GetImgH             ();
+    const INFO&     GetInfo             () { return m_tInfo; }
 
 protected:
     INFO m_tInfo;

@@ -181,9 +181,9 @@ int player::    Update          ()
         m_iState_body   = PS_BODY_ST_JMP;
         m_iState_leg    = PS_LEG_ST_JMP;
         m_iCurrState    = m_iPrevState | OBJ_A_JMP;
-        if (m_objInfo.vAccel != m_GRAVITY * 5)
+        if (m_objInfo.vAccel != m_GRAVITY * 3.2f)
         {
-            m_objInfo.vAccel = m_GRAVITY * 5;
+            m_objInfo.vAccel = m_GRAVITY * 3.2f;
             m_objInfo.vSpeed = m_objInfo.vAccel;
         }
     }
@@ -199,11 +199,24 @@ int player::    Update          ()
     {
     case OBJ_A_JMP | OBJ_A_MOVE:
     case OBJ_A_JMP:
-        m_objInfo.vSpeed -= m_GRAVITY*0.9f;
-        if (m_objInfo.vSpeed < 0)
-            m_objInfo.vSpeed = 0;
-        
-        m_objInfo.fY -= m_objInfo.vSpeed;
+    {
+        FLOAT y = m_objInfo.fY;
+        m_objInfo.vSpeed -= 0.5f*m_GRAVITY;
+        /*if (m_objInfo.vSpeed < 0)
+            m_objInfo.vSpeed = 0;*/
+
+        y -= m_objInfo.vSpeed;
+
+        if ((*m_pLine)[INT(x)] <= y)
+        {
+            m_objInfo.fY = (*m_pLine)[INT(x)] - m_objInfo.fCY/2.f;
+            Object::SetStanding();
+        }
+        else
+        {
+            m_objInfo.fY -= m_objInfo.vSpeed;
+        }
+    }
         break;
     }
     // 방향에 따른 이동처리
@@ -215,9 +228,10 @@ int player::    Update          ()
         {
         case OBJ_A_JMP | OBJ_A_MOVE:
         case OBJ_A_JMP:
-            if ((*m_pLine)[INT(x)] < y - 2)
+            y -= m_objInfo.vSpeed;
+            if ((*m_pLine)[INT(x)] <= y - 2)
             {
-                m_objInfo.fY = m_objInfo.fY - (m_objInfo.rect.bottom - (*m_pLine)[INT(x)]);
+                m_objInfo.fY = (*m_pLine)[INT(x)] - m_objInfo.fCY / 2.f;//m_objInfo.fY - (m_objInfo.rect.bottom - (*m_pLine)[INT(x)]);
                 Object::SetStanding();
             }
             break;
@@ -241,9 +255,10 @@ int player::    Update          ()
         {
         case OBJ_A_JMP | OBJ_A_MOVE:
         case OBJ_A_JMP:
-            if ((*m_pLine)[INT(x)] < y - 2)
+            y -= m_objInfo.vSpeed;
+            if ((*m_pLine)[INT(x)] <= y - 2)
             {
-                m_objInfo.fY = m_objInfo.fY - (m_objInfo.rect.bottom - (*m_pLine)[INT(x)]);
+                m_objInfo.fY = (*m_pLine)[INT(x)] - m_objInfo.fCY / 2.f;//m_objInfo.fY - (m_objInfo.rect.bottom - (*m_pLine)[INT(x)]);
                 Object::SetStanding();
             }
             break;

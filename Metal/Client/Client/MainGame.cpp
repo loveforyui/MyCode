@@ -44,7 +44,7 @@ void CMainGame::Render()
 {
     HDC hdc = GetDC(g_hWnd);
     m_hdc = CreateCompatibleDC(hdc);
-    m_hBitmap = CreateCompatibleBitmap(hdc, 3800, m_wndRect.bottom);
+    m_hBitmap = CreateCompatibleBitmap(hdc, 3800, WINCY);
     m_hOldmap = (HBITMAP)SelectObject(m_hdc, m_hBitmap);
 
     switch (m_GameState)
@@ -80,8 +80,12 @@ void CMainGame::Render()
         break;
     case GS_SELECT:
     {
-        CharacterSelect_R(hdc);
+        CharacterSelect_R(m_hdc);
         //m_GameState = eGameState::GS_RUN;
+        StretchBlt(hdc, 0, 0
+            , WINCX
+            , WINCY
+            , m_hdc, 0, 0, WINCX, WINCY, SRCCOPY);
     }
         break;
     case GS_RUN:
@@ -97,10 +101,13 @@ void CMainGame::Render()
             }
         }
 
-        StretchBlt(hdc, 0, 0
-            , 3800*1.92f
-            , WINCY*1.92f
-            , m_hdc, 0, 0, 3800, WINCY, SRCCOPY);
+        StretchBlt(hdc
+            , 0, 0
+            , 3800 , WINCY
+            , m_hdc
+            , 0, 0
+            , 3800, WINCY
+            , SRCCOPY);
     }
         break;
     case GS_END:
@@ -331,8 +338,11 @@ void CMainGame::CharacterSelect_U()
             // player »ý¼º
             if (OBJ_MGR_GETLIST(OBJ_PLAYER).empty())
             {
-                vector<ObjImg*>* objimg = IMG_GET_V(L"fio/stand_r");
-                OBJ_MGR_GETLIST(OBJ_PLAYER).push_back(CAbstractFactory<CPlayer>::CreateObj());
+                CObj* pObj = CAbstractFactory<CPlayer>::CreateObj();
+
+                pObj->SetPos(100.f, 100.f);
+
+                OBJ_MGR_GETLIST(OBJ_PLAYER).push_back(pObj);
             }
         }
     }

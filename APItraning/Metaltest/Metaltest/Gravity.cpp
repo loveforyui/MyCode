@@ -32,22 +32,23 @@ void Gravity::Update()
             y = (*iter)->GetInfo().fY;
             bot = (*iter)->GetInfo().rect.bottom;
 
-            bot += m_GRAVITY;
-            y   += m_GRAVITY;
+            bot += (*iter)->GetInfo().vSpeed + y;
+            y   += (*iter)->GetInfo().vSpeed + 0.5f*m_GRAVITY;
 
-            if ((*m_pLine)[INT(x)] <= bot)
-            {
-                if (bot <= ((*m_pLine)[INT(x)] + m_GRAVITY))
-                {
-                    FLOAT tempY = (*iter)->GetInfo().fY + (*m_pLine)[INT(x)] - (*iter)->GetInfo().rect.bottom;
-                    (*iter)->SetPos(x, tempY);
-                    (*iter)->SetStanding();
-                }
-            }
-            else
-            {
-                (*iter)->SetPos(x, y);
-            }
+            //if ((*m_pLine)[INT(x)] <= bot)
+            //{
+            //    if (bot <= ((*m_pLine)[INT(x)] + m_GRAVITY))
+            //    {
+            //        FLOAT tempY = (*iter)->GetInfo().fY + (*m_pLine)[INT(x)] - (*iter)->GetInfo().rect.bottom;
+            //        (*iter)->SetPos(x, tempY);
+            //        (*iter)->SetStanding();
+            //    }
+            //}
+            //else
+            //{
+            //    //(*iter)->SetPos(x, y);
+            //    //(*iter)->Set
+            //}
         }
 
         /*FLOAT x, y;

@@ -1,5 +1,6 @@
 #pragma once
 #include "Obj.h"
+#include "StateContext.h"
 
 class CPlayer
     : public CObj
@@ -17,10 +18,13 @@ public:
 
 public:
     void InsertImage(const TCHAR* key, vector<ObjImg*>* vImg);
+    void SetCXY();
 
 private:
     void KeyInput();
 
 private:
     map<const TCHAR*, vector<ObjImg*>*> m_image;
+
+    CStateContext m_state;
 };

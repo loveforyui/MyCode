@@ -49,6 +49,12 @@
     <Filter Include="97.Manager\00.AbstractPattern">
       <UniqueIdentifier>{2dcfdf6c-ff87-4dfa-8acb-ef57b87610a1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="97.Manager\05.StateManager\00.StandState">
+      <UniqueIdentifier>{d9178bf1-2f96-487d-a7f0-52f903fe260e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="97.Manager\05.StateManager\01.AbstractState">
+      <UniqueIdentifier>{6620f116-3528-46dc-b684-c3b900353de3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -111,6 +117,24 @@
     <ClInclude Include="ObjManager.h">
       <Filter>97.Manager\04.MediatorPattern</Filter>
     </ClInclude>
+    <ClInclude Include="StateManager.h">
+      <Filter>97.Manager\05.StateManager</Filter>
+    </ClInclude>
+    <ClInclude Include="StateContext.h">
+      <Filter>97.Manager\05.StateManager</Filter>
+    </ClInclude>
+    <ClInclude Include="States.h">
+      <Filter>98.headers\00.UserHeader</Filter>
+    </ClInclude>
+    <ClInclude Include="StateStandBody.h">
+      <Filter>97.Manager\05.StateManager\00.StandState</Filter>
+    </ClInclude>
+    <ClInclude Include="StdLeg.h">
+      <Filter>97.Manager\05.StateManager\00.StandState</Filter>
+    </ClInclude>
+    <ClInclude Include="AbstStateManager.h">
+      <Filter>97.Manager\05.StateManager\01.AbstractState</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -139,6 +163,18 @@
     </ClCompile>
     <ClCompile Include="ObjManager.cpp">
       <Filter>97.Manager\04.MediatorPattern</Filter>
+    </ClCompile>
+    <ClCompile Include="StateManager.cpp">
+      <Filter>97.Manager\05.StateManager</Filter>
+    </ClCompile>
+    <ClCompile Include="StateContext.cpp">
+      <Filter>97.Manager\05.StateManager</Filter>
+    </ClCompile>
+    <ClCompile Include="StateStandBody.cpp">
+      <Filter>97.Manager\05.StateManager\00.StandState</Filter>
+    </ClCompile>
+    <ClCompile Include="StdLeg.cpp">
+      <Filter>97.Manager\05.StateManager\00.StandState</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
