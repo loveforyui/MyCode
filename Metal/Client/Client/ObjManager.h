@@ -25,8 +25,18 @@ public:
     }
     
 public:
+    int Update();
+
+public:
     OBJLIST& GetObjlst(OBJID eId) { return m_objLst[eId]; }
     OBJLIST& GetObjlst(INT eIn) { return m_objLst[eIn]; }
+    CObj* FindObject(OBJID eId)
+    {
+        if (m_objLst[eId].empty())
+            return nullptr;
+
+        return m_objLst[eId].back();
+    }
 
 public:
     void AddObj(CObj* pObj, OBJID eId);

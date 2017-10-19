@@ -55,6 +55,21 @@
     <Filter Include="97.Manager\05.StateManager\01.AbstractState">
       <UniqueIdentifier>{6620f116-3528-46dc-b684-c3b900353de3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="97.Manager\06.CollisionManager">
+      <UniqueIdentifier>{ec7a8c9b-3e18-4779-b972-6cab0a568a7a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="97.Manager\07.MathManager">
+      <UniqueIdentifier>{caeadc87-adc9-4140-8a86-1ddfaf06af4f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="97.Manager\08.LineManager">
+      <UniqueIdentifier>{1a678261-df38-460b-bd6c-2a0f48d883b7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="97.Manager\08.LineManager\00.Line">
+      <UniqueIdentifier>{ca407299-7a51-4c9c-9295-2627f986c728}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="97.Manager\09.ScrollManager">
+      <UniqueIdentifier>{4fe9b1d3-7640-4448-9625-b38e7e61a1fd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -135,6 +150,24 @@
     <ClInclude Include="AbstStateManager.h">
       <Filter>97.Manager\05.StateManager\01.AbstractState</Filter>
     </ClInclude>
+    <ClInclude Include="CollisionManager.h">
+      <Filter>97.Manager\06.CollisionManager</Filter>
+    </ClInclude>
+    <ClInclude Include="MathMgr.h">
+      <Filter>97.Manager\07.MathManager</Filter>
+    </ClInclude>
+    <ClInclude Include="LineMgr.h">
+      <Filter>97.Manager\08.LineManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Line.h">
+      <Filter>97.Manager\08.LineManager\00.Line</Filter>
+    </ClInclude>
+    <ClInclude Include="functionary.h">
+      <Filter>98.headers\00.UserHeader</Filter>
+    </ClInclude>
+    <ClInclude Include="ScrollMgr.h">
+      <Filter>97.Manager\09.ScrollManager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -175,6 +208,21 @@
     </ClCompile>
     <ClCompile Include="StdLeg.cpp">
       <Filter>97.Manager\05.StateManager\00.StandState</Filter>
+    </ClCompile>
+    <ClCompile Include="CollisionManager.cpp">
+      <Filter>97.Manager\06.CollisionManager</Filter>
+    </ClCompile>
+    <ClCompile Include="MathMgr.cpp">
+      <Filter>97.Manager\07.MathManager</Filter>
+    </ClCompile>
+    <ClCompile Include="LineMgr.cpp">
+      <Filter>97.Manager\08.LineManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Line.cpp">
+      <Filter>97.Manager\08.LineManager\00.Line</Filter>
+    </ClCompile>
+    <ClCompile Include="ScrollMgr.cpp">
+      <Filter>97.Manager\09.ScrollManager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

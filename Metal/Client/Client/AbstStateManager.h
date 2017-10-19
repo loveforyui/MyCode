@@ -24,4 +24,4 @@ public:
     }
 };
 
-#define MAKE_STATE(Eid, vImg) CAbstractState<CStateStandBody>::CreateState(Eid, vImg)
+#define MAKE_STATE(Eid, StateClass, vImg) CAbstractState<StateClass>::CreateState(Eid, vImg)

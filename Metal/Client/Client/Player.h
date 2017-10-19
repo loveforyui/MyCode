@@ -22,9 +22,12 @@ public:
 
 private:
     void KeyInput();
+    void IsJump();
+    void IsCollisionLine();
 
 private:
     map<const TCHAR*, vector<ObjImg*>*> m_image;
 
-    CStateContext m_state;
+    CStateContext m_scBody;
+    CStateContext m_scLeg;
 };

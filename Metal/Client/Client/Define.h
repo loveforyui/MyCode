@@ -3,11 +3,32 @@
 #define WINCX 800
 #define WINCY 400
 
-// Obj Action State
+// Math
+#define PI 3.1415f
+#define GRAVITY 9.8f
 
-#define OBJ_A_IDLE 0x0000
-#define OBJ_A_STND 0x0001
-#define OBJ_A_MOVE 0x0002
-#define OBJ_A_JUMP 0x0004
-#define OBJ_A_ATTK 0x0008
-#define OBJ_A_SITD 0x0010
+#define RadianToDegree(X) (X * 180.f / PI)
+#define DegreeToRadian(X) (X * PI / 180.f)
+
+//Singletone
+#define DECLARE_SINGLETON(ClassName)		\
+public:										\
+	static ClassName* GetInstance()			\
+	{										\
+		if (nullptr == m_pInstance)			\
+			m_pInstance = new ClassName;	\
+		return m_pInstance;					\
+	}										\
+	void DestroyInstance()					\
+	{										\
+		if (m_pInstance)					\
+		{									\
+			delete m_pInstance;				\
+			m_pInstance = nullptr;			\
+		}									\
+	}										\
+private:									\
+	static ClassName* m_pInstance;
+
+#define IMPLEMENT_SINGLETON(ClassName)		\
+ClassName* ClassName::m_pInstance = nullptr;

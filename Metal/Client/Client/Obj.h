@@ -18,11 +18,13 @@ public:
     void            SetRect             (RECT rect) { m_tInfo.rect = rect; }
     void            SetImage            (ObjImg* img) { m_tInfo.image->push_back(img); }
     void            SetImage            (vector<ObjImg*>* img) { m_tInfo.image = img; }
+    void            SetDead             () { m_tInfo.isDead = true; }
 
 public:
     FLOAT           GetImgW             ();
     FLOAT           GetImgH             ();
     const INFO&     GetInfo             () { return m_tInfo; }
+    bool            isDead              () { return m_tInfo.isDead; }
 
 protected:
     INFO m_tInfo;

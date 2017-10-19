@@ -20,6 +20,7 @@
 #include <vector>
 #include <list>
 #include <io.h>
+#include <algorithm>
 
 //gdi+
 #include <Ole2.h>

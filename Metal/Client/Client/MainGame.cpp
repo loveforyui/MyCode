@@ -103,7 +103,8 @@ void CMainGame::Render()
 
         StretchBlt(hdc
             , 0, 0
-            , 3800 , WINCY
+            , 3800//*1.92f 
+            , WINCY//*1.92f
             , m_hdc
             , 0, 0
             , 3800, WINCY
@@ -165,6 +166,7 @@ void CMainGame::Update()
     }
         break;
     case GS_RUN:
+        CObjManager::GetInst()->Update();
         break;
     case GS_END:
         break;
