@@ -1,12 +1,12 @@
 #pragma once
 #include "StateManager.h"
 
-class CStateStandBody :
+class CStBodyR :
     public CStateManager
 {
 public:
-    CStateStandBody();
-    virtual ~CStateStandBody();
+    CStBodyR();
+    virtual ~CStBodyR();
 
 public:
     // CStateManager을(를) 통해 상속됨

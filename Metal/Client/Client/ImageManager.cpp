@@ -101,7 +101,7 @@ void CImageMgr::DrawImg(HDC hDC, Image* img, FLOAT fx, FLOAT fy, FLOAT fCX, FLOA
 {
     Graphics graphics(hDC);
 
-    if(img)
+    if (img)
         graphics.DrawImage(
                  img
                  , fx

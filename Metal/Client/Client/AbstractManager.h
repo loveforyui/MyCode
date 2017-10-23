@@ -38,8 +38,8 @@ public:
         CObj* pObj = new T;
         pObj->Init();
         pObj->SetPos(0.f, 0.f);
-        pObj->SetWH((*(img->begin()))->image->GetWidth(), (*(img->begin()))->image->GetHeight());
         pObj->SetImage(img);
+        pObj->SetWH((*(img->begin()))->image->GetWidth(), (*(img->begin()))->image->GetHeight());        
 
         return pObj;
     }

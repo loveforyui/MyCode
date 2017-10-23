@@ -1,16 +1,16 @@
 #include "stdafx.h"
-#include "StateStandBody.h"
+#include "StBodyR.h"
 #include "Obj.h"
 
-CStateStandBody::CStateStandBody()
+CStBodyR::CStBodyR()
 {
 }
 
-CStateStandBody::~CStateStandBody()
+CStBodyR::~CStBodyR()
 {
 }
 
-void CStateStandBody::handle(HDC hdc)
+void CStBodyR::handle(HDC hdc)
 {
     if (m_vImage)
     {
@@ -70,7 +70,7 @@ void CStateStandBody::handle(HDC hdc)
     }
 }
 
-void CStateStandBody::initialize()
+void CStBodyR::initialize()
 {
 
 }

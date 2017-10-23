@@ -160,22 +160,28 @@
     <ClInclude Include="KeyManager.h" />
     <ClInclude Include="Line.h" />
     <ClInclude Include="LineMgr.h" />
+    <ClInclude Include="Logo.h" />
     <ClInclude Include="MainGame.h" />
     <ClInclude Include="Managers.h" />
     <ClInclude Include="MathMgr.h" />
+    <ClInclude Include="Mouse.h" />
     <ClInclude Include="Obj.h" />
     <ClInclude Include="ObjManager.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="resource.h" />
+    <ClInclude Include="Scene.h" />
+    <ClInclude Include="SceneMgr.h" />
     <ClInclude Include="ScrollMgr.h" />
     <ClInclude Include="StateContext.h" />
     <ClInclude Include="StateManager.h" />
     <ClInclude Include="States.h" />
-    <ClInclude Include="StateStandBody.h" />
+    <ClInclude Include="StBodyR.h" />
+    <ClInclude Include="StBodyL.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="StdLeg.h" />
     <ClInclude Include="Structure.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="Things.h" />
     <ClInclude Include="Typedef.h" />
   </ItemGroup>
   <ItemGroup>
@@ -186,15 +192,20 @@
     <ClCompile Include="KeyManager.cpp" />
     <ClCompile Include="Line.cpp" />
     <ClCompile Include="LineMgr.cpp" />
+    <ClCompile Include="Logo.cpp" />
     <ClCompile Include="MainGame.cpp" />
     <ClCompile Include="MathMgr.cpp" />
+    <ClCompile Include="Mouse.cpp" />
     <ClCompile Include="Obj.cpp" />
     <ClCompile Include="ObjManager.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Scene.cpp" />
+    <ClCompile Include="SceneMgr.cpp" />
     <ClCompile Include="ScrollMgr.cpp" />
     <ClCompile Include="StateContext.cpp" />
     <ClCompile Include="StateManager.cpp" />
-    <ClCompile Include="StateStandBody.cpp" />
+    <ClCompile Include="StBodyR.cpp" />
+    <ClCompile Include="StBodyL.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
@@ -202,6 +213,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="StdLeg.cpp" />
+    <ClCompile Include="Things.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc" />

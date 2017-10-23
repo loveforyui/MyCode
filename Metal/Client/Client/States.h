@@ -1,4 +1,5 @@
 #pragma once
 
-#include "StateStandBody.h"
+#include "StBodyR.h"
+#include "StBodyL.h"
 #include "StdLeg.h"

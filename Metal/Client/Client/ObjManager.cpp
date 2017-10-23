@@ -24,6 +24,21 @@ int CObjManager::Update()
     return 0;
 }
 
+void CObjManager::Render(HDC hdc)
+{
+    for (int i = 0; i < OBJ_END; ++i)
+    {
+        OBJITER iter_begin = m_objLst[i].begin();
+		OBJITER iter_end = m_objLst[i].end();
+
+        if(!m_objLst[i].empty())
+            for (; iter_begin != iter_end; ++iter_begin)
+            {
+                (*iter_begin)->Render(hdc);         
+            }
+	}
+}
+
 void CObjManager::AddObj(CObj * pObj, OBJID eId)
 {
     m_objLst[eId].push_back(pObj);

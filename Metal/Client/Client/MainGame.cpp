@@ -2,6 +2,7 @@
 #include "MainGame.h"
 #include "BackGround.h"
 #include "Player.h"
+#include "Mouse.h"
 
 #define PATH_RC "../resource/"
 
@@ -44,79 +45,66 @@ void CMainGame::Render()
 {
     HDC hdc = GetDC(g_hWnd);
     m_hdc = CreateCompatibleDC(hdc);
-    m_hBitmap = CreateCompatibleBitmap(hdc, 3800, WINCY);
+    m_hBitmap = CreateCompatibleBitmap(hdc, 3823, WINCY);
     m_hOldmap = (HBITMAP)SelectObject(m_hdc, m_hBitmap);
 
-    switch (m_GameState)
-    {
-    case GS_START:
-    {
-        // BackGround Setting
-        OBJITER iter = OBJ_MGR_GETLIST(OBJ_BACKGROUD).begin();
-
-        (*iter)->Render(m_hdc);
-
-        COLORREF rgb;
-        for (int x = 0; x < (*iter)->GetImgW(); ++x)
-        {
-            for (int y = 0; y < (*iter)->GetImgH(); ++y)
-            {
-                rgb = GetPixel(m_hdc, INT(x), INT(y));
-
-                if (255 == rgb)
-                {
-                    dynamic_cast<CBackGround*>(*iter)->AddFloorY(y);
-                }
-            }
-        }
-
-        m_GameState = eGameState::GS_SELECT;
-    }
-        break;
-    case GS_LOAD:
-    {
-        
-    }
-        break;
-    case GS_SELECT:
-    {
-        CharacterSelect_R(m_hdc);
-        //m_GameState = eGameState::GS_RUN;
-        StretchBlt(hdc, 0, 0
-            , WINCX
-            , WINCY
-            , m_hdc, 0, 0, WINCX, WINCY, SRCCOPY);
-    }
-        break;
-    case GS_RUN:
-    {
-        for (INT id = 0; id < OBJID::OBJ_END; ++id)
-        {
-            OBJITER iter_begin  = OBJ_MGR_GETLIST(id).begin();
-            OBJITER iter_end    = OBJ_MGR_GETLIST(id).end();
-
-            for (; iter_begin != iter_end; ++iter_begin)
-            {
-                (*iter_begin)->Render(m_hdc);
-            }
-        }
-
-        StretchBlt(hdc
-            , 0, 0
-            , 3800//*1.92f 
-            , WINCY//*1.92f
-            , m_hdc
-            , 0, 0
-            , 3800, WINCY
-            , SRCCOPY);
-    }
-        break;
-    case GS_END:
-        break;
-    default:
-        break;
-    }
+    //switch (m_GameState)
+    //{
+    //case GS_START:
+    //{
+    //    m_GameState = eGameState::GS_SELECT;
+    //}
+    //    break;
+    //case GS_LOAD:
+    //{
+    //    
+    //}
+    //    break;
+    //case GS_SELECT:
+    //{
+    //    CharacterSelect_R(m_hdc);
+    //    //m_GameState = eGameState::GS_RUN;
+    //    StretchBlt(hdc, 0, 0
+    //        , WINCX
+    //        , WINCY
+    //        , m_hdc, 0, 0, WINCX, WINCY, SRCCOPY);
+    //}
+    //    break;
+    //case GS_RUN:
+    //{
+    //    /*for (INT id = 0; id < OBJID::OBJ_END; ++id)
+    //    {
+    //        OBJITER iter_begin  = OBJ_MGR_GETLIST(id).begin();
+    //        OBJITER iter_end    = OBJ_MGR_GETLIST(id).end();
+    //
+    //        for (; iter_begin != iter_end; ++iter_begin)
+    //        {
+    //            (*iter_begin)->Render(m_hdc);
+    //        }
+    //    }*/
+    //
+    //    CObjManager::GetInst()->Render(m_hdc);
+    //
+    //    float fScrollX = CScrollMgr::GetInstance()->GetScrollX();
+    //
+    //    StretchBlt(hdc
+    //        , fScrollX * 1.92f, 0//* 1.92f , 0
+    //        , 3823*1.92f 
+    //        , WINCY*1.92f
+    //        , m_hdc
+    //        , 0, 0
+    //        , 3823, WINCY
+    //        , SRCCOPY);
+    //}
+    //    break;
+    //case GS_END:
+    //    break;
+    //default:
+    //    break;
+    //}
     //StretchBlt(hdc, 0, 0, 3800, WINCY, m_hdc, 0, 0, 3800, WINCY, SRCCOPY);
+
+
 
     DeleteObject(SelectObject(m_hdc, m_hOldmap));
     DeleteDC(m_hdc);
@@ -151,7 +139,12 @@ void CMainGame::Update()
         if (OBJ_MGR_GETLIST(OBJ_BACKGROUD).empty())
         {
             vector<ObjImg*>* objimg = IMG_GET_V(L"BackGround");
-           OBJ_MGR_GETLIST(OBJ_BACKGROUD).push_back(CAbstractFactory<CBackGround>::CreateObj(objimg));
+            OBJ_MGR_GETLIST(OBJ_BACKGROUD).push_back(CAbstractFactory<CBackGround>::CreateObj(objimg));
+        }
+        if (OBJ_MGR_GETLIST(OBJ_MOUSE).empty())
+        {
+            //vector<ObjImg*>* objimg = IMG_GET_V(L"BackGround");
+            OBJ_MGR_GETLIST(OBJ_MOUSE).push_back(CAbstractFactory<CMouse>::CreateObj());
         }
     }
         break;
@@ -167,6 +160,7 @@ void CMainGame::Update()
         break;
     case GS_RUN:
         CObjManager::GetInst()->Update();
+        CScrollMgr::GetInstance()->Update();
         break;
     case GS_END:
         break;
@@ -336,6 +330,8 @@ void CMainGame::CharacterSelect_U()
         if (KEY_UP(VK_CONTROL))
         {
             m_bSelect_hud = 0xF0FB1;
+            // Line 持失
+            CLineMgr::GetInstance()->Initialize();
 
             // player 持失
             if (OBJ_MGR_GETLIST(OBJ_PLAYER).empty())

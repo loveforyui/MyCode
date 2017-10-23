@@ -28,6 +28,8 @@ private:
 private:
     map<const TCHAR*, vector<ObjImg*>*> m_image;
 
+    BOOL isKeyInput = false;
+
     CStateContext m_scBody;
     CStateContext m_scLeg;
 };

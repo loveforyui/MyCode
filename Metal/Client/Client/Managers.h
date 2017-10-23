@@ -10,3 +10,4 @@
 #include "CollisionManager.h"
 #include "LineMgr.h"
 #include "ScrollMgr.h"
+#include "SceneMgr.h"

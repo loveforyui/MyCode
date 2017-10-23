@@ -70,6 +70,42 @@
     <Filter Include="97.Manager\09.ScrollManager">
       <UniqueIdentifier>{4fe9b1d3-7640-4448-9625-b38e7e61a1fd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="97.Manager\05.StateManager\02.WorkState">
+      <UniqueIdentifier>{d4fc1bdd-2b48-444e-afda-6e4566c39ec2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="97.Manager\05.StateManager\03.Leg">
+      <UniqueIdentifier>{bacfd759-0dad-4e3b-80eb-65b72a219341}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.OBJ\02.Mouse">
+      <UniqueIdentifier>{251d1c0b-ce3c-4f26-92d1-8391736f0ac4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="97.Manager\10.SceneManager">
+      <UniqueIdentifier>{9f09a8c0-60f9-40bb-b02b-d1dce0aa54bd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="97.Manager\10.SceneManager\01.Scene">
+      <UniqueIdentifier>{7a98618f-8de1-4247-9ccb-d18f912777d4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.OBJ\03.Things">
+      <UniqueIdentifier>{8aa8a76c-2308-4368-bdad-5c7840f73ad7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="97.Manager\10.SceneManager\02.Logo">
+      <UniqueIdentifier>{610b8351-0c30-40bf-ba63-27262ac1a88b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="97.Manager\10.SceneManager\03.Load">
+      <UniqueIdentifier>{49a7a8dc-160d-44c2-b4ed-526cd4466aba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="97.Manager\10.SceneManager\04.Coin">
+      <UniqueIdentifier>{ee7de89e-67c3-4c4b-968c-bed268b67442}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="97.Manager\10.SceneManager\05.Stage">
+      <UniqueIdentifier>{e0fcba18-c33b-4d49-8f6f-1cafd5b74ee9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="97.Manager\10.SceneManager\06.Ending">
+      <UniqueIdentifier>{a9f4ee9b-edf4-4a16-a049-54264279db57}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="97.Manager\10.SceneManager\07.End">
+      <UniqueIdentifier>{a63a76f6-8685-47c6-9191-c6ec11c96878}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -141,12 +177,6 @@
     <ClInclude Include="States.h">
       <Filter>98.headers\00.UserHeader</Filter>
     </ClInclude>
-    <ClInclude Include="StateStandBody.h">
-      <Filter>97.Manager\05.StateManager\00.StandState</Filter>
-    </ClInclude>
-    <ClInclude Include="StdLeg.h">
-      <Filter>97.Manager\05.StateManager\00.StandState</Filter>
-    </ClInclude>
     <ClInclude Include="AbstStateManager.h">
       <Filter>97.Manager\05.StateManager\01.AbstractState</Filter>
     </ClInclude>
@@ -156,9 +186,6 @@
     <ClInclude Include="MathMgr.h">
       <Filter>97.Manager\07.MathManager</Filter>
     </ClInclude>
-    <ClInclude Include="LineMgr.h">
-      <Filter>97.Manager\08.LineManager</Filter>
-    </ClInclude>
     <ClInclude Include="Line.h">
       <Filter>97.Manager\08.LineManager\00.Line</Filter>
     </ClInclude>
@@ -167,6 +194,33 @@
     </ClInclude>
     <ClInclude Include="ScrollMgr.h">
       <Filter>97.Manager\09.ScrollManager</Filter>
+    </ClInclude>
+    <ClInclude Include="LineMgr.h">
+      <Filter>97.Manager\08.LineManager</Filter>
+    </ClInclude>
+    <ClInclude Include="StBodyR.h">
+      <Filter>97.Manager\05.StateManager\00.StandState</Filter>
+    </ClInclude>
+    <ClInclude Include="StBodyL.h">
+      <Filter>97.Manager\05.StateManager\00.StandState</Filter>
+    </ClInclude>
+    <ClInclude Include="StdLeg.h">
+      <Filter>97.Manager\05.StateManager\03.Leg</Filter>
+    </ClInclude>
+    <ClInclude Include="Mouse.h">
+      <Filter>01.OBJ\02.Mouse</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneMgr.h">
+      <Filter>97.Manager\10.SceneManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene.h">
+      <Filter>97.Manager\10.SceneManager\01.Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Things.h">
+      <Filter>01.OBJ\03.Things</Filter>
+    </ClInclude>
+    <ClInclude Include="Logo.h">
+      <Filter>97.Manager\10.SceneManager\02.Logo</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -203,12 +257,6 @@
     <ClCompile Include="StateContext.cpp">
       <Filter>97.Manager\05.StateManager</Filter>
     </ClCompile>
-    <ClCompile Include="StateStandBody.cpp">
-      <Filter>97.Manager\05.StateManager\00.StandState</Filter>
-    </ClCompile>
-    <ClCompile Include="StdLeg.cpp">
-      <Filter>97.Manager\05.StateManager\00.StandState</Filter>
-    </ClCompile>
     <ClCompile Include="CollisionManager.cpp">
       <Filter>97.Manager\06.CollisionManager</Filter>
     </ClCompile>
@@ -223,6 +271,30 @@
     </ClCompile>
     <ClCompile Include="ScrollMgr.cpp">
       <Filter>97.Manager\09.ScrollManager</Filter>
+    </ClCompile>
+    <ClCompile Include="StBodyR.cpp">
+      <Filter>97.Manager\05.StateManager\00.StandState</Filter>
+    </ClCompile>
+    <ClCompile Include="StBodyL.cpp">
+      <Filter>97.Manager\05.StateManager\00.StandState</Filter>
+    </ClCompile>
+    <ClCompile Include="StdLeg.cpp">
+      <Filter>97.Manager\05.StateManager\03.Leg</Filter>
+    </ClCompile>
+    <ClCompile Include="Mouse.cpp">
+      <Filter>01.OBJ\02.Mouse</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneMgr.cpp">
+      <Filter>97.Manager\10.SceneManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene.cpp">
+      <Filter>97.Manager\10.SceneManager\01.Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Things.cpp">
+      <Filter>01.OBJ\03.Things</Filter>
+    </ClCompile>
+    <ClCompile Include="Logo.cpp">
+      <Filter>97.Manager\10.SceneManager\02.Logo</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

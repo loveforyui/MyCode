@@ -1,7 +1,6 @@
 ﻿  Player.cpp
-c:\users\yui\source\repos\mycode\metal\client\client\player.cpp(65): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\yui\source\repos\mycode\metal\client\client\player.cpp(72): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\yui\source\repos\mycode\metal\client\client\player.cpp(95): warning C4244: '=': 'UINT'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\yui\source\repos\mycode\metal\client\client\player.cpp(96): warning C4244: '=': 'UINT'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\yui\source\repos\mycode\metal\client\client\player.cpp(76): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\yui\source\repos\mycode\metal\client\client\player.cpp(99): warning C4244: '=': 'UINT'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\yui\source\repos\mycode\metal\client\client\player.cpp(100): warning C4244: '=': 'UINT'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
   Client.vcxproj -> C:\Users\YUI\Source\Repos\MyCode\Metal\Client\Debug\Client.exe
   Client.vcxproj -> C:\Users\YUI\Source\Repos\MyCode\Metal\Client\Debug\Client.pdb (Partial PDB)

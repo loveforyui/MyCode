@@ -26,6 +26,7 @@ public:
     
 public:
     int Update();
+    void Render(HDC hdc);
 
 public:
     OBJLIST& GetObjlst(OBJID eId) { return m_objLst[eId]; }

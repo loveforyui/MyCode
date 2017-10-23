@@ -1,0 +1,211 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="리소스 파일">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="99.headers">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="98.default">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="00.Main">
+      <UniqueIdentifier>{0cda3a5a-9756-4c38-893a-7f53e76ae4c0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="99.headers\00.UserDefine">
+      <UniqueIdentifier>{0c6a143c-4e7b-4c4b-914d-86b3dbb07d45}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="97.Manager">
+      <UniqueIdentifier>{83ae5206-5a3e-4c97-9d8d-18cfb24318a9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="97.Manager\00.ImgManager">
+      <UniqueIdentifier>{97c1b9d5-5087-4dd0-8d1a-1d3512c35402}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="97.Manager\01.KeyManager">
+      <UniqueIdentifier>{6d69e610-f1ec-4ab6-a8f8-4003afe570b0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="97.Manager\02.ObjManager">
+      <UniqueIdentifier>{d74bd68b-7fdd-4558-86e9-cb228ad99754}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="97.Manager\03.ScrollManager">
+      <UniqueIdentifier>{436fcd51-b181-4b3f-ba20-51bb2de1640d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Obj">
+      <UniqueIdentifier>{5338c161-8723-45a7-9182-d5b57e5de57d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Obj\00.Mouse">
+      <UniqueIdentifier>{a871f0ec-ebfe-48de-addf-c055c145e915}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Obj\01.BackGround">
+      <UniqueIdentifier>{49e6cc0c-4fac-4dbc-8149-d988ba50e81c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="97.Manager\04.LineManager">
+      <UniqueIdentifier>{b3e85a7b-d4a5-4146-9697-059e729c426e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="97.Manager\04.LineManager\00.Line">
+      <UniqueIdentifier>{521a4f10-0640-43f6-b4be-71f940f65cb7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.MyEdit">
+      <UniqueIdentifier>{4b29050b-b87a-4f0e-9640-9139f4c35fd6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="97.Manager\05.CollisionManager">
+      <UniqueIdentifier>{9b2c5ec2-d6ed-4c87-82fc-475630e9fd49}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Obj\02.Things">
+      <UniqueIdentifier>{4edde942-9fe8-4c20-9a55-d7eb40786adf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Obj\03.Monster">
+      <UniqueIdentifier>{88fa4b73-1d52-403d-8a2b-54ee965962da}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h">
+      <Filter>99.headers</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>99.headers</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>99.headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Editor.h">
+      <Filter>99.headers</Filter>
+    </ClInclude>
+    <ClInclude Include="MainGame.h">
+      <Filter>00.Main</Filter>
+    </ClInclude>
+    <ClInclude Include="Enum.h">
+      <Filter>99.headers\00.UserDefine</Filter>
+    </ClInclude>
+    <ClInclude Include="Extern.h">
+      <Filter>99.headers\00.UserDefine</Filter>
+    </ClInclude>
+    <ClInclude Include="functionary.h">
+      <Filter>99.headers\00.UserDefine</Filter>
+    </ClInclude>
+    <ClInclude Include="Includes.h">
+      <Filter>99.headers\00.UserDefine</Filter>
+    </ClInclude>
+    <ClInclude Include="Managers.h">
+      <Filter>99.headers\00.UserDefine</Filter>
+    </ClInclude>
+    <ClInclude Include="Structure.h">
+      <Filter>99.headers\00.UserDefine</Filter>
+    </ClInclude>
+    <ClInclude Include="Typedef.h">
+      <Filter>99.headers\00.UserDefine</Filter>
+    </ClInclude>
+    <ClInclude Include="AbstractManager.h">
+      <Filter>99.headers\00.UserDefine</Filter>
+    </ClInclude>
+    <ClInclude Include="AbstStateManager.h">
+      <Filter>99.headers\00.UserDefine</Filter>
+    </ClInclude>
+    <ClInclude Include="Define.h">
+      <Filter>99.headers\00.UserDefine</Filter>
+    </ClInclude>
+    <ClInclude Include="ImageManager.h">
+      <Filter>97.Manager\00.ImgManager</Filter>
+    </ClInclude>
+    <ClInclude Include="KeyManager.h">
+      <Filter>97.Manager\01.KeyManager</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjManager.h">
+      <Filter>97.Manager\02.ObjManager</Filter>
+    </ClInclude>
+    <ClInclude Include="ScrollMgr.h">
+      <Filter>97.Manager\03.ScrollManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Obj.h">
+      <Filter>01.Obj</Filter>
+    </ClInclude>
+    <ClInclude Include="Mouse.h">
+      <Filter>01.Obj\00.Mouse</Filter>
+    </ClInclude>
+    <ClInclude Include="BackGround.h">
+      <Filter>01.Obj\01.BackGround</Filter>
+    </ClInclude>
+    <ClInclude Include="LineMgr.h">
+      <Filter>97.Manager\04.LineManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Line.h">
+      <Filter>97.Manager\04.LineManager\00.Line</Filter>
+    </ClInclude>
+    <ClInclude Include="MyEdit.h">
+      <Filter>02.MyEdit</Filter>
+    </ClInclude>
+    <ClInclude Include="CollisionMgr.h">
+      <Filter>97.Manager\05.CollisionManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Things.h">
+      <Filter>01.Obj\02.Things</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>98.default</Filter>
+    </ClCompile>
+    <ClCompile Include="Editor.cpp">
+      <Filter>98.default</Filter>
+    </ClCompile>
+    <ClCompile Include="MainGame.cpp">
+      <Filter>00.Main</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageManager.cpp">
+      <Filter>97.Manager\00.ImgManager</Filter>
+    </ClCompile>
+    <ClCompile Include="KeyManager.cpp">
+      <Filter>97.Manager\01.KeyManager</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjManager.cpp">
+      <Filter>97.Manager\02.ObjManager</Filter>
+    </ClCompile>
+    <ClCompile Include="ScrollMgr.cpp">
+      <Filter>97.Manager\03.ScrollManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Obj.cpp">
+      <Filter>01.Obj</Filter>
+    </ClCompile>
+    <ClCompile Include="Mouse.cpp">
+      <Filter>01.Obj\00.Mouse</Filter>
+    </ClCompile>
+    <ClCompile Include="BackGround.cpp">
+      <Filter>01.Obj\01.BackGround</Filter>
+    </ClCompile>
+    <ClCompile Include="LineMgr.cpp">
+      <Filter>97.Manager\04.LineManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Line.cpp">
+      <Filter>97.Manager\04.LineManager\00.Line</Filter>
+    </ClCompile>
+    <ClCompile Include="MyEdit.cpp">
+      <Filter>02.MyEdit</Filter>
+    </ClCompile>
+    <ClCompile Include="CollisionMgr.cpp">
+      <Filter>97.Manager\05.CollisionManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Things.cpp">
+      <Filter>01.Obj\02.Things</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Editor.rc">
+      <Filter>리소스 파일</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="small.ico">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="Editor.ico">
+      <Filter>리소스 파일</Filter>
+    </Image>
+  </ItemGroup>
+</Project>

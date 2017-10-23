@@ -19,8 +19,8 @@ public:
     void            SetObj(OBJID eId) { m_pObjLst = &OBJ_MGR_GETLIST(eId); }
 
 protected:
-    OBJLIST*            m_pObjLst;
-    vector<ObjImg*>*    m_vImage;
-    vector<ObjImg*>::iterator iter_begin;
-    vector<ObjImg*>::iterator iter_end;
+    OBJLIST*                    m_pObjLst;
+    vector<ObjImg*>*            m_vImage;
+    vector<ObjImg*>::iterator   iter_begin;
+    vector<ObjImg*>::iterator   iter_end;
 };
