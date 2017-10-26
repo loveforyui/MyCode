@@ -1,14 +1,17 @@
-﻿  MyEdit.cpp
-c:\users\yui\source\repos\mycode\metal\client\editor\myedit.cpp(31): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\yui\source\repos\mycode\metal\client\editor\myedit.cpp(51): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\yui\source\repos\mycode\metal\client\editor\myedit.cpp(54): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\yui\source\repos\mycode\metal\client\editor\myedit.cpp(66): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\yui\source\repos\mycode\metal\client\editor\myedit.cpp(85): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\yui\source\repos\mycode\metal\client\editor\myedit.cpp(88): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\yui\source\repos\mycode\metal\client\editor\myedit.cpp(90): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\yui\source\repos\mycode\metal\client\editor\myedit.cpp(106): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\yui\source\repos\mycode\metal\client\editor\myedit.cpp(139): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\yui\source\repos\mycode\metal\client\editor\myedit.cpp(140): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\yui\source\repos\mycode\metal\client\editor\myedit.cpp(149): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+﻿  MainGame.cpp
+c:\users\yui\source\repos\mycode\metal\client\editor\maingame.cpp(76): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+c:\users\yui\source\repos\mycode\metal\client\editor\maingame.cpp(76): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\yui\source\repos\mycode\metal\client\editor\abstractmanager.h(50): warning C4244: '인수': 'UINT'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  c:\users\yui\source\repos\mycode\metal\client\editor\abstractmanager.h(45): note: 클래스 템플릿 멤버 함수 'CObj *CAbstractFactory<CBackGround>::CreateObj(std::vector<ObjImg *,std::allocator<_Ty>> *)'을(를) 컴파일하고 있습니다.
+          with
+          [
+              _Ty=ObjImg *
+          ]
+  c:\users\yui\source\repos\mycode\metal\client\editor\maingame.cpp(44): note: 컴파일 중인 함수 템플릿 인스턴스화 'CObj *CAbstractFactory<CBackGround>::CreateObj(std::vector<ObjImg *,std::allocator<_Ty>> *)'에 대한 참조를 확인하십시오.
+          with
+          [
+              _Ty=ObjImg *
+          ]
+  c:\users\yui\source\repos\mycode\metal\client\editor\maingame.cpp(44): note: 컴파일 중인 클래스 템플릿 인스턴스화 'CAbstractFactory<CBackGround>'에 대한 참조를 확인하세요.
   Editor.vcxproj -> C:\Users\YUI\Source\Repos\MyCode\Metal\Client\Debug\Editor.exe
   Editor.vcxproj -> C:\Users\YUI\Source\Repos\MyCode\Metal\Client\Debug\Editor.pdb (Partial PDB)

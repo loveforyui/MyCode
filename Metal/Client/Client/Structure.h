@@ -39,6 +39,13 @@ typedef struct tagInfo
         }
         return nullptr;
     }
+    tagInfo()
+    {
+
+    }
+    tagInfo(float _fx, float _fy, float _fcx, float _fcy)
+        : fX(_fx), fY(_fy), fCX(_fcx), fCY(_fcy)
+    {}
 
     vector<ObjImg*>* image;
     RECT            rect;
@@ -48,13 +55,15 @@ typedef struct tagInfo
     float           fY;
     float           fCX;
     float           fCY;
+
     // physics
     float           fSpeed;
     float           fAcc;
-    float           fAngle;
     float           fJumpPow;
     float           fJumpAcc;
-
+    
+    //Cannon
+    float           fAngle;
     float           fCannonD;
     float           fCannonX;
     float           fCannonY;
@@ -79,7 +88,6 @@ typedef struct tagLinePoint
 	{
 		memset(this, 0, sizeof(tagLinePoint));
 	}
-
 	tagLinePoint(float _fX, float _fY)
 		: fX(_fX), fY(_fY) {}
 
@@ -93,7 +101,6 @@ typedef struct tagLineInfo
 	{
 		memset(this, 0, sizeof(tagLineInfo));
 	}
-
 	tagLineInfo(LINEPOINT _tLPoint, LINEPOINT _tRPoint)
 		: tLPoint(_tLPoint), tRPoint(_tRPoint) {}
 

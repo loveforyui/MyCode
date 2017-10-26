@@ -17,35 +17,20 @@ void CBackGround::Release()
 {
 }
 
-void CBackGround::Render(HDC hdc)
+void CBackGround::Render(HDC hDC)
 {
-    
-    if (isfirst)
+    HDC hdc = GetDC(g_hWnd);
+    for (vector<ObjImg*>::iterator iter = ++m_tInfo.image->begin()
+        ; iter != m_tInfo.image->end()
+        ; ++iter)
     {
-        Image* img = m_tInfo.GetImage(L"00.png");
         IMG_DRAW_I(
-            hdc
-            , img
+            hDC
+            , (*iter)->image
             , 0.f, 0.f
-            , img->GetWidth(), img->GetHeight());
-
-        isfirst = false;
-        return;
+            , (*iter)->image->GetWidth(), (*iter)->image->GetHeight());
     }
-    else
-    {
-        for (vector<ObjImg*>::iterator iter = ++m_tInfo.image->begin()
-            ; iter != m_tInfo.image->end()
-            ; ++iter)
-        {
-            IMG_DRAW_I(
-                hdc
-                , (*iter)->image
-                , 0.f, 0.f
-                , (*iter)->image->GetWidth(), (*iter)->image->GetHeight());
-        }
-    }
-     
+    ReleaseDC(g_hWnd, hdc);
 }
 
 int CBackGround::Update()

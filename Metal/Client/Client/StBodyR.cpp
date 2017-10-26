@@ -1,6 +1,5 @@
 #include "stdafx.h"
 #include "StBodyR.h"
-#include "Obj.h"
 
 CStBodyR::CStBodyR()
 {

@@ -6,7 +6,7 @@ class CLogo
 {
 public:
     CLogo();
-    ~CLogo();
+    virtual ~CLogo();
 
 private:
 
@@ -20,5 +20,7 @@ private:
 
     virtual void Release() override;
 
+private:
+    FLOAT m_fas;
 };
 

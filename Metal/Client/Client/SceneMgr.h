@@ -5,7 +5,7 @@ class CSceneMgr
 {
 	DECLARE_SINGLETON(CSceneMgr)
 public:
-	enum SceneID { LOGO, MENU, EDIT, STAGE, ENDING, END };
+	enum SceneID { LOGO, LOAD, COIN, SELEC, MENU, EDIT, STAGE, ENDING, END };
 
 private:
 	CSceneMgr();

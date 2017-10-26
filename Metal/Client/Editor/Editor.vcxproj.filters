@@ -147,6 +147,9 @@
     <ClInclude Include="Things.h">
       <Filter>01.Obj\02.Things</Filter>
     </ClInclude>
+    <ClInclude Include="Monster.h">
+      <Filter>01.Obj\03.Monster</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -193,6 +196,9 @@
     </ClCompile>
     <ClCompile Include="Things.cpp">
       <Filter>01.Obj\02.Things</Filter>
+    </ClCompile>
+    <ClCompile Include="Monster.cpp">
+      <Filter>01.Obj\03.Monster</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

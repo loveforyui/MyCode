@@ -41,6 +41,9 @@ public:
 
 public:
     void AddObj(CObj* pObj, OBJID eId);
+    void LoadData();
+    void LoadMonster();
+    void LoadThings();
 
 private:
     static CObjManager* inst;

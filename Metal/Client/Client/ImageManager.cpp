@@ -26,7 +26,6 @@ void CImageMgr::Release()
     for (map<const TCHAR*, vector<ObjImg*>*>::iterator iter = m_MapImage.begin();
         iter != m_MapImage.end(); ++iter)
     {
-        delete (*iter).first;
         for (vector<ObjImg*>::iterator i = (*iter).second->begin();
             i != (*iter).second->end();)
         {

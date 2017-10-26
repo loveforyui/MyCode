@@ -21,5 +21,33 @@ void CStateContext::AddState(const TCHAR* str, CStateManager * mgr)
 
 void CStateContext::SetState(const TCHAR * str)
 {
-    m_pState = m_mState.find(str)->second;
+    CStateManager* tempState = m_mState.find(str)->second;
+
+    if (!lstrcmp(m_pChar, str))
+    {
+        return;
+    }
+    else
+    {
+        m_pState = tempState;
+        wcscpy_s(m_pChar, str);
+    }   
+}
+void CStateContext::SetState(const TCHAR * str, CStateManager * mgr)
+{
+    CStateManager* tempState = m_mState.find(str)->second;
+
+    if (!lstrcmp(m_pChar, str))
+    {
+        SafeDelete<CStateManager*>(tempState);
+        m_mState.find(str)->second = mgr;
+
+        m_pState = m_mState.find(str)->second;
+        wcscpy_s(m_pChar, str);
+    }
+    else
+    {
+        m_pState = tempState;
+        wcscpy_s(m_pChar, str);
+    }   
 }

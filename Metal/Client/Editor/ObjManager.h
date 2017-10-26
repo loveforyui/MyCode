@@ -42,7 +42,11 @@ public:
 public:
     void AddObj(CObj* pObj, OBJID eId);
     void SaveData();
+    void SaveThings();
+    void SaveMonster();
     void LoadData();
+    void LoadThings();
+    void LoadMonster();
 
 private:
     static CObjManager* inst;

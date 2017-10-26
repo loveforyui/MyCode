@@ -52,3 +52,24 @@ FLOAT CObj::GetImgH()
         return (*(m_tInfo.image->begin()))->image->GetHeight();
     }
 }
+
+void CObj::ImageRender(HDC hdc)
+{
+    if (nullptr != m_tInfo.image)
+    {
+        if (m_tInfo.image->empty())
+            return;
+        
+        IMG_DRAW_I(
+            hdc
+            , (*img_begin)->image
+            , m_tInfo.fX, m_tInfo.fY
+            , FLOAT((*img_begin)->image->GetWidth())
+            , FLOAT((*img_begin)->image->GetHeight()));
+
+        ++img_begin;
+        if (img_begin == img_end)
+            img_begin = m_tInfo.image->begin();
+
+    }
+}

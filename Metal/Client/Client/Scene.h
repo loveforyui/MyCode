@@ -1,7 +1,5 @@
 #pragma once
 
-#define IMG_PATH "../Image/"
-
 class CScene
 {
 public:

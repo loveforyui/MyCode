@@ -162,6 +162,7 @@
     <ClInclude Include="LineMgr.h" />
     <ClInclude Include="MainGame.h" />
     <ClInclude Include="Managers.h" />
+    <ClInclude Include="Monster.h" />
     <ClInclude Include="Mouse.h" />
     <ClInclude Include="MyEdit.h" />
     <ClInclude Include="Obj.h" />
@@ -183,6 +184,7 @@
     <ClCompile Include="Line.cpp" />
     <ClCompile Include="LineMgr.cpp" />
     <ClCompile Include="MainGame.cpp" />
+    <ClCompile Include="Monster.cpp" />
     <ClCompile Include="Mouse.cpp" />
     <ClCompile Include="MyEdit.cpp" />
     <ClCompile Include="Obj.cpp" />

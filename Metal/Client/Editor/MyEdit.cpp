@@ -4,6 +4,7 @@
 #include "Obj.h"
 #include "Things.h"
 #include "Mouse.h"
+#include "Monster.h"
 
 //#include "Building.h"
 
@@ -37,6 +38,10 @@ void CMyEdit::Update()
     if (KEY_UP('2'))
     {
         m_iMode = 2;
+    }
+    if (KEY_UP('3'))
+    {
+        m_iMode = 3;
     }
 
     if (1 == m_iMode)
@@ -115,6 +120,52 @@ void CMyEdit::Update()
             }
         }
     }
+    else if (3 == m_iMode)
+    {
+        if (!isClick)
+        {
+            if (KEY_UP(VK_LBUTTON))
+            {
+                isClick = true;
+
+                POINT pt = {};
+                GetCursorPos(&pt);
+                ScreenToClient(g_hWnd, &pt);
+
+                tInfo.tLPoint.fX = CMouse::GetMousePos().x - fScrollX;
+                tInfo.tLPoint.fY = CMouse::GetMousePos().y;
+
+                tInfo.tRPoint.fX = CMouse::GetMousePos().x - fScrollX;
+                tInfo.tRPoint.fY = CMouse::GetMousePos().y;
+
+                CObj* pObj = CAbstractFactory<CMonster>::CreateObj(pt.x - fScrollX, pt.y);
+                CObjManager::GetInst()->AddObj(pObj, OBJ_MONSTER);
+
+                //CLineMgr::GetInstance()->GetLineList().push_back(new CLine(tInfo));
+            }
+        }
+        else
+        {
+            if (KEY_UP(VK_RBUTTON))
+            {
+                isClick = false;
+                // KEY_UP 시에는 라인의 끝점 세팅.
+                POINT pt = {};
+                GetCursorPos(&pt);
+                ScreenToClient(g_hWnd, &pt);
+                tInfo.tRPoint.fX = CMouse::GetMousePos().x - fScrollX;
+                tInfo.tRPoint.fY = CMouse::GetMousePos().y;
+                
+                float fcx = abs(OBJ_MGR_GETOBJ(OBJ_MONSTER)->GetInfo().fX - tInfo.tRPoint.fX);
+                float fcy = abs(OBJ_MGR_GETOBJ(OBJ_MONSTER)->GetInfo().fY - tInfo.tRPoint.fY);
+                float fx = OBJ_MGR_GETOBJ(OBJ_MONSTER)->GetInfo().fX + (fcx / 2);
+                float fy = OBJ_MGR_GETOBJ(OBJ_MONSTER)->GetInfo().fY + (fcy / 2);
+
+                OBJ_MGR_GETOBJ(OBJ_MONSTER)->SetPos(fx, fy);
+                OBJ_MGR_GETOBJ(OBJ_MONSTER)->SetWH(fcx, fcy);
+            }
+        }
+    }
 
     if (KEY_UP('R'))
     {
@@ -129,6 +180,7 @@ void CMyEdit::Update()
     if (KEY_PRESSING('Z'))
     {
         CCollisionMgr::CollisionRect(OBJ_MGR_GETLIST(OBJ_THINGS), OBJ_MGR_GETLIST(OBJ_MOUSE));
+        CCollisionMgr::CollisionRect(OBJ_MGR_GETLIST(OBJ_MONSTER), OBJ_MGR_GETLIST(OBJ_MOUSE));
     }
 }
 
@@ -142,7 +194,19 @@ void CMyEdit::Render(HDC hdc)
     
     float fScrollX = CScrollMgr::GetInstance()->GetScrollX();
     wchar_t         pos[64];
-    swprintf_s(pos, L"Mode: %s", (m_iMode == 1) ? L"Line" : L"Things" );
+    switch (m_iMode)
+    {
+    case 1:
+        swprintf_s(pos, L"Mode: %s", L"Line");
+        break;
+    case 2:
+        swprintf_s(pos, L"Mode: %s", L"Things" );
+        break;
+    case 3:
+        swprintf_s(pos, L"Mode: %s", L"Monster" );
+        break;
+    }
+    
     //wsprintf();
     SetTextAlign(hdc, TA_CENTER);
     SetBkMode(hdc, TRANSPARENT);

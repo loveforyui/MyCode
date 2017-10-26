@@ -1,7 +1,9 @@
 #include "stdafx.h"
 #include "SceneMgr.h"
+#include "Logo.h"
+#include "Select.h"
+#include "Stage_01.h"
 
-//#include "Logo.h"
 //#include "Stage.h"
 //#include "MyMenu.h"
 //#include "MyEdit.h"
@@ -37,15 +39,12 @@ void CSceneMgr::SceneChange(SceneID eScene)
 		case LOGO:
 			m_pScene = new CLogo;
 			break;
-		case STAGE:
-			m_pScene = new CStage;
-			break;
-		case MENU:
-			m_pScene = new CMyMenu;
-			break;
-		case EDIT:
-			m_pScene = new CMyEdit;
-			break;
+        case SELEC:
+            m_pScene = new CSelect;
+            break;
+        case STAGE:
+            m_pScene = new CStage_01;
+            break;
 		}
 
 		if (nullptr == m_pScene)

@@ -1,6 +1,5 @@
 #include "stdafx.h"
 #include "StBodyL.h"
-#include "Obj.h"
 
 CStBodyL::CStBodyL()
 {
@@ -24,7 +23,7 @@ void CStBodyL::handle(HDC hdc)
             IMG_DRAW_I(
                 hdc
                 , (*iter_begin)->image
-                , (*obj)->GetInfo().fX - (*iter_begin)->image->GetWidth() / 2
+                , -10 + (*obj)->GetInfo().fX - (*iter_begin)->image->GetWidth() / 2
                 , (*obj)->GetInfo().fY - (*iter_begin)->image->GetHeight() / 2
                 , (*iter_begin)->image->GetWidth() //(*iter_begin)->image->GetWidth()
                 , (*iter_begin)->image->GetHeight() //(*iter_begin)->image->GetHeight()

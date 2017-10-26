@@ -40,20 +40,11 @@
     <Filter Include="97.Manager\02.ImageManager">
       <UniqueIdentifier>{274900ae-1d19-4a6f-ba56-10563942310d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="97.Manager\05.StateManager">
-      <UniqueIdentifier>{04ce6f07-10bf-420e-814f-a2f4e24b45c8}</UniqueIdentifier>
-    </Filter>
     <Filter Include="97.Manager\04.MediatorPattern">
       <UniqueIdentifier>{7fb8b4f3-365c-4a38-ba8f-083156fdeb80}</UniqueIdentifier>
     </Filter>
     <Filter Include="97.Manager\00.AbstractPattern">
       <UniqueIdentifier>{2dcfdf6c-ff87-4dfa-8acb-ef57b87610a1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="97.Manager\05.StateManager\00.StandState">
-      <UniqueIdentifier>{d9178bf1-2f96-487d-a7f0-52f903fe260e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="97.Manager\05.StateManager\01.AbstractState">
-      <UniqueIdentifier>{6620f116-3528-46dc-b684-c3b900353de3}</UniqueIdentifier>
     </Filter>
     <Filter Include="97.Manager\06.CollisionManager">
       <UniqueIdentifier>{ec7a8c9b-3e18-4779-b972-6cab0a568a7a}</UniqueIdentifier>
@@ -69,12 +60,6 @@
     </Filter>
     <Filter Include="97.Manager\09.ScrollManager">
       <UniqueIdentifier>{4fe9b1d3-7640-4448-9625-b38e7e61a1fd}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="97.Manager\05.StateManager\02.WorkState">
-      <UniqueIdentifier>{d4fc1bdd-2b48-444e-afda-6e4566c39ec2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="97.Manager\05.StateManager\03.Leg">
-      <UniqueIdentifier>{bacfd759-0dad-4e3b-80eb-65b72a219341}</UniqueIdentifier>
     </Filter>
     <Filter Include="01.OBJ\02.Mouse">
       <UniqueIdentifier>{251d1c0b-ce3c-4f26-92d1-8391736f0ac4}</UniqueIdentifier>
@@ -97,14 +82,50 @@
     <Filter Include="97.Manager\10.SceneManager\04.Coin">
       <UniqueIdentifier>{ee7de89e-67c3-4c4b-968c-bed268b67442}</UniqueIdentifier>
     </Filter>
-    <Filter Include="97.Manager\10.SceneManager\05.Stage">
+    <Filter Include="97.Manager\10.SceneManager\06.Stage">
       <UniqueIdentifier>{e0fcba18-c33b-4d49-8f6f-1cafd5b74ee9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="97.Manager\10.SceneManager\06.Ending">
+    <Filter Include="97.Manager\10.SceneManager\07.Ending">
       <UniqueIdentifier>{a9f4ee9b-edf4-4a16-a049-54264279db57}</UniqueIdentifier>
     </Filter>
-    <Filter Include="97.Manager\10.SceneManager\07.End">
+    <Filter Include="97.Manager\10.SceneManager\08.End">
       <UniqueIdentifier>{a63a76f6-8685-47c6-9191-c6ec11c96878}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="97.Manager\10.SceneManager\05.Selec">
+      <UniqueIdentifier>{fcaf2faf-31c4-466a-8de6-d5f55006ba0a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.OBJ\04.Monster">
+      <UniqueIdentifier>{7b276791-eeef-415e-afe6-8b6029f39eca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.OBJ\01.Player\00.PlayerStateManager">
+      <UniqueIdentifier>{04ce6f07-10bf-420e-814f-a2f4e24b45c8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.OBJ\01.Player\00.PlayerStateManager\00.StandState">
+      <UniqueIdentifier>{d9178bf1-2f96-487d-a7f0-52f903fe260e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.OBJ\01.Player\00.PlayerStateManager\01.AbstractState">
+      <UniqueIdentifier>{6620f116-3528-46dc-b684-c3b900353de3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.OBJ\01.Player\00.PlayerStateManager\03.Leg">
+      <UniqueIdentifier>{bacfd759-0dad-4e3b-80eb-65b72a219341}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.OBJ\01.Player\00.PlayerStateManager\02.WalkState">
+      <UniqueIdentifier>{d4fc1bdd-2b48-444e-afda-6e4566c39ec2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.OBJ\01.Player\00.PlayerStateManager\04.JumpState">
+      <UniqueIdentifier>{ed6a36d7-96e7-4764-b0fd-dc5be7bd8ccd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.OBJ\01.Player\00.PlayerStateManager\05.Attack">
+      <UniqueIdentifier>{69a99c06-d878-4457-9e80-ebd1b130353a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.OBJ\05.Bullet">
+      <UniqueIdentifier>{19ad48b5-f71b-467b-b7a8-ad46946cf801}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="97.Manager\05.PatternManager">
+      <UniqueIdentifier>{051c821a-6fa5-468f-ae5e-3d8a02d1e508}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.OBJ\01.Player\00.PlayerStateManager\06.Sitdown">
+      <UniqueIdentifier>{96419967-9dca-4ed3-b2f8-b609c580ad63}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -169,16 +190,16 @@
       <Filter>97.Manager\04.MediatorPattern</Filter>
     </ClInclude>
     <ClInclude Include="StateManager.h">
-      <Filter>97.Manager\05.StateManager</Filter>
+      <Filter>01.OBJ\01.Player\00.PlayerStateManager</Filter>
     </ClInclude>
     <ClInclude Include="StateContext.h">
-      <Filter>97.Manager\05.StateManager</Filter>
+      <Filter>01.OBJ\01.Player\00.PlayerStateManager</Filter>
     </ClInclude>
     <ClInclude Include="States.h">
       <Filter>98.headers\00.UserHeader</Filter>
     </ClInclude>
     <ClInclude Include="AbstStateManager.h">
-      <Filter>97.Manager\05.StateManager\01.AbstractState</Filter>
+      <Filter>01.OBJ\01.Player\00.PlayerStateManager\01.AbstractState</Filter>
     </ClInclude>
     <ClInclude Include="CollisionManager.h">
       <Filter>97.Manager\06.CollisionManager</Filter>
@@ -199,13 +220,13 @@
       <Filter>97.Manager\08.LineManager</Filter>
     </ClInclude>
     <ClInclude Include="StBodyR.h">
-      <Filter>97.Manager\05.StateManager\00.StandState</Filter>
+      <Filter>01.OBJ\01.Player\00.PlayerStateManager\00.StandState</Filter>
     </ClInclude>
     <ClInclude Include="StBodyL.h">
-      <Filter>97.Manager\05.StateManager\00.StandState</Filter>
+      <Filter>01.OBJ\01.Player\00.PlayerStateManager\00.StandState</Filter>
     </ClInclude>
     <ClInclude Include="StdLeg.h">
-      <Filter>97.Manager\05.StateManager\03.Leg</Filter>
+      <Filter>01.OBJ\01.Player\00.PlayerStateManager\03.Leg</Filter>
     </ClInclude>
     <ClInclude Include="Mouse.h">
       <Filter>01.OBJ\02.Mouse</Filter>
@@ -221,6 +242,69 @@
     </ClInclude>
     <ClInclude Include="Logo.h">
       <Filter>97.Manager\10.SceneManager\02.Logo</Filter>
+    </ClInclude>
+    <ClInclude Include="Select.h">
+      <Filter>97.Manager\10.SceneManager\05.Selec</Filter>
+    </ClInclude>
+    <ClInclude Include="Stage_01.h">
+      <Filter>97.Manager\10.SceneManager\06.Stage</Filter>
+    </ClInclude>
+    <ClInclude Include="StdLegLeft.h">
+      <Filter>01.OBJ\01.Player\00.PlayerStateManager\03.Leg</Filter>
+    </ClInclude>
+    <ClInclude Include="StWalkBodyR.h">
+      <Filter>01.OBJ\01.Player\00.PlayerStateManager\02.WalkState</Filter>
+    </ClInclude>
+    <ClInclude Include="StWalkBodyL.h">
+      <Filter>01.OBJ\01.Player\00.PlayerStateManager\02.WalkState</Filter>
+    </ClInclude>
+    <ClInclude Include="Monster.h">
+      <Filter>01.OBJ\04.Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="JmpBodyR.h">
+      <Filter>01.OBJ\01.Player\00.PlayerStateManager\04.JumpState</Filter>
+    </ClInclude>
+    <ClInclude Include="JmpBodyL.h">
+      <Filter>01.OBJ\01.Player\00.PlayerStateManager\04.JumpState</Filter>
+    </ClInclude>
+    <ClInclude Include="StWalkLegL.h">
+      <Filter>01.OBJ\01.Player\00.PlayerStateManager\02.WalkState</Filter>
+    </ClInclude>
+    <ClInclude Include="StWalkLegR.h">
+      <Filter>01.OBJ\01.Player\00.PlayerStateManager\02.WalkState</Filter>
+    </ClInclude>
+    <ClInclude Include="JmpLegR.h">
+      <Filter>01.OBJ\01.Player\00.PlayerStateManager\04.JumpState</Filter>
+    </ClInclude>
+    <ClInclude Include="JmpLegL.h">
+      <Filter>01.OBJ\01.Player\00.PlayerStateManager\04.JumpState</Filter>
+    </ClInclude>
+    <ClInclude Include="StAtkBodyR.h">
+      <Filter>01.OBJ\01.Player\00.PlayerStateManager\05.Attack</Filter>
+    </ClInclude>
+    <ClInclude Include="StAtkBodyL.h">
+      <Filter>01.OBJ\01.Player\00.PlayerStateManager\05.Attack</Filter>
+    </ClInclude>
+    <ClInclude Include="Bullet.h">
+      <Filter>01.OBJ\05.Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="Pattern.h">
+      <Filter>97.Manager\05.PatternManager</Filter>
+    </ClInclude>
+    <ClInclude Include="StUpAtkBodyR.h">
+      <Filter>01.OBJ\01.Player\00.PlayerStateManager\05.Attack</Filter>
+    </ClInclude>
+    <ClInclude Include="StUpAtkBodyL.h">
+      <Filter>01.OBJ\01.Player\00.PlayerStateManager\05.Attack</Filter>
+    </ClInclude>
+    <ClInclude Include="StUpBodyR.h">
+      <Filter>01.OBJ\01.Player\00.PlayerStateManager\00.StandState</Filter>
+    </ClInclude>
+    <ClInclude Include="StUpBodyL.h">
+      <Filter>01.OBJ\01.Player\00.PlayerStateManager\00.StandState</Filter>
+    </ClInclude>
+    <ClInclude Include="Sitdown.h">
+      <Filter>01.OBJ\01.Player\00.PlayerStateManager\06.Sitdown</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -252,10 +336,10 @@
       <Filter>97.Manager\04.MediatorPattern</Filter>
     </ClCompile>
     <ClCompile Include="StateManager.cpp">
-      <Filter>97.Manager\05.StateManager</Filter>
+      <Filter>01.OBJ\01.Player\00.PlayerStateManager</Filter>
     </ClCompile>
     <ClCompile Include="StateContext.cpp">
-      <Filter>97.Manager\05.StateManager</Filter>
+      <Filter>01.OBJ\01.Player\00.PlayerStateManager</Filter>
     </ClCompile>
     <ClCompile Include="CollisionManager.cpp">
       <Filter>97.Manager\06.CollisionManager</Filter>
@@ -273,13 +357,13 @@
       <Filter>97.Manager\09.ScrollManager</Filter>
     </ClCompile>
     <ClCompile Include="StBodyR.cpp">
-      <Filter>97.Manager\05.StateManager\00.StandState</Filter>
+      <Filter>01.OBJ\01.Player\00.PlayerStateManager\00.StandState</Filter>
     </ClCompile>
     <ClCompile Include="StBodyL.cpp">
-      <Filter>97.Manager\05.StateManager\00.StandState</Filter>
+      <Filter>01.OBJ\01.Player\00.PlayerStateManager\00.StandState</Filter>
     </ClCompile>
     <ClCompile Include="StdLeg.cpp">
-      <Filter>97.Manager\05.StateManager\03.Leg</Filter>
+      <Filter>01.OBJ\01.Player\00.PlayerStateManager\03.Leg</Filter>
     </ClCompile>
     <ClCompile Include="Mouse.cpp">
       <Filter>01.OBJ\02.Mouse</Filter>
@@ -295,6 +379,69 @@
     </ClCompile>
     <ClCompile Include="Logo.cpp">
       <Filter>97.Manager\10.SceneManager\02.Logo</Filter>
+    </ClCompile>
+    <ClCompile Include="Select.cpp">
+      <Filter>97.Manager\10.SceneManager\05.Selec</Filter>
+    </ClCompile>
+    <ClCompile Include="Stage_01.cpp">
+      <Filter>97.Manager\10.SceneManager\06.Stage</Filter>
+    </ClCompile>
+    <ClCompile Include="StdLegLeft.cpp">
+      <Filter>01.OBJ\01.Player\00.PlayerStateManager\03.Leg</Filter>
+    </ClCompile>
+    <ClCompile Include="StWalkBodyR.cpp">
+      <Filter>01.OBJ\01.Player\00.PlayerStateManager\02.WalkState</Filter>
+    </ClCompile>
+    <ClCompile Include="StWalkBodyL.cpp">
+      <Filter>01.OBJ\01.Player\00.PlayerStateManager\02.WalkState</Filter>
+    </ClCompile>
+    <ClCompile Include="Monster.cpp">
+      <Filter>01.OBJ\04.Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="JmpBodyL.cpp">
+      <Filter>01.OBJ\01.Player\00.PlayerStateManager\04.JumpState</Filter>
+    </ClCompile>
+    <ClCompile Include="JmpBodyR.cpp">
+      <Filter>01.OBJ\01.Player\00.PlayerStateManager\04.JumpState</Filter>
+    </ClCompile>
+    <ClCompile Include="StWalkLegL.cpp">
+      <Filter>01.OBJ\01.Player\00.PlayerStateManager\02.WalkState</Filter>
+    </ClCompile>
+    <ClCompile Include="StWalkLegR.cpp">
+      <Filter>01.OBJ\01.Player\00.PlayerStateManager\02.WalkState</Filter>
+    </ClCompile>
+    <ClCompile Include="JmpLegR.cpp">
+      <Filter>01.OBJ\01.Player\00.PlayerStateManager\04.JumpState</Filter>
+    </ClCompile>
+    <ClCompile Include="JmpLegL.cpp">
+      <Filter>01.OBJ\01.Player\00.PlayerStateManager\04.JumpState</Filter>
+    </ClCompile>
+    <ClCompile Include="StAtkBodyR.cpp">
+      <Filter>01.OBJ\01.Player\00.PlayerStateManager\05.Attack</Filter>
+    </ClCompile>
+    <ClCompile Include="StAtkBodyL.cpp">
+      <Filter>01.OBJ\01.Player\00.PlayerStateManager\05.Attack</Filter>
+    </ClCompile>
+    <ClCompile Include="Bullet.cpp">
+      <Filter>01.OBJ\05.Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="Pattern.cpp">
+      <Filter>97.Manager\05.PatternManager</Filter>
+    </ClCompile>
+    <ClCompile Include="StUpAtkBodyR.cpp">
+      <Filter>01.OBJ\01.Player\00.PlayerStateManager\05.Attack</Filter>
+    </ClCompile>
+    <ClCompile Include="StUpAtkBodyL.cpp">
+      <Filter>01.OBJ\01.Player\00.PlayerStateManager\05.Attack</Filter>
+    </ClCompile>
+    <ClCompile Include="StUpBodyR.cpp">
+      <Filter>01.OBJ\01.Player\00.PlayerStateManager\00.StandState</Filter>
+    </ClCompile>
+    <ClCompile Include="StUpBodyL.cpp">
+      <Filter>01.OBJ\01.Player\00.PlayerStateManager\00.StandState</Filter>
+    </ClCompile>
+    <ClCompile Include="Sitdown.cpp">
+      <Filter>01.OBJ\01.Player\00.PlayerStateManager\06.Sitdown</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -6,7 +6,7 @@
 #include "Mouse.h"
 #include "BackGround.h"
 
-#define PATH_RC "../resource/"
+
 
 CMainGame::CMainGame()
 {
@@ -46,6 +46,8 @@ void CMainGame::Initialize()
 
     m_edit = new CMyEdit;
     m_edit->Initialize();
+
+    
 }
 
 void CMainGame::Release()
@@ -71,14 +73,25 @@ void CMainGame::Render()
 
     float fScrollX = CScrollMgr::GetInstance()->GetScrollX();    
     
+    RECT rc = {-fScrollX, 0, WINCX - fScrollX, WINCY};
+
     StretchBlt(hdc
-        , fScrollX, 0//* 1.92f , 0
-        , 3823//*1.92f 
+        , 0, 0//* 1.92f , 0
+        , WINCX//*1.92f 
         , WINCY//*1.92f
         , m_hdc
-        , 0, 0
-        , 3823, WINCY
+        , rc.left, rc.top
+        , rc.right - rc.left, rc.bottom - rc.top
         , SRCCOPY);
+
+    //StretchBlt(hdc
+    //    , fScrollX*1.92f, 0//* 1.92f , 0
+    //    , 3823//*1.92f 
+    //    , WINCY//*1.92f
+    //    , m_hdc
+    //    , 0, 0
+    //    , 3823, WINCY
+    //    , SRCCOPY);
 
     DeleteObject(SelectObject(m_hdc, m_hOldmap));
     DeleteDC(m_hdc);

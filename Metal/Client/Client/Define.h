@@ -10,6 +10,8 @@
 #define RadianToDegree(X) (X * 180.f / PI)
 #define DegreeToRadian(X) (X * PI / 180.f)
 
+#define IMG_PATH "../resource/Image/"
+
 //Obj direction
 #define OBJ_D_LEFT 0x01
 #define OBJ_D_RIGH 0x02

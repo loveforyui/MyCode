@@ -11,3 +11,4 @@
 #include "LineMgr.h"
 #include "ScrollMgr.h"
 #include "SceneMgr.h"
+#include "Pattern.h"

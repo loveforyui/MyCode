@@ -13,11 +13,16 @@ public:
     virtual int     Update();
 
 public:
+    void            SetAngle            (float fAngle) { m_tInfo.fAngle = fAngle; }
     void            SetPos              (float x, float y);
     void            SetWH               (float cx, float cy);
-    void            SetRect             (RECT rect) { m_tInfo.rect = rect; }
-    void            SetImage            (ObjImg* img) { m_tInfo.image->push_back(img); }
-    void            SetImage            (vector<ObjImg*>* img) { m_tInfo.image = img; }
+    void            SetRect             (RECT rect) { m_tInfo.rect = rect; }    
+    void            SetImage            (vector<ObjImg*>* img)
+    {
+        m_tInfo.image = img;
+        img_begin = m_tInfo.image->begin();
+        img_end = m_tInfo.image->end();
+    }
     void            SetDead             () { m_tInfo.isDead = true; }
 
 public:
@@ -26,8 +31,21 @@ public:
     const INFO&     GetInfo             () { return m_tInfo; }
     bool            isDead              () { return m_tInfo.isDead; }
     float           GetSpeed            () { return m_tInfo.fSpeed; }
+    float           GetAngle            () { return m_tInfo.fAngle; }
+
+public:
+    void            AddImage            (ObjImg* img) 
+    { 
+        m_tInfo.image->push_back(img);
+        img_begin = m_tInfo.image->begin();
+        img_end = m_tInfo.image->end();
+    }
+    void            ImageRender(HDC hdc);
 
 protected:
     INFO m_tInfo;
+    vector<ObjImg*>::iterator img_begin;
+    vector<ObjImg*>::iterator img_end;
+
 
 };

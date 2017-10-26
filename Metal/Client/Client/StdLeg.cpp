@@ -1,6 +1,5 @@
 #include "stdafx.h"
 #include "StdLeg.h"
-#include "Obj.h"
 
 CStdLeg::CStdLeg()
 {
