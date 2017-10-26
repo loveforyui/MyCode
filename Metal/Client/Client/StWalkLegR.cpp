@@ -30,9 +30,15 @@ void CStWalkLegR::handle(HDC hdc)
                 , (*obj)->GetInfo().fCY //(*iter_begin)->image->GetHeight()
             );
         }
-
+    }
+}
+int CStWalkLegR::Update()
+{
+    if (KEY_PRESSING(VK_RIGHT))
+    {
         ++iter_begin;
         if (iter_begin == iter_end)
             iter_begin = m_vImage->begin();
     }
+    return 0;
 }

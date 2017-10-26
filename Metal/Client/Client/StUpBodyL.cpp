@@ -49,8 +49,8 @@ void CStUpBodyL::handle(HDC hdc)
                 , (*iter_begin)->image //(*iter_begin)->image
                 , -13 + (*obj)->GetInfo().fX - (*iter_begin)->image->GetWidth() / 2
                 , 3 + (*obj)->GetInfo().fY - (*iter_begin)->image->GetHeight()
-                , (*iter_begin)->image->GetWidth()
-                , (*iter_begin)->image->GetHeight()
+                , FLOAT((*iter_begin)->image->GetWidth())
+                , FLOAT((*iter_begin)->image->GetHeight())
             );
         }
     }

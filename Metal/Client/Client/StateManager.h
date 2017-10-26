@@ -11,6 +11,7 @@ public:
 
 public:
     virtual void    handle(HDC hdc) = 0;
+    virtual int     Update();
     void            SetImage(vector<ObjImg*>* img)
     { 
         m_vImage    = img;
@@ -22,6 +23,7 @@ public:
     void            SetIterator(vector<ObjImg*>::iterator iter) { iter_begin = iter; }
 public:
     vector<ObjImg*>* GetImgVector() { return m_vImage; }
+    vector<ObjImg*>::iterator GetImgIter() { return iter_begin; }
 
 protected:
     OBJLIST*                    m_pObjLst;

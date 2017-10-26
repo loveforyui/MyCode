@@ -49,12 +49,31 @@ void CCollisionManager::CollisionSphere(OBJLIST & dst, OBJLIST & src)
 			
 			if (CheckSphere(Dst, Src))
 			{
-				//Dst->SetDead();
+				Dst->SetDead();
 				//Dst->SetDamage(Src->GetAtt());
 				Src->SetDead();
 			}
 		}
 	}
+}
+
+void CCollisionManager::COllisionImage(OBJLIST & dst, OBJLIST & src)
+{
+    for (OBJITER dstObj = dst.begin()
+        ; dstObj != dst.end(); ++dstObj)
+    {
+        if (true == (*dstObj)->isDead())
+            continue;
+
+        for (OBJITER srcObj = dst.begin()
+            ; srcObj != dst.end(); ++srcObj)
+        {
+            if (true == (*srcObj)->isDead())
+                continue;
+
+
+        }
+    }
 }
 
 bool CCollisionManager::CheckSphere(CObj * dst, CObj * src)
@@ -74,3 +93,12 @@ bool CCollisionManager::CheckSphere(CObj * dst, CObj * src)
 
 	return false;
 }
+
+bool CCollisionManager::CheckImage(CObj * dst, CObj * src)
+{
+    INT destW;// = dst->Get
+    INT destH;
+
+    return false;
+}
+

@@ -16,7 +16,7 @@ CPattern::~CPattern()
 FLOAT CPattern::EqualLine(CObj* obj)
 {
     // TODO: 여기에 반환 구문을 삽입합니다.
-    FLOAT x, y, z;
+    FLOAT x, y;
     x = (obj->GetInfo().fX);
     y = (obj->GetInfo().fY);
 
@@ -30,7 +30,7 @@ FLOAT CPattern::Quadratic(CObj * obj)
 {
     // 이차곡선 
     // TODO: 여기에 반환 구문을 삽입합니다.
-    FLOAT x, y, z;
+    FLOAT x, y;
     x = obj->GetInfo().fX;
     y = obj->GetInfo().fY;
 
@@ -44,7 +44,7 @@ FLOAT CPattern::Quadratic(CObj * obj)
 FLOAT CPattern::SinLine(CObj* obj)
 {
     // 사인곡선
-    FLOAT x, y, z;
+    FLOAT x, y;
     x = obj->GetInfo().fX;
     y = obj->GetInfo().fY;
 
@@ -55,7 +55,7 @@ FLOAT CPattern::SinLine(CObj* obj)
 
 FLOAT CPattern::Boss(CObj* obj)
 {
-    FLOAT x, y, z;
+    FLOAT x, y;
     x = obj->GetInfo().fX;
     y = obj->GetInfo().fY;
 
@@ -68,7 +68,7 @@ FLOAT CPattern::Boss(CObj* obj)
 
 FLOAT CPattern::SingleLine(CObj* obj)
 {
-    FLOAT x, y, z;
+    FLOAT x, y;
     x = obj->GetInfo().fX;
     y = obj->GetInfo().fY;
 
@@ -79,7 +79,7 @@ FLOAT CPattern::SingleLine(CObj* obj)
 
 FLOAT CPattern::SingleLineR(CObj* obj)
 {
-    FLOAT x, y, z;
+    FLOAT x, y;
     x = obj->GetInfo().fX;
     y = obj->GetInfo().fY;
 

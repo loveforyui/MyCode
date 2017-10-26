@@ -32,9 +32,9 @@ private:
 
     void BaseGunKeyInput();
 
-private:
-    map<const TCHAR*, vector<ObjImg*>*> m_image;
+    void rectMake();
 
+private:
     BOOL isKeyInput = false;
 
     const float m_fdegree = 30.f;

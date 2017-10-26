@@ -34,5 +34,33 @@ int CMonster::Update()
     if (isDead())
         return 1;
     CObj::Update();
+    IsCollisionLine();
+
     return 0;
+}
+
+void CMonster::IsCollisionLine()
+{
+    float fy = m_tInfo.fY;
+
+    if (CLineMgr::GetInstance()->CollisionLine(--m_tInfo.fX, &fy))
+    {
+        if(!(m_tInfo.preState & OBJ_A_JUMP))
+            m_tInfo.fY = fy - m_tInfo.fCY / 2;
+
+        if (m_tInfo.fY >= fy - m_tInfo.fCY / 2) // 점프 중에 라인에 도달하면 라인을 타고
+		{
+			m_tInfo.fY = fy - m_tInfo.fCY / 2;
+			m_tInfo.fJumpAcc = 0.f;
+            if (m_tInfo.preState & OBJ_A_ATTK)
+            {
+                if (m_tInfo.preState & OBJ_A_MOVE)
+                    m_tInfo.preState = OBJ_A_MOVE | OBJ_A_ATTK;
+                else
+                    m_tInfo.preState = OBJ_A_STND | OBJ_A_ATTK;
+            }
+            else
+                m_tInfo.preState = OBJ_A_STND;
+		}
+    }
 }

@@ -27,16 +27,21 @@ bool CLineMgr::CollisionLine(float fX, float * pOutY)
 	{
 		float fLposX = line->GetInfo().tLPoint.fX;
 		float fRposX = line->GetInfo().tRPoint.fX;
+        float fLposY = line->GetInfo().tLPoint.fY;
+        float fRposY = line->GetInfo().tRPoint.fY;
 
-		if (fX > fLposX && fX < fRposX)
-		{
-			pLine = line;
-			break;
-		}
-	}
+        if (fX > fLposX && fX < fRposX)
+        {
+            if (fLposY - 30 < *pOutY && *pOutY < fRposY + 30)
+            {
+                pLine = line;
+                break;
+            }
+        }
+    }
 
-	if (nullptr == pLine)
-		return false;
+    if (nullptr == pLine)
+        return false;
 
 	// 두점을 통과하는 직선의 방정식을 이용하여 플레이어의 Y를 도출한다!
 	// playerY = (y2 - y1) / (x2 - x1) * (playerX - x1) + y1

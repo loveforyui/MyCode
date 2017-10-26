@@ -116,14 +116,15 @@ void CImageMgr::DrawImg(HDC hDC, const TCHAR * ObjName, const TCHAR * fileName, 
     Graphics graphics(hDC);
     
     Image* img = FindImage(ObjName, fileName);
-    
-    if(img)
+
+    if (img)
         graphics.DrawImage(
-                 img
-                 , fx
-                 , fy
-                 , img->GetWidth()
-                 , img->GetHeight() );
+            img
+            , fx
+            , fy
+            , Gdiplus::REAL(img->GetWidth())
+            , Gdiplus::REAL(img->GetHeight())
+        );
 }
 
 void CImageMgr::DrawImg(HDC hDC, const TCHAR * ObjName, const TCHAR * fileName, FLOAT fx, FLOAT fy, FLOAT fCX, FLOAT fCY)
@@ -156,7 +157,7 @@ vector<ObjImg*>* CImageMgr::GetImageVector(const TCHAR * objName)
 
 ObjImg * CImageMgr::GetImageObjImg(const TCHAR * ObjName, const TCHAR * fileName)
 {
-    for (int i = 0 ; i < m_MapImage[ObjName]->size(); ++i)
+    for (size_t i = 0 ; i < m_MapImage[ObjName]->size(); ++i)
     {
         if (lstrcmp(m_MapImage[ObjName]->at(i)->fileName, fileName))
         {

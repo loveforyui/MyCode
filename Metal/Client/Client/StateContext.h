@@ -9,6 +9,7 @@ public:
 
 public:
     void request(HDC hdc);
+    int Update() { return m_pState->Update(); }
 
 public:
     void AddState(const TCHAR* str, CStateManager* mgr);

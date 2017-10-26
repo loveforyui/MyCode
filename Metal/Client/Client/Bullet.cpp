@@ -40,5 +40,11 @@ int CBullet::Update()
     
     CObj::Update();
 
+    if (m_tInfo.fX < 0 || 3823 < m_tInfo.fX)
+        return 1;
+
+    if (m_tInfo.fY < 0 || WINCY < m_tInfo.fY)
+        return 1;
+
     return 0;
 }

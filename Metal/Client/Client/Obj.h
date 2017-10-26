@@ -44,6 +44,8 @@ public:
 
 protected:
     INFO m_tInfo;
+
+    map<const TCHAR*, vector<ObjImg*>*> m_image;
     vector<ObjImg*>::iterator img_begin;
     vector<ObjImg*>::iterator img_end;
 

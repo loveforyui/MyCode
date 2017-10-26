@@ -28,7 +28,9 @@ void CBackGround::Render(HDC hDC)
             hDC
             , (*iter)->image
             , 0.f, 0.f
-            , (*iter)->image->GetWidth(), (*iter)->image->GetHeight());
+            , FLOAT((*iter)->image->GetWidth())
+            , FLOAT((*iter)->image->GetHeight())
+        );
     }
     ReleaseDC(g_hWnd, hdc);
 }

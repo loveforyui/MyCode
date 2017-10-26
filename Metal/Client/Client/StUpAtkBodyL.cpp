@@ -25,13 +25,19 @@ void CStUpAtkBodyL::handle(HDC hdc)
                 , (*iter_begin)->image //(*iter_begin)->image
                 , -13 + (*obj)->GetInfo().fX - (*iter_begin)->image->GetWidth() / 2
                 , -30 + (*obj)->GetInfo().fY - (*iter_begin)->image->GetHeight() / 2
-                , (*iter_begin)->image->GetWidth()
-                , (*iter_begin)->image->GetHeight()
+                , FLOAT((*iter_begin)->image->GetWidth())
+                , FLOAT((*iter_begin)->image->GetHeight())
             );
         }
-
+    }
+}
+int CStUpAtkBodyL::Update()
+{
+    if (KEY_PRESSING(VK_LCONTROL))
+    {
         ++iter_begin;
         if (iter_begin == iter_end)
-            iter_begin = m_vImage->begin();
+            iter_begin = (m_vImage->begin() + 1);
     }
+    return 0;
 }

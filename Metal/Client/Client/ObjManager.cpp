@@ -18,8 +18,11 @@ CObjManager::~CObjManager()
 
 int CObjManager::Update()
 {
+    CCollisionManager::CollisionSphere(m_objLst[OBJ_MONSTER], m_objLst[OBJ_P_BULLET]);
+
     for (int objid = 0; objid < OBJ_END; ++objid)
     {
+
         for (OBJITER iter = m_objLst[objid].begin()
             ; iter != m_objLst[objid].end();)
         {
@@ -40,7 +43,6 @@ int CObjManager::Update()
     // 기본적으로 player와 monster는 충돌 안함
     // monster의 bullet과 충돌
     //CCollisionManager::CollisionRect(m_objLst[OBJ_PLAYER], m_objLst[OBJ_THINGS]);
-
     return 0;
 }
 
@@ -61,10 +63,10 @@ void CObjManager::Render(HDC hDC)
 	}
 
     StretchBlt(hdc
-        , fScrollX * 1.92f
+        , INT(fScrollX * 1.92f)
         , 0
-        , 3823 * 1.92f
-        , WINCY*1.92f
+        , INT(3823 * 1.92f)
+        , INT(WINCY*1.92f)
         , hDC
         , 0, 0
         , 3823, WINCY

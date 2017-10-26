@@ -43,6 +43,10 @@ void CMyEdit::Update()
     {
         m_iMode = 3;
     }
+    if (KEY_UP('4'))
+    {
+        m_iMode = 4;
+    }
 
     if (1 == m_iMode)
     {
@@ -122,49 +126,52 @@ void CMyEdit::Update()
     }
     else if (3 == m_iMode)
     {
-        if (!isClick)
+        if (KEY_DOWN(VK_LBUTTON))
         {
-            if (KEY_UP(VK_LBUTTON))
-            {
-                isClick = true;
+            isClick = true;
 
-                POINT pt = {};
-                GetCursorPos(&pt);
-                ScreenToClient(g_hWnd, &pt);
+            POINT pt = {};
+            GetCursorPos(&pt);
+            ScreenToClient(g_hWnd, &pt);
 
-                tInfo.tLPoint.fX = CMouse::GetMousePos().x - fScrollX;
-                tInfo.tLPoint.fY = CMouse::GetMousePos().y;
+            tInfo.tLPoint.fX = CMouse::GetMousePos().x - fScrollX;
+            tInfo.tLPoint.fY = CMouse::GetMousePos().y;
 
-                tInfo.tRPoint.fX = CMouse::GetMousePos().x - fScrollX;
-                tInfo.tRPoint.fY = CMouse::GetMousePos().y;
+            tInfo.tRPoint.fX = CMouse::GetMousePos().x - fScrollX;
+            tInfo.tRPoint.fY = CMouse::GetMousePos().y;
 
-                CObj* pObj = CAbstractFactory<CMonster>::CreateObj(pt.x - fScrollX, pt.y);
-                CObjManager::GetInst()->AddObj(pObj, OBJ_MONSTER);
+            CObj* pObj = CAbstractFactory<CMonster>::CreateObj(pt.x - fScrollX, pt.y);
+            CObjManager::GetInst()->AddObj(pObj, OBJ_MONSTER);
 
-                //CLineMgr::GetInstance()->GetLineList().push_back(new CLine(tInfo));
-            }
+            //CLineMgr::GetInstance()->GetLineList().push_back(new CLine(tInfo));
         }
-        else
+        if (KEY_UP(VK_RBUTTON))
         {
-            if (KEY_UP(VK_RBUTTON))
-            {
-                isClick = false;
-                // KEY_UP 시에는 라인의 끝점 세팅.
-                POINT pt = {};
-                GetCursorPos(&pt);
-                ScreenToClient(g_hWnd, &pt);
-                tInfo.tRPoint.fX = CMouse::GetMousePos().x - fScrollX;
-                tInfo.tRPoint.fY = CMouse::GetMousePos().y;
-                
-                float fcx = abs(OBJ_MGR_GETOBJ(OBJ_MONSTER)->GetInfo().fX - tInfo.tRPoint.fX);
-                float fcy = abs(OBJ_MGR_GETOBJ(OBJ_MONSTER)->GetInfo().fY - tInfo.tRPoint.fY);
-                float fx = OBJ_MGR_GETOBJ(OBJ_MONSTER)->GetInfo().fX + (fcx / 2);
-                float fy = OBJ_MGR_GETOBJ(OBJ_MONSTER)->GetInfo().fY + (fcy / 2);
+            isClick = false;
+            // KEY_UP 시에는 라인의 끝점 세팅.
+            POINT pt = {};
+            GetCursorPos(&pt);
+            ScreenToClient(g_hWnd, &pt);
+            tInfo.tRPoint.fX = CMouse::GetMousePos().x - fScrollX;
+            tInfo.tRPoint.fY = CMouse::GetMousePos().y;
 
-                OBJ_MGR_GETOBJ(OBJ_MONSTER)->SetPos(fx, fy);
-                OBJ_MGR_GETOBJ(OBJ_MONSTER)->SetWH(fcx, fcy);
-            }
+            float fcx = abs(OBJ_MGR_GETOBJ(OBJ_MONSTER)->GetInfo().fX - tInfo.tRPoint.fX);
+            float fcy = abs(OBJ_MGR_GETOBJ(OBJ_MONSTER)->GetInfo().fY - tInfo.tRPoint.fY);
+            float fx = OBJ_MGR_GETOBJ(OBJ_MONSTER)->GetInfo().fX + (fcx / 2);
+            float fy = OBJ_MGR_GETOBJ(OBJ_MONSTER)->GetInfo().fY + (fcy / 2);
+
+            OBJ_MGR_GETOBJ(OBJ_MONSTER)->SetPos(fx, fy);
+            OBJ_MGR_GETOBJ(OBJ_MONSTER)->SetWH(fcx, fcy);
         }
+        if (KEY_UP('Q'))
+        {
+            if(!OBJ_MGR_GETLIST(OBJ_MONSTER).empty())
+                OBJ_MGR_GETLIST(OBJ_MONSTER).pop_back();
+        }
+    }
+    else if (4 == m_iMode)
+    {
+
     }
 
     if (KEY_UP('R'))
@@ -197,20 +204,23 @@ void CMyEdit::Render(HDC hdc)
     switch (m_iMode)
     {
     case 1:
-        swprintf_s(pos, L"Mode: %s", L"Line");
+        swprintf_s(pos, L"Mode: %s size: %d", L"Line", CLineMgr::GetInstance()->GetLineList().size());
         break;
     case 2:
-        swprintf_s(pos, L"Mode: %s", L"Things" );
+        swprintf_s(pos, L"Mode: %s size: %d", L"Things", OBJ_MGR_GETLIST(OBJ_THINGS).size());
         break;
     case 3:
-        swprintf_s(pos, L"Mode: %s", L"Monster" );
+        swprintf_s(pos, L"Mode: %s size: %d", L"Monster", OBJ_MGR_GETLIST(OBJ_MONSTER).size());
+        break;
+    case 4:
+        swprintf_s(pos, L"Mode: %s size: %d", L"MoveLine", OBJ_MGR_GETLIST(OBJ_MONSTER).size());
         break;
     }
     
     //wsprintf();
-    SetTextAlign(hdc, TA_CENTER);
+    SetTextAlign(hdc, TA_LEFT);
     SetBkMode(hdc, TRANSPARENT);
-    TextOut(hdc, 50 - fScrollX, 0, pos, wcslen(pos));
+    TextOut(hdc, - fScrollX, 0, pos, wcslen(pos));
     //CObjManager::GetInst()->Render(hDC);
 	//CLineMgr::GetInstance()->Render(hDC);
 }

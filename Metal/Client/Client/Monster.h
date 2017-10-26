@@ -15,4 +15,5 @@ public:
     virtual void Release() override;
     virtual void Render(HDC hdc) override;
     virtual int  Update();
+    void IsCollisionLine();
 };

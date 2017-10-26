@@ -39,14 +39,15 @@ void CLogo::Render(HDC hDC)
         img_w = (*iter)->image->GetWidth();
         img_h = (*iter)->image->GetHeight();
         IMG_DRAW_I(
-        hDC
-        , (*iter)->image
-        , fScrollX, 0
-        , img_w
-        , img_h);
-        
+            hDC
+            , (*iter)->image
+            , fScrollX, 0
+            , FLOAT(img_w)
+            , FLOAT(img_h)
+        );
+
     }
-    StretchBlt(hdc, fScrollX, 0, WINCX, WINCY, hDC, 0, 0, img_w, img_h, SRCCOPY);
+    StretchBlt(hdc, INT(fScrollX), 0, WINCX, WINCY, hDC, 0, 0, img_w, img_h, SRCCOPY);
     ReleaseDC(g_hWnd, hdc);
 }
 

@@ -49,7 +49,7 @@ public:
         pObj->Init();
         pObj->SetPos(0.f, 0.f);
         pObj->SetImage(img);
-        pObj->SetWH((*(img->begin()))->image->GetWidth(), (*(img->begin()))->image->GetHeight());        
+        pObj->SetWH(FLOAT((*(img->begin()))->image->GetWidth()), FLOAT((*(img->begin()))->image->GetHeight()));
 
         return pObj;
     }
@@ -60,7 +60,7 @@ public:
         pObj->SetPos(x, y);
         pObj->SetAngle(fAngle);
         pObj->SetImage(img);
-        pObj->SetWH((*(img->begin()))->image->GetWidth(), (*(img->begin()))->image->GetHeight()); 
+        pObj->SetWH(FLOAT((*(img->begin()))->image->GetWidth()), FLOAT((*(img->begin()))->image->GetHeight()));
 
         return pObj;
     }

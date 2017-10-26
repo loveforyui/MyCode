@@ -4,18 +4,22 @@
 #include "States.h"
 #include "Bullet.h"
 
-CPlayer::CPlayer()
+CPlayer::       CPlayer         ()
 {
     m_tInfo.fCannonD = 30.f;
 }
 
-CPlayer::~CPlayer()
+CPlayer::       ~CPlayer        ()
 {
 }
 
-void CPlayer::Init()
+void CPlayer::  Init            ()
 {
     // Set Time
+    m_tInfo.preState = OBJ_A_JUMP;
+
+    m_tInfo.fCX = 15.f;
+    m_tInfo.fCY = 15.f;
 
     m_dwOldt = GetTickCount();
     m_dwCurt = 0;
@@ -169,18 +173,18 @@ void CPlayer::Init()
     m_scLeg.SetState(L"fio/st/leg/");
 
     // value setting
-    m_tInfo.fJumpPow = 15.f;
-    m_tInfo.fJumpAcc = 0.f;
-    m_tInfo.fSpeed = 5.f;
+    m_tInfo.fJumpPow    = 15.f;
+    m_tInfo.fJumpAcc    = 0.f;
+    m_tInfo.fSpeed      = 5.f;
 
     SetCXY();
 }
 
-void CPlayer::Release()
+void CPlayer::  Release         ()
 {
 }
 
-void CPlayer::Render(HDC hdc)
+void CPlayer::  Render          (HDC hdc)
 {
     CObj::Update();
 
@@ -191,17 +195,22 @@ void CPlayer::Render(HDC hdc)
     //SetBkMode(hdc, TRANSPARENT);
     //TextOut(hdc, m_tInfo.fX, m_tInfo.fY - 30, pos, wcslen(pos));
 
+    Rectangle(hdc, m_tInfo.rect.left, m_tInfo.rect.top, m_tInfo.rect.right, m_tInfo.rect.bottom);
+
     m_scLeg.request(hdc);
     m_scBody.request(hdc);
+
+    Rectangle(hdc, m_tInfo.fX - 5, m_tInfo.fY - 5, m_tInfo.fX + 5, m_tInfo.fY + 5);
 
     /*MoveToEx(hdc, m_tInfo.fX, m_tInfo.fY - 10, nullptr);
     LineTo(hdc, m_tInfo.fCannonX, m_tInfo.fCannonY);*/
 }   
 
-int CPlayer::Update()
+int CPlayer::   Update          ()
 {
     KeyInput(); // 우선순위 0번
-    CObj::Update();
+    m_scBody.Update();
+    m_scLeg.Update();
     GunState();
     IsJump();
     IsCollisionLine();
@@ -210,18 +219,18 @@ int CPlayer::Update()
     return 0;
 }
 
-void CPlayer::InsertImage(const TCHAR * key, vector<ObjImg*>* vImg)
+void CPlayer::  InsertImage     (const TCHAR * key, vector<ObjImg*>* vImg)
 {
     m_image.insert(pair<const TCHAR*, vector<ObjImg*>*>(key, vImg));
 }
 
-void CPlayer::SetCXY()
+void CPlayer::  SetCXY          ()
 {
-    m_tInfo.fCX = (*(m_image.begin()->second->begin()))->image->GetWidth();
-    m_tInfo.fCY = (*(m_image.begin()->second->begin()))->image->GetHeight();
+    m_tInfo.fCX = FLOAT((*(m_image.begin()->second->begin()))->image->GetWidth());
+    m_tInfo.fCY = FLOAT((*(m_image.begin()->second->begin()))->image->GetHeight());
 }
 
-void CPlayer::KeyInput()
+void CPlayer::  KeyInput        ()
 {
     switch (m_curGun)
     {
@@ -239,29 +248,33 @@ void CPlayer::KeyInput()
     }
 }
 
-void CPlayer::IsJump()
+void CPlayer::  IsJump          ()
 {
     if (m_tInfo.preState & OBJ_A_JUMP)
     {
-        m_tInfo.fJumpAcc += 0.3f;
+        //m_tInfo.fJumpAcc += 0.3f;
+        //m_tInfo.fY -= m_tInfo.fJumpPow * m_tInfo.fJumpAcc - GRAVITY * m_tInfo.fJumpAcc * m_tInfo.fJumpAcc * 0.5f;
 
-        m_tInfo.fY -= m_tInfo.fJumpPow * m_tInfo.fJumpAcc - GRAVITY * m_tInfo.fJumpAcc * m_tInfo.fJumpAcc * 0.5f;
+        //FLOAT y = m_tInfo.fY;
+        m_tInfo.fJumpAcc -= 0.5*GRAVITY;
+
+        m_tInfo.fY -= m_tInfo.fJumpAcc;
     }
 }
 
-void CPlayer::IsCollisionLine()
+void CPlayer::  IsCollisionLine ()
 {
     float fy = m_tInfo.fY;
 
     if (CLineMgr::GetInstance()->CollisionLine(m_tInfo.fX, &fy))
     {
-        if(!(m_tInfo.preState & OBJ_A_JUMP))
+        if (!(m_tInfo.preState & OBJ_A_JUMP))
             m_tInfo.fY = fy - m_tInfo.fCY / 2;
 
         if (m_tInfo.fY >= fy - m_tInfo.fCY / 2) // 점프 중에 라인에 도달하면 라인을 타고
-		{
-			m_tInfo.fY = fy - m_tInfo.fCY / 2;
-			m_tInfo.fJumpAcc = 0.f;
+        {
+            m_tInfo.fY = fy - m_tInfo.fCY / 2;
+            m_tInfo.fJumpAcc = 0.f;
             if (m_tInfo.preState & OBJ_A_ATTK)
             {
                 if (m_tInfo.preState & OBJ_A_MOVE)
@@ -270,32 +283,41 @@ void CPlayer::IsCollisionLine()
                     m_tInfo.preState = OBJ_A_STND | OBJ_A_ATTK;
             }
             else
+            {
+                //m_tInfo.preState ^= OBJ_A_JUMP;
                 m_tInfo.preState = OBJ_A_STND;
-		}
+            }
+                
+        }
+    }
+    else
+    {
+        //m_tInfo.preState ^= OBJ_A_STND;
+        m_tInfo.preState = OBJ_A_JUMP;
     }
 }
 
-void CPlayer::CalcCannonPos()
+void CPlayer::  CalcCannonPos   ()
 {
     // 아이템에 따라 포신 위치가 바뀜
     if (m_tInfo.fAngle < 0)
     {
         m_tInfo.fCannonX = -8 + m_tInfo.fX + cosf(abs(m_tInfo.fAngle)*PI / 180.f)*m_tInfo.fCannonD;
-        m_tInfo.fCannonY = -10 + m_tInfo.fY + sinf(abs(m_tInfo.fAngle)*PI / 180.f)*m_tInfo.fCannonD;
+        m_tInfo.fCannonY = -11 + m_tInfo.fY + sinf(abs(m_tInfo.fAngle)*PI / 180.f)*m_tInfo.fCannonD;
     }
     else
     {
         m_tInfo.fCannonX = -8 + m_tInfo.fX + cosf(abs(m_tInfo.fAngle)*PI / 180.f)*m_tInfo.fCannonD;
-        m_tInfo.fCannonY = -10 + m_tInfo.fY - sinf(abs(m_tInfo.fAngle)*PI / 180.f)*m_tInfo.fCannonD;
+        m_tInfo.fCannonY = -11 + m_tInfo.fY - sinf(abs(m_tInfo.fAngle)*PI / 180.f)*m_tInfo.fCannonD;
     }
 }
 
-CObj* CPlayer::CreateBullet(vector<ObjImg*>* img, float fAngle)
+CObj* CPlayer:: CreateBullet    (vector<ObjImg*>* img, float fAngle)
 {
     return CAbstractFactory<CBullet>::CreateObj(img, m_tInfo.fCannonX, m_tInfo.fCannonY, fAngle);
 }
 
-void CPlayer::GunState()
+void CPlayer::  GunState        ()
 {
     if (m_oldGun != m_curGun)
     {
@@ -316,13 +338,12 @@ void CPlayer::GunState()
     }
 }
 
-void CPlayer::BaseGunKeyInput()
+void CPlayer::  BaseGunKeyInput ()
 {
     m_dwCurt = GetTickCount();
     m_tInfo.curState = m_tInfo.preState;
     isKeyInput = false;
 
-#pragma region KeyStatement
     if (KEY_PRESSING(VK_RIGHT))
     {
         if (m_tInfo.direction & OBJ_D_LEFT)
@@ -418,10 +439,12 @@ void CPlayer::BaseGunKeyInput()
         isKeyInput = true;
     }
 
-    if (KEY_PRESSING(VK_SPACE))
+    if (KEY_DOWN(VK_SPACE))
     {
         m_tInfo.curState |= OBJ_A_JUMP;
         isKeyInput = true;
+
+        m_tInfo.fJumpAcc = GRAVITY * 2.5f;
     }
 
     if (KEY_UP(VK_RIGHT))
@@ -482,7 +505,7 @@ void CPlayer::BaseGunKeyInput()
     }
 
     // Item 에 따라 바꿈 -> pressing
-    if (KEY_UP(VK_LCONTROL))
+    if (KEY_DOWN(VK_LCONTROL))
     {
         if ((m_tInfo.preState & OBJ_A_ATTK) == 0)
         {   
@@ -539,7 +562,6 @@ void CPlayer::BaseGunKeyInput()
             }   
         }
     }
-#pragma endregion
 
 #pragma region Movement
     // Accel
@@ -624,7 +646,7 @@ void CPlayer::BaseGunKeyInput()
         }
     }
 
-    if (90 <= m_tInfo.fAngle && m_tInfo.fAngle < 180) //m_tInfo.direction & OBJ_D_LEFT
+    if (90 < m_tInfo.fAngle && m_tInfo.fAngle < 180) //m_tInfo.direction & OBJ_D_LEFT
     {
         if (m_tInfo.direction & OBJ_D_TOPP)
         {
@@ -637,7 +659,7 @@ void CPlayer::BaseGunKeyInput()
             //m_scLeg.SetState(L"fio/st/leg_left/");
         }
     }
-    else if (0 < m_tInfo.fAngle && m_tInfo.fAngle <= 90) //m_tInfo.direction & OBJ_D_RIGH
+    else if (0 < m_tInfo.fAngle && m_tInfo.fAngle < 90) //m_tInfo.direction & OBJ_D_RIGH
     {
         if (m_tInfo.direction & OBJ_D_TOPP)
         {
@@ -694,8 +716,20 @@ void CPlayer::BaseGunKeyInput()
         }*/
     }
 #pragma endregion
-
-
-
     m_tInfo.preState = m_tInfo.curState;
+}
+
+void CPlayer::  rectMake        ()
+{
+    /*m_tInfo.rect.left   = m_tInfo.fX - (*m_scBody.GetState()->GetImgVector()->begin())->image->GetWidth() / 2.f;
+    m_tInfo.rect.right  = m_tInfo.fX + (*m_scBody.GetState()->GetImgVector()->begin())->image->GetWidth() / 2.f;
+    m_tInfo.rect.top    = m_tInfo.fY - (*m_scBody.GetState()->GetImgVector()->begin())->image->GetHeight() / 2.f;
+    m_tInfo.rect.bottom = m_tInfo.fY + (*m_scBody.GetState()->GetImgVector()->begin())->image->GetHeight() / 2.f;*/
+
+    Image* img = (*m_scBody.GetState()->GetImgIter())->image;
+
+    m_tInfo.rect.left   = -5 + m_tInfo.fX - img->GetWidth() / 2.f;
+    m_tInfo.rect.right  = -5 + m_tInfo.fX + img->GetWidth() / 2.f;
+    m_tInfo.rect.top    = m_tInfo.fY - img->GetHeight() / 2.f;
+    m_tInfo.rect.bottom = m_tInfo.fY + img->GetHeight() / 2.f;
 }

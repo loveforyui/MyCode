@@ -39,7 +39,7 @@ FLOAT CObj::GetImgW()
         return 0.f;
     else
     {
-        return (*(m_tInfo.image->begin()))->image->GetWidth();
+        return FLOAT((*(m_tInfo.image->begin()))->image->GetWidth());
     }
 }
 
@@ -49,7 +49,7 @@ FLOAT CObj::GetImgH()
         return 0.f;
     else
     {
-        return (*(m_tInfo.image->begin()))->image->GetHeight();
+        return FLOAT((*(m_tInfo.image->begin()))->image->GetHeight());
     }
 }
 
