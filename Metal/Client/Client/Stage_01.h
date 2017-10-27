@@ -20,4 +20,8 @@ private:
 
     virtual void Release() override;
 
+private:
+    HBITMAP m_hBitmap;
+    HBITMAP m_hOldmap;
+
 };

@@ -7,15 +7,15 @@ public:
     ~MCLine();
 
 public:
-    const LINEINFO& GetInfo() const { return m_tInfo; }
+    const LINEINFO& GetInfo     () const { return m_tInfo; }
 
 public:
-    void SetRPoint(LINEPOINT& RPoint) { m_tInfo.tRPoint = RPoint; }
+    void            SetRPoint   (LINEPOINT& RPoint) { m_tInfo.tRPoint = RPoint; }
 
 public:
-	void Render(HDC hDC);
+	void            Render      (HDC hDC);
 
 private:
-	LINEINFO m_tInfo;
+	LINEINFO        m_tInfo;
 };
 

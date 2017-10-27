@@ -43,7 +43,22 @@ void CStage_01::Update()
 
 void CStage_01::Render(HDC hDC)
 {
+    HDC hdc = GetDC(g_hWnd);
+
+    float fScrollX = CScrollMgr::GetInstance()->GetScrollX();
+
     CObjManager::GetInst()->Render(hDC);
+    CLineMgr::GetInstance()->Render(hDC);
+
+    StretchBlt(hdc
+        , INT(fScrollX * 1.92f)
+        , 0
+        , INT(3823 * 1.92f)
+        , INT(WINCY*1.92f)
+        , hDC
+        , 0, 0
+        , 3823, WINCY
+        , SRCCOPY);
 }
 
 void CStage_01::Release()

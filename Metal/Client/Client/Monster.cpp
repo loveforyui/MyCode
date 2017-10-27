@@ -3,6 +3,7 @@
 
 CMonster::CMonster()
 {
+    
 }
 
 CMonster::~CMonster()
@@ -12,6 +13,7 @@ CMonster::~CMonster()
 
 void CMonster::Init()
 {
+    
 }
 
 void CMonster::Release()
@@ -31,10 +33,13 @@ void CMonster::Render(HDC hdc)
 
 int CMonster::Update()
 {
+    m_tInfo.fSpeed = 2.f;
+
     if (isDead())
         return 1;
     CObj::Update();
-    IsCollisionLine();
+    FollowLine();
+    IsCollisionLine();    
 
     return 0;
 }
@@ -43,7 +48,7 @@ void CMonster::IsCollisionLine()
 {
     float fy = m_tInfo.fY;
 
-    if (CLineMgr::GetInstance()->CollisionLine(--m_tInfo.fX, &fy))
+    if (CLineMgr::GetInstance()->CollisionLine(m_tInfo.fX, &fy))
     {
         if(!(m_tInfo.preState & OBJ_A_JUMP))
             m_tInfo.fY = fy - m_tInfo.fCY / 2;
@@ -63,4 +68,9 @@ void CMonster::IsCollisionLine()
                 m_tInfo.preState = OBJ_A_STND;
 		}
     }
+}
+
+float CMonster::FollowLine()
+{
+    return CLineMgr::GetInstance()->FollowLine(&m_tInfo.fX, &m_tInfo.fY, &m_tInfo.fSpeed);
 }

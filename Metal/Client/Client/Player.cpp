@@ -195,12 +195,12 @@ void CPlayer::  Render          (HDC hdc)
     //SetBkMode(hdc, TRANSPARENT);
     //TextOut(hdc, m_tInfo.fX, m_tInfo.fY - 30, pos, wcslen(pos));
 
-    Rectangle(hdc, m_tInfo.rect.left, m_tInfo.rect.top, m_tInfo.rect.right, m_tInfo.rect.bottom);
+    //Rectangle(hdc, m_tInfo.rect.left, m_tInfo.rect.top, m_tInfo.rect.right, m_tInfo.rect.bottom);
 
     m_scLeg.request(hdc);
     m_scBody.request(hdc);
 
-    Rectangle(hdc, m_tInfo.fX - 5, m_tInfo.fY - 5, m_tInfo.fX + 5, m_tInfo.fY + 5);
+    //Rectangle(hdc, m_tInfo.fX - 5, m_tInfo.fY - 5, m_tInfo.fX + 5, m_tInfo.fY + 5);
 
     /*MoveToEx(hdc, m_tInfo.fX, m_tInfo.fY - 10, nullptr);
     LineTo(hdc, m_tInfo.fCannonX, m_tInfo.fCannonY);*/
@@ -286,8 +286,7 @@ void CPlayer::  IsCollisionLine ()
             {
                 //m_tInfo.preState ^= OBJ_A_JUMP;
                 m_tInfo.preState = OBJ_A_STND;
-            }
-                
+            } 
         }
     }
     else
@@ -441,10 +440,16 @@ void CPlayer::  BaseGunKeyInput ()
 
     if (KEY_DOWN(VK_SPACE))
     {
-        m_tInfo.curState |= OBJ_A_JUMP;
         isKeyInput = true;
+        if (m_tInfo.curState & OBJ_A_JUMP)
+        {
 
-        m_tInfo.fJumpAcc = GRAVITY * 2.5f;
+        }
+        else
+        {
+            m_tInfo.curState |= OBJ_A_JUMP;
+            m_tInfo.fJumpAcc = GRAVITY * 2.5f;
+        }
     }
 
     if (KEY_UP(VK_RIGHT))
@@ -728,8 +733,8 @@ void CPlayer::  rectMake        ()
 
     Image* img = (*m_scBody.GetState()->GetImgIter())->image;
 
-    m_tInfo.rect.left   = -5 + m_tInfo.fX - img->GetWidth() / 2.f;
-    m_tInfo.rect.right  = -5 + m_tInfo.fX + img->GetWidth() / 2.f;
-    m_tInfo.rect.top    = m_tInfo.fY - img->GetHeight() / 2.f;
-    m_tInfo.rect.bottom = m_tInfo.fY + img->GetHeight() / 2.f;
+    m_tInfo.rect.left   = LONG(-5 + m_tInfo.fX - img->GetWidth() / 2.f);
+    m_tInfo.rect.right  = LONG(-5 + m_tInfo.fX + img->GetWidth() / 2.f);
+    m_tInfo.rect.top    = LONG(m_tInfo.fY - img->GetHeight() / 2.f);
+    m_tInfo.rect.bottom = LONG(m_tInfo.fY + img->GetHeight() / 2.f);
 }

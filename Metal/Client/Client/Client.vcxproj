@@ -169,6 +169,7 @@
     <ClInclude Include="MainGame.h" />
     <ClInclude Include="Managers.h" />
     <ClInclude Include="MathMgr.h" />
+    <ClInclude Include="Mline.h" />
     <ClInclude Include="Monster.h" />
     <ClInclude Include="Mouse.h" />
     <ClInclude Include="Obj.h" />
@@ -221,6 +222,7 @@
     <ClCompile Include="Logo.cpp" />
     <ClCompile Include="MainGame.cpp" />
     <ClCompile Include="MathMgr.cpp" />
+    <ClCompile Include="Mline.cpp" />
     <ClCompile Include="Monster.cpp" />
     <ClCompile Include="Mouse.cpp" />
     <ClCompile Include="Obj.cpp" />

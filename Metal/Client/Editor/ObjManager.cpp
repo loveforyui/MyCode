@@ -82,12 +82,6 @@ void CObjManager::SaveThings()
 		WriteFile(hFile, &(pMonster->GetInfo()), sizeof(INFO), &dwBytes, nullptr);
 	}
 
-    for (auto pMonster : m_objLst[OBJ_THINGS])
-	{
-		// WriteFile: API의 파일 출력 함수.
-		WriteFile(hFile, &(pMonster->GetInfo()), sizeof(INFO), &dwBytes, nullptr);
-	}
-
 	CloseHandle(hFile);
 }
 
@@ -106,12 +100,6 @@ void CObjManager::SaveMonster()
 
 
 	for (auto pMonster : m_objLst[OBJ_MONSTER])
-	{
-		// WriteFile: API의 파일 출력 함수.
-		WriteFile(hFile, &(pMonster->GetInfo()), sizeof(INFO), &dwBytes, nullptr);
-	}
-
-    for (auto pMonster : m_objLst[OBJ_MONSTER])
 	{
 		// WriteFile: API의 파일 출력 함수.
 		WriteFile(hFile, &(pMonster->GetInfo()), sizeof(INFO), &dwBytes, nullptr);

@@ -57,7 +57,7 @@ void CMainGame::Render()
     m_hOldmap = (HBITMAP)SelectObject(m_hdc, m_hBitmap);
     
     CSceneMgr::GetInstance()->Render(m_hdc);
-    CLineMgr::GetInstance()->Render(m_hdc);
+    //CLineMgr::GetInstance()->Render(m_hdc);
 
     float fScrollX = CScrollMgr::GetInstance()->GetScrollX();
 

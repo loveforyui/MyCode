@@ -20,6 +20,6 @@ void CLine::Render(HDC hDC)
 {
 	float fScrollX = CScrollMgr::GetInstance()->GetScrollX();
 
-	MoveToEx(hDC, int(m_tInfo.tLPoint.fX + fScrollX), int(m_tInfo.tLPoint.fY), nullptr);
-	LineTo(hDC, int(m_tInfo.tRPoint.fX + fScrollX), int(m_tInfo.tRPoint.fY));
+	MoveToEx(hDC, int(m_tInfo.tLPoint.fX), int(m_tInfo.tLPoint.fY), nullptr);
+	LineTo(hDC, int(m_tInfo.tRPoint.fX), int(m_tInfo.tRPoint.fY));
 }

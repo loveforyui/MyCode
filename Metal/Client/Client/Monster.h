@@ -16,4 +16,5 @@ public:
     virtual void Render(HDC hdc) override;
     virtual int  Update();
     void IsCollisionLine();
+    float FollowLine();
 };

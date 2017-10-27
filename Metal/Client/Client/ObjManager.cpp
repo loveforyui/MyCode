@@ -62,17 +62,7 @@ void CObjManager::Render(HDC hDC)
             }
 	}
 
-    StretchBlt(hdc
-        , INT(fScrollX * 1.92f)
-        , 0
-        , INT(3823 * 1.92f)
-        , INT(WINCY*1.92f)
-        , hDC
-        , 0, 0
-        , 3823, WINCY
-        , SRCCOPY);
-
-    ReleaseDC(g_hWnd, hdc);
+    
 }
 
 void CObjManager::AddObj(CObj * pObj, OBJID eId)

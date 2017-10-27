@@ -5,6 +5,7 @@
 #include "Things.h"
 #include "Mouse.h"
 #include "Monster.h"
+#include "Mline.h"
 
 //#include "Building.h"
 
@@ -50,32 +51,31 @@ void CMyEdit::Update()
 
     if (1 == m_iMode)
     {
-        if (!isClick)
+        if (KEY_DOWN(VK_LBUTTON))
         {
-            if (KEY_DOWN(VK_LBUTTON))
-            {
-                isClick = true;
-                // 마우스 좌 클릭 시 라인의 시작점 세팅.
-                tInfo.tLPoint.fX = CMouse::GetMousePos().x - fScrollX;
-                tInfo.tLPoint.fY = CMouse::GetMousePos().y;
+            isClick = true;
+            // 마우스 좌 클릭 시 라인의 시작점 세팅.
+            tInfo.tLPoint.fX = CMouse::GetMousePos().x - fScrollX;
+            tInfo.tLPoint.fY = CMouse::GetMousePos().y;
 
-                tInfo.tRPoint.fX = CMouse::GetMousePos().x - fScrollX;
-                tInfo.tRPoint.fY = CMouse::GetMousePos().y;
+            tInfo.tRPoint.fX = CMouse::GetMousePos().x - fScrollX;
+            tInfo.tRPoint.fY = CMouse::GetMousePos().y;
 
-                CLineMgr::GetInstance()->GetLineList().push_back(new CLine(tInfo));
-            }
+            CLineMgr::GetInstance()->GetLineList().push_back(new CLine(tInfo));
         }
-        else
+        if (KEY_UP(VK_LBUTTON))
         {
-            if (KEY_UP(VK_LBUTTON))
-            {
-                isClick = false;
-                // KEY_UP 시에는 라인의 끝점 세팅.
-                tInfo.tRPoint.fX = CMouse::GetMousePos().x - fScrollX;
-                tInfo.tRPoint.fY = CMouse::GetMousePos().y;
+            isClick = false;
+            // KEY_UP 시에는 라인의 끝점 세팅.
+            tInfo.tRPoint.fX = CMouse::GetMousePos().x - fScrollX;
+            tInfo.tRPoint.fY = CMouse::GetMousePos().y;
 
-                CLineMgr::GetInstance()->GetLineList().back()->SetRPoint(tInfo.tRPoint);
-            }
+            CLineMgr::GetInstance()->GetLineList().back()->SetRPoint(tInfo.tRPoint);
+        }
+        if (KEY_UP('Q'))
+        {
+            if(!CLineMgr::GetInstance()->GetLineList().empty())
+                CLineMgr::GetInstance()->GetLineList().pop_back();
         }
     }
     else if (2 == m_iMode)
@@ -171,7 +171,32 @@ void CMyEdit::Update()
     }
     else if (4 == m_iMode)
     {
+        if (KEY_DOWN(VK_LBUTTON))
+        {
+            isClick = true;
+            // 마우스 좌 클릭 시 라인의 시작점 세팅.
+            tInfo.tLPoint.fX = CMouse::GetMousePos().x - fScrollX;
+            tInfo.tLPoint.fY = CMouse::GetMousePos().y;
 
+            tInfo.tRPoint.fX = CMouse::GetMousePos().x - fScrollX;
+            tInfo.tRPoint.fY = CMouse::GetMousePos().y;
+
+            CLineMgr::GetInstance()->GetLineListM().push_back(new MCLine(tInfo));
+        }
+        if (KEY_UP(VK_LBUTTON))
+        {
+            isClick = false;
+            // KEY_UP 시에는 라인의 끝점 세팅.
+            tInfo.tRPoint.fX = CMouse::GetMousePos().x - fScrollX;
+            tInfo.tRPoint.fY = CMouse::GetMousePos().y;
+
+            CLineMgr::GetInstance()->GetLineListM().back()->SetRPoint(tInfo.tRPoint);
+        }
+        if (KEY_UP('Q'))
+        {
+            if(!CLineMgr::GetInstance()->GetLineListM().empty())
+                CLineMgr::GetInstance()->GetLineListM().pop_back();
+        }
     }
 
     if (KEY_UP('R'))
@@ -213,7 +238,7 @@ void CMyEdit::Render(HDC hdc)
         swprintf_s(pos, L"Mode: %s size: %d", L"Monster", OBJ_MGR_GETLIST(OBJ_MONSTER).size());
         break;
     case 4:
-        swprintf_s(pos, L"Mode: %s size: %d", L"MoveLine", OBJ_MGR_GETLIST(OBJ_MONSTER).size());
+        swprintf_s(pos, L"Mode: %s size: %d", L"MoveLine", CLineMgr::GetInstance()->GetLineListM().size());
         break;
     }
     

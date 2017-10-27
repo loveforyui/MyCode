@@ -127,6 +127,9 @@
     <Filter Include="01.OBJ\01.Player\00.PlayerStateManager\06.Sitdown">
       <UniqueIdentifier>{96419967-9dca-4ed3-b2f8-b609c580ad63}</UniqueIdentifier>
     </Filter>
+    <Filter Include="97.Manager\08.LineManager\01.Mline">
+      <UniqueIdentifier>{9b94b89a-0855-44c1-b54e-83c2f968ecbd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -306,6 +309,9 @@
     <ClInclude Include="Sitdown.h">
       <Filter>01.OBJ\01.Player\00.PlayerStateManager\06.Sitdown</Filter>
     </ClInclude>
+    <ClInclude Include="Mline.h">
+      <Filter>97.Manager\08.LineManager\01.Mline</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -442,6 +448,9 @@
     </ClCompile>
     <ClCompile Include="Sitdown.cpp">
       <Filter>01.OBJ\01.Player\00.PlayerStateManager\06.Sitdown</Filter>
+    </ClCompile>
+    <ClCompile Include="Mline.cpp">
+      <Filter>97.Manager\08.LineManager\01.Mline</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
