@@ -31,6 +31,8 @@ public:
     void            SetAcc              (float ac) { m_tInfo.fAcc = ac; }
     void            SetJAcc             (float ac) { m_tInfo.fJumpAcc = ac; }
     void            SetCurState         (eOBJSTATE eobj) { m_tInfo.curState = eobj; }
+    void            SetCurState         (int eobj) { m_tInfo.curState = eobj; }
+    void            SetSpeed            (float speed) { m_tInfo.fSpeed = speed; }
 
 public:
     FLOAT           GetImgW             ();

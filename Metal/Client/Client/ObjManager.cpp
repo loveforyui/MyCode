@@ -19,6 +19,7 @@ CObjManager::~CObjManager()
 int CObjManager::       Update          ()
 {
     CCollisionManager::CollisionSphere(m_objLst[OBJ_MONSTER], m_objLst[OBJ_P_BULLET]);
+    CCollisionManager::CollisionSphere(m_objLst[OBJ_M_BULLET], m_objLst[OBJ_P_BULLET]);
 
     for (int objid = 0; objid < OBJ_END; ++objid)
     {

@@ -9,7 +9,6 @@ CLineMgr::CLineMgr()
 {
 }
 
-
 CLineMgr::~CLineMgr()
 {
 	Release();
@@ -55,7 +54,7 @@ bool CLineMgr::     CollisionLine           (float fX, float * pOutY)
 	return true;
 }
 
-float CLineMgr::FollowLine(float * fx, float * fy, float * fspeed)
+float CLineMgr::    FollowLine              (float * fx, float * fy, float * fspeed)
 {
     if (m_MlineList.empty())
 		return 0.f;
@@ -131,7 +130,7 @@ float CLineMgr::FollowLine(float * fx, float * fy, float * fspeed)
     return y;
 }
 
-void CLineMgr::     LoadData        ()
+void CLineMgr::     LoadData                ()
 {
 	HANDLE hFile = CreateFile(L"../Data/Line.dat", GENERIC_READ, 0, 0
 		, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, 0);
@@ -182,12 +181,12 @@ void CLineMgr::     LoadData        ()
     CloseHandle(hFile);
 }
 
-void CLineMgr::     Initialize      ()
+void CLineMgr::     Initialize              ()
 {
 	LoadData();
 }
 
-void CLineMgr::     Render          (HDC hDC)
+void CLineMgr::     Render                  (HDC hDC)
 {
     float fScrollX = CScrollMgr::GetInstance()->GetScrollX();
     wchar_t         pos[64];
@@ -203,7 +202,7 @@ void CLineMgr::     Render          (HDC hDC)
 		line->Render(hDC);
 }
 
-void CLineMgr::     Release         ()
+void CLineMgr::     Release                 ()
 {
 	for_each(m_LineList.begin(), m_LineList.end(), SafeDelete<CLine*>);
 	m_LineList.clear();

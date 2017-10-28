@@ -5,7 +5,7 @@
 
 // Math
 #define PI 3.14159265f
-#define GRAVITY 9.8f
+#define GRAVITY 8.8f
 
 #define RadianToDegree(X) (X * 180.f / PI)
 #define DegreeToRadian(X) (X * PI / 180.f)
@@ -40,3 +40,5 @@ private:									\
 
 #define IMPLEMENT_SINGLETON(ClassName)		\
 ClassName* ClassName::m_pInstance = nullptr;
+
+#define STATE_SAME(ObjState, ID) ((ObjState & ID) && ID)

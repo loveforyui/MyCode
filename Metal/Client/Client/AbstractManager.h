@@ -56,11 +56,11 @@ public:
     static CObj* CreateObj(vector<ObjImg*>* img, float x, float y, float fAngle)
     {
         CObj* pObj = new T;
-        pObj->Init();
         pObj->SetPos(x, y);
         pObj->SetAngle(fAngle);
         pObj->SetImage(img);
         pObj->SetWH(FLOAT((*(img->begin()))->image->GetWidth()), FLOAT((*(img->begin()))->image->GetHeight()));
+        pObj->Init();
 
         return pObj;
     }
@@ -71,5 +71,19 @@ public:
         pObj->Init();
 
         return pObj;
+    }
+    static CObj* CreateObj(vector<ObjImg*>* img, float x, float y, float fAngle, float speed)
+    {
+        CObj* pObj = new T;
+        pObj->SetPos(x, y);
+        pObj->SetAngle(fAngle);
+        pObj->SetImage(img);
+        pObj->SetWH(FLOAT((*(img->begin()))->image->GetWidth()), FLOAT((*(img->begin()))->image->GetHeight()));
+        pObj->Init();
+        pObj->SetSpeed(speed);
+        
+
+        return pObj;
+
     }
 };

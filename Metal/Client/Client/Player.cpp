@@ -256,7 +256,7 @@ void CPlayer::  IsJump          ()
         //m_tInfo.fY -= m_tInfo.fJumpPow * m_tInfo.fJumpAcc - GRAVITY * m_tInfo.fJumpAcc * m_tInfo.fJumpAcc * 0.5f;
 
         //FLOAT y = m_tInfo.fY;
-        m_tInfo.fJumpAcc -= 0.5*GRAVITY;
+        m_tInfo.fJumpAcc -= 0.1592*GRAVITY;
 
         m_tInfo.fY -= m_tInfo.fJumpAcc;
     }
@@ -313,7 +313,7 @@ void CPlayer::  CalcCannonPos   ()
 
 CObj* CPlayer:: CreateBullet    (vector<ObjImg*>* img, float fAngle)
 {
-    return CAbstractFactory<CBullet>::CreateObj(img, m_tInfo.fCannonX, m_tInfo.fCannonY, fAngle);
+    return CAbstractFactory<CBullet>::CreateObj(img, m_tInfo.fCannonX, m_tInfo.fCannonY, fAngle, 15.f);
 }
 
 void CPlayer::  GunState        ()
@@ -325,9 +325,12 @@ void CPlayer::  GunState        ()
         {
         case CPlayer::BASE:
             //bullet
-            sprintf_s(buf, "%s%s", IMG_PATH, "sfx/base_bullet/");
-            IMG_LOAD(L"sfx/base_bullet/", buf);
-            m_vBulletimg = IMG_GET_V(L"sfx/base_bullet/");
+            if (nullptr == m_vBulletimg)
+            {
+                sprintf_s(buf, "%s%s", IMG_PATH, "sfx/base_bullet/");
+                IMG_LOAD(L"sfx/base_bullet/", buf);
+                m_vBulletimg = IMG_GET_V(L"sfx/base_bullet/");
+            }
             break;
         case CPlayer::HEAVY:
             break;
@@ -448,7 +451,7 @@ void CPlayer::  BaseGunKeyInput ()
         else
         {
             m_tInfo.curState |= OBJ_A_JUMP;
-            m_tInfo.fJumpAcc = GRAVITY * 2.5f;
+            m_tInfo.fJumpAcc = GRAVITY * 1.5f;
         }
     }
 
@@ -521,6 +524,7 @@ void CPlayer::  BaseGunKeyInput ()
         }
 
     }
+
 #pragma region StateChangeToTime
     if (m_dwOldt + 300 < m_dwCurt)
     {

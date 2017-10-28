@@ -6,7 +6,7 @@ class CBabarian
 {
 public:
     CBabarian();
-    CBabarian(CObj* pObj) { m_pObj = pObj; }
+    CBabarian(CObj* pObj) { m_pObj = pObj; Init(); }
     virtual ~CBabarian();
 
     // CMonsterKind을(를) 통해 상속됨
@@ -23,4 +23,11 @@ public:
 
     void         IsJump     ();
 
+    void PrecessState();
+
+    CObj * CreateBullet(vector<ObjImg*>* img, float fAngle);
+
+private:
+    DWORD m_dwCAtkDelay = 0;
+    DWORD m_dwOAtkDelay = 0;
 };
