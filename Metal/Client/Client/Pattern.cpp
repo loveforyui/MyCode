@@ -13,7 +13,7 @@ CPattern::~CPattern()
 {
 }
 
-FLOAT CPattern::EqualLine(CObj* obj)
+FLOAT CPattern::    EqualLine   (CObj* obj)
 {
     // TODO: 여기에 반환 구문을 삽입합니다.
     FLOAT x, y;
@@ -26,7 +26,7 @@ FLOAT CPattern::EqualLine(CObj* obj)
     return y;
 }
 
-FLOAT CPattern::Quadratic(CObj * obj)
+FLOAT CPattern::    Quadratic   (CObj * obj)
 {
     // 이차곡선 
     // TODO: 여기에 반환 구문을 삽입합니다.
@@ -41,7 +41,7 @@ FLOAT CPattern::Quadratic(CObj * obj)
     return y;
 }
 
-FLOAT CPattern::SinLine(CObj* obj)
+FLOAT CPattern::    SinLine     (CObj* obj)
 {
     // 사인곡선
     FLOAT x, y;
@@ -53,7 +53,7 @@ FLOAT CPattern::SinLine(CObj* obj)
     return y;
 }
 
-FLOAT CPattern::Boss(CObj* obj)
+FLOAT CPattern::    Boss        (CObj* obj)
 {
     FLOAT x, y;
     x = obj->GetInfo().fX;
@@ -66,7 +66,7 @@ FLOAT CPattern::Boss(CObj* obj)
     return y;
 }
 
-FLOAT CPattern::SingleLine(CObj* obj)
+FLOAT CPattern::    SingleLine  (CObj* obj)
 {
     FLOAT x, y;
     x = obj->GetInfo().fX;
@@ -77,7 +77,7 @@ FLOAT CPattern::SingleLine(CObj* obj)
     return y;
 }
 
-FLOAT CPattern::SingleLineR(CObj* obj)
+FLOAT CPattern::    SingleLineR (CObj* obj)
 {
     FLOAT x, y;
     x = obj->GetInfo().fX;
@@ -88,7 +88,7 @@ FLOAT CPattern::SingleLineR(CObj* obj)
     return y;
 }
 
-INFO CPattern::AngleLine(CObj* obj, FLOAT angle)
+POINT CPattern::    AngleLine   (CObj* obj, FLOAT angle)
 {
     FLOAT rad   = angle * PI / 180.f;
     FLOAT radR  = (90 - angle) * PI / 180.f;
@@ -100,8 +100,9 @@ INFO CPattern::AngleLine(CObj* obj, FLOAT angle)
     cy = obj->GetInfo().fCY;
 
     x += cosf(rad)*obj->GetSpeed();
-    y += -cosf(radR)*obj->GetSpeed();
-    INFO info = { x, y, cx, cy };
+    //y += -cosf(radR)*obj->GetSpeed();
+    y += -sinf(rad)*obj->GetSpeed();
+    POINT info = { LONG(x), LONG(y)};
 
     return info;
 }

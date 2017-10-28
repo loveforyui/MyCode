@@ -162,6 +162,7 @@ void CObjManager::LoadMonster()
 		if (0 == dwBytes)
 			break;
 
+        //CObj* pObj = new CMonster(tInfo);
 		m_objLst[OBJ_MONSTER].push_back(new CMonster(tInfo));
 	}
 

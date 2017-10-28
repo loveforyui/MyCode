@@ -47,6 +47,47 @@ typedef struct tagInfo
         : fX(_fx), fY(_fy), fCX(_fcx), fCY(_fcy)
     {}
 
+    tagInfo& operator=(tagInfo& ref)
+    {
+
+        image = ref.image;
+        rect = ref.rect;
+        
+        
+        fX = ref.fX;
+        fY = ref.fY;
+        fCX = ref.fCX;
+        fCY = ref.fCY;
+        
+        
+        fSpeed = ref.fSpeed;
+        fAcc = ref.fAcc;
+        fJumpPow = ref.fJumpPow;
+        fJumpAcc = ref.fJumpAcc;
+        
+        
+        fAngle = ref.fAngle;
+        fCannonD = ref.fCannonD;
+        fCannonX = ref.fCannonX;
+        fCannonY = ref.fCannonY;
+        
+        
+        iHP = ref.iHP;
+        iMaxHp = ref.iMaxHp;
+        iAtt = ref.iAtt;
+        
+        isDead = ref.isDead;
+        
+        preState = ref.preState;
+        curState = ref.curState;
+        
+        
+        direction = ref.direction;
+        
+        m_eKind = ref.m_eKind;
+        return *this;
+    }
+
     vector<ObjImg*>* image;
     RECT            rect;
 
@@ -80,6 +121,8 @@ typedef struct tagInfo
 
     //
     UINT            direction;
+
+    eKMOB           m_eKind;
 }INFO;
 
 typedef struct tagLinePoint

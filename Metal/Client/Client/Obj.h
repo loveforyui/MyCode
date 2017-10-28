@@ -4,6 +4,10 @@ class CObj
 {
 public:
     CObj();
+    CObj(INFO& info) 
+    { 
+        m_tInfo = info;
+    }
     virtual ~CObj();
 
 public:
@@ -24,6 +28,9 @@ public:
         img_end = m_tInfo.image->end();
     }
     void            SetDead             () { m_tInfo.isDead = true; }
+    void            SetAcc              (float ac) { m_tInfo.fAcc = ac; }
+    void            SetJAcc             (float ac) { m_tInfo.fJumpAcc = ac; }
+    void            SetCurState         (eOBJSTATE eobj) { m_tInfo.curState = eobj; }
 
 public:
     FLOAT           GetImgW             ();
@@ -32,6 +39,7 @@ public:
     bool            isDead              () { return m_tInfo.isDead; }
     float           GetSpeed            () { return m_tInfo.fSpeed; }
     float           GetAngle            () { return m_tInfo.fAngle; }
+
 
 public:
     void            AddImage            (ObjImg* img) 
@@ -43,11 +51,11 @@ public:
     void            ImageRender(HDC hdc);
 
 protected:
-    INFO m_tInfo;
+    INFO                                m_tInfo;
 
     map<const TCHAR*, vector<ObjImg*>*> m_image;
-    vector<ObjImg*>::iterator img_begin;
-    vector<ObjImg*>::iterator img_end;
+    vector<ObjImg*>::iterator           img_begin;
+    vector<ObjImg*>::iterator           img_end;
 
 
 };

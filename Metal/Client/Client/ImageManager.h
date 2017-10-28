@@ -46,7 +46,7 @@ public:
 
 private:
     static CImageMgr*           m_pInstance;
-    
+
     map<const TCHAR*, vector<ObjImg*>*>   m_MapImage;
 };
 

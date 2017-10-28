@@ -21,7 +21,7 @@ void CScrollMgr::Update()
 		return;
 
 	// 현재 화면 좌표 상의 오프셋과 플레이어 좌표를 비교한다.
-    if (200 < pTarget->GetInfo().fX + m_fScrollX)
+    if (150 < pTarget->GetInfo().fX + m_fScrollX)
         m_fScrollX -= pTarget->GetSpeed();
 
 	/*if (m_fOffSet - 200.f > pTarget->GetInfo().fX + m_fScrollX)

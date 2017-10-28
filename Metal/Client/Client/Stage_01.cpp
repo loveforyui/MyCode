@@ -51,10 +51,10 @@ void CStage_01::Render(HDC hDC)
     CLineMgr::GetInstance()->Render(hDC);
 
     StretchBlt(hdc
-        , INT(fScrollX * 1.92f)
+        , INT(fScrollX * 3.92f)
         , 0
-        , INT(3823 * 1.92f)
-        , INT(WINCY*1.92f)
+        , INT(3823 * 3.92f)
+        , INT(WINCY*3.92f)
         , hDC
         , 0, 0
         , 3823, WINCY

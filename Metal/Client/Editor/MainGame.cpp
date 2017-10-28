@@ -65,7 +65,7 @@ void CMainGame::Render()
     m_hBitmap   = CreateCompatibleBitmap(hdc, 3823, WINCY);
     m_hOldmap   = (HBITMAP)SelectObject(m_hdc, m_hBitmap);
 
-    Rectangle(m_hdc, 0, 0, 3823, WINCY);
+    //Rectangle(m_hdc, 0, 0, 3823, WINCY);
 
     CObjManager::GetInst()->Render(m_hdc);
     CLineMgr::GetInstance()->Render(m_hdc);

@@ -51,4 +51,12 @@ public:
 
         return pObj;
     }
+    static CObj* CreateObj(INFO& info)
+    {
+        // ekmb ¼³Á¤
+        CObj* pObj = new T(info);
+        pObj->Init();
+
+        return pObj;
+    }
 };

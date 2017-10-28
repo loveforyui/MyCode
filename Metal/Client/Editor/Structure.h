@@ -39,7 +39,13 @@ typedef struct tagInfo
         }
         return nullptr;
     }
+    tagInfo()
+    {
 
+    }
+    tagInfo(float _fx, float _fy, float _fcx, float _fcy)
+        : fX(_fx), fY(_fy), fCX(_fcx), fCY(_fcy)
+    {}
     vector<ObjImg*>* image;
     RECT            rect;
 
@@ -64,13 +70,15 @@ typedef struct tagInfo
     int             iMaxHp;
     int             iAtt;
 
-    bool            isDead;
+    bool            isDead = false;
     //state
     UINT            preState;
     UINT            curState;
 
     //
     UINT            direction;
+
+    eKMOB           m_eKind;
 }INFO;
 
 typedef struct tagLinePoint

@@ -1,3 +1,65 @@
-﻿  ObjManager.cpp
+﻿  stdafx.cpp
+c:\users\yui\source\repos\mycode\metal\client\editor\stdafx.cpp : warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+c:\users\yui\source\repos\mycode\metal\client\editor\stdafx.h : warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+c:\users\yui\source\repos\mycode\metal\client\editor\targetver.h : warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+  Things.cpp
+  ScrollMgr.cpp
+  ObjManager.cpp
+  Obj.cpp
+c:\users\yui\source\repos\mycode\metal\client\editor\obj.cpp(42): warning C4244: 'return': 'UINT'에서 'FLOAT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\yui\source\repos\mycode\metal\client\editor\obj.cpp(52): warning C4244: 'return': 'UINT'에서 'FLOAT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  MyEdit.cpp
+c:\users\yui\source\repos\mycode\metal\client\editor\myedit.cpp(33): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\yui\source\repos\mycode\metal\client\editor\myedit.cpp(59): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\yui\source\repos\mycode\metal\client\editor\myedit.cpp(62): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\yui\source\repos\mycode\metal\client\editor\myedit.cpp(71): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\yui\source\repos\mycode\metal\client\editor\myedit.cpp(94): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\yui\source\repos\mycode\metal\client\editor\myedit.cpp(97): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\yui\source\repos\mycode\metal\client\editor\myedit.cpp(99): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\yui\source\repos\mycode\metal\client\editor\myedit.cpp(115): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\yui\source\repos\mycode\metal\client\editor\myedit.cpp(148): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\yui\source\repos\mycode\metal\client\editor\myedit.cpp(151): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\yui\source\repos\mycode\metal\client\editor\myedit.cpp(155): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\yui\source\repos\mycode\metal\client\editor\myedit.cpp(185): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\yui\source\repos\mycode\metal\client\editor\myedit.cpp(208): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\yui\source\repos\mycode\metal\client\editor\myedit.cpp(211): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\yui\source\repos\mycode\metal\client\editor\myedit.cpp(220): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\yui\source\repos\mycode\metal\client\editor\myedit.cpp(252): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\yui\source\repos\mycode\metal\client\editor\myedit.cpp(253): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\yui\source\repos\mycode\metal\client\editor\myedit.cpp(277): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  Mouse.cpp
+c:\users\yui\source\repos\mycode\metal\client\editor\mouse.cpp(32): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  MonsterKind.cpp
+  Monster.cpp
+  Mline.cpp
+  MainGame.cpp
+c:\users\yui\source\repos\mycode\metal\client\editor\maingame.cpp(76): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+c:\users\yui\source\repos\mycode\metal\client\editor\maingame.cpp(76): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\yui\source\repos\mycode\metal\client\editor\abstractmanager.h(50): warning C4244: '인수': 'UINT'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  c:\users\yui\source\repos\mycode\metal\client\editor\abstractmanager.h(45): note: 클래스 템플릿 멤버 함수 'CObj *CAbstractFactory<CBackGround>::CreateObj(std::vector<ObjImg *,std::allocator<_Ty>> *)'을(를) 컴파일하고 있습니다.
+          with
+          [
+              _Ty=ObjImg *
+          ]
+  c:\users\yui\source\repos\mycode\metal\client\editor\maingame.cpp(44): note: 컴파일 중인 함수 템플릿 인스턴스화 'CObj *CAbstractFactory<CBackGround>::CreateObj(std::vector<ObjImg *,std::allocator<_Ty>> *)'에 대한 참조를 확인하십시오.
+          with
+          [
+              _Ty=ObjImg *
+          ]
+  c:\users\yui\source\repos\mycode\metal\client\editor\maingame.cpp(44): note: 컴파일 중인 클래스 템플릿 인스턴스화 'CAbstractFactory<CBackGround>'에 대한 참조를 확인하세요.
+  LineMgr.cpp
+  Line.cpp
+  KeyManager.cpp
+  ImageManager.cpp
+c:\users\yui\source\repos\mycode\metal\client\editor\imagemanager.cpp(126): warning C4244: '인수': 'UINT'에서 'Gdiplus::REAL'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\yui\source\repos\mycode\metal\client\editor\imagemanager.cpp(159): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+  Editor.cpp
+c:\users\yui\source\repos\mycode\metal\client\editor\editor.cpp : warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+c:\users\yui\source\repos\mycode\metal\client\editor\resource.h : warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+  CollisionMgr.cpp
+  BerserkMboss.cpp
+  BackGround.cpp
+  BabarianBase.cpp
+  코드를 생성하고 있습니다...
   Editor.vcxproj -> C:\Users\YUI\Source\Repos\MyCode\Metal\Client\Debug\Editor.exe
   Editor.vcxproj -> C:\Users\YUI\Source\Repos\MyCode\Metal\Client\Debug\Editor.pdb (Partial PDB)

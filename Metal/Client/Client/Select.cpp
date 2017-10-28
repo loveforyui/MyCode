@@ -144,7 +144,16 @@ void CSelect::CharacterSelect_R(HDC hDC)
 
     //IMG_DRAW_I(m_hdc, Layer_Soldier_Select, 0.f, 0.f, Layer_Soldier_Select->GetWidth(), Layer_Soldier_Select->GetHeight());
 
-    StretchBlt(hdc, 0, 0, INT(WINCX*(FLOAT(WINCX)/m_imgSelect[1]->GetWidth())), INT(WINCY*(FLOAT(WINCY)/m_imgSelect[1]->GetHeight())), hDC, 0, 0, WINCX, WINCY, SRCCOPY);
+    StretchBlt(
+        hdc
+        , 0, 0
+        , INT(WINCX*(FLOAT(WINCX)/m_imgSelect[1]->GetWidth()))
+        , INT(WINCY*(FLOAT(WINCY)/m_imgSelect[1]->GetHeight()))
+        , hDC
+        , 0, 0
+        , WINCX
+        , WINCY
+        , SRCCOPY);
     ReleaseDC(g_hWnd, hdc);
 }
 

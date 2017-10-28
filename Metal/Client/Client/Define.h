@@ -1,10 +1,10 @@
 #pragma once
 
-#define WINCX 800
-#define WINCY 400
+#define WINCX 1200
+#define WINCY 800
 
 // Math
-#define PI 3.1415f
+#define PI 3.14159265f
 #define GRAVITY 9.8f
 
 #define RadianToDegree(X) (X * 180.f / PI)

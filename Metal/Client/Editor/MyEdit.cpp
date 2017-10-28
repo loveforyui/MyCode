@@ -126,6 +126,16 @@ void CMyEdit::Update()
     }
     else if (3 == m_iMode)
     {
+        INFO info;
+        static int index = 0;
+        if (KEY_DOWN('W'))
+        {
+            if (index == 4)
+                index = 0;
+            else
+                ++index;
+        }
+
         if (KEY_DOWN(VK_LBUTTON))
         {
             isClick = true;
@@ -140,7 +150,26 @@ void CMyEdit::Update()
             tInfo.tRPoint.fX = CMouse::GetMousePos().x - fScrollX;
             tInfo.tRPoint.fY = CMouse::GetMousePos().y;
 
-            CObj* pObj = CAbstractFactory<CMonster>::CreateObj(pt.x - fScrollX, pt.y);
+            
+            info.fX = pt.x - fScrollX;
+            info.fY = pt.y;
+            switch (index)
+            {
+            case 0:
+                info.m_eKind = MOB_K_BABA;
+                break;
+            case 1:
+                info.m_eKind = MOB_K_BAKING;
+                break;
+            case 2:
+                info.m_eKind = MOB_K_TRUCK;
+                break;
+            case 3:
+                info.m_eKind = MOB_K_END;
+                break;
+            }
+
+            CObj* pObj = CAbstractFactory<CMonster>::CreateObj(info);
             CObjManager::GetInst()->AddObj(pObj, OBJ_MONSTER);
 
             //CLineMgr::GetInstance()->GetLineList().push_back(new CLine(tInfo));

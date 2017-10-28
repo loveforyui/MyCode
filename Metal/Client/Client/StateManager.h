@@ -7,23 +7,23 @@ public:
     CStateManager();
     virtual ~CStateManager();
 public:
-    virtual void    initialize() = 0;
+    virtual void                initialize      () = 0;
 
 public:
-    virtual void    handle(HDC hdc) = 0;
-    virtual int     Update();
-    void            SetImage(vector<ObjImg*>* img)
+    virtual void                handle          (HDC hdc) = 0;
+    virtual int                 Update          ();
+    void                        SetImage        (vector<ObjImg*>* img)
     { 
         m_vImage    = img;
         iter_begin  = img->begin();
         iter_end    = img->end();
     }
-    void            SetObj(OBJID eId) { m_pObjLst = &OBJ_MGR_GETLIST(eId); }
-    void            SetIterator(INT index) { m_incre = index; }
-    void            SetIterator(vector<ObjImg*>::iterator iter) { iter_begin = iter; }
+    void                        SetObj          (OBJID eId) { m_pObjLst = &OBJ_MGR_GETLIST(eId); }
+    void                        SetIterator     (INT index) { m_incre = index; }
+    void                        SetIterator     (vector<ObjImg*>::iterator iter) { iter_begin = iter; }
 public:
-    vector<ObjImg*>* GetImgVector() { return m_vImage; }
-    vector<ObjImg*>::iterator GetImgIter() { return iter_begin; }
+    vector<ObjImg*>*            GetImgVector    () { return m_vImage; }
+    vector<ObjImg*>::iterator   GetImgIter      () { return iter_begin; }
 
 protected:
     OBJLIST*                    m_pObjLst;

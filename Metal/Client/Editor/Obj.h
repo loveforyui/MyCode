@@ -4,6 +4,11 @@ class CObj
 {
 public:
     CObj();
+    CObj(INFO& info) 
+    { 
+        m_tInfo = {};
+        m_tInfo = info;
+    }
     virtual ~CObj();
 
 public:

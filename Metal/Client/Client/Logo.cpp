@@ -41,13 +41,14 @@ void CLogo::Render(HDC hDC)
         IMG_DRAW_I(
             hdc
             , (*iter)->image
-            , fScrollX, -50
+            , WINCX/2.f - img_w/2.f
+            , WINCY/2.f - img_h/2.f
             , FLOAT(img_w)
             , FLOAT(img_h)
         );
 
     }
-    StretchBlt(hDC, INT(fScrollX), 0, WINCX, WINCY, hdc, 0, 0, img_w, img_h, SRCCOPY);
+    //StretchBlt(hDC, WINCX/2.f - img_w/2.f, WINCY/2.f - img_h/2.f, WINCX, WINCY, hdc, 0, 0, img_w, img_h, SRCCOPY);
     //BitBlt(hDC, INT(fScrollX), 0, WINCX, WINCY, hdc, 0, -100, SRCCOPY);
     ReleaseDC(g_hWnd, hdc);
 }

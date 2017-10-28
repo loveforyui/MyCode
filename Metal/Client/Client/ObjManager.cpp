@@ -16,7 +16,7 @@ CObjManager::~CObjManager()
 {
 }
 
-int CObjManager::Update()
+int CObjManager::       Update          ()
 {
     CCollisionManager::CollisionSphere(m_objLst[OBJ_MONSTER], m_objLst[OBJ_P_BULLET]);
 
@@ -46,7 +46,7 @@ int CObjManager::Update()
     return 0;
 }
 
-void CObjManager::Render(HDC hDC)
+void CObjManager::      Render          (HDC hDC)
 {
     HDC hdc = GetDC(g_hWnd);
     float fScrollX = CScrollMgr::GetInstance()->GetScrollX();
@@ -65,18 +65,18 @@ void CObjManager::Render(HDC hDC)
     
 }
 
-void CObjManager::AddObj(CObj * pObj, OBJID eId)
+void CObjManager::      AddObj          (CObj * pObj, OBJID eId)
 {
     m_objLst[eId].push_back(pObj);
 }
 
-void CObjManager::LoadData()
+void CObjManager::      LoadData        ()
 {
     LoadThings();
     LoadMonster();
 }
 
-void CObjManager::LoadThings()
+void CObjManager::      LoadThings      ()
 {
     HANDLE hFile = CreateFile(L"../Data/ThingsData.dat", GENERIC_READ, 0, 0
 		, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, 0);
@@ -103,7 +103,7 @@ void CObjManager::LoadThings()
 	CloseHandle(hFile);
 }
 
-void CObjManager::LoadMonster()
+void CObjManager::      LoadMonster     ()
 {
     HANDLE hFile = CreateFile(L"../Data/MonsterData.dat", GENERIC_READ, 0, 0
 		, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, 0);
@@ -124,7 +124,7 @@ void CObjManager::LoadMonster()
 		if (0 == dwBytes)
 			break;
 
-		m_objLst[OBJ_MONSTER].push_back(new CMonster(tInfo));
+        m_objLst[OBJ_MONSTER].push_back(new CMonster(tInfo));
 	}
 
 	CloseHandle(hFile);

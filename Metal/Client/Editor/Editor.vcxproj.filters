@@ -64,6 +64,15 @@
     <Filter Include="97.Manager\04.LineManager\01.MLine">
       <UniqueIdentifier>{803ad28d-c72b-4838-bd88-1c7262d59958}</UniqueIdentifier>
     </Filter>
+    <Filter Include="01.Obj\03.Monster\00.MonsterStateManager">
+      <UniqueIdentifier>{1cd9c6c0-cab6-4d95-82b8-a3e070f11c27}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Obj\03.Monster\00.MonsterStateManager\00.Babarian">
+      <UniqueIdentifier>{49eb5504-0035-4b31-914c-b28e797603bc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Obj\03.Monster\00.MonsterStateManager\01.BerserkMBoss">
+      <UniqueIdentifier>{fafb8365-115e-4fa0-aaef-c4d0e914b741}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -156,6 +165,15 @@
     <ClInclude Include="Mline.h">
       <Filter>97.Manager\04.LineManager\01.MLine</Filter>
     </ClInclude>
+    <ClInclude Include="MonsterKind.h">
+      <Filter>01.Obj\03.Monster\00.MonsterStateManager</Filter>
+    </ClInclude>
+    <ClInclude Include="BabarianBase.h">
+      <Filter>01.Obj\03.Monster\00.MonsterStateManager\00.Babarian</Filter>
+    </ClInclude>
+    <ClInclude Include="BerserkMboss.h">
+      <Filter>01.Obj\03.Monster\00.MonsterStateManager\01.BerserkMBoss</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -208,6 +226,15 @@
     </ClCompile>
     <ClCompile Include="Mline.cpp">
       <Filter>97.Manager\04.LineManager\01.MLine</Filter>
+    </ClCompile>
+    <ClCompile Include="MonsterKind.cpp">
+      <Filter>01.Obj\03.Monster\00.MonsterStateManager</Filter>
+    </ClCompile>
+    <ClCompile Include="BabarianBase.cpp">
+      <Filter>01.Obj\03.Monster\00.MonsterStateManager\00.Babarian</Filter>
+    </ClCompile>
+    <ClCompile Include="BerserkMboss.cpp">
+      <Filter>01.Obj\03.Monster\00.MonsterStateManager\01.BerserkMBoss</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

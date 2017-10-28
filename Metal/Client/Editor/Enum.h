@@ -25,10 +25,18 @@ enum OBJID
 
 enum eOBJSTATE
 {
-  OBJ_A_IDLE = 0x0000
-, OBJ_A_STND = 0x0001
-, OBJ_A_MOVE = 0x0002
-, OBJ_A_JUMP = 0x0004
-, OBJ_A_ATTK = 0x0008
-, OBJ_A_SITD = 0x0010
+    OBJ_A_IDLE = 0x0000
+    , OBJ_A_STND = 0x0001
+    , OBJ_A_MOVE = 0x0002
+    , OBJ_A_JUMP = 0x0004
+    , OBJ_A_ATTK = 0x0008
+    , OBJ_A_SITD = 0x0010
+};
+
+enum eKMOB
+{
+    MOB_K_BABA      = RGB(255, 0, 0)
+    , MOB_K_BAKING  = RGB(50, 50, 50)
+    , MOB_K_TRUCK   = RGB(128, 128, 128)
+    , MOB_K_END
 };

@@ -148,7 +148,9 @@
   <ItemGroup>
     <ClInclude Include="AbstractManager.h" />
     <ClInclude Include="AbstStateManager.h" />
+    <ClInclude Include="BabarianBase.h" />
     <ClInclude Include="BackGround.h" />
+    <ClInclude Include="BerserkMboss.h" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="Client.h" />
     <ClInclude Include="CollisionManager.h" />
@@ -171,6 +173,7 @@
     <ClInclude Include="MathMgr.h" />
     <ClInclude Include="Mline.h" />
     <ClInclude Include="Monster.h" />
+    <ClInclude Include="MonsterKind.h" />
     <ClInclude Include="Mouse.h" />
     <ClInclude Include="Obj.h" />
     <ClInclude Include="ObjManager.h" />
@@ -207,7 +210,9 @@
     <ClInclude Include="Typedef.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="BabarianBase.cpp" />
     <ClCompile Include="BackGround.cpp" />
+    <ClCompile Include="BerserkMboss.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="Client.cpp" />
     <ClCompile Include="CollisionManager.cpp" />
@@ -224,6 +229,7 @@
     <ClCompile Include="MathMgr.cpp" />
     <ClCompile Include="Mline.cpp" />
     <ClCompile Include="Monster.cpp" />
+    <ClCompile Include="MonsterKind.cpp" />
     <ClCompile Include="Mouse.cpp" />
     <ClCompile Include="Obj.cpp" />
     <ClCompile Include="ObjManager.cpp" />

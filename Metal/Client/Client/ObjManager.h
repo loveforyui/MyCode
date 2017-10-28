@@ -8,14 +8,14 @@ private:
     ~CObjManager();
 
 public:
-    static CObjManager* GetInst()
+    static CObjManager* GetInst ()
     {
         if (nullptr == inst)
             inst = new CObjManager;
 
         return inst;
     }
-    void Destroy()
+    void                Destroy ()
     {
         if (inst)
         {
@@ -25,13 +25,13 @@ public:
     }
     
 public:
-    int Update();
-    void Render(HDC hdc);
+    int         Update          ();
+    void        Render          (HDC hdc);
 
 public:
-    OBJLIST& GetObjlst(OBJID eId) { return m_objLst[eId]; }
-    OBJLIST& GetObjlst(INT eIn) { return m_objLst[eIn]; }
-    CObj* FindObject(OBJID eId)
+    OBJLIST&    GetObjlst       (OBJID eId) { return m_objLst[eId]; }
+    OBJLIST&    GetObjlst       (INT eIn) { return m_objLst[eIn]; }
+    CObj*       FindObject      (OBJID eId)
     {
         if (m_objLst[eId].empty())
             return nullptr;
@@ -40,16 +40,16 @@ public:
     }
 
 public:
-    void AddObj(CObj* pObj, OBJID eId);
-    void LoadData();
-    void LoadMonster();
-    void LoadThings();
+    void        AddObj          (CObj* pObj, OBJID eId);
+    void        LoadData        ();
+    void        LoadMonster     ();
+    void        LoadThings      ();
 
 private:
-    static CObjManager* inst;
+    static CObjManager*         inst;
 
     // OBJLIST
-    OBJLIST                 m_objLst[OBJ_END];
+    OBJLIST                     m_objLst[OBJ_END];
 };
 
 
