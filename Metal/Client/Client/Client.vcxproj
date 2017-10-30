@@ -207,6 +207,7 @@
     <ClInclude Include="StWalkLegR.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="Things.h" />
+    <ClInclude Include="Truck.h" />
     <ClInclude Include="Typedef.h" />
   </ItemGroup>
   <ItemGroup>
@@ -264,6 +265,7 @@
     <ClCompile Include="StWalkLegL.cpp" />
     <ClCompile Include="StWalkLegR.cpp" />
     <ClCompile Include="Things.cpp" />
+    <ClCompile Include="Truck.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc" />

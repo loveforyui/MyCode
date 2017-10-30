@@ -29,7 +29,7 @@ void CStage_01::Initialize()
     {
         CObj* pObj = CAbstractFactory<CPlayer>::CreateObj();
 
-        pObj->SetPos(700.f, 100.f);
+        pObj->SetPos(100.f, 50.f);
 
         OBJ_MGR_GETLIST(OBJ_PLAYER).push_back(pObj);
     }

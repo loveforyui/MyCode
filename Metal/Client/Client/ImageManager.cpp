@@ -13,15 +13,15 @@ CImageMgr::~CImageMgr()
     Release();
 }
 
-void CImageMgr::Initialize()
+void CImageMgr::                Initialize          ()
 {
 }
 
-void CImageMgr::Update()
+void CImageMgr::                Update              ()
 {
 }
 
-void CImageMgr::Release()
+void CImageMgr::                Release             ()
 {
     for (map<const TCHAR*, vector<ObjImg*>*>::iterator iter = m_MapImage.begin();
         iter != m_MapImage.end(); ++iter)
@@ -36,7 +36,7 @@ void CImageMgr::Release()
     }
 }
 
-void CImageMgr::LoadImgFile(const TCHAR* objName, const char* filePath)
+void CImageMgr::                LoadImgFile         (const TCHAR* objName, const char* filePath)
 {
     _finddata_t _fd = {};
 
@@ -96,7 +96,7 @@ void CImageMgr::LoadImgFile(const TCHAR* objName, const char* filePath)
     m_MapImage.insert(make_pair(objName, temp));
 }
 
-void CImageMgr::DrawImg(HDC hDC, Image* img, FLOAT fx, FLOAT fy, FLOAT fCX, FLOAT fCY)
+void CImageMgr::                DrawImg             (HDC hDC, Image* img, FLOAT fx, FLOAT fy, FLOAT fCX, FLOAT fCY)
 {
     Graphics graphics(hDC);
 
@@ -109,7 +109,7 @@ void CImageMgr::DrawImg(HDC hDC, Image* img, FLOAT fx, FLOAT fy, FLOAT fCX, FLOA
                  , fCY );
 }
 
-void CImageMgr::DrawImg(HDC hDC, const TCHAR * ObjName, const TCHAR * fileName, FLOAT fx, FLOAT fy)
+void CImageMgr::                DrawImg             (HDC hDC, const TCHAR * ObjName, const TCHAR * fileName, FLOAT fx, FLOAT fy)
 {
     // 매개변수로 받은 hdc가 본체
 
@@ -127,7 +127,7 @@ void CImageMgr::DrawImg(HDC hDC, const TCHAR * ObjName, const TCHAR * fileName, 
         );
 }
 
-void CImageMgr::DrawImg(HDC hDC, const TCHAR * ObjName, const TCHAR * fileName, FLOAT fx, FLOAT fy, FLOAT fCX, FLOAT fCY)
+void CImageMgr::                DrawImg             (HDC hDC, const TCHAR * ObjName, const TCHAR * fileName, FLOAT fx, FLOAT fy, FLOAT fCX, FLOAT fCY)
 {
     // 매개변수로 받은 hdc가 본체
 
@@ -144,18 +144,18 @@ void CImageMgr::DrawImg(HDC hDC, const TCHAR * ObjName, const TCHAR * fileName, 
                  , fCY );
 }
 
-Image * CImageMgr::GetImage(const TCHAR * ObjName, const TCHAR * fileName)
+Image * CImageMgr::             GetImage            (const TCHAR * ObjName, const TCHAR * fileName)
 {
     // TODO: 여기에 반환 구문을 삽입합니다.
     return FindImage(ObjName, fileName);
 }
 
-vector<ObjImg*>* CImageMgr::GetImageVector(const TCHAR * objName)
+vector<ObjImg*>* CImageMgr::    GetImageVector      (const TCHAR * objName)
 {
     return m_MapImage[objName];
 }
 
-ObjImg * CImageMgr::GetImageObjImg(const TCHAR * ObjName, const TCHAR * fileName)
+ObjImg * CImageMgr::            GetImageObjImg      (const TCHAR * ObjName, const TCHAR * fileName)
 {
     for (size_t i = 0 ; i < m_MapImage[ObjName]->size(); ++i)
     {
@@ -167,7 +167,7 @@ ObjImg * CImageMgr::GetImageObjImg(const TCHAR * ObjName, const TCHAR * fileName
     return nullptr;
 }
 
-Image* CImageMgr::FindImage(const TCHAR * ObjName, const TCHAR * fileName)
+Image* CImageMgr::              FindImage           (const TCHAR * ObjName, const TCHAR * fileName)
 {
     for (auto i : m_MapImage)
     {

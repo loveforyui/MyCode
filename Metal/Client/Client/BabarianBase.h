@@ -10,26 +10,21 @@ public:
     virtual ~CBabarian();
 
     // CMonsterKind을(를) 통해 상속됨
-    virtual void Init       ()          override;
-
-    virtual void Render     (HDC hdc)   override;
-
-    virtual void Release    ()          override;
-
-    virtual int  Update     ();
+    virtual void    Init            ()          override;
+    virtual void    Render          (HDC hdc)   override;
+    virtual void    Release         ()          override;
+    virtual int     Update          ();
 
 public:
-    void         PatternA   ();
-
-    void         IsJump     ();
-
-    void PrecessState();
-
-    CObj * CreateBullet(vector<ObjImg*>* img, float fAngle);
-
-    void IsCollisionLine();
+    void            PatternA        ();
+    void            IsJump          ();
+    void            PrecessState    ();
+    CObj *          CreateBullet    (vector<ObjImg*>* img, float fAngle);
+    void            IsCollisionLine ();
 
 private:
-    DWORD m_dwCAtkDelay = 0;
-    DWORD m_dwOAtkDelay = 0;
+    DWORD           m_dwCAtkDelay   = 0;
+    DWORD           m_dwOAtkDelay   = 0;
+
+    bool            isEnd           = false;
 };

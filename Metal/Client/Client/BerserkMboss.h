@@ -20,11 +20,16 @@ public:
     void PatternS();
     void PatternA();
     void PatternB();
+    void PatternL();
     void IsCollisionLine();
+    CObj * CreateBullet(vector<ObjImg*>* img, float fAngle);
     void InsertImage(const TCHAR * key, vector<ObjImg*>* vImg);
 
 private:
     INT m_fase = 1;
+    INT endl = 0;
+    POINT ePt;
+    FLOAT fend = 90.f;
 
     vector<ObjImg*>::iterator iter_b;
     vector<ObjImg*>::iterator iter_e;

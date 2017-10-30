@@ -62,8 +62,6 @@ void CObjManager::      Render          (HDC hDC)
                 (*iter_begin)->Render(hDC);         
             }
 	}
-
-    
 }
 
 void CObjManager::      AddObj          (CObj * pObj, OBJID eId)

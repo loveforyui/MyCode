@@ -107,6 +107,23 @@ POINT CPattern::    AngleLine   (CObj* obj, FLOAT angle)
     return info;
 }
 
+POINT CPattern::    AngleLine   (POINT pt, FLOAT acc, FLOAT angle)
+{
+    FLOAT rad   = angle * PI / 180.f;
+    FLOAT radR  = (90 - angle) * PI / 180.f;
+
+    FLOAT x, y;
+    x = FLOAT(pt.x);
+    y = FLOAT(pt.y);
+
+    x += cosf(rad)*acc;
+    //y += -cosf(radR)*obj->GetSpeed();
+    y += -sinf(rad)*acc;
+    POINT info = { LONG(x), LONG(y)};
+
+    return info;
+}
+
 //INFO CPattern::HeosBomb(CObj* obj)
 //{
 //    FLOAT y, x;

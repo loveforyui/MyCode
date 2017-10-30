@@ -2,6 +2,7 @@
 #include "Monster.h"
 #include "BabarianBase.h"
 #include "BerserkMboss.h"
+#include "Truck.h"
 
 CMonster::CMonster()
 {
@@ -15,7 +16,7 @@ CMonster::CMonster(INFO& info)
     SetKind(m_tInfo.m_eKind);
     m_tInfo.fSpeed = 2.f;
     m_tInfo.fAcc = 0.f;
-    m_tInfo.curState = OBJ_A_STND;
+    //m_tInfo.curState = OBJ_A_STND;
     m_tInfo.isDead = false;
 }
 
@@ -47,6 +48,10 @@ void CMonster::     SetKind         (eKMOB ekmb)
     }
         break;
     case MOB_K_TRUCK:
+    {
+        SetKind(new CTruck(this));
+        m_tInfo.m_eKind = MOB_K_TRUCK;
+    }
         break;
     }
 }
@@ -84,15 +89,10 @@ void CMonster::     Render          (HDC hdc)
 
 int CMonster::      Update          ()
 {
-    if (isDead())
-        return 1;
     CObj::Update();
 
-    m_Kind->Update();
-    //FollowLine();
-    //IsCollisionLine();    
+    return m_Kind->Update();
 
-    return 0;
 }
 
 void CMonster::     IsCollisionLine ()

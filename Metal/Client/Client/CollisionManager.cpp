@@ -28,8 +28,8 @@ void CCollisionManager::CollisionRect(OBJLIST & dst, OBJLIST & src)
 			// 충돌이 일어나면 첫번째 인자에 곂친 영역의 사각형을 기록하고 true를 반환한다.
 			if (IntersectRect(&rc, &(Dst->GetInfo().rect), &(Src->GetInfo().rect)))
 			{
-				Dst->SetDead();
-				Src->SetDead();
+				Dst->SetDead(true);
+				Src->SetDead(true);
 			}
 		}
 	}
@@ -49,9 +49,9 @@ void CCollisionManager::CollisionSphere(OBJLIST & dst, OBJLIST & src)
 			
 			if (CheckSphere(Dst, Src))
 			{
-				Dst->SetDead();
-				//Dst->SetDamage(Src->GetAtt());
-				Src->SetDead();
+				//Dst->SetDead(true);
+				Dst->SetDamage(Src->GetAtt());
+				Src->SetDead(true);
 			}
 		}
 	}

@@ -175,7 +175,7 @@ void CPlayer::  Init            ()
     // value setting
     m_tInfo.fJumpPow    = 15.f;
     m_tInfo.fJumpAcc    = 0.f;
-    m_tInfo.fSpeed      = 5.f;
+    m_tInfo.fSpeed      = 15.f;
 
     SetCXY();
 }
@@ -255,7 +255,7 @@ void CPlayer::  IsJump          ()
         //m_tInfo.fY -= m_tInfo.fJumpPow * m_tInfo.fJumpAcc - GRAVITY * m_tInfo.fJumpAcc * m_tInfo.fJumpAcc * 0.5f;
 
         //FLOAT y = m_tInfo.fY;
-        m_tInfo.fJumpAcc -= 0.1592*GRAVITY;
+        m_tInfo.fJumpAcc -= 0.1592f*GRAVITY;
 
         m_tInfo.fY -= m_tInfo.fJumpAcc;
     }

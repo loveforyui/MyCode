@@ -139,6 +139,9 @@
     <Filter Include="01.OBJ\04.Monster\00.MonsterStateManager\01.BerserkMboss">
       <UniqueIdentifier>{e539047d-503b-4e8f-a355-809da3f1f362}</UniqueIdentifier>
     </Filter>
+    <Filter Include="01.OBJ\04.Monster\00.MonsterStateManager\02.Truck">
+      <UniqueIdentifier>{b6da4311-24e9-4b06-960a-d557a80fae21}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -330,6 +333,9 @@
     <ClInclude Include="BerserkMboss.h">
       <Filter>01.OBJ\04.Monster\00.MonsterStateManager\01.BerserkMboss</Filter>
     </ClInclude>
+    <ClInclude Include="Truck.h">
+      <Filter>01.OBJ\04.Monster\00.MonsterStateManager\02.Truck</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -478,6 +484,9 @@
     </ClCompile>
     <ClCompile Include="BerserkMboss.cpp">
       <Filter>01.OBJ\04.Monster\00.MonsterStateManager\01.BerserkMboss</Filter>
+    </ClCompile>
+    <ClCompile Include="Truck.cpp">
+      <Filter>01.OBJ\04.Monster\00.MonsterStateManager\02.Truck</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

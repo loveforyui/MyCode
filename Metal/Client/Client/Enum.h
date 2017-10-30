@@ -13,8 +13,8 @@ enum OBJID
 {
     OBJ_BACKGROUD
     , OBJ_COLLISION
-    , OBJ_PLAYER
     , OBJ_MONSTER
+    , OBJ_PLAYER
     , OBJ_THINGS
     , OBJ_P_BULLET
     , OBJ_M_BULLET
@@ -31,6 +31,7 @@ enum eOBJSTATE
     , OBJ_A_JUMP = 0x0004
     , OBJ_A_ATTK = 0x0008
     , OBJ_A_SITD = 0x0010
+    , OBJ_A_DIE  = 0x0020
 };
 
 enum eKMOB

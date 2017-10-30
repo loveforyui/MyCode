@@ -16,6 +16,7 @@ public:
     FLOAT   SingleLineR     (CObj* obj);
     //INFO    AngleLine       (CObj* obj, FLOAT angle);
     POINT   AngleLine       (CObj* obj, FLOAT angle);
+    POINT   AngleLine       (POINT pt, FLOAT acc, FLOAT angle);
     //INFO    HeosBomb        (CObj * obj);
 
 public:
