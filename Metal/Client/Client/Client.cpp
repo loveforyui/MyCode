@@ -142,14 +142,22 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
     switch (message)
     {
-    case WM_KEYDOWN:
-        switch (wParam)
+    case WM_SYSKEYDOWN:
+    {
+        case WM_KEYDOWN:
         {
-        case VK_ESCAPE:
-            DestroyWindow(hWnd);
+            switch (wParam)
+            {
+            case VK_MENU:
+                break;
+            case VK_ESCAPE:
+                DestroyWindow(hWnd);
+                break;
+            }
             break;
         }
-        break;
+    }
+    break;
     case WM_DESTROY:
         PostQuitMessage(0);
         break;

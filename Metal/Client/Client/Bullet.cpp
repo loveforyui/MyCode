@@ -31,8 +31,8 @@ void CBullet::  Render      (HDC hdc)
     m_tInfo.fCX = FLOAT((*img_begin)->image->GetWidth());
     m_tInfo.fCY = FLOAT((*img_begin)->image->GetHeight());
 
-    HBRUSH hBrush = CreateSolidBrush(RGB(255, 0, 0));
-    HBRUSH hOldsh = (HBRUSH)SelectObject(hdc, hBrush);
+    /*HBRUSH hBrush = CreateSolidBrush(RGB(255, 0, 0));
+    HBRUSH hOldsh = (HBRUSH)SelectObject(hdc, hBrush);*/
 
     IMG_DRAW_I(
         hdc
@@ -42,8 +42,8 @@ void CBullet::  Render      (HDC hdc)
         , m_tInfo.fCX
         , m_tInfo.fCY);
 
-    SelectObject(hdc, hOldsh);
-    DeleteObject(hBrush);
+    //SelectObject(hdc, hOldsh);
+    //DeleteObject(hBrush);
     //Rectangle(hdc, m_tInfo.rect.left, m_tInfo.rect.top, m_tInfo.rect.right, m_tInfo.rect.bottom);
 
     ++img_begin;
@@ -61,6 +61,7 @@ void CBullet::  Render      (HDC hdc)
 
 int CBullet::   Update      ()
 {
+    ++m_distSum;
     if (isDead())
         return 1;
     if (STATE_SAME(m_tInfo.curState, OBJ_A_STND))
@@ -97,6 +98,9 @@ int CBullet::   Update      ()
 
     if (m_tInfo.fY < 0 || WINCY < m_tInfo.fY)
         return 1;
+
+    if (50 <= m_distSum)
+              return 1;
 
     return 0;
 }

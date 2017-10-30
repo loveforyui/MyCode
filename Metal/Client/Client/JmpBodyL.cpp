@@ -23,8 +23,8 @@ void CJmpBodyL::handle(HDC hdc)
             IMG_DRAW_I(
                 hdc
                 , (*iter_begin)->image //(*iter_begin)->image
-                , -4 + (*obj)->GetInfo().fX - (*iter_begin)->image->GetWidth() / 2
-                , -12 + (*obj)->GetInfo().fY - (*iter_begin)->image->GetHeight() / 2
+                , -6 + (*obj)->GetInfo().fX - (*iter_begin)->image->GetWidth() / 2
+                , -10 + (*obj)->GetInfo().fY - (*iter_begin)->image->GetHeight() / 2
                 , (*obj)->GetInfo().fCX //(*iter_begin)->image->GetWidth()
                 , (*obj)->GetInfo().fCY //(*iter_begin)->image->GetHeight()
             );
@@ -32,6 +32,6 @@ void CJmpBodyL::handle(HDC hdc)
 
         ++iter_begin;
         if (iter_begin == iter_end)
-            iter_begin = m_vImage->begin();
+            iter_begin = --m_vImage->end();
     }
 }

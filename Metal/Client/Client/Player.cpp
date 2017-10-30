@@ -188,12 +188,11 @@ void CPlayer::  Render          (HDC hdc)
 {
     CObj::Update();
 
-    //wchar_t         pos[64];
-    //swprintf_s(pos, L"X:%.1f Y:%.1f A:%.1f", m_tInfo.fX, m_tInfo.fY, m_tInfo.fAngle);
-    ////wsprintf();
-    //SetTextAlign(hdc, TA_CENTER);
-    //SetBkMode(hdc, TRANSPARENT);
-    //TextOut(hdc, m_tInfo.fX, m_tInfo.fY - 30, pos, wcslen(pos));
+    /*wchar_t         pos[64];
+    swprintf_s(pos, L"X:%.1f Y:%.1f A:%.1f", m_tInfo.fX, m_tInfo.fY, m_tInfo.fAngle);
+    SetTextAlign(hdc, TA_LEFT);
+    SetBkMode(hdc, TRANSPARENT);
+    TextOut(hdc, m_tInfo.fX, m_tInfo.fY - 30, pos, wcslen(pos));*/
 
     //Rectangle(hdc, m_tInfo.rect.left, m_tInfo.rect.top, m_tInfo.rect.right, m_tInfo.rect.bottom);
 
@@ -313,7 +312,7 @@ void CPlayer::  CalcCannonPos   ()
 
 CObj* CPlayer:: CreateBullet    (vector<ObjImg*>* img, float fAngle)
 {
-    return CAbstractFactory<CBullet>::CreateObj(img, m_tInfo.fCannonX, m_tInfo.fCannonY, fAngle, 15.f);
+    return CAbstractFactory<CBullet>::CreateObj(img, m_tInfo.fCannonX, m_tInfo.fCannonY + 10.f, fAngle, 15.f);
 }
 
 void CPlayer::  GunState        ()
@@ -581,7 +580,9 @@ void CPlayer::  BaseGunKeyInput ()
 
     if (m_tInfo.direction & OBJ_D_RIGH)
     {
-        if(m_tInfo.rect.right < 3823)
+        float fScrollX = CScrollMgr::GetInstance()->GetScrollX();
+
+        if(m_tInfo.rect.right <= -fScrollX + 320.f)
             m_tInfo.fX += m_tInfo.fSpeed;
     }
 

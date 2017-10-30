@@ -19,4 +19,6 @@ protected:
     CObj*                                   m_pObj;
     ObjImg*                                 m_curImg;
     map<const TCHAR*, vector<ObjImg*>*>*    m_mImage;
+    vector<ObjImg*>::iterator               iter_begin;
+    vector<ObjImg*>::iterator               iter_end;
 };

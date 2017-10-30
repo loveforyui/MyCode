@@ -189,11 +189,11 @@ void CLineMgr::     Initialize              ()
 void CLineMgr::     Render                  (HDC hDC)
 {
     float fScrollX = CScrollMgr::GetInstance()->GetScrollX();
-    wchar_t         pos[64];
+    /*wchar_t         pos[64];
     swprintf_s(pos, L"Mode: %s size: %d", L"MoveLine", CLineMgr::GetInstance()->GetLineListM().size());
     SetTextAlign(hDC, TA_LEFT);
     SetBkMode(hDC, TRANSPARENT);
-    TextOut(hDC, - fScrollX, 0, pos, wcslen(pos));
+    TextOut(hDC, - fScrollX, 0, pos, wcslen(pos));*/
 
 	for (auto line : m_LineList)
 		line->Render(hDC);

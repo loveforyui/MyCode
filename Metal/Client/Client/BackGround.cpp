@@ -19,7 +19,6 @@ void CBackGround::Release()
 
 void CBackGround::Render(HDC hDC)
 {
-    HDC hdc = GetDC(g_hWnd);
     for (vector<ObjImg*>::iterator iter = ++m_tInfo.image->begin()
         ; iter != m_tInfo.image->end()
         ; ++iter)
@@ -32,7 +31,6 @@ void CBackGround::Render(HDC hDC)
             , FLOAT((*iter)->image->GetHeight())
         );
     }
-    ReleaseDC(g_hWnd, hdc);
 }
 
 int CBackGround::Update()

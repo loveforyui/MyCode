@@ -24,15 +24,15 @@ void CBabarian::    Init            ()
 
 void CBabarian::    Render          (HDC hdc)
 {
-    //Image* img      = m_curImg->image;
-    HBRUSH hBrush = nullptr;
-    HBRUSH hOldsh = nullptr;
+    ////Image* img      = m_curImg->image;
+    //HBRUSH hBrush = nullptr;
+    //HBRUSH hOldsh = nullptr;
 
     if (STATE_SAME(m_pObj->GetInfo().curState, OBJ_A_STND)
         || STATE_SAME(m_pObj->GetInfo().curState, OBJ_A_JUMP))
     {
-        hBrush = CreateSolidBrush(RGB(255, 0, 0));
-        hOldsh = (HBRUSH)SelectObject(hdc, hBrush);
+        //hBrush = CreateSolidBrush(RGB(255, 0, 0));
+        //hOldsh = (HBRUSH)SelectObject(hdc, hBrush);
         Rectangle(
             hdc
             , m_pObj->GetInfo().rect.left
@@ -43,8 +43,8 @@ void CBabarian::    Render          (HDC hdc)
     }
     if (STATE_SAME(m_pObj->GetInfo().curState, OBJ_A_ATTK))
     {
-        hBrush = CreateSolidBrush(RGB(200, 0, 0));
-        hOldsh = (HBRUSH)SelectObject(hdc, hBrush);
+        //hBrush = CreateSolidBrush(RGB(200, 0, 0));
+        //hOldsh = (HBRUSH)SelectObject(hdc, hBrush);
         Rectangle(
             hdc
             , m_pObj->GetInfo().rect.left
@@ -54,15 +54,15 @@ void CBabarian::    Render          (HDC hdc)
         );
     }
 
-    wchar_t         pos[64];
+    /*wchar_t         pos[64];
     swprintf_s(pos, L"X:%.1f Y:%.1f d:%d", m_pObj->GetInfo().fX, m_pObj->GetInfo().fY, m_pObj->GetInfo().curState);
     SetTextAlign(hdc, TA_CENTER);
     SetBkMode(hdc, TRANSPARENT);
-    TextOut(hdc, m_pObj->GetInfo().fX, m_pObj->GetInfo().fY - 30, pos, wcslen(pos));
+    TextOut(hdc, m_pObj->GetInfo().fX, m_pObj->GetInfo().fY - 30, pos, wcslen(pos));*/
 
 
-    SelectObject(hdc, hOldsh);
-    DeleteObject(hBrush);
+    //SelectObject(hdc, hOldsh);
+    //DeleteObject(hBrush);
 }
 
 void CBabarian::    Release         ()
@@ -71,9 +71,19 @@ void CBabarian::    Release         ()
 
 int CBabarian::     Update          ()
 {
+    RECT rc = {
+        LONG(m_pObj->GetInfo().fX - m_pObj->GetInfo().fCX / 2)
+        , LONG(m_pObj->GetInfo().fY - m_pObj->GetInfo().fCY / 2)
+        , LONG(m_pObj->GetInfo().fX + m_pObj->GetInfo().fCX / 2)
+        , LONG(m_pObj->GetInfo().fY + m_pObj->GetInfo().fCY / 2)
+    };
+
+    m_pObj->SetRect(rc);
+
     PatternA();
     IsJump();
     PrecessState();
+    IsCollisionLine();
     return 0;
 }
 
@@ -93,7 +103,7 @@ void CBabarian::    PatternA        ()
         if (!((m_pObj->GetInfo().curState & OBJ_A_JUMP) == OBJ_A_JUMP))
         {
             //이미 방향은 그대로 점프 뛴다.
-            m_pObj->SetJAcc(GRAVITY * 2.5f);
+            m_pObj->SetJAcc(GRAVITY * 1.8f);
             m_pObj->SetCurState(OBJ_A_JUMP);
         }
     }
@@ -161,4 +171,38 @@ CObj* CBabarian::   CreateBullet    (vector<ObjImg*>* img, float fAngle)
     CObj* pObj = CAbstractFactory<CBullet>::CreateObj(img, m_pObj->GetInfo().fX, m_pObj->GetInfo().fY, fAngle);
     dynamic_cast<CBullet*>(pObj)->SetBullPettern(CBullet::CONIC);
     return pObj;
+}
+//
+void CBabarian::     IsCollisionLine ()
+{
+    float fy = m_pObj->GetInfo().fY;
+
+    if (CLineMgr::GetInstance()->CollisionLine(m_pObj->GetInfo().fX, &fy))
+    {
+        if(!(m_pObj->GetInfo().curState & OBJ_A_JUMP))
+            m_pObj->SetPos(m_pObj->GetInfo().fX, fy - m_pObj->GetInfo().fCY / 2);
+
+        if (m_pObj->GetInfo().fY >= fy - m_pObj->GetInfo().fCY / 2) // 점프 중에 라인에 도달하면 라인을 타고
+        {
+            m_pObj->SetPos(m_pObj->GetInfo().fX, fy - m_pObj->GetInfo().fCY / 2);
+            m_pObj->SetJAcc(0.f);
+            if (m_pObj->GetInfo().curState & OBJ_A_ATTK)
+            {
+                if (m_pObj->GetInfo().curState & OBJ_A_MOVE)
+                    m_pObj->SetCurState(OBJ_A_MOVE | OBJ_A_ATTK);
+                else
+                    m_pObj->SetCurState(OBJ_A_STND | OBJ_A_ATTK);
+            }
+            else
+            {
+                m_pObj->SetCurState(OBJ_A_STND);
+                //m_tInfo.curState = OBJ_A_STND;
+            }
+            //m_tInfo.curState = OBJ_A_STND;
+        }
+    }
+    else
+    {
+        m_pObj->SetCurState(OBJ_A_JUMP);
+    }
 }

@@ -41,11 +41,11 @@ void CMouse::Release()
 
 void CMouse::Render(HDC hdc)
 {
-	Ellipse(hdc,INT(m_tInfo.fX - 2), INT(m_tInfo.fY - 2), INT(m_tInfo.fX + 2), INT(m_tInfo.fY + 2));
+	//Ellipse(hdc,INT(m_tInfo.fX - 2), INT(m_tInfo.fY - 2), INT(m_tInfo.fX + 2), INT(m_tInfo.fY + 2));
 
-    wchar_t         pos[64];
+    /*wchar_t         pos[64];
     swprintf_s(pos, L"X:%.2f Y:%.2f", m_tInfo.fX, m_tInfo.fY);
     SetTextAlign(hdc, TA_CENTER);
     SetBkMode(hdc, TRANSPARENT);
-    TextOut(hdc, INT(m_tInfo.fX), INT(m_tInfo.fY - 30), pos, wcslen(pos));
+    TextOut(hdc, INT(m_tInfo.fX), INT(m_tInfo.fY - 30), pos, wcslen(pos));*/
 }

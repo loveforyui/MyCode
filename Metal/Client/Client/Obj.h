@@ -41,6 +41,7 @@ public:
     bool            isDead              () { return m_tInfo.isDead; }
     float           GetSpeed            () { return m_tInfo.fSpeed; }
     float           GetAngle            () { return m_tInfo.fAngle; }
+    map<const TCHAR*, vector<ObjImg*>*>& GetImgv() { return m_image; }
 
 
 public:

@@ -10,7 +10,7 @@ CSelect::~CSelect()
     Release();
 }
 
-void CSelect::Initialize()
+void CSelect::      Initialize          ()
 {
     char buf[256] = "";
     strcpy_s(buf, IMG_PATH);
@@ -19,21 +19,21 @@ void CSelect::Initialize()
     m_vImage = IMG_GET_V(L"hud/select/");
 }
 
-void CSelect::Update()
+void CSelect::      Update              ()
 {
     CharacterSelect_U();
 }
 
-void CSelect::Render(HDC hDC)
+void CSelect::      Render              (HDC hDC)
 {
     CharacterSelect_R(hDC);
 }
 
-void CSelect::Release()
+void CSelect::      Release             ()
 {
 }
 
-void CSelect::CharacterSelect_R(HDC hDC)
+void CSelect::      CharacterSelect_R   (HDC hDC)
 {
     HDC hdc = GetDC(g_hWnd);
     static FLOAT fas = 0.f;
@@ -154,10 +154,11 @@ void CSelect::CharacterSelect_R(HDC hDC)
         , WINCX
         , WINCY
         , SRCCOPY);
+
     ReleaseDC(g_hWnd, hdc);
 }
 
-void CSelect::CharacterSelect_U()
+void CSelect::      CharacterSelect_U   ()
 {
     if (0x00000 == m_bSelect_hud)
         //m_bSelect_hud = 0xFFBB0;

@@ -28,6 +28,7 @@ public:
 public:
     void            IsJump          ();
     float           FollowLine      ();
+    void            InsertImage     (const TCHAR * key, vector<ObjImg*>* vImg);
     void            IsCollisionLine ();
 
 public:

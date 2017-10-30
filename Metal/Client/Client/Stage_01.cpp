@@ -29,7 +29,7 @@ void CStage_01::Initialize()
     {
         CObj* pObj = CAbstractFactory<CPlayer>::CreateObj();
 
-        pObj->SetPos(100.f, 100.f);
+        pObj->SetPos(700.f, 100.f);
 
         OBJ_MGR_GETLIST(OBJ_PLAYER).push_back(pObj);
     }
@@ -59,6 +59,8 @@ void CStage_01::Render(HDC hDC)
         , 0, 0
         , 3823, WINCY
         , SRCCOPY);
+
+    ReleaseDC(g_hWnd, hdc);
 }
 
 void CStage_01::Release()

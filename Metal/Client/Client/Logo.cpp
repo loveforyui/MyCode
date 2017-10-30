@@ -48,8 +48,9 @@ void CLogo::Render(HDC hDC)
         );
 
     }
+
     //StretchBlt(hDC, WINCX/2.f - img_w/2.f, WINCY/2.f - img_h/2.f, WINCX, WINCY, hdc, 0, 0, img_w, img_h, SRCCOPY);
-    //BitBlt(hDC, INT(fScrollX), 0, WINCX, WINCY, hdc, 0, -100, SRCCOPY);
+    //BitBlt(hdc, INT(fScrollX), 0, WINCX, WINCY, hDC, 0, -100, SRCCOPY);
     ReleaseDC(g_hWnd, hdc);
 }
 

@@ -5,12 +5,13 @@
 
 CMonster::CMonster()
 {
-    
+    m_tInfo.isDead = false;
 }
 
 CMonster::CMonster(INFO& info)
     : CObj(info)
 {
+    m_tInfo.isDead = false;
     SetKind(m_tInfo.m_eKind);
 }
 

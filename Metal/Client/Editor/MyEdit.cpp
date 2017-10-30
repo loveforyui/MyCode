@@ -96,8 +96,8 @@ void CMyEdit::Update()
                 tInfo.tRPoint.fX = CMouse::GetMousePos().x - fScrollX;
                 tInfo.tRPoint.fY = CMouse::GetMousePos().y;
 
-                CObj* pObj = CAbstractFactory<CThings>::CreateObj(pt.x - fScrollX, pt.y);
-                CObjManager::GetInst()->AddObj(pObj, OBJ_THINGS);
+                //CObj* pObj = CAbstractFactory<CThings>::CreateObj(pt.x - fScrollX, pt.y);
+                //CObjManager::GetInst()->AddObj(pObj, OBJ_THINGS);
 
                 //CLineMgr::GetInstance()->GetLineList().push_back(new CLine(tInfo));
             }

@@ -46,6 +46,48 @@ typedef struct tagInfo
     tagInfo(float _fx, float _fy, float _fcx, float _fcy)
         : fX(_fx), fY(_fy), fCX(_fcx), fCY(_fcy)
     {}
+
+    tagInfo& operator=(tagInfo& ref)
+    {
+
+        image = ref.image;
+        rect = ref.rect;
+        
+        
+        fX = ref.fX;
+        fY = ref.fY;
+        fCX = ref.fCX;
+        fCY = ref.fCY;
+        
+        
+        fSpeed = ref.fSpeed;
+        fAcc = ref.fAcc;
+        fJumpPow = ref.fJumpPow;
+        fJumpAcc = ref.fJumpAcc;
+        
+        
+        fAngle = ref.fAngle;
+        fCannonD = ref.fCannonD;
+        fCannonX = ref.fCannonX;
+        fCannonY = ref.fCannonY;
+        
+        
+        iHP = ref.iHP;
+        iMaxHp = ref.iMaxHp;
+        iAtt = ref.iAtt;
+        
+        isDead = ref.isDead;
+        
+        preState = ref.preState;
+        curState = ref.curState;
+        
+        
+        direction = ref.direction;
+        
+        m_eKind = ref.m_eKind;
+        return *this;
+    }
+
     vector<ObjImg*>* image;
     RECT            rect;
 
@@ -54,13 +96,15 @@ typedef struct tagInfo
     float           fY;
     float           fCX;
     float           fCY;
+
     // physics
     float           fSpeed;
     float           fAcc;
-    float           fAngle;
     float           fJumpPow;
     float           fJumpAcc;
-
+    
+    //Cannon
+    float           fAngle;
     float           fCannonD;
     float           fCannonX;
     float           fCannonY;
@@ -70,7 +114,7 @@ typedef struct tagInfo
     int             iMaxHp;
     int             iAtt;
 
-    bool            isDead = false;
+    bool            isDead;
     //state
     UINT            preState;
     UINT            curState;
@@ -87,7 +131,6 @@ typedef struct tagLinePoint
 	{
 		memset(this, 0, sizeof(tagLinePoint));
 	}
-
 	tagLinePoint(float _fX, float _fY)
 		: fX(_fX), fY(_fY) {}
 
@@ -101,7 +144,6 @@ typedef struct tagLineInfo
 	{
 		memset(this, 0, sizeof(tagLineInfo));
 	}
-
 	tagLineInfo(LINEPOINT _tLPoint, LINEPOINT _tRPoint)
 		: tLPoint(_tLPoint), tRPoint(_tRPoint) {}
 

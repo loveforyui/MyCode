@@ -16,6 +16,7 @@ CMonster::CMonster(INFO& info)
     m_tInfo.fSpeed = 2.f;
     m_tInfo.fAcc = 0.f;
     m_tInfo.curState = OBJ_A_STND;
+    m_tInfo.isDead = false;
 }
 
 CMonster::~CMonster()
@@ -89,7 +90,7 @@ int CMonster::      Update          ()
 
     m_Kind->Update();
     //FollowLine();
-    IsCollisionLine();    
+    //IsCollisionLine();    
 
     return 0;
 }
@@ -103,24 +104,27 @@ void CMonster::     IsCollisionLine ()
         if(!(m_tInfo.curState & OBJ_A_JUMP))
             m_tInfo.fY = fy - m_tInfo.fCY / 2;
 
-        if (m_tInfo.fY >= fy - m_tInfo.fCY / 2) // 점프 중에 라인에 도달하면 라인을 타고
-		{
-			m_tInfo.fY = fy - m_tInfo.fCY / 2;
-			m_tInfo.fJumpAcc = 0.f;
-            if (m_tInfo.curState & OBJ_A_ATTK)
+        if (STATE_SAME(m_tInfo.curState, OBJ_A_JUMP))
+        {
+            if (m_tInfo.fY >= fy - m_tInfo.fCY / 2) // 점프 중에 라인에 도달하면 라인을 타고
             {
-                if (m_tInfo.curState & OBJ_A_MOVE)
-                    m_tInfo.curState = OBJ_A_MOVE | OBJ_A_ATTK;
+                m_tInfo.fY = fy - m_tInfo.fCY / 2;
+                m_tInfo.fJumpAcc = 0.f;
+                if (m_tInfo.curState & OBJ_A_ATTK)
+                {
+                    if (m_tInfo.curState & OBJ_A_MOVE)
+                        m_tInfo.curState = OBJ_A_MOVE | OBJ_A_ATTK;
+                    else
+                        m_tInfo.curState = OBJ_A_STND | OBJ_A_ATTK;
+                }
                 else
-                    m_tInfo.curState = OBJ_A_STND | OBJ_A_ATTK;
-            }
-            else
-            {
-                m_tInfo.curState = OBJ_A_STND;
+                {
+                    m_tInfo.curState = OBJ_A_STND;
+                    //m_tInfo.curState = OBJ_A_STND;
+                }
                 //m_tInfo.curState = OBJ_A_STND;
             }
-            //m_tInfo.curState = OBJ_A_STND;
-		}
+        }
     }
     else
     {
@@ -131,4 +135,9 @@ void CMonster::     IsCollisionLine ()
 float CMonster::    FollowLine      ()
 {
     return CLineMgr::GetInstance()->FollowLine(&m_tInfo.fX, &m_tInfo.fY, &m_tInfo.fSpeed);
+}
+
+void CMonster::  InsertImage     (const TCHAR * key, vector<ObjImg*>* vImg)
+{
+    m_image.insert(pair<const TCHAR*, vector<ObjImg*>*>(key, vImg));
 }

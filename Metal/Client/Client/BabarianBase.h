@@ -27,6 +27,8 @@ public:
 
     CObj * CreateBullet(vector<ObjImg*>* img, float fAngle);
 
+    void IsCollisionLine();
+
 private:
     DWORD m_dwCAtkDelay = 0;
     DWORD m_dwOAtkDelay = 0;

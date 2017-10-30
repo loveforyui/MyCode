@@ -30,4 +30,5 @@ public:
 private:
     BULLETPATTERN m_pattern = LINE;
     INT m_end = 0;
+    INT m_distSum = 0;
 };
