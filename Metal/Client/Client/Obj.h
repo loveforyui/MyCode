@@ -34,7 +34,9 @@ public:
     void            SetCurState         (int eobj)          { m_tInfo.curState  = eobj; }
     void            SetSpeed            (float speed)       { m_tInfo.fSpeed    = speed; }
     void            SetHp               (int hp)            { m_tInfo.iMaxHp    = hp; m_tInfo.iHP = hp; }
-    void            SetDamage           (int atk)           { m_tInfo.iHP -= atk; if (m_tInfo.iHP <= 0) { SetDead(true); } }
+    void            SetDamage           (int atk)           { m_tInfo.iHP       -= atk; if (m_tInfo.iHP <= 0) { SetDead(true); } }
+    void            SetDirect           (int direct)        { m_tInfo.direction = direct; }
+    void            SetJumpacc          (float jacc)        { m_tInfo.fJumpAcc = jacc; }
 
 public:
     FLOAT           GetImgW             ();
@@ -44,6 +46,7 @@ public:
     float           GetSpeed            ()                  { return m_tInfo.fSpeed; }
     float           GetAngle            ()                  { return m_tInfo.fAngle; }
     INT             GetAtt              ()                  { return m_tInfo.iAtt; }
+    INT             GetDirection        ()                  { return m_tInfo.direction; }
     map<const TCHAR*, vector<ObjImg*>*>& GetImgv()          { return m_image; }
 
 
@@ -54,7 +57,7 @@ public:
         img_begin = m_tInfo.image->begin();
         img_end = m_tInfo.image->end();
     }
-    void            ImageRender(HDC hdc);
+    void            ImageRender         (HDC hdc);
 
 protected:
     INFO                                m_tInfo;

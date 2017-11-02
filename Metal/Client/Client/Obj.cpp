@@ -10,7 +10,7 @@ CObj::~CObj()
 {
 }
 
-int CObj::Update()
+int CObj::          Update          ()
 {
     if(m_tInfo.fSpeed < 5.f)
         m_tInfo.fSpeed += m_tInfo.fAcc;
@@ -20,20 +20,20 @@ int CObj::Update()
 	m_tInfo.rect.bottom  = LONG(m_tInfo.fY + m_tInfo.fCY / 2);
     return 0;
 }
-
-void CObj::SetPos(float x, float y)
+                    
+void CObj::         SetPos          (float x, float y)
 {
     m_tInfo.fX = x;
     m_tInfo.fY = y;
 }
-
-void CObj::SetWH(float cx, float cy)
+                    
+void CObj::         SetWH           (float cx, float cy)
 {
     m_tInfo.fCX = cx;
     m_tInfo.fCY = cy;
 }
 
-FLOAT CObj::GetImgW()
+FLOAT CObj::        GetImgW         ()
 {
     if(m_tInfo.image->empty())
         return 0.f;
@@ -43,7 +43,7 @@ FLOAT CObj::GetImgW()
     }
 }
 
-FLOAT CObj::GetImgH()
+FLOAT CObj::        GetImgH         ()
 {
     if(m_tInfo.image->empty())
         return 0.f;
@@ -53,7 +53,7 @@ FLOAT CObj::GetImgH()
     }
 }
 
-void CObj::ImageRender(HDC hdc)
+void CObj::         ImageRender     (HDC hdc)
 {
     if (nullptr != m_tInfo.image)
     {

@@ -9,7 +9,7 @@ CBullet::~CBullet()
 {
 }
 
-void CBullet::  Init        ()
+void CBullet::      Init                ()
 {
     m_tInfo.fSpeed      = 5.f;
     if (!m_tInfo.image->empty())
@@ -21,24 +21,43 @@ void CBullet::  Init        ()
     m_tInfo.fJumpAcc    = GRAVITY * 1.5f;
     m_tInfo.fY          -= 10.f;
     m_tInfo.iAtt        = 5;
+
+    minAngle = m_tInfo.fAngle - 90.f;
+    maxAngle = m_tInfo.fAngle + 90.f;
+    cAngle = minAngle;                                
 }
 
-void CBullet::  Release     ()
+void CBullet::      Release             ()
 {
 }
 
-void CBullet::  Render      (HDC hdc)
+void CBullet::      Render              (HDC hdc)
 {
     m_tInfo.fCX = FLOAT((*img_begin)->image->GetWidth());
     m_tInfo.fCY = FLOAT((*img_begin)->image->GetHeight());
 
-    IMG_DRAW_I(
-        hdc
-        , (*img_begin)->image
-        , m_tInfo.fX - (m_tInfo.fCX/2.f)
-        , m_tInfo.fY - (m_tInfo.fCY/2.f)
-        , m_tInfo.fCX
-        , m_tInfo.fCY);
+    if (m_pattern == UDO)
+    {
+        CImageMgr::GetInst()->DrawImg(hdc
+            , (*img_begin)->image
+            , m_tInfo.fX - (m_tInfo.fCX / 2.f)
+            , m_tInfo.fY - (m_tInfo.fCY / 2.f)
+            , m_tInfo.fCX
+            , m_tInfo.fCY
+            , -cAngle
+        );
+    }
+    else
+    {
+        IMG_DRAW_I(
+            hdc
+            , (*img_begin)->image
+            , m_tInfo.fX - (m_tInfo.fCX / 2.f)
+            , m_tInfo.fY - (m_tInfo.fCY / 2.f)
+            , m_tInfo.fCX
+            , m_tInfo.fCY);
+    }
+    
 
     ++img_begin;
 
@@ -59,7 +78,7 @@ void CBullet::  Render      (HDC hdc)
     }*/
 }
 
-int CBullet::   Update      ()
+int CBullet::       Update              ()
 {
     ++m_distSum;
     if (isDead())
@@ -69,7 +88,7 @@ int CBullet::   Update      ()
     {
         ++m_end;
         img_begin = img_end;
-        if (60 < m_end)
+        if (30 < m_end)
             return 1;
     }
 
@@ -83,6 +102,9 @@ int CBullet::   Update      ()
         case CBullet::CONIC:
             Conic();
             break;
+        case CBullet::UDO:
+            Udo();
+            break;
         case CBullet::PAT_END:
             break;
         }
@@ -91,7 +113,14 @@ int CBullet::   Update      ()
 
     IsCollisionLine();
 
-    CObj::Update();
+    RECT rc = {
+        LONG(m_tInfo.fX - 15)// m_pObj->GetInfo().fCX / 2
+        , LONG(m_tInfo.fY - 15)
+        , LONG(m_tInfo.fX + 15)
+        , LONG(m_tInfo.fY + 15)
+    };
+
+    m_tInfo.rect = rc;
 
     if (m_tInfo.fX < 0 || 3823 < m_tInfo.fX)
         return 1;
@@ -99,13 +128,13 @@ int CBullet::   Update      ()
     if (m_tInfo.fY < 0 || WINCY < m_tInfo.fY)
         return 1;
 
-    if (50 <= m_distSum)
-              return 1;
+    //if (50 <= m_distSum)
+    //          return 1;
 
     return 0;
 }
 
-void CBullet::Line()
+void CBullet::      Line                ()
 {
     POINT info = CPattern::GetInstance()->AngleLine(this, m_tInfo.fAngle);
 
@@ -113,7 +142,7 @@ void CBullet::Line()
     m_tInfo.fY = float(info.y);
 }
 
-void CBullet::Conic()
+void CBullet::      Conic               ()
 {
     POINT info = CPattern::GetInstance()->AngleLine(this, m_tInfo.fAngle);
     m_tInfo.fX = float(info.x);
@@ -124,7 +153,39 @@ void CBullet::Conic()
         m_tInfo.fAngle = 240.f;
 }
 
-void CBullet::     IsCollisionLine ()
+void CBullet::Udo()
+{
+    m_tInfo.fSpeed = 3.f;
+
+    CObj* player = CObjManager::GetInst()->GetObjlst(OBJ_PLAYER).back();
+
+    float dist = _Distance<float>(
+        player->GetInfo().fX
+        , player->GetInfo().fY
+        , m_tInfo.fX
+        , m_tInfo.fY
+        );
+
+    //minAngle = acosf((m_tInfo.fX - player->GetInfo().fX) / dist) - 90;
+    //maxAngle = acosf((m_tInfo.fX - player->GetInfo().fX) / dist) + 90;
+
+    if ( cAngle < minAngle)
+    {
+        incA = -incA;
+    }
+    if (maxAngle < cAngle)
+    {
+        incA = -incA;
+    }
+
+    cAngle += incA;
+
+    POINT info = CPattern::GetInstance()->AngleLine(this, cAngle);
+    m_tInfo.fX = float(info.x);
+    m_tInfo.fY = float(info.y);
+}
+
+void CBullet::      IsCollisionLine     ()
 {
     float fy = m_tInfo.fY;
 
@@ -140,9 +201,5 @@ void CBullet::     IsCollisionLine ()
 			m_tInfo.fJumpAcc = 0.f;
             m_tInfo.curState = OBJ_A_STND;
 		}
-    }
-    else
-    {
-        m_tInfo.curState = OBJ_A_JUMP;
     }
 }

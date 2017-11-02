@@ -10,7 +10,7 @@ CCollisionManager::~CCollisionManager()
 {
 }
 
-void CCollisionManager::CollisionRect(OBJLIST & dst, OBJLIST & src)
+void CCollisionManager::        CollisionRect       (OBJLIST & dst, OBJLIST & src)
 {
     for (auto Dst : dst)
 	{
@@ -35,7 +35,7 @@ void CCollisionManager::CollisionRect(OBJLIST & dst, OBJLIST & src)
 	}
 }
 
-void CCollisionManager::CollisionSphere(OBJLIST & dst, OBJLIST & src)
+void CCollisionManager::        CollisionSphere     (OBJLIST & dst, OBJLIST & src)
 {
     for (auto Dst : dst)
 	{
@@ -57,7 +57,7 @@ void CCollisionManager::CollisionSphere(OBJLIST & dst, OBJLIST & src)
 	}
 }
 
-void CCollisionManager::COllisionImage(OBJLIST & dst, OBJLIST & src)
+void CCollisionManager::        COllisionImage      (OBJLIST & dst, OBJLIST & src)
 {
     for (OBJITER dstObj = dst.begin()
         ; dstObj != dst.end(); ++dstObj)
@@ -76,7 +76,7 @@ void CCollisionManager::COllisionImage(OBJLIST & dst, OBJLIST & src)
     }
 }
 
-bool CCollisionManager::CheckSphere(CObj * dst, CObj * src)
+bool CCollisionManager::        CheckSphere         (CObj * dst, CObj * src)
 {
     // 두 원의 반지름 합을 먼저 구한다.
 	float fRadSum = (dst->GetInfo().fCY / 2) + (src->GetInfo().fCY / 2);
@@ -94,7 +94,7 @@ bool CCollisionManager::CheckSphere(CObj * dst, CObj * src)
 	return false;
 }
 
-bool CCollisionManager::CheckImage(CObj * dst, CObj * src)
+bool CCollisionManager::        CheckImage          (CObj * dst, CObj * src)
 {
     INT destW;// = dst->Get
     INT destH;

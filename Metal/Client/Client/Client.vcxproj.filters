@@ -142,6 +142,33 @@
     <Filter Include="01.OBJ\04.Monster\00.MonsterStateManager\02.Truck">
       <UniqueIdentifier>{b6da4311-24e9-4b06-960a-d557a80fae21}</UniqueIdentifier>
     </Filter>
+    <Filter Include="01.OBJ\04.Monster\00.MonsterStateManager\03.Bsk">
+      <UniqueIdentifier>{abfc653d-b647-4b23-a214-ccca6c8898e5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.OBJ\04.Monster\00.MonsterStateManager\04.SamBody">
+      <UniqueIdentifier>{a75a8c53-4cd0-4d3e-944e-334a1357ad63}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.OBJ\04.Monster\00.MonsterStateManager\04.SamBody\00.Left">
+      <UniqueIdentifier>{c5f629e6-0fc0-4c68-b8dd-5b9925f608a3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.OBJ\04.Monster\00.MonsterStateManager\04.SamBody\01.right">
+      <UniqueIdentifier>{36d05341-5046-42d3-ae1b-bb93f9f55848}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.OBJ\04.Monster\00.MonsterStateManager\04.SamBody\02.center">
+      <UniqueIdentifier>{bbea8f35-27df-42ed-ba0e-0eeca02e9cc0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.OBJ\04.Monster\00.MonsterStateManager\04.SamBody\03.door">
+      <UniqueIdentifier>{acb1d367-ec92-4e21-acdb-ada0f87316b1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.OBJ\04.Monster\00.MonsterStateManager\04.SamBody\04.Soldier">
+      <UniqueIdentifier>{c796ed63-7e42-4acd-88e8-5fc33d011c8e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.OBJ\04.Monster\00.MonsterStateManager\04.SamBody\05.Effect">
+      <UniqueIdentifier>{a2f5c321-3bfb-4351-bbd0-2ee7a7c35a18}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.OBJ\04.Monster\00.MonsterStateManager\05.hell">
+      <UniqueIdentifier>{00064e84-c47f-4348-9560-9d3a24b50a04}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -336,6 +363,33 @@
     <ClInclude Include="Truck.h">
       <Filter>01.OBJ\04.Monster\00.MonsterStateManager\02.Truck</Filter>
     </ClInclude>
+    <ClInclude Include="Basaka.h">
+      <Filter>01.OBJ\04.Monster\00.MonsterStateManager\03.Bsk</Filter>
+    </ClInclude>
+    <ClInclude Include="SamBody.h">
+      <Filter>01.OBJ\04.Monster\00.MonsterStateManager\04.SamBody</Filter>
+    </ClInclude>
+    <ClInclude Include="SamL.h">
+      <Filter>01.OBJ\04.Monster\00.MonsterStateManager\04.SamBody\00.Left</Filter>
+    </ClInclude>
+    <ClInclude Include="SamSol.h">
+      <Filter>01.OBJ\04.Monster\00.MonsterStateManager\04.SamBody\04.Soldier</Filter>
+    </ClInclude>
+    <ClInclude Include="SamD.h">
+      <Filter>01.OBJ\04.Monster\00.MonsterStateManager\04.SamBody\03.door</Filter>
+    </ClInclude>
+    <ClInclude Include="SamR.h">
+      <Filter>01.OBJ\04.Monster\00.MonsterStateManager\04.SamBody\01.right</Filter>
+    </ClInclude>
+    <ClInclude Include="SamC.h">
+      <Filter>01.OBJ\04.Monster\00.MonsterStateManager\04.SamBody\02.center</Filter>
+    </ClInclude>
+    <ClInclude Include="SamBdoor.h">
+      <Filter>01.OBJ\04.Monster\00.MonsterStateManager\04.SamBody\05.Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="Hell.h">
+      <Filter>01.OBJ\04.Monster\00.MonsterStateManager\05.hell</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -487,6 +541,33 @@
     </ClCompile>
     <ClCompile Include="Truck.cpp">
       <Filter>01.OBJ\04.Monster\00.MonsterStateManager\02.Truck</Filter>
+    </ClCompile>
+    <ClCompile Include="Basaka.cpp">
+      <Filter>01.OBJ\04.Monster\00.MonsterStateManager\03.Bsk</Filter>
+    </ClCompile>
+    <ClCompile Include="SamBody.cpp">
+      <Filter>01.OBJ\04.Monster\00.MonsterStateManager\04.SamBody</Filter>
+    </ClCompile>
+    <ClCompile Include="SamL.cpp">
+      <Filter>01.OBJ\04.Monster\00.MonsterStateManager\04.SamBody\00.Left</Filter>
+    </ClCompile>
+    <ClCompile Include="SamSol.cpp">
+      <Filter>01.OBJ\04.Monster\00.MonsterStateManager\04.SamBody\04.Soldier</Filter>
+    </ClCompile>
+    <ClCompile Include="SamD.cpp">
+      <Filter>01.OBJ\04.Monster\00.MonsterStateManager\04.SamBody\03.door</Filter>
+    </ClCompile>
+    <ClCompile Include="SamR.cpp">
+      <Filter>01.OBJ\04.Monster\00.MonsterStateManager\04.SamBody\01.right</Filter>
+    </ClCompile>
+    <ClCompile Include="SamC.cpp">
+      <Filter>01.OBJ\04.Monster\00.MonsterStateManager\04.SamBody\02.center</Filter>
+    </ClCompile>
+    <ClCompile Include="SamBdoor.cpp">
+      <Filter>01.OBJ\04.Monster\00.MonsterStateManager\04.SamBody\05.Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="Hell.cpp">
+      <Filter>01.OBJ\04.Monster\00.MonsterStateManager\05.hell</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

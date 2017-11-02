@@ -3,6 +3,15 @@
 #include "BabarianBase.h"
 #include "BerserkMboss.h"
 #include "Truck.h"
+#include "Basaka.h"
+#include "SamBody.h"
+#include "SamL.h"
+#include "SamC.h"
+#include "SamR.h"
+#include "SamSol.h"
+#include "SamD.h"
+#include "SamBdoor.h"
+#include "Hell.h"
 
 CMonster::CMonster()
 {
@@ -53,6 +62,60 @@ void CMonster::     SetKind         (eKMOB ekmb)
         m_tInfo.m_eKind = MOB_K_TRUCK;
     }
         break;
+    case MOB_K_BASAKA:
+    {
+        SetKind(new CBasaka(this));
+        m_tInfo.m_eKind = MOB_K_BASAKA;
+    }
+        break;
+    case MOB_K_S_BODY:
+    {
+        SetKind(new CSamBody(this));
+        m_tInfo.m_eKind = MOB_K_S_BODY;
+    }
+        break;
+    case MOB_K_S_LEFT:
+    {
+        SetKind(new CSamL(this));
+        m_tInfo.m_eKind = MOB_K_S_LEFT;
+    }
+        break;
+    case MOB_K_S_CENT:
+    {
+        SetKind(new CSamC(this));
+        m_tInfo.m_eKind = MOB_K_S_CENT;
+    }
+        break;
+    case MOB_K_S_RIGHT:
+    {
+        SetKind(new CSamR(this));
+        m_tInfo.m_eKind = MOB_K_S_RIGHT;
+    }
+        break;
+    case MOB_K_S_SOLD:
+    {
+        SetKind(new CSamSol(this));
+        m_tInfo.m_eKind = MOB_K_S_SOLD;
+    }
+        break;
+    case MOB_K_S_DOOR:
+    {
+        SetKind(new CSamD(this));
+        m_tInfo.m_eKind = MOB_K_S_DOOR;
+    }
+        break;
+    case MOB_K_S_BDOOR:
+    {
+        SetKind(new CSamBdoor(this));
+        m_tInfo.m_eKind = MOB_K_S_BDOOR;
+    }
+        break;
+    case MOB_K_HELL:
+    {
+        SetKind(new CHell(this));
+        m_tInfo.m_eKind = MOB_K_HELL;
+    }
+        break;
     }
 }
 
@@ -63,6 +126,10 @@ void CMonster::     Init            ()
 
 void CMonster::     Release         ()
 {
+    if (nullptr != m_Kind)
+    {
+        SafeDelete<CMonsterKind*>(m_Kind);
+    }
 }
 
 void CMonster::     Render          (HDC hdc)
@@ -137,7 +204,7 @@ float CMonster::    FollowLine      ()
     return CLineMgr::GetInstance()->FollowLine(&m_tInfo.fX, &m_tInfo.fY, &m_tInfo.fSpeed);
 }
 
-void CMonster::  InsertImage     (const TCHAR * key, vector<ObjImg*>* vImg)
+void CMonster::     InsertImage     (const TCHAR * key, vector<ObjImg*>* vImg)
 {
     m_image.insert(pair<const TCHAR*, vector<ObjImg*>*>(key, vImg));
 }

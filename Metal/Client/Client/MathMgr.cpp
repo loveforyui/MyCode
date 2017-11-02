@@ -12,7 +12,7 @@ CMathMgr::~CMathMgr()
 {
 }
 
-float CMathMgr::CalcDistance(CObj * dst, CObj * src)
+float CMathMgr::    CalcDistance    (CObj * dst, CObj * src)
 {
 	float fWidth = dst->GetInfo().fX - src->GetInfo().fX;
 	float fHeight = dst->GetInfo().fY - src->GetInfo().fY;
@@ -20,7 +20,7 @@ float CMathMgr::CalcDistance(CObj * dst, CObj * src)
 	return sqrtf(fWidth* fWidth + fHeight * fHeight);
 }
 
-float CMathMgr::CalcRadian(CObj * dst, CObj * src)
+float CMathMgr::    CalcRadian      (CObj * dst, CObj * src)
 {
 	float fWidth = dst->GetInfo().fX - src->GetInfo().fX;
 	float fHeight = dst->GetInfo().fY - src->GetInfo().fY;
@@ -34,7 +34,7 @@ float CMathMgr::CalcRadian(CObj * dst, CObj * src)
 	return fAngle;
 }
 
-float CMathMgr::CalcDegree(CObj * dst, CObj * src)
+float CMathMgr::    CalcDegree      (CObj * dst, CObj * src)
 {
 	float fWidth = dst->GetInfo().fX - src->GetInfo().fX;
 	float fHeight = dst->GetInfo().fY - src->GetInfo().fY;

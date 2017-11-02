@@ -93,15 +93,13 @@ POINT CPattern::    AngleLine   (CObj* obj, FLOAT angle)
     FLOAT rad   = angle * PI / 180.f;
     FLOAT radR  = (90 - angle) * PI / 180.f;
 
-    FLOAT x, y, cx, cy;
+    FLOAT x, y;
     x = obj->GetInfo().fX;
     y = obj->GetInfo().fY;
-    cx = obj->GetInfo().fCX;
-    cy = obj->GetInfo().fCY;
 
     x += cosf(rad)*obj->GetSpeed();
-    //y += -cosf(radR)*obj->GetSpeed();
-    y += -sinf(rad)*obj->GetSpeed();
+    y += -cosf(radR)*obj->GetSpeed();
+    //y += -sinf(rad)*obj->GetSpeed();
     POINT info = { LONG(x), LONG(y)};
 
     return info;

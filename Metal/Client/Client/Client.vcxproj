@@ -150,6 +150,7 @@
     <ClInclude Include="AbstStateManager.h" />
     <ClInclude Include="BabarianBase.h" />
     <ClInclude Include="BackGround.h" />
+    <ClInclude Include="Basaka.h" />
     <ClInclude Include="BerserkMboss.h" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="Client.h" />
@@ -158,6 +159,7 @@
     <ClInclude Include="Enum.h" />
     <ClInclude Include="Extern.h" />
     <ClInclude Include="functionary.h" />
+    <ClInclude Include="Hell.h" />
     <ClInclude Include="ImageManager.h" />
     <ClInclude Include="Includes.h" />
     <ClInclude Include="JmpBodyL.h" />
@@ -180,6 +182,13 @@
     <ClInclude Include="Pattern.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="resource.h" />
+    <ClInclude Include="SamBdoor.h" />
+    <ClInclude Include="SamBody.h" />
+    <ClInclude Include="SamC.h" />
+    <ClInclude Include="SamD.h" />
+    <ClInclude Include="SamL.h" />
+    <ClInclude Include="SamR.h" />
+    <ClInclude Include="SamSol.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneMgr.h" />
     <ClInclude Include="ScrollMgr.h" />
@@ -213,10 +222,12 @@
   <ItemGroup>
     <ClCompile Include="BabarianBase.cpp" />
     <ClCompile Include="BackGround.cpp" />
+    <ClCompile Include="Basaka.cpp" />
     <ClCompile Include="BerserkMboss.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="Client.cpp" />
     <ClCompile Include="CollisionManager.cpp" />
+    <ClCompile Include="Hell.cpp" />
     <ClCompile Include="ImageManager.cpp" />
     <ClCompile Include="JmpBodyL.cpp" />
     <ClCompile Include="JmpBodyR.cpp" />
@@ -236,6 +247,13 @@
     <ClCompile Include="ObjManager.cpp" />
     <ClCompile Include="Pattern.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="SamBdoor.cpp" />
+    <ClCompile Include="SamBody.cpp" />
+    <ClCompile Include="SamC.cpp" />
+    <ClCompile Include="SamD.cpp" />
+    <ClCompile Include="SamL.cpp" />
+    <ClCompile Include="SamR.cpp" />
+    <ClCompile Include="SamSol.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneMgr.cpp" />
     <ClCompile Include="ScrollMgr.cpp" />

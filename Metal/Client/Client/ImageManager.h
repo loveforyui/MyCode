@@ -16,6 +16,7 @@ public:
     void                DrawImg         (HDC hDC, Image * img, FLOAT fx, FLOAT fy, FLOAT fCX, FLOAT fCY);
     void                DrawImg         (HDC hdc, const TCHAR * ObjName, const TCHAR * fileName, FLOAT fx, FLOAT fy);
     void                DrawImg         (HDC hDC, const TCHAR * ObjName, const TCHAR * fileName, FLOAT fx, FLOAT fy, FLOAT fCX, FLOAT fCY);
+    void                DrawImg         (HDC hDC, Image* img, FLOAT fx, FLOAT fy, FLOAT fCX, FLOAT fCY, FLOAT angle);
 
 public:
     Image*              GetImage        (const TCHAR * ObjName, const TCHAR * fileName);
@@ -26,14 +27,14 @@ private:
     Image*              FindImage       (const TCHAR * ObjName, const TCHAR * fileName);
 
 public:
-    static CImageMgr*   GetInst()
+    static CImageMgr*   GetInst         ()
     {
         if (nullptr == m_pInstance)
             m_pInstance = new CImageMgr;
 
         return m_pInstance;
     }
-    void                DestroyInstance()
+    void                DestroyInstance ()
     {
         if (m_pInstance)
         {
@@ -45,13 +46,14 @@ public:
     }
 
 private:
-    static CImageMgr*           m_pInstance;
+    static CImageMgr*                       m_pInstance;
 
-    map<const TCHAR*, vector<ObjImg*>*>   m_MapImage;
+    map<const TCHAR*, vector<ObjImg*>*>     m_MapImage;
 };
 
 #define IMG_LOAD(Key, Path) CImageMgr::GetInst()->LoadImgFile(Key, Path)
 #define IMG_DRAW_I(Hdc, IMG, Fx, Fy, Fcx, Fcy) CImageMgr::GetInst()->DrawImg(Hdc, IMG, Fx, Fy, Fcx, Fcy)
+#define IMG_DRAW_A(Hdc, IMG, Fx, Fy, Fcx, Fcy, Angle) CImageMgr::GetInst()->DrawImg(Hdc, IMG, Fx, Fy, Fcx, Fcy, Angle)
 #define IMG_DRAW_B(Hdc, Key, Filename, Fx, Fy) CImageMgr::GetInst()->DrawImg(Hdc, Key, Filename, Fx, Fy)
 #define IMG_GET(Key, Value) CImageMgr::GetInst()->GetImage(Key, Value)
 #define IMG_GET_V(Key) CImageMgr::GetInst()->GetImageVector(Key)

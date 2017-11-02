@@ -382,12 +382,12 @@ void CPlayer::  BaseGunKeyInput ()
         }
 
         // Accel
-        if (m_tInfo.fAcc < 3.f)
+        if (m_tInfo.fAcc < 10.f)
         {
             m_tInfo.fAcc += 0.1f;
         }
 
-        if (m_tInfo.fSpeed < 5.f)
+        if (m_tInfo.fSpeed < 10.f)
             m_tInfo.fSpeed += m_tInfo.fAcc;
 
         isKeyInput = true;

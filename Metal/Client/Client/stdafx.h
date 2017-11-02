@@ -21,6 +21,7 @@
 #include <list>
 #include <io.h>
 #include <algorithm>
+#include <ctime>
 
 //gdi+
 #include <Ole2.h>

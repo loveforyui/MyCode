@@ -157,6 +157,11 @@ void CBerserkMboss::     Render             (HDC hdc)
             iter_begin = --m_mImage->find(L"monster/carmel/run/")->second->end();
             CScrollMgr::GetInstance()->SetHold(false);
 
+            // modify sections
+            CObj* player = CObjManager::GetInst()->GetObjlst(OBJ_PLAYER).back();
+            float d = player->GetInfo().fX + (CScrollMgr::GetInstance()->GetScrollX() - CScrollMgr::GetInstance()->GetOffset());
+            CScrollMgr::GetInstance()->SetScrollX(CScrollMgr::GetInstance()->GetScrollX() - d);
+
             INFO tInfo;
             tInfo.m_eKind = eKMOB::MOB_K_TRUCK;
             CObjManager::GetInst()->AddObj(CAbstractFactory<CMonster>::CreateObj(tInfo), OBJ_MONSTER);

@@ -192,10 +192,10 @@ int CBabarian::     Update          ()
     }
 
     RECT rc = {
-        LONG(m_pObj->GetInfo().fX - m_pObj->GetInfo().fCX / 2)
-        , LONG(m_pObj->GetInfo().fY - m_pObj->GetInfo().fCY / 2)
-        , LONG(m_pObj->GetInfo().fX + m_pObj->GetInfo().fCX / 2)
-        , LONG(m_pObj->GetInfo().fY + m_pObj->GetInfo().fCY / 2)
+        LONG(m_pObj->GetInfo().fX - 15)// m_pObj->GetInfo().fCX / 2
+        , LONG(m_pObj->GetInfo().fY - 15)
+        , LONG(m_pObj->GetInfo().fX + 15)
+        , LONG(m_pObj->GetInfo().fY + 15)
     };
 
     m_pObj->SetRect(rc);
@@ -261,7 +261,7 @@ void CBabarian::    PatternA        ()
         }
     }
 
-    if (STATE_SAME(m_pObj->GetInfo().curState, OBJ_A_MOVE))
+    if (STATE_SAME(m_pObj->GetInfo().curState, OBJ_A_MOVE) && !STATE_SAME(m_pObj->GetInfo().curState, OBJ_A_JUMP))
     {
         POINT pt = CPattern::GetInstance()->AngleLine(m_pObj, 180.f);
         m_pObj->SetPos(float(pt.x), float(pt.y));

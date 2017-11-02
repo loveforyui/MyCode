@@ -9,15 +9,15 @@ private:
     ~CKeyManager();
 
 public:
-    bool isKeyPressing(int iKey);
-    bool isKeyDown(int iKey);
-    bool isKeyUp(int iKey);
+    bool                isKeyPressing   (int iKey);
+    bool                isKeyDown       (int iKey);
+    bool                isKeyUp         (int iKey);
 
 public:
-    void Update();
+    void                Update          ();
 
 public:
-    void Destroy()
+    void                Destroy         ()
     {
         if (inst)
         {
@@ -25,7 +25,7 @@ public:
             inst = nullptr;
         }
     }
-    static CKeyManager* GetInst()
+    static CKeyManager* GetInst         ()
     {
         if (nullptr == inst)
             inst = new CKeyManager;
@@ -36,7 +36,7 @@ public:
 private:
     static CKeyManager* inst;
 
-    bool m_bKey[MAX_VRITUAL_KEY];
+    bool                m_bKey[MAX_VRITUAL_KEY];
 };
 
 #define KEY_DOWN(Key) CKeyManager::GetInst()->isKeyDown(Key)

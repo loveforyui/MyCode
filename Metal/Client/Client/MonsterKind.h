@@ -14,6 +14,9 @@ public:
 
 public:
     void SetObj(CObj* pObj) { m_pObj = pObj; }
+public:
+    vector<ObjImg*>::iterator GetBegin() { return iter_begin; }
+    map<const TCHAR*, vector<ObjImg*>*>* GetImgVector() { return m_mImage; }
 
 protected:
     CObj*                                   m_pObj;

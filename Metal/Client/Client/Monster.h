@@ -17,6 +17,7 @@ public:
 
 public:
     CMonsterKind*   GetKind         () { return m_Kind; }
+    vector<ObjImg*>* GetBulletImg   () { return m_vBulletimg; }
 
 public:
     // CObj을(를) 통해 상속됨
@@ -33,9 +34,6 @@ public:
 
 public:
     void            SetBulletImg    (vector<ObjImg*>* vimg) { m_vBulletimg = vimg; }
-
-public:
-    vector<ObjImg*>* GetBulletImg   () { return m_vBulletimg; }
 
 private:
     CMonsterKind*   m_Kind;

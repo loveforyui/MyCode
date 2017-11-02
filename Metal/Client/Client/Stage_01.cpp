@@ -46,15 +46,16 @@ void CStage_01::Render(HDC hDC)
     HDC hdc = GetDC(g_hWnd);
 
     float fScrollX = CScrollMgr::GetInstance()->GetScrollX();
+    //float fScrollY = CScrollMgr::GetInstance()->GetScrollY();
 
     CObjManager::GetInst()->Render(hDC);
     CLineMgr::GetInstance()->Render(hDC);
 
     StretchBlt(hdc
-        , INT(fScrollX * 3.92f)
+        , INT(fScrollX * 4.f)
         , 0
-        , INT(3823 * 3.92f)
-        , INT(WINCY*3.92f)
+        , INT(3823 * 4.f)
+        , INT((WINCY)*4.f)
         , hDC
         , 0, 0
         , 3823, WINCY

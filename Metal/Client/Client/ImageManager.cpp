@@ -144,6 +144,24 @@ void CImageMgr::                DrawImg             (HDC hDC, const TCHAR * ObjN
                  , fCY );
 }
 
+void CImageMgr::DrawImg(HDC hDC, Image* img, FLOAT fx, FLOAT fy, FLOAT fCX, FLOAT fCY, FLOAT angle)
+{
+    Graphics graphics(hDC);
+    
+    Gdiplus::Matrix mat;
+    mat.RotateAt(angle, Gdiplus::PointF(float(fx + fCX/2), float(fy + fCY/2))); // 좌표기준으로 회전
+
+    graphics.SetTransform(&mat);
+    
+    if(img)
+        graphics.DrawImage(
+                 img
+                 , fx
+                 , fy
+                 , fCX
+                 , fCY );
+}
+
 Image * CImageMgr::             GetImage            (const TCHAR * ObjName, const TCHAR * fileName)
 {
     // TODO: 여기에 반환 구문을 삽입합니다.

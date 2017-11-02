@@ -12,7 +12,7 @@ CKeyManager::~CKeyManager()
 {
 }
 
-bool CKeyManager::isKeyPressing(int iKey)
+bool CKeyManager::      isKeyPressing   (int iKey)
 {
     if (GetAsyncKeyState(iKey) & 0x8000)
 		return true;
@@ -20,7 +20,7 @@ bool CKeyManager::isKeyPressing(int iKey)
     return false;
 }
 
-bool CKeyManager::isKeyDown(int iKey)
+bool CKeyManager::      isKeyDown       (int iKey)
 {
     // 전에 누른적 없고 현 시점에서 눌렸을 때
 	if (!m_bKey[iKey] && GetAsyncKeyState(iKey) & 0x8000)
@@ -32,7 +32,7 @@ bool CKeyManager::isKeyDown(int iKey)
     return false;
 }
 
-bool CKeyManager::isKeyUp(int iKey)
+bool CKeyManager::      isKeyUp         (int iKey)
 {
     // 전에 누른 적이 있고 현 시점에서 눌리지 않았을 때
 	if (m_bKey[iKey] && !(GetAsyncKeyState(iKey) & 0x8000))
@@ -44,7 +44,7 @@ bool CKeyManager::isKeyUp(int iKey)
     return false;
 }
 
-void CKeyManager::Update()
+void CKeyManager::      Update          ()
 {
     for (int i = 0; i < MAX_VRITUAL_KEY; ++i)
 	{

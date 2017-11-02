@@ -9,15 +9,15 @@ CBackGround::~CBackGround()
 {
 }
 
-void CBackGround::Init()
+void CBackGround::      Init        ()
 {
 }
 
-void CBackGround::Release()
+void CBackGround::      Release     ()
 {
 }
 
-void CBackGround::Render(HDC hDC)
+void CBackGround::      Render      (HDC hDC)
 {
     for (vector<ObjImg*>::iterator iter = ++m_tInfo.image->begin()
         ; iter != m_tInfo.image->end()
@@ -31,14 +31,16 @@ void CBackGround::Render(HDC hDC)
             , FLOAT((*iter)->image->GetHeight())
         );
     }
+
+    CScrollMgr::GetInstance()->Render(hDC);
 }
 
-int CBackGround::Update()
+int CBackGround::       Update      ()
 {
     return 0;
 }
 
-void CBackGround::AddFloorY(int y)
+void CBackGround::      AddFloorY   (int y)
 {
     m_vlineY.push_back(y);
 }
