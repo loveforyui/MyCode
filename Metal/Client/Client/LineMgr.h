@@ -12,6 +12,7 @@ private:
 public:
 	// 플레이어의 x을 받은 뒤 pOutY에다가 플레이어가 타야할 y를 기록한다.
 	bool CollisionLine(float fX, float* pOutY);
+    bool CollisionLineBomb(float fX, float * pOutY);
     float FollowLine(float* fx, float* fy, float * fspeed);
 	void LoadData();
 

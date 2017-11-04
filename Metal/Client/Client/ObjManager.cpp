@@ -20,9 +20,12 @@ int  CObjManager::      Update          ()
 {
     CCollisionManager::CollisionSphere(m_objLst[OBJ_MONSTER],  m_objLst[OBJ_P_BULLET]);
     CCollisionManager::CollisionSphere(m_objLst[OBJ_SUBMON],   m_objLst[OBJ_P_BULLET]);
+    CCollisionManager::CollisionSphere(m_objLst[OBJ_MONSTER],  m_objLst[OBJ_P_BOMB]);
+    CCollisionManager::CollisionSphere(m_objLst[OBJ_SUBMON],   m_objLst[OBJ_P_BOMB]);
     CCollisionManager::CollisionSphere(m_objLst[OBJ_M_BULLET], m_objLst[OBJ_P_BULLET]);
     CCollisionManager::CollisionSphere(m_objLst[OBJ_PLAYER],   m_objLst[OBJ_M_BULLET]);
     CCollisionManager::CollisionSphere(m_objLst[OBJ_PLAYER],   m_objLst[OBJ_SUBMON]);
+    CCollisionManager::CollisionSphere(m_objLst[OBJ_P_BULLET], m_objLst[OBJ_P_BOMB]);
 
     for (int objid = 0; objid < OBJ_END; ++objid)
     {

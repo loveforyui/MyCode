@@ -39,6 +39,8 @@ void CStage_01::Initialize()
         CObj* pObj = CAbstractFactory<CUI>::CreateObj();
         OBJ_MGR_GETLIST(OBJ_UI).push_back(pObj);
     }
+
+    CSoundMgr::GetInstance()->PlayBGM(L"MS3ALL_F_00010.wav");
 }
 
 void CStage_01::Update()

@@ -24,3 +24,6 @@
 #include "SitdownMoveL.h"
 #include "SitdownAtk.h"
 #include "SitdownAtkL.h"
+#include "BombBodyR.h"
+#include "BombBodyL.h"
+#include "StdDie.h"

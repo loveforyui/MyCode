@@ -19,6 +19,7 @@ enum OBJID
     , OBJ_PLAYER
     , OBJ_EFFECT
     , OBJ_P_BULLET
+    , OBJ_P_BOMB
     , OBJ_M_BULLET
     , OBJ_MOUSE
     , OBJ_UI
@@ -34,6 +35,7 @@ enum eOBJSTATE
     , OBJ_A_ATTK = 0x0008
     , OBJ_A_SITD = 0x0010
     , OBJ_A_DIE  = 0x0020
+    , OBJ_A_BOMB = 0x0040
 };
 
 enum eKMOB

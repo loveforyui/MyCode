@@ -184,6 +184,9 @@
     <Filter Include="01.OBJ\06.UI">
       <UniqueIdentifier>{fdf42fd0-4697-4103-adf0-617eb16bba5a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="01.OBJ\01.Player\00.PlayerStateManager\07.die">
+      <UniqueIdentifier>{92de5d36-0fdc-4f48-b146-fd78dbed29e6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -447,6 +450,15 @@
     <ClInclude Include="Bomb.h">
       <Filter>01.OBJ\05.Bullet</Filter>
     </ClInclude>
+    <ClInclude Include="BombBodyR.h">
+      <Filter>01.OBJ\01.Player\00.PlayerStateManager\00.StandState</Filter>
+    </ClInclude>
+    <ClInclude Include="BombBodyL.h">
+      <Filter>01.OBJ\01.Player\00.PlayerStateManager\00.StandState</Filter>
+    </ClInclude>
+    <ClInclude Include="StdDie.h">
+      <Filter>01.OBJ\01.Player\00.PlayerStateManager\07.die</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -667,6 +679,15 @@
     </ClCompile>
     <ClCompile Include="Bomb.cpp">
       <Filter>01.OBJ\05.Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="BombBodyR.cpp">
+      <Filter>01.OBJ\01.Player\00.PlayerStateManager\00.StandState</Filter>
+    </ClCompile>
+    <ClCompile Include="BombBodyL.cpp">
+      <Filter>01.OBJ\01.Player\00.PlayerStateManager\00.StandState</Filter>
+    </ClCompile>
+    <ClCompile Include="StdDie.cpp">
+      <Filter>01.OBJ\01.Player\00.PlayerStateManager\07.die</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

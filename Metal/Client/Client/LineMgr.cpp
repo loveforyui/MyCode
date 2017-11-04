@@ -32,7 +32,46 @@ bool CLineMgr::     CollisionLine           (float fX, float * pOutY)
 
         if (fX > fLposX && fX < fRposX)
         {
-            if (fLposY - 30 < *pOutY && *pOutY < fRposY + 30)
+            if (fLposY - 30 < *pOutY && *pOutY < fRposY + 10)
+            {
+                pLine = line;
+                break;
+            }
+        }
+    }
+
+    if (nullptr == pLine)
+        return false;
+
+	// 두점을 통과하는 직선의 방정식을 이용하여 플레이어의 Y를 도출한다!
+	// playerY = (y2 - y1) / (x2 - x1) * (playerX - x1) + y1
+	float x1 = pLine->GetInfo().tLPoint.fX;
+	float y1 = pLine->GetInfo().tLPoint.fY;
+	float x2 = pLine->GetInfo().tRPoint.fX;
+	float y2 = pLine->GetInfo().tRPoint.fY;
+
+	*pOutY = (y2 - y1) / (x2 - x1) * (fX - x1) + y1;
+	return true;
+}
+
+bool CLineMgr::     CollisionLineBomb           (float fX, float * pOutY)
+{
+	if (m_LineList.empty())
+		return false;
+
+	CLine* pLine = nullptr; // 플레이어가 타야할 라인.
+
+	// 플레이어가 위치한 x좌표를 통해 현재 라인을 찾는다.
+	for (auto line : m_LineList)
+	{
+		float fLposX = line->GetInfo().tLPoint.fX;
+		float fRposX = line->GetInfo().tRPoint.fX;
+        float fLposY = line->GetInfo().tLPoint.fY;
+        float fRposY = line->GetInfo().tRPoint.fY;
+
+        if (fX > fLposX && fX < fRposX)
+        {
+            if (fLposY - 10 < *pOutY && *pOutY < fRposY + 10)
             {
                 pLine = line;
                 break;

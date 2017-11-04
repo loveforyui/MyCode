@@ -153,6 +153,8 @@
     <ClInclude Include="Basaka.h" />
     <ClInclude Include="BerserkMboss.h" />
     <ClInclude Include="Bomb.h" />
+    <ClInclude Include="BombBodyL.h" />
+    <ClInclude Include="BombBodyR.h" />
     <ClInclude Include="BossBody.h" />
     <ClInclude Include="BossL.h" />
     <ClInclude Include="BossR.h" />
@@ -216,6 +218,7 @@
     <ClInclude Include="StBodyR.h" />
     <ClInclude Include="StBodyL.h" />
     <ClInclude Include="stdafx.h" />
+    <ClInclude Include="StdDie.h" />
     <ClInclude Include="StdLeg.h" />
     <ClInclude Include="StdLegLeft.h" />
     <ClInclude Include="Structure.h" />
@@ -239,6 +242,8 @@
     <ClCompile Include="Basaka.cpp" />
     <ClCompile Include="BerserkMboss.cpp" />
     <ClCompile Include="Bomb.cpp" />
+    <ClCompile Include="BombBodyL.cpp" />
+    <ClCompile Include="BombBodyR.cpp" />
     <ClCompile Include="BossBody.cpp" />
     <ClCompile Include="BossL.cpp" />
     <ClCompile Include="BossR.cpp" />
@@ -299,6 +304,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="StdDie.cpp" />
     <ClCompile Include="StdLeg.cpp" />
     <ClCompile Include="StdLegLeft.cpp" />
     <ClCompile Include="StUpAtkBodyR.cpp" />

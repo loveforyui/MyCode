@@ -28,6 +28,7 @@ private:
     void IsCollisionLine();
     void CalcCannonPos();
     CObj * CreateBullet(vector<ObjImg*>* img, float fAngle);
+    CObj * CreateBomb(vector<ObjImg*>* img, float fAngle);
     void GunState();
 
     void BaseGunKeyInput();
@@ -49,6 +50,7 @@ private:
     GUNSTATE m_oldGun = CPlayer::GUN_END;
 
     vector<ObjImg*>* m_vBulletimg;
+    vector<ObjImg*>* m_vBombimg;
 
 public:
     INT life = 3;
