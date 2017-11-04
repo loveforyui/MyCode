@@ -16,7 +16,7 @@ CScrollMgr::~CScrollMgr()
 void CScrollMgr::Update()
 {
 	// 현재 화면 좌표 상의 오프셋과 플레이어 좌표를 비교한다.
-    if(-m_fScrollX < 3823 - WINCX)
+    if(-m_fScrollX < 3823)
         if (KEY_PRESSING(VK_RIGHT))
             m_fScrollX -= 10.f;
 

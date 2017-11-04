@@ -12,3 +12,4 @@
 #include "ScrollMgr.h"
 #include "SceneMgr.h"
 #include "Pattern.h"
+#include "SoundMgr.h"

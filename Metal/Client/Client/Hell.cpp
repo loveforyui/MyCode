@@ -18,16 +18,25 @@ void CHell::Init()
     dynamic_cast<CMonster*>(m_pObj)->InsertImage(L"monster/helli/", IMG_GET_V(L"monster/helli/"));
     m_mImage    = &(m_pObj->GetImgv());
 
-    iter_begin  = m_mImage->find(L"monster/helli/")->second->end() - 6;
-    iter_end    = m_mImage->find(L"monster/helli/")->second->end();
+    dynamic_cast<CMonster*>(m_pObj)->InsertImage(L"sfx/explosion/", IMG_GET_V(L"sfx/explosion/"));
+    m_mImage    = &(m_pObj->GetImgv());
+
+    iter_begin  = m_mImage->find(L"monster/helli/")     ->second->end() - 6;
+    iter_end    = m_mImage->find(L"monster/helli/")     ->second->end();
+
+    eff_begin   = m_mImage->find(L"sfx/explosion/")     ->second->begin();
+    eff_end     = m_mImage->find(L"sfx/explosion/")     ->second->end();
 
     m_pObj->SetCurState(OBJ_A_STND);
     m_pObj->SetDirect(OBJ_D_LEFT);
     m_pObj->SetHp(5);
+    m_pObj->SetWH(40.f, 40.f);
+    m_pObj->SetJumpacc(0.f);
 }
 
 void CHell::Render(HDC hdc)
 {
+    Rectangle(hdc, m_pObj->GetInfo().rect.left, m_pObj->GetInfo().rect.top, m_pObj->GetInfo().rect.right, m_pObj->GetInfo().rect.bottom);
     if (m_pObj->GetDirection() == OBJ_D_RIGH)
     {
         if (STATE_SAME(m_pObj->GetInfo().curState, OBJ_A_MOVE))
@@ -56,7 +65,23 @@ void CHell::Render(HDC hdc)
         }
         if (m_pObj->isDead())
         {
-            // Á×Àº ÀÌÆåÆ® Ãâ·Â
+            if (STATE_SAME(m_pObj->GetInfo().curState, OBJ_A_MOVE))
+            {
+                IMG_DRAW_I(hdc
+                    , (*eff_begin)->image
+                    , FLOAT(m_pObj->GetInfo().fX - (*eff_begin)->image->GetWidth() / 2.f)
+                    , FLOAT(m_pObj->GetInfo().fY - (*eff_begin)->image->GetHeight() / 2.f)
+                    , FLOAT((*eff_begin)->image->GetWidth())
+                    , FLOAT((*eff_begin)->image->GetHeight())
+                );
+
+                ++eff_begin;
+
+                if(eff_begin == eff_end)
+                { 
+                    end = 1;
+                }
+            }
         }
     }
 }
@@ -70,12 +95,39 @@ int CHell::Update()
     if (1 == end)
         return 1;
 
+    RECT rc = {
+        LONG(m_pObj->GetInfo().fX - 20)// m_pObj->GetInfo().fCX / 2
+        , LONG(m_pObj->GetInfo().fY - 20)
+        , LONG(m_pObj->GetInfo().fX + 20)
+        , LONG(m_pObj->GetInfo().fY + 20)
+    };
+
+    m_pObj->SetRect(rc);
+
     if (m_pObj->isDead())
     {
         // ¾Æ·¡·Î ¶³¾îÁü
         iter_begin = m_mImage->find(L"monster/helli/")->second->end() - 2;
         IsJump();
         IsCollisionLine();
+
+        INFO infoh;
+        infoh.fX        = 3700.f;
+        infoh.fY        = 60.f;
+        infoh.fCX       = 140.f;
+        infoh.fCY       = 50.f;
+        infoh.curState  = OBJ_A_IDLE;
+        infoh.m_eKind   = eKMOB::MOB_K_BOSSBODY;
+        infoh.fSpeed    = 4.5f;
+
+        // tower
+        if (nullptr == boss)
+        {
+            boss = CAbstractFactory<CMonster>::CreateObj(infoh);
+            CObjManager::GetInst()->AddObj(boss, OBJ_MONSTER);
+        }
+        
+        return 0;
     }
 
     m_pObj->SetSpeed(7.f);

@@ -49,4 +49,10 @@ private:
     GUNSTATE m_oldGun = CPlayer::GUN_END;
 
     vector<ObjImg*>* m_vBulletimg;
+
+public:
+    INT life = 3;
+    INT reloadCnt = 0;
+    INT bombCnt = 0;
+    FLOAT limitAcc = 5.f;
 };

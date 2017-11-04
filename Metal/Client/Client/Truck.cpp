@@ -31,6 +31,7 @@ void CTruck::       Init                ()
     iter_begin  = m_mImage->find(L"monster/truck/idle/")->second->begin();
     iter_end    = m_mImage->find(L"monster/truck/idle/")->second->end();
 
+    m_pObj->SetPoint(500);
     m_pObj->SetCurState(OBJ_A_STND);
     m_pObj->SetHp(5);
     m_pObj->SetPos(1550.f, 160.f);
@@ -149,12 +150,24 @@ int CTruck::        Update              ()
             CObjManager::GetInst()->AddObj(CAbstractFactory<CMonster>::CreateObj(tInfo), OBJ_MONSTER);
 
             CObj* player = CObjManager::GetInst()->GetObjlst(OBJ_PLAYER).back();
+
+            player->SetPoint(player->GetPoint() + m_pObj->GetPoint());
+
             float d = player->GetInfo().fX + (CScrollMgr::GetInstance()->GetScrollX() - CScrollMgr::GetInstance()->GetOffset());
             CScrollMgr::GetInstance()->SetScrollX(CScrollMgr::GetInstance()->GetScrollX() - d);
         }
         return 0;
     }
 
+    RECT rc = {
+        LONG(m_pObj->GetInfo().fX - (*iter_begin)->image->GetWidth()/2.f)// m_pObj->GetInfo().fCX / 2
+        , LONG(m_pObj->GetInfo().fY - (*iter_begin)->image->GetHeight()/2.f)
+        , LONG(m_pObj->GetInfo().fX + (*iter_begin)->image->GetWidth()/2.f)
+        , LONG(m_pObj->GetInfo().fY + (*iter_begin)->image->GetHeight()/2.f)
+    };
+
+    m_pObj->SetRect(rc);
+    
     PatternA();
 
     return 0;

@@ -20,6 +20,7 @@ void CSamBdoor::Init()
 
     iter_begin  = m_mImage->find(L"monster/sam/b_door/")->second->begin();
     iter_end    = m_mImage->find(L"monster/sam/b_door/")->second->end();
+
 }
 
 void CSamBdoor::Render(HDC hdc)
@@ -48,7 +49,7 @@ void CSamBdoor::Release()
 
 int CSamBdoor::Update()
 {
-    if (10 <= end)
+    if (4 <= end)
         return 1;
     else
     {

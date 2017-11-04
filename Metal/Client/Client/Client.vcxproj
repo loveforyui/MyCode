@@ -152,10 +152,16 @@
     <ClInclude Include="BackGround.h" />
     <ClInclude Include="Basaka.h" />
     <ClInclude Include="BerserkMboss.h" />
+    <ClInclude Include="Bomb.h" />
+    <ClInclude Include="BossBody.h" />
+    <ClInclude Include="BossL.h" />
+    <ClInclude Include="BossR.h" />
+    <ClInclude Include="BossT.h" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="Client.h" />
     <ClInclude Include="CollisionManager.h" />
     <ClInclude Include="Define.h" />
+    <ClInclude Include="Ending.h" />
     <ClInclude Include="Enum.h" />
     <ClInclude Include="Extern.h" />
     <ClInclude Include="functionary.h" />
@@ -169,6 +175,7 @@
     <ClInclude Include="KeyManager.h" />
     <ClInclude Include="Line.h" />
     <ClInclude Include="LineMgr.h" />
+    <ClInclude Include="Load.h" />
     <ClInclude Include="Logo.h" />
     <ClInclude Include="MainGame.h" />
     <ClInclude Include="Managers.h" />
@@ -194,6 +201,12 @@
     <ClInclude Include="ScrollMgr.h" />
     <ClInclude Include="Select.h" />
     <ClInclude Include="Sitdown.h" />
+    <ClInclude Include="SitdownAtk.h" />
+    <ClInclude Include="SitdownAtkL.h" />
+    <ClInclude Include="SitdownL.h" />
+    <ClInclude Include="SitdownMoveL.h" />
+    <ClInclude Include="SitdownMoveR.h" />
+    <ClInclude Include="SoundMgr.h" />
     <ClInclude Include="Stage_01.h" />
     <ClInclude Include="StateContext.h" />
     <ClInclude Include="StateManager.h" />
@@ -218,15 +231,22 @@
     <ClInclude Include="Things.h" />
     <ClInclude Include="Truck.h" />
     <ClInclude Include="Typedef.h" />
+    <ClInclude Include="UI.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BabarianBase.cpp" />
     <ClCompile Include="BackGround.cpp" />
     <ClCompile Include="Basaka.cpp" />
     <ClCompile Include="BerserkMboss.cpp" />
+    <ClCompile Include="Bomb.cpp" />
+    <ClCompile Include="BossBody.cpp" />
+    <ClCompile Include="BossL.cpp" />
+    <ClCompile Include="BossR.cpp" />
+    <ClCompile Include="BossT.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="Client.cpp" />
     <ClCompile Include="CollisionManager.cpp" />
+    <ClCompile Include="Ending.cpp" />
     <ClCompile Include="Hell.cpp" />
     <ClCompile Include="ImageManager.cpp" />
     <ClCompile Include="JmpBodyL.cpp" />
@@ -236,6 +256,7 @@
     <ClCompile Include="KeyManager.cpp" />
     <ClCompile Include="Line.cpp" />
     <ClCompile Include="LineMgr.cpp" />
+    <ClCompile Include="Load.cpp" />
     <ClCompile Include="Logo.cpp" />
     <ClCompile Include="MainGame.cpp" />
     <ClCompile Include="MathMgr.cpp" />
@@ -259,6 +280,12 @@
     <ClCompile Include="ScrollMgr.cpp" />
     <ClCompile Include="Select.cpp" />
     <ClCompile Include="Sitdown.cpp" />
+    <ClCompile Include="SitdownAtk.cpp" />
+    <ClCompile Include="SitdownAtkL.cpp" />
+    <ClCompile Include="SitdownL.cpp" />
+    <ClCompile Include="SitdownMoveL.cpp" />
+    <ClCompile Include="SitdownMoveR.cpp" />
+    <ClCompile Include="SoundMgr.cpp" />
     <ClCompile Include="Stage_01.cpp" />
     <ClCompile Include="StateContext.cpp" />
     <ClCompile Include="StateManager.cpp" />
@@ -284,6 +311,7 @@
     <ClCompile Include="StWalkLegR.cpp" />
     <ClCompile Include="Things.cpp" />
     <ClCompile Include="Truck.cpp" />
+    <ClCompile Include="UI.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc" />

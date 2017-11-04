@@ -42,3 +42,4 @@ private:									\
 ClassName* ClassName::m_pInstance = nullptr;
 
 #define STATE_SAME(ObjState, ID) ((ObjState & ID) && ID)
+#define DIREC_SAME(DIREC, ID) ((DIREC & ID) && ID)

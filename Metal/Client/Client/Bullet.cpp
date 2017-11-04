@@ -114,10 +114,10 @@ int CBullet::       Update              ()
     IsCollisionLine();
 
     RECT rc = {
-        LONG(m_tInfo.fX - 15)// m_pObj->GetInfo().fCX / 2
-        , LONG(m_tInfo.fY - 15)
-        , LONG(m_tInfo.fX + 15)
-        , LONG(m_tInfo.fY + 15)
+        LONG(m_tInfo.fX - (*img_begin)->image->GetWidth()/2.f)// m_pObj->GetInfo().fCX / 2
+        , LONG(m_tInfo.fY - (*img_begin)->image->GetHeight()/2.f)
+        , LONG(m_tInfo.fX + (*img_begin)->image->GetWidth()/2.f)
+        , LONG(m_tInfo.fY + (*img_begin)->image->GetHeight()/2.f)
     };
 
     m_tInfo.rect = rc;
@@ -125,7 +125,7 @@ int CBullet::       Update              ()
     if (m_tInfo.fX < 0 || 3823 < m_tInfo.fX)
         return 1;
 
-    if (m_tInfo.fY < 0 || WINCY < m_tInfo.fY)
+    if (m_tInfo.fY < -30 || WINCY < m_tInfo.fY)
         return 1;
 
     //if (50 <= m_distSum)

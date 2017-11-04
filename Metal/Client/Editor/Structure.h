@@ -102,6 +102,9 @@ typedef struct tagInfo
     float           fAcc;
     float           fJumpPow;
     float           fJumpAcc;
+
+    //point
+    int             point;
     
     //Cannon
     float           fAngle;

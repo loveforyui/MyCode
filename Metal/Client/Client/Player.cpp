@@ -3,6 +3,7 @@
 #include "Obj.h"
 #include "States.h"
 #include "Bullet.h"
+#include "Monster.h"
 
 CPlayer::       CPlayer         ()
 {
@@ -20,6 +21,8 @@ void CPlayer::  Init            ()
 
     m_tInfo.fCX = 15.f;
     m_tInfo.fCY = 15.f;
+
+    m_tInfo.point = 0;
 
     m_dwOldt = GetTickCount();
     m_dwCurt = 0;
@@ -52,8 +55,6 @@ void CPlayer::  Init            ()
     sprintf_s(buf, "%s%s", IMG_PATH, "fio/baseatk/up_atk_left/");
     IMG_LOAD(L"fio/baseatk/up_atk_left/", buf);
 
-    
-
     //leg
     sprintf_s(buf, "%s%s", IMG_PATH, "fio/walking/leg/");
     IMG_LOAD(L"fio/walking/leg/", buf);
@@ -67,6 +68,20 @@ void CPlayer::  Init            ()
     IMG_LOAD(L"fio/jump/jmp_leg/", buf);
     sprintf_s(buf, "%s%s", IMG_PATH, "fio/jump/jmp_leg_left/");
     IMG_LOAD(L"fio/jump/jmp_leg_left/", buf);
+
+    //down
+    sprintf_s(buf, "%s%s", IMG_PATH, "fio/down/sitdown/");
+    IMG_LOAD(L"fio/down/sitdown/", buf);
+    sprintf_s(buf, "%s%s", IMG_PATH, "fio/down/sitdown_left/");
+    IMG_LOAD(L"fio/down/sitdown_left/", buf);
+    sprintf_s(buf, "%s%s", IMG_PATH, "fio/down/sd_move/");
+    IMG_LOAD(L"fio/down/sd_move/", buf);
+    sprintf_s(buf, "%s%s", IMG_PATH, "fio/down/sd_move_left/");
+    IMG_LOAD(L"fio/down/sd_move_left/", buf);
+    sprintf_s(buf, "%s%s", IMG_PATH, "fio/down/atkr/");
+    IMG_LOAD(L"fio/down/atkr/", buf);
+    sprintf_s(buf, "%s%s", IMG_PATH, "fio/down/atkl/");
+    IMG_LOAD(L"fio/down/atkl/", buf);
 
     if (m_image.empty())
     {
@@ -165,6 +180,37 @@ void CPlayer::  Init            ()
         InsertImage(L"fio/jump/jmp_leg_left/", imgVec);
         tempState   = MAKE_STATE(OBJ_PLAYER, CJmpLegL, imgVec);
         m_scLeg.AddState(L"fio/jump/jmp_leg_left/", tempState);
+
+        //down
+        imgVec      = IMG_GET_V(L"fio/down/sitdown/");
+        InsertImage(L"fio/down/sitdown/", imgVec);
+        tempState   = MAKE_STATE(OBJ_PLAYER, CSitdown, imgVec);
+        m_scLeg.AddState(L"fio/down/sitdown/", tempState);
+
+        imgVec      = IMG_GET_V(L"fio/down/sitdown_left/");
+        InsertImage(L"fio/down/sitdown_left/", imgVec);
+        tempState   = MAKE_STATE(OBJ_PLAYER, CSitdownL, imgVec);
+        m_scLeg.AddState(L"fio/down/sitdown_left/", tempState);
+
+        imgVec      = IMG_GET_V(L"fio/down/sd_move/");
+        InsertImage(L"fio/down/sd_move/", imgVec);
+        tempState   = MAKE_STATE(OBJ_PLAYER, CSitdownMoveR, imgVec);
+        m_scLeg.AddState(L"fio/down/sd_move/", tempState);
+
+        imgVec      = IMG_GET_V(L"fio/down/sd_move_left/");
+        InsertImage(L"fio/down/sd_move_left/", imgVec);
+        tempState   = MAKE_STATE(OBJ_PLAYER, CSitdownMoveL, imgVec);
+        m_scLeg.AddState(L"fio/down/sd_move_left/", tempState);
+
+        imgVec      = IMG_GET_V(L"fio/down/atkr/");
+        InsertImage(L"fio/down/atkr/", imgVec);
+        tempState   = MAKE_STATE(OBJ_PLAYER, CSitdownAtk, imgVec);
+        m_scLeg.AddState(L"fio/down/atkr/", tempState);
+
+        imgVec      = IMG_GET_V(L"fio/down/atkl/");
+        InsertImage(L"fio/down/atkl/", imgVec);
+        tempState   = MAKE_STATE(OBJ_PLAYER, CSitdownAtkL, imgVec);
+        m_scLeg.AddState(L"fio/down/atkl/", tempState);
     }
 
     // 나중에 Abstract Factory로 바꿔야함
@@ -196,9 +242,15 @@ void CPlayer::  Render          (HDC hdc)
 
     //Rectangle(hdc, m_tInfo.rect.left, m_tInfo.rect.top, m_tInfo.rect.right, m_tInfo.rect.bottom);
 
-    m_scLeg.request(hdc);
-    m_scBody.request(hdc);
-
+    if (!STATE_SAME(m_tInfo.preState, OBJ_A_SITD))
+    {
+        m_scLeg.request(hdc);
+        m_scBody.request(hdc);
+    }
+    if (STATE_SAME(m_tInfo.preState, OBJ_A_SITD))
+    {
+        m_scLeg.request(hdc);
+    }
     //Rectangle(hdc, m_tInfo.fX - 5, m_tInfo.fY - 5, m_tInfo.fX + 5, m_tInfo.fY + 5);
 
     /*MoveToEx(hdc, m_tInfo.fX, m_tInfo.fY - 10, nullptr);
@@ -267,25 +319,28 @@ void CPlayer::  IsCollisionLine ()
 
     if (CLineMgr::GetInstance()->CollisionLine(m_tInfo.fX, &fy))
     {
-        if (!(m_tInfo.preState & OBJ_A_JUMP))
+        if (STATE_SAME(m_tInfo.preState, OBJ_A_SITD) || STATE_SAME(m_tInfo.preState, OBJ_A_STND))
             m_tInfo.fY = fy - m_tInfo.fCY / 2;
 
-        if (m_tInfo.fY >= fy - m_tInfo.fCY / 2) // 점프 중에 라인에 도달하면 라인을 타고
+        if (STATE_SAME(m_tInfo.preState, OBJ_A_JUMP))
         {
-            m_tInfo.fY = fy - m_tInfo.fCY / 2;
-            m_tInfo.fJumpAcc = 0.f;
-            if (m_tInfo.preState & OBJ_A_ATTK)
+            if (m_tInfo.fY >= fy - m_tInfo.fCY / 2) // 점프 중에 라인에 도달하면 라인을 타고
             {
-                if (m_tInfo.preState & OBJ_A_MOVE)
-                    m_tInfo.preState = OBJ_A_MOVE | OBJ_A_ATTK;
+                m_tInfo.fY = fy - m_tInfo.fCY / 2;
+                m_tInfo.fJumpAcc = 0.f;
+                if (m_tInfo.preState & OBJ_A_ATTK)
+                {
+                    if (m_tInfo.preState & OBJ_A_MOVE)
+                        m_tInfo.preState = OBJ_A_MOVE | OBJ_A_ATTK;
+                    else
+                        m_tInfo.preState = OBJ_A_STND | OBJ_A_ATTK;
+                }
                 else
-                    m_tInfo.preState = OBJ_A_STND | OBJ_A_ATTK;
+                {
+                    //m_tInfo.preState ^= OBJ_A_JUMP;
+                    m_tInfo.preState = OBJ_A_STND;
+                }
             }
-            else
-            {
-                //m_tInfo.preState ^= OBJ_A_JUMP;
-                m_tInfo.preState = OBJ_A_STND;
-            } 
         }
     }
     else
@@ -300,13 +355,30 @@ void CPlayer::  CalcCannonPos   ()
     // 아이템에 따라 포신 위치가 바뀜
     if (m_tInfo.fAngle < 0)
     {
-        m_tInfo.fCannonX = -8 + m_tInfo.fX + cosf(abs(m_tInfo.fAngle)*PI / 180.f)*m_tInfo.fCannonD;
-        m_tInfo.fCannonY = -11 + m_tInfo.fY + sinf(abs(m_tInfo.fAngle)*PI / 180.f)*m_tInfo.fCannonD;
+        if (STATE_SAME(m_tInfo.preState, OBJ_A_SITD))
+        {
+            m_tInfo.fCannonX = -8 + m_tInfo.fX + cosf(abs(m_tInfo.fAngle)*PI / 180.f)*m_tInfo.fCannonD;
+            m_tInfo.fCannonY = -3 + m_tInfo.fY + sinf(abs(m_tInfo.fAngle)*PI / 180.f)*m_tInfo.fCannonD;
+            
+        }
+        else
+        {
+            m_tInfo.fCannonX = -8 + m_tInfo.fX + cosf(abs(m_tInfo.fAngle)*PI / 180.f)*m_tInfo.fCannonD;
+            m_tInfo.fCannonY = -11 + m_tInfo.fY + sinf(abs(m_tInfo.fAngle)*PI / 180.f)*m_tInfo.fCannonD;
+        }
     }
     else
     {
-        m_tInfo.fCannonX = -8 + m_tInfo.fX + cosf(abs(m_tInfo.fAngle)*PI / 180.f)*m_tInfo.fCannonD;
-        m_tInfo.fCannonY = -11 + m_tInfo.fY - sinf(abs(m_tInfo.fAngle)*PI / 180.f)*m_tInfo.fCannonD;
+        if (STATE_SAME(m_tInfo.preState, OBJ_A_SITD))
+        {
+            m_tInfo.fCannonX = -8 + m_tInfo.fX + cosf(abs(m_tInfo.fAngle)*PI / 180.f)*m_tInfo.fCannonD;
+            m_tInfo.fCannonY = -3 + m_tInfo.fY - sinf(abs(m_tInfo.fAngle)*PI / 180.f)*m_tInfo.fCannonD;
+        }
+        else
+        {
+            m_tInfo.fCannonX = -8 + m_tInfo.fX + cosf(abs(m_tInfo.fAngle)*PI / 180.f)*m_tInfo.fCannonD;
+            m_tInfo.fCannonY = -11 + m_tInfo.fY - sinf(abs(m_tInfo.fAngle)*PI / 180.f)*m_tInfo.fCannonD;
+        }
     }
 }
 
@@ -345,6 +417,31 @@ void CPlayer::  BaseGunKeyInput ()
     m_tInfo.curState = m_tInfo.preState;
     isKeyInput = false;
 
+    if (KEY_UP('1'))
+    {
+        m_tInfo.fX = 3400.f;
+        m_tInfo.fY = 150.f;
+        CScrollMgr::GetInstance()->SetScrollX(-(m_tInfo.fX - CScrollMgr::GetInstance()->GetOffset()));
+
+        INFO infoh;
+        infoh.fX = 3700.f;
+        infoh.fY = 60.f;
+        infoh.fCX = 150.f;
+        infoh.fCY = 50.f;
+        infoh.curState = OBJ_A_IDLE;
+        infoh.m_eKind = eKMOB::MOB_K_BOSSBODY;
+        infoh.fSpeed = 4.5f;
+
+        // tower
+        CObj* boss = CAbstractFactory<CMonster>::CreateObj(infoh);
+        CObjManager::GetInst()->AddObj(boss, OBJ_MONSTER);
+    }
+
+    if (KEY_UP('0'))
+    {
+        
+    }
+
     if (KEY_PRESSING(VK_RIGHT))
     {
         if (m_tInfo.direction & OBJ_D_LEFT)
@@ -381,13 +478,18 @@ void CPlayer::  BaseGunKeyInput ()
             m_tInfo.fAngle += 10.f;
         }
 
+        if (STATE_SAME(m_tInfo.curState, OBJ_A_SITD))
+            limitAcc = 0.5f;
+        else
+            limitAcc = 5.f;
+
         // Accel
-        if (m_tInfo.fAcc < 10.f)
+        if (m_tInfo.fAcc < limitAcc)
         {
             m_tInfo.fAcc += 0.1f;
         }
 
-        if (m_tInfo.fSpeed < 10.f)
+        if (m_tInfo.fSpeed < limitAcc)
             m_tInfo.fSpeed += m_tInfo.fAcc;
 
         isKeyInput = true;
@@ -428,13 +530,18 @@ void CPlayer::  BaseGunKeyInput ()
             m_tInfo.fAngle += 10.f;
         }
 
+        if (STATE_SAME(m_tInfo.curState, OBJ_A_SITD))
+            limitAcc = 0.5f;
+        else
+            limitAcc = 5.f;
+
         // Accel
-        if (m_tInfo.fAcc < 3.f)
+        if (m_tInfo.fAcc < limitAcc)
         {
             m_tInfo.fAcc += 0.1f;
         }
 
-        if (m_tInfo.fSpeed < 5.f)
+        if (m_tInfo.fSpeed < limitAcc)
             m_tInfo.fSpeed += m_tInfo.fAcc;
 
         isKeyInput = true;
@@ -443,12 +550,17 @@ void CPlayer::  BaseGunKeyInput ()
     if (KEY_DOWN(VK_SPACE))
     {
         isKeyInput = true;
-        if (m_tInfo.curState & OBJ_A_JUMP)
+        if (STATE_SAME(m_tInfo.curState, OBJ_A_JUMP))
         {
-
         }
-        else
+        
+        else if (!STATE_SAME(m_tInfo.curState, OBJ_A_JUMP))
         {
+            if (STATE_SAME(m_tInfo.curState, OBJ_A_STND))
+                m_tInfo.curState ^= OBJ_A_STND;
+            if (STATE_SAME(m_tInfo.curState, OBJ_A_SITD))
+                m_tInfo.curState ^= OBJ_A_SITD;
+
             m_tInfo.curState |= OBJ_A_JUMP;
             m_tInfo.fJumpAcc = GRAVITY * 1.5f;
         }
@@ -487,9 +599,9 @@ void CPlayer::  BaseGunKeyInput ()
     // 나중에 총구각도 계산할때 점프 아래키는 360 - 각도로 계산
     if (KEY_PRESSING(VK_DOWN))
     {
-        m_tInfo.direction |= OBJ_D_BOTT;
         if (m_tInfo.curState & OBJ_A_JUMP)
         {
+            m_tInfo.direction |= OBJ_D_BOTT;
             if (m_tInfo.direction & OBJ_D_RIGH)
             {
                 if (-90.f < m_tInfo.fAngle && m_tInfo.fAngle <= 0.f)
@@ -508,6 +620,12 @@ void CPlayer::  BaseGunKeyInput ()
         else
         {
             //sitdown
+            if(STATE_SAME(m_tInfo.curState, OBJ_A_STND))
+                m_tInfo.curState ^= OBJ_A_STND;
+            if(STATE_SAME(m_tInfo.curState, OBJ_A_JUMP))
+                m_tInfo.curState ^= OBJ_A_JUMP;
+
+            m_tInfo.curState |= OBJ_A_SITD;
         }
     }
 
@@ -519,6 +637,9 @@ void CPlayer::  BaseGunKeyInput ()
             m_dwOldt = GetTickCount();
             m_tInfo.curState |= OBJ_A_ATTK;
             isKeyInput = true;
+
+            CSoundMgr::GetInstance()->PlaySound(L"ALL_00073.wav", CSoundMgr::CHANNEL_PLAYER);
+
             CObjManager::GetInst()->AddObj(CreateBullet(m_vBulletimg, m_tInfo.fAngle), OBJ_P_BULLET);
         }
 
@@ -575,21 +696,25 @@ void CPlayer::  BaseGunKeyInput ()
     // Accel
     if (m_tInfo.curState & OBJ_A_MOVE)
     {
-        m_tInfo.fAcc += 0.1f;
+        if (STATE_SAME(m_tInfo.curState, OBJ_A_SITD))
+            m_tInfo.fAcc += 0.05f;
+        else
+            m_tInfo.fAcc += 0.1f;
     }
 
     if (m_tInfo.direction & OBJ_D_RIGH)
     {
         float fScrollX = CScrollMgr::GetInstance()->GetScrollX();
 
-        if(m_tInfo.rect.right <= -fScrollX + 320.f)
+        if (m_tInfo.rect.right <= -fScrollX + 320.f)
             m_tInfo.fX += m_tInfo.fSpeed;
     }
 
     if (m_tInfo.direction & OBJ_D_LEFT)
     {
         float fScrollX = CScrollMgr::GetInstance()->GetScrollX();
-        if(-fScrollX < m_tInfo.rect.left)
+
+        if (-fScrollX < m_tInfo.rect.left)
             m_tInfo.fX -= m_tInfo.fSpeed;
     }
 
@@ -614,15 +739,30 @@ void CPlayer::  BaseGunKeyInput ()
         }
         else
         {
-            if (m_tInfo.direction & OBJ_D_LEFT)
+            if (STATE_SAME(m_tInfo.curState, OBJ_A_SITD))
             {
-                m_scBody.SetState(L"fio/walking/body_left/");
-                m_scLeg.SetState(L"fio/walking/leg_left/");
+                //
+                if (m_tInfo.direction & OBJ_D_LEFT)
+                {
+                    m_scLeg.SetState(L"fio/down/sd_move_left/");
+                }
+                else if (m_tInfo.direction & OBJ_D_RIGH)
+                {
+                    m_scLeg.SetState(L"fio/down/sd_move/");
+                }
             }
-            else if (m_tInfo.direction & OBJ_D_RIGH)
+            else
             {
-                m_scBody.SetState(L"fio/walking/body/");
-                m_scLeg.SetState(L"fio/walking/leg/");
+                if (m_tInfo.direction & OBJ_D_LEFT)
+                {
+                    m_scBody.SetState(L"fio/walking/body_left/");
+                    m_scLeg.SetState(L"fio/walking/leg_left/");
+                }
+                else if (m_tInfo.direction & OBJ_D_RIGH)
+                {
+                    m_scBody.SetState(L"fio/walking/body/");
+                    m_scLeg.SetState(L"fio/walking/leg/");
+                }
             }
         }
     }
@@ -639,6 +779,17 @@ void CPlayer::  BaseGunKeyInput ()
             {
                 m_scBody.SetState(L"fio/jump/jmp_body/");
                 m_scLeg.SetState(L"fio/jump/jmp_leg/");
+            }
+        }
+        else if (STATE_SAME(m_tInfo.curState, OBJ_A_SITD))
+        {
+            if (DIREC_SAME(m_tInfo.direction, OBJ_D_RIGH))
+            {
+                m_scLeg.SetState(L"fio/down/sitdown/");
+            }
+            else if (DIREC_SAME(m_tInfo.direction, OBJ_D_LEFT))
+            {
+                m_scLeg.SetState(L"fio/down/sitdown_left/");
             }
         }
         else
@@ -695,8 +846,12 @@ void CPlayer::  BaseGunKeyInput ()
             } 
             else
             {
-                //CStateManager* pState = new CStAtkBodyL;
-                m_scBody.SetState(L"fio/baseatk/st_atk_left/");
+                if (STATE_SAME(m_tInfo.curState, OBJ_A_SITD))
+                {
+                    m_scLeg.SetState(L"fio/down/atkl/");
+                }
+                else
+                    m_scBody.SetState(L"fio/baseatk/st_atk_left/");
             }
                 
             //m_scLeg.SetState(L"fio/st/leg_left/");
@@ -710,20 +865,14 @@ void CPlayer::  BaseGunKeyInput ()
             }
             else
             {
-                //CStateManager* pState = new CStAtkBodyR;
-                m_scBody.SetState(L"fio/baseatk/st_atk/");
+                if (STATE_SAME(m_tInfo.curState, OBJ_A_SITD))
+                {
+                    m_scLeg.SetState(L"fio/down/atkr/");
+                }
+                else
+                    m_scBody.SetState(L"fio/baseatk/st_atk/");
             }  
-            //m_scLeg.SetState(L"fio/st/leg/");
         }
-
-        /*if (m_tInfo.preState & OBJ_A_ATTK)
-        {
-            m_scBody.GetState()->SetIterator(6);
-        }
-        else if ((m_tInfo.preState & OBJ_A_ATTK) == 0)
-        {
-            m_scBody.GetState()->SetIterator(11);
-        }*/
     }
 #pragma endregion
     m_tInfo.preState = m_tInfo.curState;

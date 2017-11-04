@@ -23,7 +23,7 @@ void CLogo::Initialize()
 void CLogo::Update()
 {
 	if (KEY_DOWN(VK_RETURN))
-		CSceneMgr::GetInstance()->SceneChange(CSceneMgr::SELEC);
+		CSceneMgr::GetInstance()->SceneChange(CSceneMgr::LOAD);
 }
 
 void CLogo::Render(HDC hDC)

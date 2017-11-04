@@ -19,6 +19,7 @@ void CBabarian::    Init            ()
     m_pObj->SetCurState(OBJ_A_STND);
     m_pObj->SetHp(5);
     m_pObj->SetWH(25.f, 35.f);
+    m_pObj->SetPoint(100);
 
     char buf[256] = "";
     //body
@@ -81,6 +82,7 @@ void CBabarian::    Render          (HDC hdc)
             iter_begin = m_mImage->find(L"monster/arab/idle/")->second->begin();
         }
     }
+
     if (STATE_SAME(m_pObj->GetInfo().curState, OBJ_A_MOVE))
     {
         IMG_DRAW_I(hdc
@@ -97,6 +99,7 @@ void CBabarian::    Render          (HDC hdc)
             iter_begin = m_mImage->find(L"monster/arab/run/")->second->begin();
         }
     }
+
     if (STATE_SAME(m_pObj->GetInfo().curState, OBJ_A_JUMP))
     {
         IMG_DRAW_I(hdc
@@ -155,7 +158,6 @@ void CBabarian::    Render          (HDC hdc)
         );
 
         ++iter_begin;
-
         if (iter_begin == iter_end)
         {
             iter_begin = m_mImage->find(L"monster/arab/idle/")->second->begin();
@@ -163,12 +165,6 @@ void CBabarian::    Render          (HDC hdc)
         }
     }
 
-
-    wchar_t         pos[64];
-    swprintf_s(pos, L"X:%.1f Y:%.1f d:%d", m_pObj->GetInfo().fX, m_pObj->GetInfo().fY, m_pObj->GetInfo().curState);
-    SetTextAlign(hdc, TA_LEFT);
-    SetBkMode(hdc, TRANSPARENT);
-    TextOut(hdc, m_pObj->GetInfo().fX, m_pObj->GetInfo().fY - 30, pos, wcslen(pos));
 }
 
 void CBabarian::    Release         ()
@@ -178,15 +174,24 @@ void CBabarian::    Release         ()
 int CBabarian::     Update          ()
 {
     if (isEnd)
+    {
+        CObj* player = CObjManager::GetInst()->GetObjlst(OBJ_PLAYER).back();
+        player->SetPoint(player->GetPoint() + m_pObj->GetPoint());
         return 1;
+    } 
 
     if (m_pObj->isDead())
     {
         if (!STATE_SAME(m_pObj->GetInfo().curState, OBJ_A_DIE))
         {
             m_pObj->SetCurState(OBJ_A_DIE);
-            iter_begin  = m_mImage->find(L"monster/arab/die/")->second->begin();
-            iter_end    = m_mImage->find(L"monster/arab/die/")->second->end();
+            iter_begin = m_mImage->find(L"monster/arab/die/")->second->begin();
+            iter_end = m_mImage->find(L"monster/arab/die/")->second->end();
+
+            if (iter_begin == m_mImage->find(L"monster/arab/die/")->second->begin())
+            {
+                CSoundMgr::GetInstance()->PlaySound(L"ALL_00028.wav", CSoundMgr::CHANNEL_EFFECT);
+            }
         }
         return 0;
     }
@@ -339,3 +344,65 @@ void CBabarian::    IsCollisionLine ()
         iter_end    = m_mImage->find(L"monster/arab/bjmp/")->second->end();
     }
 }
+
+//float fScrollX = CScrollMgr::GetInstance()->GetScrollX();
+//
+//// 알파 블렌딩
+//HDC hTempDC = GetDC(g_hWnd); // DC 준비하고.
+//HDC hMemDC = CreateCompatibleDC(hTempDC); // 메모리 DC 준비
+//
+//// 플레이어 사이즈만큼 가상의 비트맵을 만든다.
+//HBITMAP hBit = CreateCompatibleBitmap(hTempDC, int(m_pObj->GetInfo().fCX), int(m_pObj->GetInfo().fCY));
+//HBITMAP hOld = (HBITMAP)SelectObject(hMemDC, hBit);
+//
+//
+//
+//int iOriginX = m_pObj->GetInfo().rect.left + fScrollX;
+//int iOriginY = m_pObj->GetInfo().rect.top;
+//
+//int iDestX = 0;
+//int iDestCX = (int)m_pObj->GetInfo().fCX;
+//
+//int iDestY = 0;
+//int iDestCY = (int)m_pObj->GetInfo().fCY;
+//
+//if (0 > iOriginY)
+//{
+//    iDestY = -iOriginY;
+//    iDestCY += iOriginY;
+//    iOriginY = 0;
+//}
+//else if (WINCY < m_pObj->GetInfo().rect.bottom)
+//    iDestCY = m_pObj->GetInfo().fCY - (m_pObj->GetInfo().rect.bottom - WINCY);
+//
+//
+//if (0 > iOriginX)
+//{
+//    iDestX = -iOriginX;
+//    iDestCX += iOriginX;
+//    iOriginX = 0;
+//}
+//else if (WINCX < m_pObj->GetInfo().rect.right + fScrollX)
+//    iDestCX = m_pObj->GetInfo().fCX - (m_pObj->GetInfo().rect.right - WINCX);
+//
+//GdiTransparentBlt(hdc
+//    , iDestX, iDestY
+//    , iDestCX, iDestCY
+//    , hMemDC
+//    , iOriginX, iOriginY
+//    , iDestCX, iDestCY, RGB(0, 0, 0));
+//
+//BLENDFUNCTION _bf;
+//
+//_bf.SourceConstantAlpha = m_iAlpha; // 투명도 0 ~ 255
+//_bf.BlendFlags = 0;
+//_bf.BlendOp = AC_SRC_OVER;
+//_bf.AlphaFormat = 0;
+//
+//GdiAlphaBlend(hdc, m_pObj->GetInfo().rect.left, m_pObj->GetInfo().rect.top, (int)m_pObj->GetInfo().fCX, (int)m_pObj->GetInfo().fCY
+//    , hMemDC, 0, 0, (int)m_pObj->GetInfo().fCX, (int)m_pObj->GetInfo().fCY, _bf);
+//
+//ReleaseDC(g_hWnd, hTempDC);
+//SelectObject(hMemDC, hOld);
+//DeleteObject(hBit);
+//DeleteDC(hMemDC);

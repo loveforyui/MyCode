@@ -17,6 +17,8 @@ void CSelect::      Initialize          ()
     strcat_s(buf, "hud/select/");
     IMG_LOAD(L"hud/select/", buf);
     m_vImage = IMG_GET_V(L"hud/select/");
+
+    CSoundMgr::GetInstance()->PlayBGM(L"select.wav");
 }
 
 void CSelect::      Update              ()
@@ -71,6 +73,7 @@ void CSelect::      CharacterSelect_R   (HDC hDC)
                         m_bSelect_hud = m_bSelect_hud ^ 0x00080;
                         // Set Next State
                         //m_GameState = eGameState::GS_RUN;
+                        CSoundMgr::GetInstance()->StopSoundAll();
                         CSceneMgr::GetInstance()->SceneChange(CSceneMgr::STAGE);
                         return;
                     }
@@ -174,8 +177,9 @@ void CSelect::      CharacterSelect_U   ()
         UINT oldc   = m_bSelect_hud & 0x0F000;
         UINT result = m_bSelect_hud & 0xF0FF0;
         // 좌우의 키입력에 따른 select hud 조절
-        if (KEY_UP(VK_RIGHT))
+        if (KEY_DOWN(VK_RIGHT))
         {
+            CSoundMgr::GetInstance()->PlaySound(L"chuck.wav", CSoundMgr::CHANNEL_EFFECT);
             oldp = (oldp >> 1);
             oldc = (oldc >> 1);
 
@@ -190,8 +194,9 @@ void CSelect::      CharacterSelect_U   ()
             //m_bSelect_hud
         }
         //
-        if (KEY_UP(VK_LEFT))
+        if (KEY_DOWN(VK_LEFT))
         {
+            CSoundMgr::GetInstance()->PlaySound(L"chuck.wav", CSoundMgr::CHANNEL_EFFECT);
             oldp = (oldp << 1);
             oldc = (oldc << 1);
 
@@ -205,12 +210,12 @@ void CSelect::      CharacterSelect_U   ()
             m_bSelect_hud = result | temp;
         }
         // 컨트롤 누를시 캐릭터 선택
-        if (KEY_UP(VK_CONTROL))
+        if (KEY_DOWN(VK_CONTROL))
         {
             m_bSelect_hud = 0xF0FB1;
             // Line 생성
             CLineMgr::GetInstance()->Initialize();
-
+            CSoundMgr::GetInstance()->PlaySound(L"ok.wav", CSoundMgr::CHANNEL_EFFECT);
             
             // player 생성
             /*if (OBJ_MGR_GETLIST(OBJ_PLAYER).empty())

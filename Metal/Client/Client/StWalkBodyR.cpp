@@ -26,8 +26,8 @@ void CStWalkBodyR::handle(HDC hdc)
                 , (*iter_begin)->image //(*(m_vImage->back())).image //(*iter_begin)->image
                 , 0 + (*obj)->GetInfo().fX - (*iter_begin)->image->GetWidth() / 2
                 , 0 + (*obj)->GetInfo().fY - (*iter_begin)->image->GetHeight() / 2
-                , (*obj)->GetInfo().fCX //(*iter_begin)->image->GetWidth()
-                , (*obj)->GetInfo().fCY //(*iter_begin)->image->GetHeight()
+                , (*iter_begin)->image->GetWidth()  //(*iter_begin)->image->GetWidth()
+                , (*iter_begin)->image->GetHeight() //(*iter_begin)->image->GetHeight()
             );
 
         }

@@ -16,10 +16,13 @@ CObjManager::~CObjManager()
 {
 }
 
-int CObjManager::       Update          ()
+int  CObjManager::      Update          ()
 {
-    CCollisionManager::CollisionSphere(m_objLst[OBJ_MONSTER], m_objLst[OBJ_P_BULLET]);
+    CCollisionManager::CollisionSphere(m_objLst[OBJ_MONSTER],  m_objLst[OBJ_P_BULLET]);
+    CCollisionManager::CollisionSphere(m_objLst[OBJ_SUBMON],   m_objLst[OBJ_P_BULLET]);
     CCollisionManager::CollisionSphere(m_objLst[OBJ_M_BULLET], m_objLst[OBJ_P_BULLET]);
+    CCollisionManager::CollisionSphere(m_objLst[OBJ_PLAYER],   m_objLst[OBJ_M_BULLET]);
+    CCollisionManager::CollisionSphere(m_objLst[OBJ_PLAYER],   m_objLst[OBJ_SUBMON]);
 
     for (int objid = 0; objid < OBJ_END; ++objid)
     {
@@ -116,7 +119,8 @@ void CObjManager::      LoadMonster     ()
 	INFO tInfo;
 	DWORD dwBytes = 0;
 
-	while (true)
+
+    while (true)
 	{
 		ReadFile(hFile, &tInfo, sizeof(INFO), &dwBytes, nullptr);
 

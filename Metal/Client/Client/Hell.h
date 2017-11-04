@@ -27,4 +27,9 @@ private:
     INT         end         = 0;
     HELLPASE    fase        = WAIT;
     float       patAngle    = 180.f;
+
+    CObj* boss;
+    
+    vector<ObjImg*>::iterator eff_begin;
+    vector<ObjImg*>::iterator eff_end;
 };

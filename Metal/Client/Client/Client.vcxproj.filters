@@ -169,6 +169,21 @@
     <Filter Include="01.OBJ\04.Monster\00.MonsterStateManager\05.hell">
       <UniqueIdentifier>{00064e84-c47f-4348-9560-9d3a24b50a04}</UniqueIdentifier>
     </Filter>
+    <Filter Include="01.OBJ\04.Monster\00.MonsterStateManager\06.boss">
+      <UniqueIdentifier>{f5af0de2-9fb6-4765-a225-2c3042e3f81d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.OBJ\04.Monster\00.MonsterStateManager\06.boss\00.left">
+      <UniqueIdentifier>{96c99984-c59e-43f2-aa7f-ea69c81c317c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.OBJ\04.Monster\00.MonsterStateManager\06.boss\01.right">
+      <UniqueIdentifier>{7c7359ec-5660-4733-98c5-99ea86fbf799}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.OBJ\04.Monster\00.MonsterStateManager\06.boss\02.top">
+      <UniqueIdentifier>{ad3683c2-5a14-4b4c-a9e8-bf1219dcff1e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.OBJ\06.UI">
+      <UniqueIdentifier>{fdf42fd0-4697-4103-adf0-617eb16bba5a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -390,6 +405,48 @@
     <ClInclude Include="Hell.h">
       <Filter>01.OBJ\04.Monster\00.MonsterStateManager\05.hell</Filter>
     </ClInclude>
+    <ClInclude Include="BossBody.h">
+      <Filter>01.OBJ\04.Monster\00.MonsterStateManager\06.boss</Filter>
+    </ClInclude>
+    <ClInclude Include="BossL.h">
+      <Filter>01.OBJ\04.Monster\00.MonsterStateManager\06.boss\00.left</Filter>
+    </ClInclude>
+    <ClInclude Include="BossR.h">
+      <Filter>01.OBJ\04.Monster\00.MonsterStateManager\06.boss\01.right</Filter>
+    </ClInclude>
+    <ClInclude Include="BossT.h">
+      <Filter>01.OBJ\04.Monster\00.MonsterStateManager\06.boss\02.top</Filter>
+    </ClInclude>
+    <ClInclude Include="Ending.h">
+      <Filter>97.Manager\10.SceneManager\07.Ending</Filter>
+    </ClInclude>
+    <ClInclude Include="SoundMgr.h">
+      <Filter>97.Manager\03.SoundManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Load.h">
+      <Filter>97.Manager\10.SceneManager\03.Load</Filter>
+    </ClInclude>
+    <ClInclude Include="UI.h">
+      <Filter>01.OBJ\06.UI</Filter>
+    </ClInclude>
+    <ClInclude Include="SitdownAtk.h">
+      <Filter>01.OBJ\01.Player\00.PlayerStateManager\06.Sitdown</Filter>
+    </ClInclude>
+    <ClInclude Include="SitdownL.h">
+      <Filter>01.OBJ\01.Player\00.PlayerStateManager\06.Sitdown</Filter>
+    </ClInclude>
+    <ClInclude Include="SitdownMoveR.h">
+      <Filter>01.OBJ\01.Player\00.PlayerStateManager\06.Sitdown</Filter>
+    </ClInclude>
+    <ClInclude Include="SitdownMoveL.h">
+      <Filter>01.OBJ\01.Player\00.PlayerStateManager\06.Sitdown</Filter>
+    </ClInclude>
+    <ClInclude Include="SitdownAtkL.h">
+      <Filter>01.OBJ\01.Player\00.PlayerStateManager\06.Sitdown</Filter>
+    </ClInclude>
+    <ClInclude Include="Bomb.h">
+      <Filter>01.OBJ\05.Bullet</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -568,6 +625,48 @@
     </ClCompile>
     <ClCompile Include="Hell.cpp">
       <Filter>01.OBJ\04.Monster\00.MonsterStateManager\05.hell</Filter>
+    </ClCompile>
+    <ClCompile Include="BossBody.cpp">
+      <Filter>01.OBJ\04.Monster\00.MonsterStateManager\06.boss</Filter>
+    </ClCompile>
+    <ClCompile Include="BossL.cpp">
+      <Filter>01.OBJ\04.Monster\00.MonsterStateManager\06.boss\00.left</Filter>
+    </ClCompile>
+    <ClCompile Include="BossR.cpp">
+      <Filter>01.OBJ\04.Monster\00.MonsterStateManager\06.boss\01.right</Filter>
+    </ClCompile>
+    <ClCompile Include="BossT.cpp">
+      <Filter>01.OBJ\04.Monster\00.MonsterStateManager\06.boss\02.top</Filter>
+    </ClCompile>
+    <ClCompile Include="Ending.cpp">
+      <Filter>97.Manager\10.SceneManager\07.Ending</Filter>
+    </ClCompile>
+    <ClCompile Include="SoundMgr.cpp">
+      <Filter>97.Manager\03.SoundManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Load.cpp">
+      <Filter>97.Manager\10.SceneManager\03.Load</Filter>
+    </ClCompile>
+    <ClCompile Include="UI.cpp">
+      <Filter>01.OBJ\06.UI</Filter>
+    </ClCompile>
+    <ClCompile Include="SitdownAtk.cpp">
+      <Filter>01.OBJ\01.Player\00.PlayerStateManager\06.Sitdown</Filter>
+    </ClCompile>
+    <ClCompile Include="SitdownL.cpp">
+      <Filter>01.OBJ\01.Player\00.PlayerStateManager\06.Sitdown</Filter>
+    </ClCompile>
+    <ClCompile Include="SitdownMoveR.cpp">
+      <Filter>01.OBJ\01.Player\00.PlayerStateManager\06.Sitdown</Filter>
+    </ClCompile>
+    <ClCompile Include="SitdownMoveL.cpp">
+      <Filter>01.OBJ\01.Player\00.PlayerStateManager\06.Sitdown</Filter>
+    </ClCompile>
+    <ClCompile Include="SitdownAtkL.cpp">
+      <Filter>01.OBJ\01.Player\00.PlayerStateManager\06.Sitdown</Filter>
+    </ClCompile>
+    <ClCompile Include="Bomb.cpp">
+      <Filter>01.OBJ\05.Bullet</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

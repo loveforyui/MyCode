@@ -3,6 +3,7 @@
 #include "BackGround.h"
 #include "Player.h"
 #include "Obj.h"
+#include "UI.h"
 
 CStage_01::CStage_01()
 {
@@ -32,6 +33,11 @@ void CStage_01::Initialize()
         pObj->SetPos(100.f, 50.f);
 
         OBJ_MGR_GETLIST(OBJ_PLAYER).push_back(pObj);
+    }
+    if (OBJ_MGR_GETLIST(OBJ_UI).empty())
+    {
+        CObj* pObj = CAbstractFactory<CUI>::CreateObj();
+        OBJ_MGR_GETLIST(OBJ_UI).push_back(pObj);
     }
 }
 

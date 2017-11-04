@@ -12,6 +12,10 @@
 #include "SamD.h"
 #include "SamBdoor.h"
 #include "Hell.h"
+#include "BossBody.h"
+#include "BossL.h"
+#include "BossR.h"
+#include "BossT.h"
 
 CMonster::CMonster()
 {
@@ -116,6 +120,30 @@ void CMonster::     SetKind         (eKMOB ekmb)
         m_tInfo.m_eKind = MOB_K_HELL;
     }
         break;
+    case MOB_K_BOSSBODY:
+    {
+        SetKind(new CBossBody(this));
+        m_tInfo.m_eKind = MOB_K_BOSSBODY;
+    }
+        break;
+    case MOB_K_BOSSLEFT:
+    {
+        SetKind(new CBossL(this));
+        m_tInfo.m_eKind = MOB_K_BOSSLEFT;
+    }
+        break;
+    case MOB_K_BOSSRIGHT:
+    {
+        SetKind(new CBossR(this));
+        m_tInfo.m_eKind = MOB_K_BOSSRIGHT;
+    }
+        break;
+    case MOB_K_BOSSTOP:
+    {
+        SetKind(new CBossT(this));
+        m_tInfo.m_eKind = MOB_K_BOSSTOP;
+    }
+        break;
     }
 }
 
@@ -156,7 +184,7 @@ void CMonster::     Render          (HDC hdc)
 
 int CMonster::      Update          ()
 {
-    CObj::Update();
+    //CObj::Update();
 
     return m_Kind->Update();
 

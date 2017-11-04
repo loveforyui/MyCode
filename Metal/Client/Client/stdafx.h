@@ -31,6 +31,13 @@
 
 using namespace Gdiplus;
 
+// MCI를 다루기 위한 헤더와 라이브러리 추가.
+#include <Vfw.h>
+#pragma comment(lib, "vfw32.lib")
+
+#include "fmod.h"
+#include "fmod.hpp"
+#pragma comment(lib, "fmodex_vc.lib")
 
 // TODO: 프로그램에 필요한 추가 헤더는 여기에서 참조합니다.
 

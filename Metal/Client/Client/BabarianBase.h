@@ -26,5 +26,8 @@ private:
     DWORD           m_dwCAtkDelay   = 0;
     DWORD           m_dwOAtkDelay   = 0;
 
+    int		m_iAlpha = 100;
+	DWORD	m_dwAlphaOld;
+
     bool            isEnd           = false;
 };

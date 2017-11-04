@@ -32,6 +32,7 @@ void CSamBody::Init()
     m_pObj->SetDead(true);
     m_pObj->SetPos(1870.f, 90.f);
     m_pObj->SetWH((*iter_begin)->image->GetWidth(), (*iter_begin)->image->GetHeight());
+    m_pObj->SetPoint(1000);
 }
 
 void CSamBody::Render(HDC hdc)
@@ -82,13 +83,13 @@ int CSamBody::Update()
             info.fAngle     = 110.f;
             // tower
             m_vEffect.push_back(CAbstractFactory<CMonster>::CreateObj(info));
-            CObjManager::GetInst()->AddObj(m_vEffect.back(), OBJ_MONSTER);
+            CObjManager::GetInst()->AddObj(m_vEffect.back(), OBJ_EFFECT);
 
             info.fX         = m_pObj->GetInfo().fX + 120.f;
             info.fY         = m_pObj->GetInfo().fY - 40.f;
             info.fAngle     = 45.f;
             m_vEffect.push_back(CAbstractFactory<CMonster>::CreateObj(info));
-            CObjManager::GetInst()->AddObj(m_vEffect.back(), OBJ_MONSTER);
+            CObjManager::GetInst()->AddObj(m_vEffect.back(), OBJ_EFFECT);
 
             CScrollMgr::GetInstance()->SetHold(false);
             CObj* player = CObjManager::GetInst()->GetObjlst(OBJ_PLAYER).back();

@@ -20,6 +20,7 @@ void CBerserkMboss::     Init               ()
     // 중보 사망처리 해아함
     m_pObj->SetCurState(OBJ_A_STND);
     m_pObj->SetHp(10);
+    m_pObj->SetPoint(300);
 
     char buf[256] = "";
     // carmel
@@ -138,7 +139,10 @@ void CBerserkMboss::     Render             (HDC hdc)
     }
     else if (4 == m_fase)
     {
-
+        if (iter_begin == m_mImage->find(L"monster/carmel/run/")->second->begin())
+        {
+            CSoundMgr::GetInstance()->PlaySound(L"ALL_00030.wav", CSoundMgr::CHANNEL_EFFECT);
+        }
         ePt = CPattern::GetInstance()->AngleLine(ePt, 3.f, fend);
         if (5.f <= fend)
             fend -= 5.f;
@@ -161,7 +165,7 @@ void CBerserkMboss::     Render             (HDC hdc)
             CObj* player = CObjManager::GetInst()->GetObjlst(OBJ_PLAYER).back();
             float d = player->GetInfo().fX + (CScrollMgr::GetInstance()->GetScrollX() - CScrollMgr::GetInstance()->GetOffset());
             CScrollMgr::GetInstance()->SetScrollX(CScrollMgr::GetInstance()->GetScrollX() - d);
-
+            
             INFO tInfo;
             tInfo.m_eKind = eKMOB::MOB_K_TRUCK;
             CObjManager::GetInst()->AddObj(CAbstractFactory<CMonster>::CreateObj(tInfo), OBJ_MONSTER);
@@ -231,7 +235,11 @@ void CBerserkMboss::     Release            ()
 int CBerserkMboss::      Update             ()
 {
     if (endl == 1)
+    {
+        CObj* player = CObjManager::GetInst()->GetObjlst(OBJ_PLAYER).back();
+        player->SetPoint(player->GetPoint() + m_pObj->GetPoint());
         return endl;
+    }
     CObj* player = CObjManager::GetInst()->GetObjlst(OBJ_PLAYER).back();
 
     float dist = _Distance<float>(
@@ -365,6 +373,7 @@ void CBerserkMboss::     PatternL           ()
     if (iter_begin == m_mImage->find(L"monster/carmel/run/")->second->end())
     {
         iter_begin = m_mImage->find(L"monster/carmel/run/")->second->begin();
+
         //endl = 1;
     }
         

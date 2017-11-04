@@ -32,6 +32,7 @@ void CBasaka::Init()
     iter_end    = m_mImage->find(L"monster/bsk/atk/")->second->end();
 
     m_pObj->SetWH(FLOAT((*iter_begin)->image->GetWidth()), FLOAT((*iter_begin)->image->GetHeight()));
+    m_pObj->SetPoint(200);
 }
 
 void CBasaka::Render(HDC hdc)
@@ -96,7 +97,11 @@ void CBasaka::Release()
 int CBasaka::Update()
 {
     if (1 == end)
+    {
+        CObj* player = CObjManager::GetInst()->GetObjlst(OBJ_PLAYER).back();
+        player->SetPoint(player->GetPoint() + m_pObj->GetPoint());
         return 1;
+    }
 
     if (m_pObj->isDead())
     {
@@ -111,6 +116,15 @@ int CBasaka::Update()
         m_pObj->SetPos(FLOAT(pt.x), FLOAT(pt.y));
         return 0;
     }
+
+    RECT rc = {
+        LONG(m_pObj->GetInfo().fX - (*iter_begin)->image->GetWidth()/2.f)// m_pObj->GetInfo().fCX / 2
+        , LONG(m_pObj->GetInfo().fY - (*iter_begin)->image->GetHeight()/2.f)
+        , LONG(m_pObj->GetInfo().fX + (*iter_begin)->image->GetWidth()/2.f)
+        , LONG(m_pObj->GetInfo().fY + (*iter_begin)->image->GetHeight()/2.f)
+    };
+
+    m_pObj->SetRect(rc);
 
     CObj* player = CObjManager::GetInst()->GetObjlst(OBJ_PLAYER).back();
 
