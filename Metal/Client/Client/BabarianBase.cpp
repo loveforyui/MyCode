@@ -217,6 +217,8 @@ void CBabarian::    PatternA        ()
 {
     CObj* player = CObjManager::GetInst()->GetObjlst(OBJ_PLAYER).back();
 
+    m_dwCAtkDelay = GetTickCount();
+
     float dist = _Distance<float>(
         player->GetInfo().fX
         , player->GetInfo().fY
@@ -239,19 +241,24 @@ void CBabarian::    PatternA        ()
             return;
     }
 
-    if ((60 <= dist) && (dist < 100.f))
+    if (m_dwOAtkDelay + 5000 < m_dwCAtkDelay)
     {
-        if (!STATE_SAME(m_pObj->GetInfo().curState, OBJ_A_JUMP))
+        m_dwOAtkDelay = m_dwCAtkDelay;
+        if ((60 <= dist) && (dist < 100.f))
         {
-            if (!STATE_SAME(m_pObj->GetInfo().curState, OBJ_A_ATTK))
+            if (!STATE_SAME(m_pObj->GetInfo().curState, OBJ_A_JUMP))
             {
-                m_pObj->SetCurState(OBJ_A_ATTK);
+                if (!STATE_SAME(m_pObj->GetInfo().curState, OBJ_A_ATTK))
+                {
+                    m_pObj->SetCurState(OBJ_A_ATTK);
 
-                iter_begin  = m_mImage->find(L"monster/arab/atk/")->second->begin();
-                iter_end    = m_mImage->find(L"monster/arab/atk/")->second->end();
+                    iter_begin = m_mImage->find(L"monster/arab/atk/")->second->begin();
+                    iter_end = m_mImage->find(L"monster/arab/atk/")->second->end();
+                }
             }
         }
     }
+
 
     if (STATE_SAME(m_pObj->GetInfo().curState, OBJ_A_STND))
     {

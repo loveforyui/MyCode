@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "Truck.h"
 #include "Monster.h"
+#include "Explosion.h"
 
 CTruck::CTruck()
 {
@@ -134,7 +135,9 @@ void CTruck::       IsCollisionLine     ()
 int CTruck::        Update              ()
 {
     if (0 == m_pObj->GetInfo().iHP)
+    {
         m_pObj->SetDead(true);
+    }
 
     if (m_pObj->isDead())
     {
@@ -155,6 +158,10 @@ int CTruck::        Update              ()
 
             float d = player->GetInfo().fX + (CScrollMgr::GetInstance()->GetScrollX() - CScrollMgr::GetInstance()->GetOffset());
             CScrollMgr::GetInstance()->SetScrollX(CScrollMgr::GetInstance()->GetScrollX() - d);
+
+            CObjManager::GetInst()->AddObj(CAbstractFactory<CExplosion>::CreateObj(m_pObj->GetInfo().fX, m_pObj->GetInfo().fY), OBJ_EFFECT);
+            CObjManager::GetInst()->AddObj(CAbstractFactory<CExplosion>::CreateObj(m_pObj->GetInfo().fX - 10, m_pObj->GetInfo().fY + 5), OBJ_EFFECT);
+            CObjManager::GetInst()->AddObj(CAbstractFactory<CExplosion>::CreateObj(m_pObj->GetInfo().fX - 20, m_pObj->GetInfo().fY - 10), OBJ_EFFECT);
         }
         return 0;
     }

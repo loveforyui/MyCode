@@ -13,6 +13,14 @@ public:
 
         return pObj;
     }
+    static CObj* CreateObj(float x, float y)
+    {
+        CObj* pObj = new T;
+        pObj->SetPos(x, y);
+        pObj->Init();        
+
+        return pObj;
+    }
     static CObj* CreateObj(float x, float y, float cx, float cy)
     {
         CObj* pObj = new T;
@@ -68,6 +76,15 @@ public:
     {
         // ekmb 설정
         CObj* pObj = new T(info);
+        pObj->Init();
+
+        return pObj;
+    }
+    static CObj* CreateObj(INFO& info, ITEMKINDE k)
+    {
+        // ekmb 설정
+        CObj* pObj = new T(info);
+        dynamic_cast<CItem*>(pObj)->kind = k;
         pObj->Init();
 
         return pObj;

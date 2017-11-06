@@ -33,7 +33,9 @@ void CStdDie::handle(HDC hdc)
         ++iter_begin;
         if (iter_begin == iter_end)
         {
-            iter_begin = --(m_vImage->end());
+            iter_begin = (m_vImage->begin());
+            OBJ_MGR_GETLIST(OBJ_PLAYER).back()->SetDead(false);
+            OBJ_MGR_GETLIST(OBJ_PLAYER).back()->SetPreState(OBJ_A_STND);
         }
     }
 }

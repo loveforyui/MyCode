@@ -9,7 +9,7 @@ CBomb::~CBomb()
 {
 }
 
-void CBomb::Init()
+void CBomb::        Init            ()
 {
     char buf[256] = "";
 
@@ -33,11 +33,11 @@ void CBomb::Init()
     side = m_tInfo.fX + 50.f;
 }
 
-void CBomb::Release()
+void CBomb::        Release         ()
 {
 }
 
-void CBomb::isJump()
+void CBomb::        isJump          ()
 {
     if (m_tInfo.curState & OBJ_A_JUMP)
     {
@@ -69,7 +69,7 @@ void CBomb::isJump()
     }
 }
 
-void CBomb::Render(HDC hdc)
+void CBomb::        Render          (HDC hdc)
 {
     IMG_DRAW_A(
         hdc
@@ -102,7 +102,7 @@ void CBomb::Render(HDC hdc)
     }
 }
 
-int CBomb::Update()
+int CBomb::         Update          ()
 {
     if (end)
         return 1;
@@ -132,7 +132,7 @@ int CBomb::Update()
     return 0;
 }
 
-void CBomb::isCollisionLine()
+void CBomb::        isCollisionLine ()
 {
     float fy = m_tInfo.fY;
 

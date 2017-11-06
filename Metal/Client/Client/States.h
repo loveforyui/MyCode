@@ -27,3 +27,20 @@
 #include "BombBodyR.h"
 #include "BombBodyL.h"
 #include "StdDie.h"
+#include "Pick.h"
+
+//heavy
+#include "StHBodyL.h"
+#include "StHBodyR.h"
+#include "WlkHBodyL.h"
+#include "WlkHBodyR.h"
+#include "StHjmpBodyL.h"
+#include "StHjmpBodyR.h"
+#include "SitdownHL.h"
+#include "SitdownHR.h"
+#include "StHAtkL.h"
+#include "StHAtkR.h"
+#include "StHupAtkR.h"
+#include "StHupAtkL.h"
+
+#include "Stdup.h"

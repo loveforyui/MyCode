@@ -187,6 +187,33 @@
     <Filter Include="01.OBJ\01.Player\00.PlayerStateManager\07.die">
       <UniqueIdentifier>{92de5d36-0fdc-4f48-b146-fd78dbed29e6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="01.OBJ\01.Player\00.PlayerStateManager\08.pick">
+      <UniqueIdentifier>{64f00636-3e84-4a9d-b660-70950de9003e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.OBJ\01.Player\00.PlayerStateManager\00.StandState\00.heavy">
+      <UniqueIdentifier>{40972b97-b989-4f4f-ab8c-c94e27820314}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.OBJ\01.Player\00.PlayerStateManager\00.StandState\01.base">
+      <UniqueIdentifier>{81a8ea4a-bb2f-4456-b3ab-0d0c5b3278d8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.OBJ\07.ITEM">
+      <UniqueIdentifier>{22febed7-b1b0-4d2e-ada0-dd4c294c07d0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.OBJ\01.Player\00.PlayerStateManager\02.WalkState\00.heavy">
+      <UniqueIdentifier>{045b08b3-930d-40e6-8245-47491bcab3b9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.OBJ\01.Player\00.PlayerStateManager\04.JumpState\00.heavy">
+      <UniqueIdentifier>{8545f4d7-3a12-4c82-9667-a057c5743433}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.OBJ\01.Player\00.PlayerStateManager\06.Sitdown\00.heavy">
+      <UniqueIdentifier>{9b31af09-2a02-45c4-b18f-22bf27de2bfd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.OBJ\01.Player\00.PlayerStateManager\05.Attack\00.heavy">
+      <UniqueIdentifier>{5d1fea4a-5c91-4d51-bcf5-c6546bcb9a3a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.OBJ\01.Player\00.PlayerStateManager\09.stdup">
+      <UniqueIdentifier>{0f4e8935-edb4-4783-8245-321b86e5e3d9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -279,12 +306,6 @@
     <ClInclude Include="LineMgr.h">
       <Filter>97.Manager\08.LineManager</Filter>
     </ClInclude>
-    <ClInclude Include="StBodyR.h">
-      <Filter>01.OBJ\01.Player\00.PlayerStateManager\00.StandState</Filter>
-    </ClInclude>
-    <ClInclude Include="StBodyL.h">
-      <Filter>01.OBJ\01.Player\00.PlayerStateManager\00.StandState</Filter>
-    </ClInclude>
     <ClInclude Include="StdLeg.h">
       <Filter>01.OBJ\01.Player\00.PlayerStateManager\03.Leg</Filter>
     </ClInclude>
@@ -356,12 +377,6 @@
     </ClInclude>
     <ClInclude Include="StUpAtkBodyL.h">
       <Filter>01.OBJ\01.Player\00.PlayerStateManager\05.Attack</Filter>
-    </ClInclude>
-    <ClInclude Include="StUpBodyR.h">
-      <Filter>01.OBJ\01.Player\00.PlayerStateManager\00.StandState</Filter>
-    </ClInclude>
-    <ClInclude Include="StUpBodyL.h">
-      <Filter>01.OBJ\01.Player\00.PlayerStateManager\00.StandState</Filter>
     </ClInclude>
     <ClInclude Include="Sitdown.h">
       <Filter>01.OBJ\01.Player\00.PlayerStateManager\06.Sitdown</Filter>
@@ -450,14 +465,80 @@
     <ClInclude Include="Bomb.h">
       <Filter>01.OBJ\05.Bullet</Filter>
     </ClInclude>
-    <ClInclude Include="BombBodyR.h">
-      <Filter>01.OBJ\01.Player\00.PlayerStateManager\00.StandState</Filter>
-    </ClInclude>
-    <ClInclude Include="BombBodyL.h">
-      <Filter>01.OBJ\01.Player\00.PlayerStateManager\00.StandState</Filter>
-    </ClInclude>
     <ClInclude Include="StdDie.h">
       <Filter>01.OBJ\01.Player\00.PlayerStateManager\07.die</Filter>
+    </ClInclude>
+    <ClInclude Include="Pick.h">
+      <Filter>01.OBJ\01.Player\00.PlayerStateManager\08.pick</Filter>
+    </ClInclude>
+    <ClInclude Include="BombBodyL.h">
+      <Filter>01.OBJ\01.Player\00.PlayerStateManager\00.StandState\01.base</Filter>
+    </ClInclude>
+    <ClInclude Include="BombBodyR.h">
+      <Filter>01.OBJ\01.Player\00.PlayerStateManager\00.StandState\01.base</Filter>
+    </ClInclude>
+    <ClInclude Include="StBodyL.h">
+      <Filter>01.OBJ\01.Player\00.PlayerStateManager\00.StandState\01.base</Filter>
+    </ClInclude>
+    <ClInclude Include="StBodyR.h">
+      <Filter>01.OBJ\01.Player\00.PlayerStateManager\00.StandState\01.base</Filter>
+    </ClInclude>
+    <ClInclude Include="StUpBodyL.h">
+      <Filter>01.OBJ\01.Player\00.PlayerStateManager\00.StandState\01.base</Filter>
+    </ClInclude>
+    <ClInclude Include="StUpBodyR.h">
+      <Filter>01.OBJ\01.Player\00.PlayerStateManager\00.StandState\01.base</Filter>
+    </ClInclude>
+    <ClInclude Include="Item.h">
+      <Filter>01.OBJ\07.ITEM</Filter>
+    </ClInclude>
+    <ClInclude Include="StHBodyR.h">
+      <Filter>01.OBJ\01.Player\00.PlayerStateManager\00.StandState\00.heavy</Filter>
+    </ClInclude>
+    <ClInclude Include="StHBodyL.h">
+      <Filter>01.OBJ\01.Player\00.PlayerStateManager\00.StandState\00.heavy</Filter>
+    </ClInclude>
+    <ClInclude Include="WlkHBodyR.h">
+      <Filter>01.OBJ\01.Player\00.PlayerStateManager\02.WalkState\00.heavy</Filter>
+    </ClInclude>
+    <ClInclude Include="WlkHBodyL.h">
+      <Filter>01.OBJ\01.Player\00.PlayerStateManager\02.WalkState\00.heavy</Filter>
+    </ClInclude>
+    <ClInclude Include="StHjmpBodyR.h">
+      <Filter>01.OBJ\01.Player\00.PlayerStateManager\04.JumpState\00.heavy</Filter>
+    </ClInclude>
+    <ClInclude Include="StHjmpBodyL.h">
+      <Filter>01.OBJ\01.Player\00.PlayerStateManager\04.JumpState\00.heavy</Filter>
+    </ClInclude>
+    <ClInclude Include="SitdownHR.h">
+      <Filter>01.OBJ\01.Player\00.PlayerStateManager\06.Sitdown\00.heavy</Filter>
+    </ClInclude>
+    <ClInclude Include="SitdownHL.h">
+      <Filter>01.OBJ\01.Player\00.PlayerStateManager\06.Sitdown\00.heavy</Filter>
+    </ClInclude>
+    <ClInclude Include="StHAtkR.h">
+      <Filter>01.OBJ\01.Player\00.PlayerStateManager\05.Attack\00.heavy</Filter>
+    </ClInclude>
+    <ClInclude Include="StHAtkL.h">
+      <Filter>01.OBJ\01.Player\00.PlayerStateManager\05.Attack\00.heavy</Filter>
+    </ClInclude>
+    <ClInclude Include="StHupAtkR.h">
+      <Filter>01.OBJ\01.Player\00.PlayerStateManager\05.Attack\00.heavy</Filter>
+    </ClInclude>
+    <ClInclude Include="StHupAtkL.h">
+      <Filter>01.OBJ\01.Player\00.PlayerStateManager\05.Attack\00.heavy</Filter>
+    </ClInclude>
+    <ClInclude Include="Stdup.h">
+      <Filter>01.OBJ\01.Player\00.PlayerStateManager\09.stdup</Filter>
+    </ClInclude>
+    <ClInclude Include="Explosion.h">
+      <Filter>01.OBJ</Filter>
+    </ClInclude>
+    <ClInclude Include="Shotgun.h">
+      <Filter>01.OBJ\05.Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="StHUatkR.h">
+      <Filter>01.OBJ\01.Player\00.PlayerStateManager\05.Attack\00.heavy</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -508,12 +589,6 @@
     </ClCompile>
     <ClCompile Include="ScrollMgr.cpp">
       <Filter>97.Manager\09.ScrollManager</Filter>
-    </ClCompile>
-    <ClCompile Include="StBodyR.cpp">
-      <Filter>01.OBJ\01.Player\00.PlayerStateManager\00.StandState</Filter>
-    </ClCompile>
-    <ClCompile Include="StBodyL.cpp">
-      <Filter>01.OBJ\01.Player\00.PlayerStateManager\00.StandState</Filter>
     </ClCompile>
     <ClCompile Include="StdLeg.cpp">
       <Filter>01.OBJ\01.Player\00.PlayerStateManager\03.Leg</Filter>
@@ -586,12 +661,6 @@
     </ClCompile>
     <ClCompile Include="StUpAtkBodyL.cpp">
       <Filter>01.OBJ\01.Player\00.PlayerStateManager\05.Attack</Filter>
-    </ClCompile>
-    <ClCompile Include="StUpBodyR.cpp">
-      <Filter>01.OBJ\01.Player\00.PlayerStateManager\00.StandState</Filter>
-    </ClCompile>
-    <ClCompile Include="StUpBodyL.cpp">
-      <Filter>01.OBJ\01.Player\00.PlayerStateManager\00.StandState</Filter>
     </ClCompile>
     <ClCompile Include="Sitdown.cpp">
       <Filter>01.OBJ\01.Player\00.PlayerStateManager\06.Sitdown</Filter>
@@ -680,14 +749,80 @@
     <ClCompile Include="Bomb.cpp">
       <Filter>01.OBJ\05.Bullet</Filter>
     </ClCompile>
-    <ClCompile Include="BombBodyR.cpp">
-      <Filter>01.OBJ\01.Player\00.PlayerStateManager\00.StandState</Filter>
-    </ClCompile>
-    <ClCompile Include="BombBodyL.cpp">
-      <Filter>01.OBJ\01.Player\00.PlayerStateManager\00.StandState</Filter>
-    </ClCompile>
     <ClCompile Include="StdDie.cpp">
       <Filter>01.OBJ\01.Player\00.PlayerStateManager\07.die</Filter>
+    </ClCompile>
+    <ClCompile Include="Pick.cpp">
+      <Filter>01.OBJ\01.Player\00.PlayerStateManager\08.pick</Filter>
+    </ClCompile>
+    <ClCompile Include="BombBodyL.cpp">
+      <Filter>01.OBJ\01.Player\00.PlayerStateManager\00.StandState\01.base</Filter>
+    </ClCompile>
+    <ClCompile Include="BombBodyR.cpp">
+      <Filter>01.OBJ\01.Player\00.PlayerStateManager\00.StandState\01.base</Filter>
+    </ClCompile>
+    <ClCompile Include="StBodyL.cpp">
+      <Filter>01.OBJ\01.Player\00.PlayerStateManager\00.StandState\01.base</Filter>
+    </ClCompile>
+    <ClCompile Include="StBodyR.cpp">
+      <Filter>01.OBJ\01.Player\00.PlayerStateManager\00.StandState\01.base</Filter>
+    </ClCompile>
+    <ClCompile Include="StUpBodyL.cpp">
+      <Filter>01.OBJ\01.Player\00.PlayerStateManager\00.StandState\01.base</Filter>
+    </ClCompile>
+    <ClCompile Include="StUpBodyR.cpp">
+      <Filter>01.OBJ\01.Player\00.PlayerStateManager\00.StandState\01.base</Filter>
+    </ClCompile>
+    <ClCompile Include="Item.cpp">
+      <Filter>01.OBJ\07.ITEM</Filter>
+    </ClCompile>
+    <ClCompile Include="StHBodyR.cpp">
+      <Filter>01.OBJ\01.Player\00.PlayerStateManager\00.StandState\00.heavy</Filter>
+    </ClCompile>
+    <ClCompile Include="StHBodyL.cpp">
+      <Filter>01.OBJ\01.Player\00.PlayerStateManager\00.StandState\00.heavy</Filter>
+    </ClCompile>
+    <ClCompile Include="WlkHBodyR.cpp">
+      <Filter>01.OBJ\01.Player\00.PlayerStateManager\02.WalkState\00.heavy</Filter>
+    </ClCompile>
+    <ClCompile Include="WlkHBodyL.cpp">
+      <Filter>01.OBJ\01.Player\00.PlayerStateManager\02.WalkState\00.heavy</Filter>
+    </ClCompile>
+    <ClCompile Include="StHjmpBodyR.cpp">
+      <Filter>01.OBJ\01.Player\00.PlayerStateManager\04.JumpState\00.heavy</Filter>
+    </ClCompile>
+    <ClCompile Include="StHjmpBodyL.cpp">
+      <Filter>01.OBJ\01.Player\00.PlayerStateManager\04.JumpState\00.heavy</Filter>
+    </ClCompile>
+    <ClCompile Include="SitdownHR.cpp">
+      <Filter>01.OBJ\01.Player\00.PlayerStateManager\06.Sitdown\00.heavy</Filter>
+    </ClCompile>
+    <ClCompile Include="SitdownHL.cpp">
+      <Filter>01.OBJ\01.Player\00.PlayerStateManager\06.Sitdown\00.heavy</Filter>
+    </ClCompile>
+    <ClCompile Include="StHAtkR.cpp">
+      <Filter>01.OBJ\01.Player\00.PlayerStateManager\05.Attack\00.heavy</Filter>
+    </ClCompile>
+    <ClCompile Include="StHAtkL.cpp">
+      <Filter>01.OBJ\01.Player\00.PlayerStateManager\05.Attack\00.heavy</Filter>
+    </ClCompile>
+    <ClCompile Include="StHupAtkR.cpp">
+      <Filter>01.OBJ\01.Player\00.PlayerStateManager\05.Attack\00.heavy</Filter>
+    </ClCompile>
+    <ClCompile Include="StHupAtkL.cpp">
+      <Filter>01.OBJ\01.Player\00.PlayerStateManager\05.Attack\00.heavy</Filter>
+    </ClCompile>
+    <ClCompile Include="Stdup.cpp">
+      <Filter>01.OBJ\01.Player\00.PlayerStateManager\09.stdup</Filter>
+    </ClCompile>
+    <ClCompile Include="Explosion.cpp">
+      <Filter>01.OBJ</Filter>
+    </ClCompile>
+    <ClCompile Include="Shotgun.cpp">
+      <Filter>01.OBJ\05.Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="StHUatkR.cpp">
+      <Filter>01.OBJ\01.Player\00.PlayerStateManager\05.Attack\00.heavy</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

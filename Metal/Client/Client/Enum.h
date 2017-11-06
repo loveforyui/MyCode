@@ -9,11 +9,13 @@ enum eGameState
     , GS_END
 };
 
+enum ITEMKINDE { IHEAVY, IBOMB, ISHOTGUN, ITEMEND };
 enum OBJID
 {
     OBJ_BACKGROUD
     , OBJ_COLLISION
     , OBJ_THINGS
+    , OBJ_ITEM
     , OBJ_SUBMON
     , OBJ_MONSTER
     , OBJ_PLAYER
@@ -36,6 +38,7 @@ enum eOBJSTATE
     , OBJ_A_SITD = 0x0010
     , OBJ_A_DIE  = 0x0020
     , OBJ_A_BOMB = 0x0040
+    , OBJ_A_PICK = 0x0080
 };
 
 enum eKMOB

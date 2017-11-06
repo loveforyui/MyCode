@@ -25,8 +25,8 @@ void CJmpBodyR::handle(HDC hdc)
                 , (*iter_begin)->image //(*iter_begin)->image
                 , -5 + (*obj)->GetInfo().fX - (*iter_begin)->image->GetWidth() / 2
                 , -10 + (*obj)->GetInfo().fY - (*iter_begin)->image->GetHeight() / 2
-                , (*obj)->GetInfo().fCX //(*iter_begin)->image->GetWidth()
-                , (*obj)->GetInfo().fCY //(*iter_begin)->image->GetHeight()
+                , (*iter_begin)->image->GetWidth() //(*iter_begin)->image->GetWidth()
+                , (*iter_begin)->image->GetHeight() //(*iter_begin)->image->GetHeight()
             );
         }
 

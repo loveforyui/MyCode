@@ -15,13 +15,7 @@ CBerserkMboss::~CBerserkMboss()
 
 void CBerserkMboss::     Init               ()
 {
-    //m_dwOAtkDelay = GetTickCount();
-
-    // 중보 사망처리 해아함
-    m_pObj->SetCurState(OBJ_A_STND);
-    m_pObj->SetHp(10);
-    m_pObj->SetPoint(300);
-
+ 
     char buf[256] = "";
     // carmel
     sprintf_s(buf, "%s%s", IMG_PATH, "monster/carmel/walk/");
@@ -72,6 +66,12 @@ void CBerserkMboss::     Init               ()
     iter_b      = m_mImage->find(L"monster/bmb/ent/")->second->begin();
     iter_e      = m_mImage->find(L"monster/bmb/ent/")->second->end();
     //dynamic_cast<CMonster*>(m_pObj)->SetBulletImg(IMG_GET_V(L"monster/carmel"));
+
+    // 중보 사망처리 해아함
+    m_pObj->SetCurState(OBJ_A_STND);
+    m_pObj->SetHp(10);
+    m_pObj->SetPoint(300);
+    m_pObj->SetWH(50.f, 50.f);
 }
 
 void CBerserkMboss::     Render             (HDC hdc)
@@ -266,7 +266,7 @@ int CBerserkMboss::      Update             ()
     }
     
     CalcRect();
-    IsCollisionLine();
+    //IsCollisionLine();
     return 0;
 }
 
@@ -323,7 +323,7 @@ void CBerserkMboss::     PatternA           ()
     {
         if (STATE_SAME(m_pObj->GetInfo().curState, OBJ_A_STND))
         {
-            iter_begin  = m_mImage->find(L"monster/carmel/walk/")->second->begin();
+             iter_begin  = m_mImage->find(L"monster/carmel/walk/")->second->begin();
             iter_end    = m_mImage->find(L"monster/carmel/walk/")->second->end();
         }
         m_pObj->SetCurState(OBJ_A_MOVE);

@@ -25,8 +25,8 @@ void CJmpLegR::handle(HDC hdc)
                 , (*iter_begin)->image //(*iter_begin)->image
                 , -6 + (*obj)->GetInfo().fX - (*iter_begin)->image->GetWidth() / 2
                 , 6 + (*obj)->GetInfo().fY - (*iter_begin)->image->GetHeight() / 2
-                , (*obj)->GetInfo().fCX //(*iter_begin)->image->GetWidth()
-                , (*obj)->GetInfo().fCY //(*iter_begin)->image->GetHeight()
+                , (*iter_begin)->image->GetWidth() //(*iter_begin)->image->GetWidth()
+                , (*iter_begin)->image->GetHeight() //(*iter_begin)->image->GetHeight()
             );
         }
 

@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "Hell.h"
 #include "Monster.h"
+#include "Bomb.h"
 
 CHell::CHell()
 {
@@ -13,6 +14,11 @@ CHell::~CHell()
 void CHell::Init()
 {
     char buf[256] = "";
+
+    sprintf_s(buf, "%s%s", IMG_PATH, "sfx/bomb/");
+    IMG_LOAD(L"sfx/bomb/", buf);
+    m_vBombimg = IMG_GET_V(L"sfx/bomb/");
+
     sprintf_s(buf, "%s%s", IMG_PATH, "monster/helli/");
     IMG_LOAD(L"monster/helli/", buf);
     dynamic_cast<CMonster*>(m_pObj)->InsertImage(L"monster/helli/", IMG_GET_V(L"monster/helli/"));
@@ -36,7 +42,7 @@ void CHell::Init()
 
 void CHell::Render(HDC hdc)
 {
-    Rectangle(hdc, m_pObj->GetInfo().rect.left, m_pObj->GetInfo().rect.top, m_pObj->GetInfo().rect.right, m_pObj->GetInfo().rect.bottom);
+    //Rectangle(hdc, m_pObj->GetInfo().rect.left, m_pObj->GetInfo().rect.top, m_pObj->GetInfo().rect.right, m_pObj->GetInfo().rect.bottom);
     if (m_pObj->GetDirection() == OBJ_D_RIGH)
     {
         if (STATE_SAME(m_pObj->GetInfo().curState, OBJ_A_MOVE))
@@ -163,6 +169,12 @@ int CHell::Update()
         break;
     case CHell::PATROLL:
     {
+        m_dwCurt = GetTickCount();
+        if (m_dwOldt + 1000 < m_dwCurt)
+        {
+            m_dwOldt = m_dwCurt;
+            dropBomb();
+        }        
         if (m_pObj->GetDirection() == OBJ_D_LEFT)
         {
             patAngle = 180.f;
@@ -254,4 +266,19 @@ void CHell::IsCollisionLine()
             }
         }
     }
+}
+
+void CHell::dropBomb()
+{
+    CObjManager::GetInst()->AddObj(CreateBomb(m_vBombimg, m_pObj->GetInfo().fAngle), OBJ_M_BULLET);
+}
+
+CObj* CHell::     CreateBomb      (vector<ObjImg*>* img, float fAngle)
+{
+    if (STATE_SAME(m_pObj->GetInfo().curState, OBJ_A_MOVE))
+    {
+        return CAbstractFactory<CBomb>::CreateObj(img, m_pObj->GetInfo().fX, m_pObj->GetInfo().fY, fAngle, 4.f);
+    }
+
+    return CAbstractFactory<CBomb>::CreateObj(img, m_pObj->GetInfo().fX, m_pObj->GetInfo().fY, fAngle, 2.f);
 }

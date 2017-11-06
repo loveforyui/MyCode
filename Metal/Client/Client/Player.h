@@ -6,7 +6,7 @@ class CPlayer
     : public CObj
 {
 public:
-    enum GUNSTATE {BASE, HEAVY, GUN_END};
+    enum GUNSTATE {BASE, HEAVY, SHOTGUN,GUN_END};
 public:
     CPlayer();
     ~CPlayer();
@@ -28,12 +28,18 @@ private:
     void IsCollisionLine();
     void CalcCannonPos();
     CObj * CreateBullet(vector<ObjImg*>* img, float fAngle);
+    CObj * CreateBulletA(vector<ObjImg*>* img, float fAngle);
     CObj * CreateBomb(vector<ObjImg*>* img, float fAngle);
     void GunState();
+
+    void HeavyKeyInput();
 
     void BaseGunKeyInput();
 
     void rectMake();
+public:
+    void SetGun(GUNSTATE state) { m_curGun = state; }
+    void SetReload(const int& cnt) { reloadCnt += cnt; }
 
 private:
     BOOL isKeyInput = false;
@@ -45,6 +51,9 @@ private:
 
     DWORD m_dwOldt;
     DWORD m_dwCurt;
+
+    DWORD m_dwcIdlet = 0;
+    DWORD m_dwoIdlet = GetTickCount();
 
     GUNSTATE m_curGun = CPlayer::BASE;
     GUNSTATE m_oldGun = CPlayer::GUN_END;

@@ -5,7 +5,7 @@ class CBullet
     : public CObj
 {
 public:
-    enum BULLETPATTERN {LINE, CONIC, UDO, PAT_END};
+    enum BULLETPATTERN {LINE, CONIC, UDO, ANGLE,PAT_END};
 
 public:
     CBullet();
@@ -23,9 +23,12 @@ public:
 
 public:
     void Line();
+    void LineA();
     void Conic();
 
     void Udo();
+
+    void AAA();
 
     void IsCollisionLine();
 

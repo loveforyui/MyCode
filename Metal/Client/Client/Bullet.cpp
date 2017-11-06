@@ -24,7 +24,7 @@ void CBullet::      Init                ()
 
     minAngle = m_tInfo.fAngle - 90.f;
     maxAngle = m_tInfo.fAngle + 90.f;
-    cAngle = minAngle;                                
+    cAngle   = minAngle;                                
 }
 
 void CBullet::      Release             ()
@@ -45,6 +45,17 @@ void CBullet::      Render              (HDC hdc)
             , m_tInfo.fCX
             , m_tInfo.fCY
             , -cAngle
+        );
+    }
+    else if(m_pattern == CBullet::ANGLE)
+    {
+        CImageMgr::GetInst()->DrawImg(hdc
+            , (*img_begin)->image
+            , m_tInfo.fX - (m_tInfo.fCX / 2.f)
+            , m_tInfo.fY - (m_tInfo.fCY / 2.f)
+            , m_tInfo.fCX
+            , m_tInfo.fCY
+            , -m_tInfo.fAngle
         );
     }
     else
@@ -99,8 +110,12 @@ int CBullet::       Update              ()
         case CBullet::LINE:
             Line();
             break;
+        case CBullet::ANGLE:
+            LineA();
+            break;
         case CBullet::CONIC:
             Conic();
+            IsCollisionLine();
             break;
         case CBullet::UDO:
             Udo();
@@ -111,7 +126,7 @@ int CBullet::       Update              ()
     }
 
 
-    IsCollisionLine();
+    
 
     RECT rc = {
         LONG(m_tInfo.fX - (*img_begin)->image->GetWidth()/2.f)// m_pObj->GetInfo().fCX / 2
@@ -140,6 +155,13 @@ void CBullet::      Line                ()
 
     m_tInfo.fX = float(info.x);
     m_tInfo.fY = float(info.y);
+}
+void CBullet::      LineA               ()
+{
+    POINT info = CPattern::GetInstance()->AngleLine(this, m_tInfo.fAngle);
+
+    m_tInfo.fX = float(info.x);
+    m_tInfo.fY = float(info.y + (rand()%10 - 5));
 }
 
 void CBullet::      Conic               ()
@@ -183,6 +205,11 @@ void CBullet::Udo()
     POINT info = CPattern::GetInstance()->AngleLine(this, cAngle);
     m_tInfo.fX = float(info.x);
     m_tInfo.fY = float(info.y);
+}
+
+void CBullet::AAA()
+{
+
 }
 
 void CBullet::      IsCollisionLine     ()

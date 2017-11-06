@@ -23,6 +23,10 @@ public:
 
     void IsCollisionLine();
 
+    void dropBomb();
+
+    CObj * CreateBomb(vector<ObjImg*>* img, float fAngle);
+
 private:
     INT         end         = 0;
     HELLPASE    fase        = WAIT;
@@ -32,4 +36,9 @@ private:
     
     vector<ObjImg*>::iterator eff_begin;
     vector<ObjImg*>::iterator eff_end;
+
+    vector<ObjImg*>* m_vBombimg;
+
+    DWORD m_dwCurt = 0;
+    DWORD m_dwOldt = GetTickCount();
 };

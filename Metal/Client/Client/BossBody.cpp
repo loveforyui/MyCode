@@ -116,6 +116,8 @@ int CBossBody::         Update      ()
         rotateH += rotateH * 0.1f;
         rotateX = m_pObj->GetInfo().fX - rotateW / 2;
         rotateY = m_pObj->GetInfo().fY - rotateH / 2;
+        
+        CSoundMgr::GetInstance()->StopSoundAll();
         if(700.f <= rotateW)
             CSceneMgr::GetInstance()->SceneChange(CSceneMgr::ENDING);
     }

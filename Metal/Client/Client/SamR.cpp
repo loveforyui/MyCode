@@ -92,6 +92,8 @@ int CSamR::Update()
 {
     if (m_pObj->isDead())
     {
+        if(!STATE_SAME(m_pObj->GetInfo().curState, OBJ_A_DIE))
+            CSoundMgr::GetInstance()->PlaySound(L"third_c.wav", CSoundMgr::CHANNEL_EFFECT);
         m_pObj->SetCurState(OBJ_A_DIE);
     }
     else

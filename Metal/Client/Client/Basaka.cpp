@@ -56,6 +56,10 @@ void CBasaka::Render(HDC hdc)
 
     if (STATE_SAME(m_pObj->GetInfo().curState, OBJ_A_DIE))
     {
+        if (iter_begin == m_mImage->find(L"monster/bsk/die/")->second->begin())
+        {
+            CSoundMgr::GetInstance()->PlaySound(L"ALL_00037.wav", CSoundMgr::CHANNEL_EFFECT);
+        }
         IMG_DRAW_I(hdc
                 , (*iter_begin)->image
                 , FLOAT(m_pObj->GetInfo().fX - (*iter_begin)->image->GetWidth() / 2.f)
@@ -139,6 +143,7 @@ int CBasaka::Update()
     {
         if (!STATE_SAME(m_pObj->GetInfo().curState, OBJ_A_ATTK))
         {
+            CCollisionManager::CollisionSphere(OBJ_MGR_GETLIST(OBJ_MONSTER), OBJ_MGR_GETLIST(OBJ_PLAYER));
             m_pObj->SetCurState(OBJ_A_ATTK);
             iter_begin  = m_mImage->find(L"monster/bsk/atk/")->second->begin();
             iter_end    = m_mImage->find(L"monster/bsk/atk/")->second->end();

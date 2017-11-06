@@ -73,24 +73,27 @@ void CBossL::Render(HDC hdc)
 
     Broken(hdc);
 
-    if (STATE_SAME(m_pObj->GetInfo().curState, OBJ_A_STND))
+    if (eff_cnt < 1)
     {
-        IMG_DRAW_I(hdc
-            , (*e_begin)->image
-            , FLOAT(m_pObj->GetInfo().rect.left + 3)
-            , FLOAT(m_pObj->GetInfo().rect.top + 37)
-            , FLOAT((*e_begin)->image->GetWidth()) //m_pObj->GetInfo().rect.right
-            , FLOAT((*e_begin)->image->GetHeight()) //m_pObj->GetInfo().rect.bottom
-        );
-
-        ++e_begin;
-
-        if (e_begin == e_end)
+        if (STATE_SAME(m_pObj->GetInfo().curState, OBJ_A_STND))
         {
-            e_begin = m_mImage->find(L"monster/stage01/sfx/e_start/")->second->begin() + 1;
+            IMG_DRAW_I(hdc
+                , (*e_begin)->image
+                , FLOAT(m_pObj->GetInfo().rect.left + 3)
+                , FLOAT(m_pObj->GetInfo().rect.top + 37)
+                , FLOAT((*e_begin)->image->GetWidth()) //m_pObj->GetInfo().rect.right
+                , FLOAT((*e_begin)->image->GetHeight()) //m_pObj->GetInfo().rect.bottom
+            );
+
+            ++e_begin;
+
+            if (e_begin == e_end)
+            {
+                e_begin = m_mImage->find(L"monster/stage01/sfx/e_start/")->second->begin() + 1;
+            }
         }
     }
-
+    
     if (STATE_SAME(m_pObj->GetInfo().curState, OBJ_A_ATTK))
     {
         if (0 < m_pObj->GetInfo().iHP)

@@ -14,7 +14,8 @@ void CStUpBodyL::initialize()
 }
 
 void CStUpBodyL::handle(HDC hdc)
-{if (m_vImage)
+{
+    if (m_vImage)
     {
         for (OBJITER obj = m_pObjLst->begin()
             ; obj != m_pObjLst->end(); ++obj)

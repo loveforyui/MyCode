@@ -5,17 +5,19 @@
 #include "Bullet.h"
 #include "Monster.h"
 #include "Bomb.h"
+#include "Item.h"
+#include "Shotgun.h"
 
 CPlayer::CPlayer()
 {
     m_tInfo.fCannonD = 30.f;
 }
 
-CPlayer::       ~CPlayer()
+CPlayer::~CPlayer()
 {
 }
 
-void CPlayer::Init()
+void CPlayer::      Init            ()
 {
     // Set Time
     m_tInfo.preState = OBJ_A_JUMP;
@@ -24,6 +26,7 @@ void CPlayer::Init()
     m_tInfo.fCY = 15.f;
 
     m_tInfo.point = 0;
+    m_tInfo.iAtt = 0;
 
     m_dwOldt = GetTickCount();
     m_dwCurt = 0;
@@ -96,6 +99,44 @@ void CPlayer::Init()
     //die
     sprintf_s(buf, "%s%s", IMG_PATH, "fio/die/");
     IMG_LOAD(L"fio/die/", buf);
+
+    //Pick
+    sprintf_s(buf, "%s%s", IMG_PATH, "fio/pk/");
+    IMG_LOAD(L"fio/pk/", buf);
+
+    //heavy body
+    sprintf_s(buf, "%s%s", IMG_PATH, "fio/heavy/h_body/");
+    IMG_LOAD(L"fio/heavy/h_body/", buf);
+    sprintf_s(buf, "%s%s", IMG_PATH, "fio/heavy/h_body_left/");
+    IMG_LOAD(L"fio/heavy/h_body_left/", buf);
+    sprintf_s(buf, "%s%s", IMG_PATH, "fio/heavy/h_wlk_body/");
+    IMG_LOAD(L"fio/heavy/h_wlk_body/", buf);
+    sprintf_s(buf, "%s%s", IMG_PATH, "fio/heavy/h_wlk_body_left/");
+    IMG_LOAD(L"fio/heavy/h_wlk_body_left/", buf);
+    sprintf_s(buf, "%s%s", IMG_PATH, "fio/heavy/h_jmp_body/");
+    IMG_LOAD(L"fio/heavy/h_jmp_body/", buf);
+    sprintf_s(buf, "%s%s", IMG_PATH, "fio/heavy/h_jmp_body_left/");
+    IMG_LOAD(L"fio/heavy/h_jmp_body_left/", buf);
+    sprintf_s(buf, "%s%s", IMG_PATH, "fio/heavy/h_st_atk/");
+    IMG_LOAD(L"fio/heavy/h_st_atk/", buf);
+    sprintf_s(buf, "%s%s", IMG_PATH, "fio/heavy/h_st_atk_left/");
+    IMG_LOAD(L"fio/heavy/h_st_atk_left/", buf);
+    sprintf_s(buf, "%s%s", IMG_PATH, "fio/heavy/h_up_atk/");
+    IMG_LOAD(L"fio/heavy/h_up_atk/", buf);
+    sprintf_s(buf, "%s%s", IMG_PATH, "fio/heavy/h_up_atk_left/");
+    IMG_LOAD(L"fio/heavy/h_up_atk_left/", buf);
+    sprintf_s(buf, "%s%s", IMG_PATH, "fio/heavy/h_a_atk/");
+    IMG_LOAD(L"fio/heavy/h_a_atk/", buf);
+    sprintf_s(buf, "%s%s", IMG_PATH, "fio/heavy/h_a_atk_left/");
+    IMG_LOAD(L"fio/heavy/h_a_atk_left/", buf);
+    sprintf_s(buf, "%s%s", IMG_PATH, "fio/heavy/sitdown/");
+    IMG_LOAD(L"fio/heavy/sitdown/", buf);
+    sprintf_s(buf, "%s%s", IMG_PATH, "fio/heavy/sitdown_left/");
+    IMG_LOAD(L"fio/heavy/sitdown_left/", buf);
+
+    // stdup
+    sprintf_s(buf, "%s%s", IMG_PATH, "fio/stdup/");
+    IMG_LOAD(L"fio/stdup/", buf);
 
     if (m_image.empty())
     {
@@ -241,6 +282,78 @@ void CPlayer::Init()
         InsertImage(L"fio/die/", imgVec);
         tempState = MAKE_STATE(OBJ_PLAYER, CStdDie, imgVec);
         m_scLeg.AddState(L"fio/die/", tempState);
+
+        //picknick
+        imgVec = IMG_GET_V(L"fio/pk/");
+        InsertImage(L"fio/pk/", imgVec);
+        tempState = MAKE_STATE(OBJ_PLAYER, CPick, imgVec);
+        m_scLeg.AddState(L"fio/pk/", tempState);
+
+        //heavy
+        imgVec = IMG_GET_V(L"fio/heavy/h_body/");
+        InsertImage(L"fio/heavy/h_body/", imgVec);
+        tempState = MAKE_STATE(OBJ_PLAYER, CStHBodyR, imgVec);
+        m_scBody.AddState(L"fio/heavy/h_body/", tempState);
+
+        imgVec = IMG_GET_V(L"fio/heavy/h_body_left/");
+        InsertImage(L"fio/heavy/h_body_left/", imgVec);
+        tempState = MAKE_STATE(OBJ_PLAYER, CStHBodyL, imgVec);
+        m_scBody.AddState(L"fio/heavy/h_body_left/", tempState);
+
+        imgVec = IMG_GET_V(L"fio/heavy/h_wlk_body/");
+        InsertImage(L"fio/heavy/h_wlk_body/", imgVec);
+        tempState = MAKE_STATE(OBJ_PLAYER, CWlkHBodyR, imgVec);
+        m_scBody.AddState(L"fio/heavy/h_wlk_body/", tempState);
+
+        imgVec = IMG_GET_V(L"fio/heavy/h_wlk_body_left/");
+        InsertImage(L"fio/heavy/h_wlk_body_left/", imgVec);
+        tempState = MAKE_STATE(OBJ_PLAYER, CWlkHBodyL, imgVec);
+        m_scBody.AddState(L"fio/heavy/h_wlk_body_left/", tempState);
+
+        imgVec = IMG_GET_V(L"fio/heavy/h_jmp_body/");
+        InsertImage(L"fio/heavy/h_jmp_body/", imgVec);
+        tempState = MAKE_STATE(OBJ_PLAYER, CStHjmpBodyR, imgVec);
+        m_scBody.AddState(L"fio/heavy/h_jmp_body/", tempState);
+
+        imgVec = IMG_GET_V(L"fio/heavy/h_jmp_body_left/");
+        InsertImage(L"fio/heavy/h_jmp_body_left/", imgVec);
+        tempState = MAKE_STATE(OBJ_PLAYER, CStHjmpBodyL, imgVec);
+        m_scBody.AddState(L"fio/heavy/h_jmp_body_left/", tempState);
+
+        imgVec = IMG_GET_V(L"fio/heavy/h_st_atk/");
+        InsertImage(L"fio/heavy/h_st_atk/", imgVec);
+        tempState = MAKE_STATE(OBJ_PLAYER, CStHAtkR, imgVec);
+        m_scBody.AddState(L"fio/heavy/h_st_atk/", tempState);
+
+        imgVec = IMG_GET_V(L"fio/heavy/h_st_atk_left/");
+        InsertImage(L"fio/heavy/h_st_atk_left/", imgVec);
+        tempState = MAKE_STATE(OBJ_PLAYER, CStHAtkL, imgVec);
+        m_scBody.AddState(L"fio/heavy/h_st_atk_left/", tempState);
+
+        imgVec = IMG_GET_V(L"fio/heavy/h_a_atk/");
+        InsertImage(L"fio/heavy/h_a_atk/", imgVec);
+        tempState = MAKE_STATE(OBJ_PLAYER, CStHupAtkR, imgVec);
+        m_scBody.AddState(L"fio/heavy/h_a_atk/", tempState);
+
+        imgVec = IMG_GET_V(L"fio/heavy/h_a_atk_left/");
+        InsertImage(L"fio/heavy/h_a_atk_left/", imgVec);
+        tempState = MAKE_STATE(OBJ_PLAYER, CStHupAtkL, imgVec);
+        m_scBody.AddState(L"fio/heavy/h_a_atk_left/", tempState);
+
+        imgVec = IMG_GET_V(L"fio/heavy/sitdown/");
+        InsertImage(L"fio/heavy/sitdown/", imgVec);
+        tempState = MAKE_STATE(OBJ_PLAYER, CSitdownHR, imgVec);
+        m_scLeg.AddState(L"fio/heavy/sitdown/", tempState);
+
+        imgVec = IMG_GET_V(L"fio/heavy/sitdown_left/");
+        InsertImage(L"fio/heavy/sitdown_left/", imgVec);
+        tempState = MAKE_STATE(OBJ_PLAYER, CSitdownHL, imgVec);
+        m_scLeg.AddState(L"fio/heavy/sitdown_left/", tempState);
+
+        imgVec = IMG_GET_V(L"fio/stdup/");
+        InsertImage(L"fio/stdup", imgVec);
+        tempState = MAKE_STATE(OBJ_PLAYER, CStdup, imgVec);
+        m_scLeg.AddState(L"fio/stdup/", tempState);
     }
 
     // 나중에 Abstract Factory로 바꿔야함
@@ -256,11 +369,11 @@ void CPlayer::Init()
     SetCXY();
 }
 
-void CPlayer::Release()
+void CPlayer::      Release         ()
 {
 }
 
-void CPlayer::Render(HDC hdc)
+void CPlayer::      Render          (HDC hdc)
 {
     CObj::Update();
 
@@ -271,22 +384,30 @@ void CPlayer::Render(HDC hdc)
     TextOut(hdc, m_tInfo.fX, m_tInfo.fY - 30, pos, wcslen(pos));*/
 
     //Rectangle(hdc, m_tInfo.rect.left, m_tInfo.rect.top, m_tInfo.rect.right, m_tInfo.rect.bottom);
-    if (STATE_SAME(m_tInfo.curState, OBJ_A_DIE))
+    if (STATE_SAME(m_tInfo.curState, OBJ_A_PICK))
     {
         m_scLeg.request(hdc);
     }
     else
     {
-        if (!STATE_SAME(m_tInfo.preState, OBJ_A_SITD))
+        if (STATE_SAME(m_tInfo.curState, OBJ_A_DIE))
         {
             m_scLeg.request(hdc);
-            m_scBody.request(hdc);
         }
-        if (STATE_SAME(m_tInfo.preState, OBJ_A_SITD))
+        else
         {
-            m_scLeg.request(hdc);
+            if (!STATE_SAME(m_tInfo.preState, OBJ_A_SITD))
+            {
+                m_scLeg.request(hdc);
+                m_scBody.request(hdc);
+            }
+            if (STATE_SAME(m_tInfo.preState, OBJ_A_SITD))
+            {
+                m_scLeg.request(hdc);
+            }
         }
     }
+    
 
     //Rectangle(hdc, m_tInfo.fX - 5, m_tInfo.fY - 5, m_tInfo.fX + 5, m_tInfo.fY + 5);
 
@@ -294,9 +415,13 @@ void CPlayer::Render(HDC hdc)
     LineTo(hdc, m_tInfo.fCannonX, m_tInfo.fCannonY);*/
 }
 
-int CPlayer::Update()
+int CPlayer::       Update          ()
 {
-    KeyInput(); // 우선순위 0번
+    if (!isDead())
+    {
+        KeyInput();
+    }
+     // 우선순위 0번
     GunState();
     IsJump();
     IsCollisionLine();
@@ -322,27 +447,29 @@ int CPlayer::Update()
     return 0;
 }
 
-void CPlayer::InsertImage(const TCHAR * key, vector<ObjImg*>* vImg)
+void CPlayer::      InsertImage     (const TCHAR * key, vector<ObjImg*>* vImg)
 {
     m_image.insert(pair<const TCHAR*, vector<ObjImg*>*>(key, vImg));
 }
 
-void CPlayer::SetCXY()
+void CPlayer::      SetCXY          ()
 {
     m_tInfo.fCX = FLOAT((*(m_image.begin()->second->begin()))->image->GetWidth());
     m_tInfo.fCY = FLOAT((*(m_image.begin()->second->begin()))->image->GetHeight());
 }
 
-void CPlayer::KeyInput()
+void CPlayer::      KeyInput        ()
 {
     switch (m_curGun)
     {
     case CPlayer::BASE:
     {
         BaseGunKeyInput();
+        break;
     }
-    break;
     case CPlayer::HEAVY:
+    case CPlayer::SHOTGUN:
+        HeavyKeyInput();
         break;
     case CPlayer::GUN_END:
         break;
@@ -351,7 +478,7 @@ void CPlayer::KeyInput()
     }
 }
 
-void CPlayer::IsJump()
+void CPlayer::      IsJump          ()
 {
     if (m_tInfo.preState & OBJ_A_JUMP)
     {
@@ -365,13 +492,13 @@ void CPlayer::IsJump()
     }
 }
 
-void CPlayer::IsCollisionLine()
+void CPlayer::      IsCollisionLine ()
 {
     float fy = m_tInfo.fY;
 
     if (CLineMgr::GetInstance()->CollisionLine(m_tInfo.fX, &fy))
     {
-        if (STATE_SAME(m_tInfo.preState, OBJ_A_SITD) || STATE_SAME(m_tInfo.preState, OBJ_A_STND))
+        if (STATE_SAME(m_tInfo.preState, OBJ_A_SITD) || STATE_SAME(m_tInfo.preState, OBJ_A_STND) || STATE_SAME(m_tInfo.preState, OBJ_A_MOVE))
             m_tInfo.fY = fy - m_tInfo.fCY / 2;
 
         if (STATE_SAME(m_tInfo.preState, OBJ_A_JUMP))
@@ -402,7 +529,7 @@ void CPlayer::IsCollisionLine()
     }
 }
 
-void CPlayer::CalcCannonPos()
+void CPlayer::      CalcCannonPos   ()
 {
     // 아이템에 따라 포신 위치가 바뀜
     if (m_tInfo.fAngle < 0)
@@ -434,12 +561,19 @@ void CPlayer::CalcCannonPos()
     }
 }
 
-CObj* CPlayer::CreateBullet(vector<ObjImg*>* img, float fAngle)
+CObj* CPlayer::     CreateBullet    (vector<ObjImg*>* img, float fAngle)
 {
     return CAbstractFactory<CBullet>::CreateObj(img, m_tInfo.fCannonX, m_tInfo.fCannonY + 10.f, fAngle, 15.f);
 }
 
-CObj* CPlayer::CreateBomb(vector<ObjImg*>* img, float fAngle)
+CObj* CPlayer::     CreateBulletA       (vector<ObjImg*>* img, float fAngle)
+{
+    CObj* pObj = CAbstractFactory<CBullet>::CreateObj(img, m_tInfo.fCannonX, m_tInfo.fCannonY + 20.f, fAngle, 15.f);
+    dynamic_cast<CBullet*>(pObj)->SetBullPettern(CBullet::ANGLE);
+    return pObj;
+}
+
+CObj* CPlayer::     CreateBomb      (vector<ObjImg*>* img, float fAngle)
 {
     if (STATE_SAME(m_tInfo.preState, OBJ_A_MOVE))
     {
@@ -449,7 +583,7 @@ CObj* CPlayer::CreateBomb(vector<ObjImg*>* img, float fAngle)
     return CAbstractFactory<CBomb>::CreateObj(img, m_tInfo.fX, m_tInfo.fY, fAngle, 4.f);
 }
 
-void CPlayer::GunState()
+void CPlayer::      GunState        ()
 {
     if (m_oldGun != m_curGun)
     {
@@ -458,22 +592,504 @@ void CPlayer::GunState()
         {
         case CPlayer::BASE:
             //bullet
-            if (nullptr == m_vBulletimg)
-            {
-                sprintf_s(buf, "%s%s", IMG_PATH, "sfx/base_bullet/");
-                IMG_LOAD(L"sfx/base_bullet/", buf);
-                m_vBulletimg = IMG_GET_V(L"sfx/base_bullet/");
-            }
+            sprintf_s(buf, "%s%s", IMG_PATH, "sfx/base_bullet/");
+            IMG_LOAD(L"sfx/base_bullet/", buf);
+            m_vBulletimg = IMG_GET_V(L"sfx/base_bullet/");
             break;
         case CPlayer::HEAVY:
+            sprintf_s(buf, "%s%s", IMG_PATH, "sfx/heavy/");
+            IMG_LOAD(L"sfx/heavy/", buf);
+            m_vBulletimg = IMG_GET_V(L"sfx/heavy/");
+            break;
+        case CPlayer::SHOTGUN:
+            //sprintf_s(buf, "%s%s", IMG_PATH, "sfx/shotgun/");
+            //IMG_LOAD(L"sfx/shotgun/", buf);
+            //sprintf_s(buf, "%s%s", IMG_PATH, "sfx/shotgun_left/");
+            //IMG_LOAD(L"sfx/shotgun_left/", buf);
+            //if(m_tInfo.direction == OBJ_D_RIGH)
+            //    m_vBulletimg = IMG_GET_V(L"sfx/shotgun/");
+            //if(m_tInfo.direction == OBJ_D_LEFT)
+            //    m_vBulletimg = IMG_GET_V(L"sfx/shotgun_left/");
             break;
         case CPlayer::GUN_END:
             break;
         }
     }
+    m_oldGun = m_curGun;
 }
 
-void CPlayer::BaseGunKeyInput()
+void CPlayer::      HeavyKeyInput   ()
+{
+    m_dwCurt = GetTickCount();
+    m_tInfo.curState = m_tInfo.preState;
+    isKeyInput = false;
+
+    if (STATE_SAME(m_tInfo.curState, OBJ_A_PICK))
+    {
+        m_scLeg.SetState(L"fio/pk/");
+        return;
+    }
+    if (KEY_UP('0'))
+    {
+        m_tInfo.curState = OBJ_A_PICK;
+        m_tInfo.preState = m_tInfo.curState;
+    }
+    if (KEY_UP('1'))
+    {
+        m_tInfo.fX = 3400.f;
+        m_tInfo.fY = 150.f;
+        CScrollMgr::GetInstance()->SetScrollX(-(m_tInfo.fX - CScrollMgr::GetInstance()->GetOffset()));
+
+        INFO infoh;
+        infoh.fX = 3700.f;
+        infoh.fY = 60.f;
+        infoh.fCX = 150.f;
+        infoh.fCY = 50.f;
+        infoh.curState = OBJ_A_IDLE;
+        infoh.m_eKind = eKMOB::MOB_K_BOSSBODY;
+        infoh.fSpeed = 4.5f;
+
+        // tower
+        CObj* boss = CAbstractFactory<CMonster>::CreateObj(infoh);
+        CObjManager::GetInst()->AddObj(boss, OBJ_MONSTER);
+    }
+    if (KEY_UP('H'))
+    {
+        INFO infoh;
+        infoh.fX = m_tInfo.fX + 100.f;
+        infoh.fY = 100.f;
+        infoh.fCX = 22.f;
+        infoh.fCY = 20.f;
+        infoh.curState = OBJ_A_IDLE;
+        infoh.fSpeed = 0.f;
+
+        // tower
+        CObj* heavy = CAbstractFactory<CItem>::CreateObj(infoh);
+        CObjManager::GetInst()->AddObj(heavy, OBJ_ITEM);
+    }
+    if (KEY_PRESSING(VK_RIGHT))
+    {
+        if (m_tInfo.direction & OBJ_D_LEFT)
+        {
+            m_tInfo.fSpeed = 0.f;
+            m_tInfo.fAcc = 0.f;
+            m_tInfo.fAngle = 0.f;
+        }
+        if (KEY_PRESSING(VK_UP))
+        {
+            m_tInfo.direction = OBJ_D_RIGH | OBJ_D_TOPP;
+            if (m_tInfo.curState & OBJ_A_JUMP)
+                m_tInfo.fAngle = 60.f;
+            else
+                m_tInfo.fAngle = 30.f;
+        }
+        else if (KEY_PRESSING(VK_DOWN))
+        {
+            m_tInfo.direction = OBJ_D_RIGH | OBJ_D_BOTT;
+        }
+        else
+            m_tInfo.direction = OBJ_D_RIGH;
+
+        if(STATE_SAME(m_tInfo.curState, OBJ_A_STND))
+            m_tInfo.curState ^= OBJ_A_STND;
+
+        m_tInfo.curState |= OBJ_A_MOVE;
+
+
+        // degree
+        if (0 < m_tInfo.fAngle && m_tInfo.fAngle <= 90)
+        {
+            m_tInfo.fAngle -= 10.f;
+        }
+        if (-90 <= m_tInfo.fAngle && m_tInfo.fAngle < 0)
+        {
+            m_tInfo.fAngle += 10.f;
+        }
+
+        if (STATE_SAME(m_tInfo.curState, OBJ_A_SITD))
+            limitAcc = 0.5f;
+        else
+            limitAcc = 5.f;
+
+        // Accel
+        if (m_tInfo.fAcc < limitAcc)
+        {
+            m_tInfo.fAcc += 0.1f;
+        }
+
+        if (m_tInfo.fSpeed < limitAcc)
+            m_tInfo.fSpeed += m_tInfo.fAcc;
+
+        isKeyInput = true;
+    }
+    if (KEY_PRESSING(VK_LEFT))
+    {
+        if (m_tInfo.direction & OBJ_D_RIGH)
+        {
+            m_tInfo.fSpeed = 0.f;
+            m_tInfo.fAcc = 0.f;
+            m_tInfo.fAngle = 180.f;
+        }
+        if (KEY_PRESSING(VK_UP))
+        {
+            m_tInfo.direction = OBJ_D_LEFT | OBJ_D_TOPP;
+            if (m_tInfo.curState & OBJ_A_JUMP)
+                m_tInfo.fAngle = 120.f;
+            else
+                m_tInfo.fAngle = 150.f;
+        }
+        else if (KEY_PRESSING(VK_DOWN))
+        {
+            m_tInfo.direction = OBJ_D_LEFT | OBJ_D_BOTT;
+        }
+        else
+            m_tInfo.direction = OBJ_D_LEFT;
+
+        if(STATE_SAME(m_tInfo.curState, OBJ_A_STND))
+            m_tInfo.curState ^= OBJ_A_STND;
+        m_tInfo.curState |= OBJ_A_MOVE;
+
+        // degree
+        if (180 < m_tInfo.fAngle && m_tInfo.fAngle <= 270)
+        {
+            m_tInfo.fAngle -= 10.f;
+        }
+        if (90 <= m_tInfo.fAngle && m_tInfo.fAngle < 180)
+        {
+            m_tInfo.fAngle += 10.f;
+        }
+
+        if (STATE_SAME(m_tInfo.curState, OBJ_A_SITD))
+            limitAcc = 0.5f;
+        else
+            limitAcc = 5.f;
+
+        // Accel
+        if (m_tInfo.fAcc < limitAcc)
+        {
+            m_tInfo.fAcc += 0.1f;
+        }
+
+        if (m_tInfo.fSpeed < limitAcc)
+            m_tInfo.fSpeed += m_tInfo.fAcc;
+
+        isKeyInput = true;
+    }
+    if (KEY_UP(VK_RIGHT))
+    {
+        m_tInfo.curState ^= OBJ_A_MOVE;
+        m_tInfo.curState |= OBJ_A_STND;
+    }
+    if (KEY_UP(VK_LEFT))
+    {
+        m_tInfo.curState ^= OBJ_A_MOVE;
+        m_tInfo.curState |= OBJ_A_STND;
+    }
+    if (KEY_PRESSING(VK_UP))
+    {
+        m_tInfo.direction |= OBJ_D_TOPP;
+        if (m_tInfo.direction & OBJ_D_RIGH)
+        {
+            if (0.f <= m_tInfo.fAngle && m_tInfo.fAngle <= 90.f)
+                m_tInfo.fAngle += m_fdegree;
+            if (90.f <= m_tInfo.fAngle)
+                m_tInfo.fAngle = 90.f;
+        }
+        if (m_tInfo.direction & OBJ_D_LEFT)
+        {
+            if (90.f <= m_tInfo.fAngle && m_tInfo.fAngle <= 180.f)
+                m_tInfo.fAngle -= m_fdegree;
+            if (m_tInfo.fAngle <= 90.f)
+                m_tInfo.fAngle = 90.f;
+        }
+    }
+    if (KEY_PRESSING(VK_DOWN))
+    {
+        if (STATE_SAME(m_tInfo.curState, OBJ_A_JUMP))
+        {
+
+        }
+        else
+        {
+            m_tInfo.curState |= OBJ_A_SITD;
+        }
+    }
+    if (KEY_DOWN(VK_SPACE))
+    {
+        isKeyInput = true;
+        if (!STATE_SAME(m_tInfo.curState, OBJ_A_JUMP))
+        {
+            if (STATE_SAME(m_tInfo.curState, OBJ_A_STND))
+                m_tInfo.curState ^= OBJ_A_STND;
+            if (STATE_SAME(m_tInfo.curState, OBJ_A_SITD))
+                m_tInfo.curState ^= OBJ_A_SITD;
+
+            m_tInfo.curState |= OBJ_A_JUMP;
+            m_tInfo.fJumpAcc = GRAVITY * 1.5f;
+        }
+    }
+    if (KEY_PRESSING(VK_LCONTROL))
+    {
+        if (STATE_SAME(m_tInfo.curState, OBJ_A_BOMB))
+        {
+            m_tInfo.curState ^= OBJ_A_BOMB;
+        }
+
+        if ((m_tInfo.preState & OBJ_A_ATTK) == 0)
+        {
+            m_dwOldt = GetTickCount();
+            m_tInfo.curState |= OBJ_A_ATTK;
+            isKeyInput = true;
+
+            CSoundMgr::GetInstance()->PlaySound(L"sfx_heavy.wav", CSoundMgr::CHANNEL_PLAYER);
+
+            switch (m_curGun)
+            {
+            case CPlayer::BASE:
+                CObjManager::GetInst()->AddObj(CreateBullet(m_vBulletimg, m_tInfo.fAngle), OBJ_P_BULLET);
+            case CPlayer::HEAVY:
+                CObjManager::GetInst()->AddObj(CreateBulletA(m_vBulletimg, m_tInfo.fAngle), OBJ_P_BULLET);
+                break;
+            case CPlayer::SHOTGUN:
+            {
+                CObj* shot = CAbstractFactory<CShotgun>::CreateObj(m_tInfo.fX, m_tInfo.fY);
+                CObjManager::GetInst()->AddObj(shot, OBJ_P_BULLET);
+            }
+                break;
+            case CPlayer::GUN_END:
+                break;
+            }
+            if(0 < reloadCnt)
+                reloadCnt -= 1;
+            else
+            {
+                reloadCnt = 0;
+                m_curGun = BASE;
+
+            }
+        }
+
+    }
+    /*if (KEY_UP(VK_LCONTROL))
+    {
+        CSoundMgr::GetInstance()->StopSound(CSoundMgr::CHANNEL_EFFECT);
+    }*/
+    if (KEY_DOWN('Z'))
+    {
+        if (STATE_SAME(m_tInfo.curState, OBJ_A_ATTK))
+        {
+            m_tInfo.curState ^= OBJ_A_ATTK;
+        }
+        m_tInfo.curState |= OBJ_A_BOMB;
+        isKeyInput = true;
+        CSoundMgr::GetInstance()->PlaySound(L"tong.wav", CSoundMgr::CHANNEL_EFFECT);
+        CObjManager::GetInst()->AddObj(CreateBomb(m_vBombimg, 0.f), OBJ_P_BOMB);
+    }
+
+    if (!isKeyInput)//
+    {
+        if (0.f <= m_tInfo.fAcc)
+        {
+            m_tInfo.fAcc -= 2.1f;
+        }
+        if (m_tInfo.fAcc <= 0.f)
+        {
+            m_tInfo.fAcc = 0.f;
+
+            m_tInfo.fSpeed = 0.f;
+            if (STATE_SAME(m_tInfo.curState, OBJ_A_MOVE))
+                m_tInfo.curState ^= OBJ_A_MOVE;
+
+            m_tInfo.curState |= OBJ_A_STND;
+
+            if (m_tInfo.direction & OBJ_D_RIGH)
+            {
+                if (0 < m_tInfo.fAngle)
+                    m_tInfo.fAngle -= 20.f;
+                if (m_tInfo.fAngle < 0)
+                    m_tInfo.fAngle = 0.f;
+            }
+            if (m_tInfo.direction & OBJ_D_LEFT)
+            {
+                if (m_tInfo.fAngle < 180)
+                    m_tInfo.fAngle += 20.f;
+                if (180 <= m_tInfo.fAngle)
+                    m_tInfo.fAngle = 180.f;
+            }
+        }
+    }
+
+#pragma region Movement
+    // Accel
+    if (m_tInfo.curState & OBJ_A_MOVE)
+    {
+        if (STATE_SAME(m_tInfo.curState, OBJ_A_SITD))
+            m_tInfo.fAcc += 0.05f;
+        else
+            m_tInfo.fAcc += 0.1f;
+    }
+
+    if (m_tInfo.direction & OBJ_D_RIGH)
+    {
+        float fScrollX = CScrollMgr::GetInstance()->GetScrollX();
+
+        if (m_tInfo.rect.right <= -fScrollX + 320.f)
+            m_tInfo.fX += m_tInfo.fSpeed;
+    }
+
+    if (m_tInfo.direction & OBJ_D_LEFT)
+    {
+        float fScrollX = CScrollMgr::GetInstance()->GetScrollX();
+
+        if (-fScrollX < m_tInfo.rect.left)
+            m_tInfo.fX -= m_tInfo.fSpeed;
+    }
+
+    if (m_tInfo.direction & OBJ_D_TOPP)
+    {
+        //m_tInfo.fAcc += 0.1f;
+    }
+
+    if (m_tInfo.direction & OBJ_D_BOTT)
+    {
+        //m_tInfo.fAcc += 0.1f;
+    }
+#pragma endregion
+
+#pragma region StateChangeToTime
+    //if(m_curGun != HEAVY)
+    if (m_dwOldt + 20 < m_dwCurt)
+    {
+        if (m_tInfo.curState & OBJ_A_ATTK)
+        {
+            m_tInfo.curState ^= OBJ_A_ATTK;
+        }
+    }
+#pragma endregion
+
+#pragma region ImgUpdate
+    if (STATE_SAME(m_tInfo.curState, OBJ_A_STND))
+    {
+        if (STATE_SAME(m_tInfo.curState, OBJ_A_JUMP))
+        {
+            //가만히 점프하는 모션h_jmp_body_left
+            if (OBJ_D_RIGH == m_tInfo.direction)
+            {
+                m_scBody.SetState(L"fio/heavy/h_jmp_body/");
+                m_scLeg.SetState(L"fio/jump/jmp_leg/");
+            }
+            if (OBJ_D_LEFT == m_tInfo.direction)
+            {
+                m_scBody.SetState(L"fio/heavy/h_jmp_body_left/");
+                m_scLeg.SetState(L"fio/jump/jmp_leg_left/");
+            }            
+        }
+        else if (STATE_SAME(m_tInfo.curState, OBJ_A_SITD))
+        {
+            if (OBJ_D_RIGH == m_tInfo.direction)
+            {
+                m_scLeg.SetState(L"fio/heavy/sitdown/");
+            }
+            if (OBJ_D_LEFT == m_tInfo.direction)
+            {
+                m_scLeg.SetState(L"fio/heavy/sitdown_left/");
+            }
+        }
+        else
+        {
+            //서있는 모션
+            if (m_tInfo.fAngle <= 0)
+            {
+                m_scBody.SetState(L"fio/heavy/h_body/");
+                m_scLeg.SetState(L"fio/st/leg/");
+            }
+            if (180 <= m_tInfo.fAngle)
+            {
+                m_scBody.SetState(L"fio/heavy/h_body_left/");
+                m_scLeg.SetState(L"fio/st/leg_left/");
+            }
+        }
+    }
+    if (STATE_SAME(m_tInfo.curState, OBJ_A_MOVE))
+    {
+        if (STATE_SAME(m_tInfo.curState, OBJ_A_JUMP))
+        {
+            if (OBJ_D_RIGH == m_tInfo.direction)
+            {
+                m_scBody.SetState(L"fio/heavy/h_wlk_body/");
+                m_scLeg.SetState(L"fio/walking/leg/");
+            }
+            if (OBJ_D_LEFT == m_tInfo.direction)
+            {
+                m_scBody.SetState(L"fio/heavy/h_wlk_body_left/");
+                m_scLeg.SetState(L"fio/walking/leg_left/");
+            }
+        }
+        else if (STATE_SAME(m_tInfo.curState, OBJ_A_SITD))
+        {
+            if (OBJ_D_RIGH == m_tInfo.direction)
+            {
+                m_scBody.SetState(L"fio/heavy/h_body_left/");
+                m_scLeg.SetState(L"fio/st/leg_left/");
+            }
+            if (OBJ_D_LEFT == m_tInfo.direction)
+            {
+                m_scBody.SetState(L"fio/heavy/h_body_left/");
+                m_scLeg.SetState(L"fio/st/leg_left/");
+            }
+        }
+        else
+        {
+            if (OBJ_D_RIGH == m_tInfo.direction)
+            {
+                m_scBody.SetState(L"fio/heavy/h_wlk_body/");
+                m_scLeg.SetState(L"fio/walking/leg/");
+            }
+            if (OBJ_D_LEFT == m_tInfo.direction)
+            {
+                m_scBody.SetState(L"fio/heavy/h_wlk_body_left/");
+                m_scLeg.SetState(L"fio/walking/leg_left/");
+            }
+        }
+    }
+
+    if (STATE_SAME(m_tInfo.curState, OBJ_A_ATTK))
+    {
+        if (0 < m_tInfo.fAngle && m_tInfo.fAngle < 90)
+        {
+            m_scBody.SetState(L"fio/heavy/h_a_atk/");
+        }
+        if (90 < m_tInfo.fAngle && m_tInfo.fAngle < 180)
+        {
+            m_scBody.SetState(L"fio/heavy/h_a_atk_left/");
+        }
+        if (m_tInfo.fAngle <= 0)
+        {
+            m_scBody.SetState(L"fio/heavy/h_st_atk/");
+        }
+        if (180 <= m_tInfo.fAngle)
+        {
+            m_scBody.SetState(L"fio/heavy/h_st_atk_left/");
+        }
+    }
+
+    if (STATE_SAME(m_tInfo.curState, OBJ_A_BOMB))
+    {
+        if (m_tInfo.direction & OBJ_D_LEFT)
+        {
+            m_scBody.SetState(L"fio/st/b_body_left/");
+        }
+        else if (m_tInfo.direction & OBJ_D_RIGH)
+        {
+            m_scBody.SetState(L"fio/st/b_body/");
+        }
+    }
+#pragma endregion
+
+    m_tInfo.preState = m_tInfo.curState;
+}
+
+void CPlayer::      BaseGunKeyInput ()
 {
     m_dwCurt = GetTickCount();
     m_tInfo.curState = m_tInfo.preState;
@@ -501,11 +1117,70 @@ void CPlayer::BaseGunKeyInput()
 
     if (KEY_UP('0'))
     {
+        m_tInfo.curState = OBJ_A_PICK;
+        m_tInfo.preState = m_tInfo.curState;
+    }
 
+    if (KEY_UP('H'))
+    {
+        INFO infoh;
+        infoh.fX = m_tInfo.fX + 50.f;
+        infoh.fY = 100.f;
+        infoh.fCX = 22.f;
+        infoh.fCY = 20.f;
+
+        // tower
+        CObj* heavy = CAbstractFactory<CItem>::CreateObj(infoh, IHEAVY);
+
+        CObjManager::GetInst()->AddObj(heavy, OBJ_ITEM);
+    }
+
+    if (KEY_UP('B'))
+    {
+        INFO infoh;
+        infoh.fX = m_tInfo.fX + 50.f;
+        infoh.fY = 100.f;
+        infoh.fCX = 22.f;
+        infoh.fCY = 20.f;
+
+        // tower
+        CObj* heavy = CAbstractFactory<CItem>::CreateObj(infoh, IBOMB);
+
+        CObjManager::GetInst()->AddObj(heavy, OBJ_ITEM);
+    }
+    if (KEY_UP('S'))
+    {
+        INFO infoh;
+        infoh.fX = m_tInfo.fX + 50.f;
+        infoh.fY = 100.f;
+        infoh.fCX = 22.f;
+        infoh.fCY = 20.f;
+
+        // tower
+        CObj* heavy = CAbstractFactory<CItem>::CreateObj(infoh, ISHOTGUN);
+
+        CObjManager::GetInst()->AddObj(heavy, OBJ_ITEM);
     }
 
     if (KEY_PRESSING(VK_RIGHT))
     {
+        if (KEY_DOWN(VK_SPACE))
+        {
+            isKeyInput = true;
+            if (STATE_SAME(m_tInfo.curState, OBJ_A_JUMP))
+            {
+            }
+            else if (!STATE_SAME(m_tInfo.curState, OBJ_A_JUMP))
+            {
+                if (STATE_SAME(m_tInfo.curState, OBJ_A_STND))
+                    m_tInfo.curState ^= OBJ_A_STND;
+                if (STATE_SAME(m_tInfo.curState, OBJ_A_SITD))
+                    m_tInfo.curState ^= OBJ_A_SITD;
+
+                m_tInfo.curState |= OBJ_A_JUMP;
+                m_tInfo.fJumpAcc = GRAVITY * 1.5f;
+            }
+        }
         if (m_tInfo.direction & OBJ_D_LEFT)
         {
             m_tInfo.fSpeed = 0.f;
@@ -559,6 +1234,23 @@ void CPlayer::BaseGunKeyInput()
 
     if (KEY_PRESSING(VK_LEFT))
     {
+        if (KEY_DOWN(VK_SPACE))
+        {
+            isKeyInput = true;
+            if (STATE_SAME(m_tInfo.curState, OBJ_A_JUMP))
+            {
+            }
+            else if (!STATE_SAME(m_tInfo.curState, OBJ_A_JUMP))
+            {
+                if (STATE_SAME(m_tInfo.curState, OBJ_A_STND))
+                    m_tInfo.curState ^= OBJ_A_STND;
+                if (STATE_SAME(m_tInfo.curState, OBJ_A_SITD))
+                    m_tInfo.curState ^= OBJ_A_SITD;
+
+                m_tInfo.curState |= OBJ_A_JUMP;
+                m_tInfo.fJumpAcc = GRAVITY * 1.5f;
+            }
+        }
         if (m_tInfo.direction & OBJ_D_RIGH)
         {
             m_tInfo.fSpeed = 0.f;
@@ -615,7 +1307,6 @@ void CPlayer::BaseGunKeyInput()
         if (STATE_SAME(m_tInfo.curState, OBJ_A_JUMP))
         {
         }
-
         else if (!STATE_SAME(m_tInfo.curState, OBJ_A_JUMP))
         {
             if (STATE_SAME(m_tInfo.curState, OBJ_A_STND))
@@ -642,6 +1333,7 @@ void CPlayer::BaseGunKeyInput()
 
     if (KEY_PRESSING(VK_UP))
     {
+        //isKeyInput = true;
         m_tInfo.direction |= OBJ_D_TOPP;
         if (m_tInfo.direction & OBJ_D_RIGH)
         {
@@ -661,6 +1353,7 @@ void CPlayer::BaseGunKeyInput()
     // 나중에 총구각도 계산할때 점프 아래키는 360 - 각도로 계산
     if (KEY_PRESSING(VK_DOWN))
     {
+        //isKeyInput = true;
         if (m_tInfo.curState & OBJ_A_JUMP)
         {
             m_tInfo.direction |= OBJ_D_BOTT;
@@ -706,8 +1399,21 @@ void CPlayer::BaseGunKeyInput()
             isKeyInput = true;
 
             CSoundMgr::GetInstance()->PlaySound(L"ALL_00073.wav", CSoundMgr::CHANNEL_PLAYER);
-
-            CObjManager::GetInst()->AddObj(CreateBullet(m_vBulletimg, m_tInfo.fAngle), OBJ_P_BULLET);
+            switch (m_curGun)
+            {
+            case CPlayer::BASE:
+            case CPlayer::HEAVY:
+                CObjManager::GetInst()->AddObj(CreateBullet(m_vBulletimg, m_tInfo.fAngle), OBJ_P_BULLET);
+                break;
+            case CPlayer::SHOTGUN:
+            {
+                CObj* shot = CAbstractFactory<CShotgun>::CreateObj(m_tInfo.fX, m_tInfo.fY);
+                CObjManager::GetInst()->AddObj(shot, OBJ_P_BULLET);
+            }
+                break;
+            case CPlayer::GUN_END:
+                break;
+            }
         }
 
     }
@@ -730,8 +1436,12 @@ void CPlayer::BaseGunKeyInput()
         }
         m_tInfo.curState |= OBJ_A_BOMB;
         isKeyInput = true;
-        CSoundMgr::GetInstance()->PlaySound(L"tong.wav", CSoundMgr::CHANNEL_EFFECT);
-        CObjManager::GetInst()->AddObj(CreateBomb(m_vBombimg, 0.f), OBJ_P_BOMB);
+        if (bombCnt != 0)
+        {
+            CSoundMgr::GetInstance()->PlaySound(L"tong.wav", CSoundMgr::CHANNEL_EFFECT);
+            CObjManager::GetInst()->AddObj(CreateBomb(m_vBombimg, 0.f), OBJ_P_BOMB);
+            --bombCnt;
+        }
     }
 
     if (!isKeyInput)//
@@ -764,7 +1474,19 @@ void CPlayer::BaseGunKeyInput()
                     m_tInfo.fAngle = 180.f;
             }
         }
+        //m_dwcIdlet = GetTickCount();
+        //if (m_dwoIdlet + 2000 < m_dwcIdlet)
+        //{
+        //    m_dwoIdlet = m_dwcIdlet;
+        //    m_tInfo.curState = OBJ_A_PICK;
+        //}
     }
+    else
+    {
+        m_dwoIdlet = GetTickCount();
+    }
+
+    
 
 #pragma region Movement
     // Accel
@@ -961,10 +1683,14 @@ void CPlayer::BaseGunKeyInput()
         }
     }
 #pragma endregion
+    if (STATE_SAME(m_tInfo.curState, OBJ_A_PICK))
+    {
+        m_scLeg.SetState(L"fio/pk/");
+    }
     m_tInfo.preState = m_tInfo.curState;
 }
 
-void CPlayer::rectMake()
+void CPlayer::      rectMake        ()
 {
     /*m_tInfo.rect.left   = m_tInfo.fX - (*m_scBody.GetState()->GetImgVector()->begin())->image->GetWidth() / 2.f;
     m_tInfo.rect.right  = m_tInfo.fX + (*m_scBody.GetState()->GetImgVector()->begin())->image->GetWidth() / 2.f;
